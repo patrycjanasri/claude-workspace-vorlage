@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identitycode</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #faf9f7; color: #1a1a1a; line-height: 1.85; }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 80px 28px; }
+  .wrap-wide { max-width: 900px; margin: 0 auto; padding: 80px 28px; }
+
+  /* HERO */
+  .hero { background: #1a1410; text-align: center; padding: 130px 28px 110px; }
+  .hero h1 { font-size: clamp(56px, 9vw, 104px); font-weight: 300; letter-spacing: -3px; line-height: 1.0; color: #f5f0e8; margin-bottom: 32px; }
+  .hero-tag { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #c9a96e; margin-bottom: 28px; display: block; }
+  .hero p { font-size: 19px; color: #9a9080; max-width: 480px; margin: 0 auto 48px; line-height: 1.7; }
+  .btn-hero { display: inline-block; background: #c9a96e; color: #1a1410; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 18px 48px; text-decoration: none; }
+
+  /* LABELS */
+  .label { font-family: 'Helvetica Neue', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #c9a96e; margin-bottom: 40px; display: block; }
+
+  /* HEADINGS */
+  h2 { font-size: clamp(24px, 3.5vw, 38px); font-weight: 400; color: #1a1410; margin-bottom: 32px; line-height: 1.25; }
+  h3 { font-size: 16px; font-weight: 600; color: #1a1410; margin-bottom: 10px; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.3px; }
+
+  /* TEXT */
+  p { font-size: 17px; color: #3a3530; margin-bottom: 20px; line-height: 1.9; }
+  p.lead { font-size: 20px; color: #1a1410; line-height: 1.75; margin-bottom: 28px; }
+  p.muted { font-size: 15px; color: #888; }
+
+  /* DIVIDERS */
+  hr { border: none; border-top: 1px solid #e8e4dc; margin: 0; }
+
+  /* SECTIONS */
+  .bg-white { background: #faf9f7; }
+  .bg-cream { background: #f4f0e8; }
+  .bg-dark { background: #1a1410; }
+  .bg-dark h2 { color: #f5f0e8; }
+  .bg-dark p { color: #b0a898; }
+  .bg-dark p.lead { color: #f5f0e8; }
+  .bg-dark .label { color: #c9a96e; }
+  .bg-gold { background: #c9a96e; }
+  .bg-gold h2 { color: #1a1410; }
+  .bg-gold p { color: #3a2a10; font-size: 18px; }
+  .bg-gold .label { color: #7a5020; }
+
+  /* QUOTE */
+  .quote { border-left: 3px solid #c9a96e; padding: 4px 0 4px 28px; margin: 40px 0; }
+  .quote p { font-size: 19px; color: #1a1410; line-height: 1.7; margin: 0; font-style: italic; }
+
+  /* GOLD TEXT */
+  .gold { color: #c9a96e; }
+  .gold-big { font-size: clamp(22px, 3vw, 30px); color: #c9a96e; font-weight: 300; line-height: 1.4; margin: 40px 0; }
+
+  /* BLOCKS */
+  .block { padding: 28px 0; border-top: 1px solid #e8e4dc; }
+  .block:first-child { border-top: none; }
+  .block p { font-size: 16px; color: #6a6560; margin: 0; }
+
+  /* TWO COL */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
+  @media(max-width:580px){ .cols { grid-template-columns: 1fr; gap: 36px; } }
+  .col-head { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 24px; font-weight: 600; }
+  .col-list { list-style: none; }
+  .col-list li { font-size: 15px; color: #3a3530; padding: 11px 0; border-bottom: 1px solid #e8e4dc; line-height: 1.6; padding-left: 18px; position: relative; }
+  .col-list li::before { content: ""; position: absolute; left: 0; top: 20px; width: 6px; height: 6px; border-radius: 50%; background: #c9a96e; }
+  .col-list.red li::before { background: #c0392b; }
+
+  /* VERGLEICH */
+  .vergleich { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 40px; border: 1px solid #e8e4dc; }
+  @media(max-width:580px){ .vergleich { grid-template-columns: 1fr; } }
+  .vergleich-col { padding: 32px 28px; }
+  .vergleich-col.links { border-right: 1px solid #e8e4dc; }
+  .vergleich-head { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; font-weight: 600; }
+  .vergleich-head.rot { color: #c0392b; }
+  .vergleich-head.gold { color: #c9a96e; }
+  .vergleich-item { font-size: 15px; color: #3a3530; padding: 10px 0 10px 20px; border-bottom: 1px solid #f0ece4; line-height: 1.5; position: relative; }
+  .vergleich-item:last-child { border-bottom: none; }
+  .vergleich-item::before { content: ""; position: absolute; left: 0; top: 17px; width: 6px; height: 6px; border-radius: 50%; }
+  .vergleich-item.rot::before { background: #c0392b; }
+  .vergleich-item.gold::before { background: #c9a96e; }
+
+  /* FAQ */
+  .faq-item { padding: 28px 0; border-top: 1px solid #e8e4dc; }
+  .faq-item:first-child { border-top: none; }
+  .faq-q { font-size: 17px; font-weight: 600; color: #1a1410; margin-bottom: 12px; font-family: 'Helvetica Neue', sans-serif; }
+  .faq-a { font-size: 16px; color: #5a5550; line-height: 1.8; margin: 0; }
+
+  /* CTA BOX */
+  .cta-center { text-align: center; }
+  .cta-box { border: 1px solid #e8e4dc; padding: 60px 40px; max-width: 500px; margin: 0 auto; background: #fff; }
+  .cta-title { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #c9a96e; margin-bottom: 16px; }
+  .cta-name { font-size: 32px; font-weight: 300; color: #1a1410; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .cta-sub { font-size: 14px; color: #888; margin-bottom: 32px; font-family: 'Helvetica Neue', sans-serif; }
+  .cta-price { font-size: 20px; color: #bbb; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 1px; margin-bottom: 28px; }
+  .btn { display: inline-block; background: #c9a96e; color: #1a1410; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 18px 48px; text-decoration: none; cursor: pointer; }
+  .btn-outline { display: inline-block; border: 1px solid #c9a96e; color: #c9a96e; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 16px 40px; text-decoration: none; cursor: pointer; margin-top: 20px; }
+  .cta-fine { font-size: 12px; color: #bbb; margin-top: 16px; font-family: 'Helvetica Neue', sans-serif; }
+
+  /* CLOSING */
+  .final-line { font-size: clamp(22px, 3.5vw, 34px); font-weight: 300; color: #f5f0e8; line-height: 1.5; margin: 48px 0 36px; }
+  .sig { font-size: 22px; color: #c9a96e; font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<div class="hero">
+  <span class="hero-tag">6 Wochen Mentoring</span>
+  <h1>Identitycode</h1>
+  <p>Du weißt, dass da mehr möglich ist. Du lebst es trotzdem noch nicht.</p>
+  <a class="btn-hero" href="#angebot">Ich bin dabei</a>
+</div>
+
+<!-- 2. EINSTIEG -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Wer gerade hier liest</span>
+  <p class="lead">Du hast schon einiges ausprobiert. Coaching. Bücher. Kurse. Vielleicht auch Astrologie oder Human Design.</p>
+  <p>Und du hast immer wieder Momente gehabt, wo es sich richtig angefühlt hat. Wo du gedacht hast: ja, das ist es. Das bin ich.</p>
+  <p>Aber ein paar Wochen später warst du wieder da, wo du angefangen hast.</p>
+  <p>Das liegt nicht daran, dass du zu langsam bist. Das liegt nicht daran, dass der Weg falsch war.</p>
+  <p><strong>Es liegt daran, dass Wissen dich nicht verändert. Verkörperung tut es.</strong></p>
+</div></div>
+
+<!-- 3. DAS PROBLEM -->
+<hr>
+<div class="bg-cream"><div class="wrap">
+  <span class="label">Was wirklich los ist</span>
+  <h2>Du lebst gerade eine Identität, die nicht von dir kommt.</h2>
+  <p>Sie wurde aufgebaut. Von deinen Eltern. Von der Schule. Von Beziehungen, in denen du gelernt hast, wer du zu sein hast, damit es funktioniert.</p>
+  <p>Und dein Nervensystem hält das aufrecht. Jeden Tag. Automatisch. Ohne dass du es merkst.</p>
+  <p>Du reagierst auf einen Kommentar, bevor du dich entschieden hast zu reagieren. Du sabotierst eine Entscheidung, bevor du sie zu Ende gedacht hast. Du ziehst immer wieder dieselben Menschen an, dieselben Situationen, dieselben Muster.</p>
+  <div class="gold-big">Das ist dein Selbstbild. Und dein Selbstbild ist eine Konstruktion.</div>
+  <p>Persona ist lateinisch für Maske. Wir alle tragen seit Jahrzehnten eine. Wir haben sie so lange getragen, dass wir aufgehört haben, sie als Maske zu sehen. Wir halten sie für unser echtes Gesicht.</p>
+  <p><strong>Das ist das einzige Problem, das du hast. Nicht das fehlende Geld. Nicht die Zeit. Nicht die Umstände. Dein Selbstbild.</strong></p>
+</div></div>
+
+<!-- 4. WARUM ES NICHT KLAPPT -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Warum bisherige Versuche scheitern</span>
+  <h2>Du versuchst auf der Ebene des Verstandes zu verändern, was im Nervensystem verankert ist.</h2>
+  <p>Morgenritual. Affirmationen. Vision Board. Noch ein Kurs. Und nach vier Wochen bist du wieder da, wo du angefangen hast.</p>
+  <p>Dein Verstand weiß, was du willst. Dein Nervensystem hält dich dort, wo es sich sicher fühlt. Sicher bedeutet: bekannt. Das alte Muster.</p>
+  <p>Sobald du anfängst, dich wirklich zu verändern, reagiert dein Körper. Du wirst müde. Du wirst krank. Du zweifelst. Du denkst, es ist ein Zeichen aufzuhören.</p>
+  <div class="gold-big">Es ist das Gegenteil.</div>
+  <p>Deine alte Identität kämpft. Dein Ego verliert sein Selbstbild und kriegt Angst. Genau da, wo es unangenehm wird, liegt der Durchbruch. Und genau da hören die meisten auf.</p>
+</div></div>
+
+<!-- 5. PATRYCJAS GESCHICHTE -->
+<hr>
+<div class="bg-dark"><div class="wrap">
+  <span class="label">Meine Geschichte</span>
+  <h2>Im April 2024 saß ich nach einem langen Spätdienst in meinem Auto und wollte gegen eine Wand fahren.</h2>
+  <p>20 Jahre lang war ich Krankenschwester. Ich hatte alles gegeben. An meinen Job. An meine Familie. An Menschen, die mir wichtig waren. Und am Ende war ich so leer, dass ich keinen Ausweg mehr gesehen habe.</p>
+  <p>In dieser Zeit habe ich angefangen, mich mit Bewusstsein zu beschäftigen. Mit Astrologie als Sprache für das, was in mir angelegt ist. Mit der Frage: Wer bin ich wirklich, bevor mir das alles beigebracht wurde?</p>
+</div></div>
+
+<!-- 6. DAS EXPERIMENT -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Was dann passiert ist</span>
+  <h2>Ich habe in ein Coaching investiert, das ich mir nicht leisten konnte.</h2>
+  <p>Mein System ist in diesem Moment kollabiert. Mein Mann hat mich angeschaut und gesagt: Spinnst du??</p>
+  <p>Ich habe es trotzdem gemacht. Meinem Bauchgefühl vertraut. Mein System ist im ersten Moment durchgedreht. Aber ich bin geblieben.</p>
+  <div class="quote"><p>Einen Monat später hatte ich einen hohen Rang erreicht. Sechs Wochen später war das Geld zurück. In einem Jahr habe ich über 1.700 Kunden und Partner aufgebaut.</p></div>
+  <p>Ich habe mein Unterbewusstsein geknackt. Das war der einzige Unterschied.</p>
+  <p><strong>Und das ist, was ich dir im Identitycode weitergebe.</strong></p>
+  <br>
+  <div class="cta-center"><a class="btn" href="#angebot">Ich will das auch</a></div>
+</div></div>
+
+<!-- 7. WAS IDENTITYCODE IST -->
+<hr>
+<div class="bg-gold"><div class="wrap">
+  <span class="label">Das Programm</span>
+  <h2>Identitycode ist kein Kurs.</h2>
+  <p>Es ist ein Raum. Sechs Wochen. Für Frauen, die bereit sind, sich wirklich zu bewegen.</p>
+  <p>Wir gehen tief in deine psychologische Struktur. Wir schauen, wer du wirklich bist, durch dein Geburtshoroskop, durch deine Kindheitswunden, durch die Bewusstseinslehre.</p>
+  <p>Du verkörperst es, indem du gehst. Auch wenn es leichter wäre, es nicht zu tun. Du bleibst, auch wenn der Raum schließt.</p>
+</div></div>
+
+<!-- 8. WAS PASSIERT IN 6 WOCHEN -->
+<hr>
+<div class="bg-cream"><div class="wrap">
+  <span class="label">Was in den sechs Wochen passiert</span>
+  <h2>Ich zeige dir nicht, wie du Astrologie liest. Ich zeige dir, wer du warst, bevor die Konditionierungen kamen.</h2>
+  <p>Wir fangen mit dem Fundament an. Deiner psychologischen Struktur. Dem Selbstbild, das du entwickelt hast. Den Kindheitswunden, die du heute noch täglich wiederholst, ohne es zu wissen.</p>
+  <p>Wir arbeiten mit der Bewusstseinsskala. Du wirst verstehen, in welcher Frequenz du dich gerade bewegst. Und du lernst, sie zu verändern.</p>
+  <p>Wir arbeiten mit dem Raum zwischen Reiz und Reaktion. Bei jedem Kommentar, der dich triggert. Bei jeder Entscheidung, bei der du weißt, was richtig wäre, und trotzdem zögerst.</p>
+  <p>Du bekommst Prompts, die ich an mir und unzähligen Frauen getestet habe. Kombiniert mit dem Projektbuch, einer täglichen Schreibpraxis, die mein eigenes Leben verändert hat.</p>
+  <p><strong>Wir gehen in das Thema männliche und weibliche Energie. Du lernst, warum du in der Stille kreierst und im Stress blockierst. Warum die besten Entscheidungen nicht aus dem Kopf kommen.</strong></p>
+</div></div>
+
+<!-- 9. WIE DAS AUSSIEHT -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Was du bekommst</span>
+  <h2>Calls. Impulse. Werkzeuge. Ein Raum, der dich bewegt.</h2>
+  <div class="block">
+    <h3>Wöchentliche Live-Calls</h3>
+    <p>Kein Skript. Kein Folienbattle. Ich spreche intuitiv und gehe dahin, wo du gerade stehst.</p>
+  </div>
+  <div class="block">
+    <h3>Tägliche Impulse in der Gruppe</h3>
+    <p>Der Raum bleibt aktiv zwischen den Calls. Deine Fragen, deine Prozesse, deine Beobachtungen.</p>
+  </div>
+  <div class="block">
+    <h3>Astrologie-Analyse deiner Chart</h3>
+    <p>Ein Blick in dein Geburtshoroskop. Nicht als Horoskop, sondern als Spiegel für das, was bereits in dir angelegt ist.</p>
+  </div>
+  <div class="block">
+    <h3>Prompts und Projektbuch</h3>
+    <p>Werkzeuge für die tägliche Praxis. Getestet an mir selbst und unzähligen Frauen. Du nutzt sie lange über die sechs Wochen hinaus.</p>
+  </div>
+</div></div>
+
+<!-- 10. VERGLEICH -->
+<hr>
+<div class="bg-cream"><div class="wrap-wide">
+  <span class="label" style="text-align:center; display:block; margin-bottom:40px;">Der Unterschied</span>
+  <div class="vergleich">
+    <div class="vergleich-col links">
+      <div class="vergleich-head rot">Ohne Identitycode</div>
+      <div class="vergleich-item rot">Du hörst auf, wenn es unangenehm wird.</div>
+      <div class="vergleich-item rot">Du reagierst automatisch auf Reize.</div>
+      <div class="vergleich-item rot">Du ziehst immer wieder dieselben Muster an.</div>
+      <div class="vergleich-item rot">Ein negativer Kommentar bringt dich tagelang aus der Bahn.</div>
+      <div class="vergleich-item rot">Du weißt, was du willst. Du tust es trotzdem nicht.</div>
+      <div class="vergleich-item rot">Du sammelst Wissen, ohne es zu verkörpern.</div>
+    </div>
+    <div class="vergleich-col">
+      <div class="vergleich-head gold">Mit Identitycode</div>
+      <div class="vergleich-item gold">Du bleibst, auch wenn es wehtut.</div>
+      <div class="vergleich-item gold">Du erkennst deine Muster, bevor sie dich übernehmen.</div>
+      <div class="vergleich-item gold">Du veränderst, was du anziehst, weil du deine Frequenz kennst.</div>
+      <div class="vergleich-item gold">Du hältst dich, auch wenn das Außen gegen dich arbeitet.</div>
+      <div class="vergleich-item gold">Du handelst aus dir heraus, nicht aus Angst.</div>
+      <div class="vergleich-item gold">Du gehst. Auch wenn dein System durchdreht.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 11. DAS ERGEBNIS -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Das Ergebnis</span>
+  <h2>Du wirst deine Muster kennen, bevor sie dich übernehmen.</h2>
+  <p>Du wirst erkennen, in welcher Frequenz du gerade bist. Du wirst wissen, wie du dich verschiebst. Du wirst Entscheidungen treffen, die wirklich aus dir kommen.</p>
+  <p>Du wirst aufhören, dich von einem einzigen Kommentar tagelang aus der Bahn werfen zu lassen.</p>
+  <p>Und du wirst bleiben. Wenn der Raum schließt. Wenn niemand mehr täglich erinnert. Wenn die Menschen um dich herum nicht verstehen, was du gerade durchgehst.</p>
+  <div class="gold-big">Bleiben ist die Transformation.</div>
+  <p><strong>Die Frauen, die sich wirklich verändern, sind nicht die mit dem meisten Wissen. Es sind die, die geblieben sind.</strong></p>
+</div></div>
+
+<!-- 12. FÜR WEN / 13. NICHT FÜR WEN -->
+<hr>
+<div class="bg-cream"><div class="wrap">
+  <span class="label">Für wen</span>
+  <h2>Klar. Direkt. Keine Umwege.</h2>
+  <div class="cols">
+    <div>
+      <div class="col-head">Identitycode ist für dich</div>
+      <ul class="col-list">
+        <li>Du spürst, dass da mehr möglich ist. Du weißt noch nicht, was dich aufhält.</li>
+        <li>Du siehst immer wieder dieselben Muster. In Beziehungen, im Geld, im Business.</li>
+        <li>Du bist bereit dich zu bewegen. Nicht nur zuzuhören.</li>
+        <li>Ein negativer Kommentar reicht, um dich tagelang zu beschäftigen. Das willst du ändern.</li>
+        <li>Du willst aufhören, allen gerecht zu werden. Du willst für die Klasse da sein.</li>
+        <li>Du bist bereit zu investieren, auch wenn dein System dabei durchdreht.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="col-head">Nicht für dich</div>
+      <ul class="col-list red">
+        <li>Du willst Wissen sammeln, ohne etwas zu tun.</li>
+        <li>Du brauchst eine Garantie, bevor du einen Schritt machst.</li>
+        <li>Du bist bereit zu jammern, aber nicht bereit zu handeln.</li>
+        <li>Du erwartest, dass ich dir sage, was du hören willst.</li>
+        <li>Du bist nicht bereit, eine Version von dir loszulassen.</li>
+      </ul>
+    </div>
+  </div>
+</div></div>
+
+<!-- 14. WARUM PATRYCJA -->
+<hr>
+<div class="bg-white"><div class="wrap">
+  <span class="label">Warum ich</span>
+  <h2>Ich unterrichte nichts, was ich nicht selbst durchlebt habe.</h2>
+  <p>Als Kind war ich Schlüsselkind. Allein zu Hause, keine emotionale Sicherheit. Ich habe früh gelernt, für alles selbst verantwortlich zu sein. Das hat mich stark gemacht. Und gleichzeitig in Muster gezwungen, die mich jahrelang aufgehalten haben.</p>
+  <p>20 Jahre lang war ich Krankenschwester. Fachkraft für Anästhesie und Intensivmedizin. Ich habe in einem Job funktioniert, der mich unglücklich gemacht hat.</p>
+  <p>2020 habe ich das erste Mal mit Astrologie als psychologischem Werkzeug gearbeitet. Seitdem nutze ich sie nicht als Horoskop, sondern als Sprache für das, was bereits in uns angelegt ist.</p>
+  <p><strong>Ich bin keine Profiastrologin. Ich bin jemand, der diesen Weg selbst gegangen ist. Ich coache keine Strategie. Ich coache Bewusstsein.</strong></p>
+  <br>
+  <div class="cta-center"><a class="btn" href="#angebot">Jetzt dabei sein</a></div>
+</div></div>
+
+<!-- FAQ -->
+<hr>
+<div class="bg-cream"><div class="wrap">
+  <span class="label">Häufige Fragen</span>
+  <h2>Bevor du fragst.</h2>
+  <div class="faq-item">
+    <div class="faq-q">Ich kenne mich mit Astrologie kaum aus. Ist das ein Problem?</div>
+    <p class="faq-a">Gar nicht. Du musst nicht an Astrologie glauben. Ich nutze sie als Werkzeug, als Spiegel. Du bekommst alles erklärt, was du brauchst, um damit arbeiten zu können.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Wann startet das Programm und wie läuft es ab?</div>
+    <p class="faq-a">Das Startdatum wird nach der Anmeldung bekanntgegeben. Du erfährst alle Details direkt nach deiner Buchung.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Ich habe schon andere Programme gemacht. Was macht Identitycode anders?</div>
+    <p class="faq-a">Die meisten Programme geben dir Wissen. Identitycode gibt dir Bewegung. Wir arbeiten nicht mit Theorie. Wir arbeiten mit dem, was dich gerade aufhält.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Wie viel Zeit brauche ich pro Woche?</div>
+    <p class="faq-a">Die Live-Calls sind wöchentlich. Dazu kommt deine eigene Praxis mit den Prompts und dem Projektbuch. Du entscheidest, wie tief du gehst.</p>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Gibt es Zahlungsoptionen?</div>
+    <p class="faq-a">Ja. Details zu Zahlungsoptionen findest du direkt nach dem Klick auf den Button.</p>
+  </div>
+</div></div>
+
+<!-- 15. PREIS -->
+<hr>
+<div class="bg-white" id="angebot"><div class="wrap cta-center">
+  <div class="cta-box">
+    <div class="cta-title">6 Wochen Mentoring</div>
+    <div class="cta-name">Identitycode</div>
+    <div class="cta-sub">mit Patrycja Nasri</div>
+    <div class="cta-price">[ Preis folgt ]</div>
+    <a class="btn" href="#">Ich bin dabei</a>
+    <p class="cta-fine">[ Startdatum · Zahlungsoptionen · weitere Details ]</p>
+  </div>
+</div></div>
+
+<!-- 16. ABSCHLUSS -->
+<hr>
+<div class="bg-dark"><div class="wrap" style="text-align:center;">
+  <span class="label">Zum Abschluss</span>
+  <p class="lead">Im April 2024 saß ich in meinem Auto und wollte gegen eine Wand fahren.</p>
+  <p>Ich habe einen Sommer im Burnout verbracht. Ich habe investiert, als das Konto im Minus war. Mein Mann hat mich angeschaut und gesagt: Spinnst du??</p>
+  <p>Ich erzähle dir das nicht, damit du mich bewunderst.</p>
+  <p style="color:#f5f0e8;">Ich erzähle dir das, weil all das sterben musste, damit ich die sein kann, die ich heute bin.</p>
+  <p>Dein Prozess wird anders aussehen. Aber der Kern ist derselbe. Eine Version von dir muss gehen, damit die nächste kommen kann.</p>
+  <p style="color:#f5f0e8;">Identitycode ist der Raum dafür.</p>
+  <div class="final-line">2026 fragt nicht mehr nach deiner Strategie.<br>2026 verlangt verkörperte Identität.</div>
+  <div class="sig">Patrycja</div>
+</div></div>
+
+</body>
+</html>
