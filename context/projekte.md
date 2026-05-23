@@ -1,0 +1,53 @@
+---
+name: Aktuelle Projekte & Prioritäten
+description: Was Patrycja gerade aufbaut, skaliert und launcht
+---
+
+# Aktuelle Projekte & Prioritäten
+
+## Network-Marketing — MONAT skalieren
+
+**Ziel:** Network-Imperium weiter ausbauen, Team skalieren.
+- Reichweite auf Instagram systematisch steigern
+- Conversion optimieren: Follower → Partner / Kunden
+- Team-Führung und Duplikation stärken
+
+## Programme launchen & skalieren
+
+| Programm | Status | Fokus |
+| --- | --- | --- |
+| Moneycode | Aktiv | Geldidentität, finanzielle Umprogrammierung |
+| **Identitycode** | **Launch steht bevor** | Identitätsarbeit, Selbstführung — nächster Launch |
+| Emotioncode | Aktiv | Emotionale Intelligenz, innere Klarheit |
+
+## Community aufbauen
+
+**Ziel:** Kaufstarke Community — keine follower-count-Maximierung, sondern gezielte Positionierung für Menschen mit Kaufbereitschaft und Transformationswille.
+
+## Wachstum auf Instagram
+
+- Recherche: Was funktioniert aktuell auf Instagram für ihr Nischen-Segment
+- Content-Strategie mit klarer Conversion-Absicht
+- Funnel-Aufbau: Instagram → Angebot → Abschluss
+
+## Instagram Karussell-Agent — AUF IDENTITYCODE LAUNCH FOKUSSIERT
+
+**Status:** Läuft täglich 09:00 Uhr — SKILL.md auf Identitycode-Launch umgestellt (23.05.2026)
+**Themen:** 10 Identitycode-Kernthemen (Stirb-und-Werde, Frequenz, Genus, Nervensystem etc.)
+**CTA:** Alle auf IDENTITYCODE / IDENTITY / GENIUS umgestellt
+**Rückstellen auf allgemein:** Erst nach Launch — dann neue Session
+
+---
+
+## Instagram Analyse Agent (Make + Telegram) — IN BETRIEB
+
+**Status:** Läuft — Szenario in Make.com aufgebaut
+**Funktion:** Wöchentlicher Instagram-Report jeden Montag 08:00 Uhr via Telegram (Patrycja Analyse Bot)
+**Einschränkung:** Engagement-Metriken (Likes, Saves) noch leer — "List public user posts" liefert keine Zahlen. Fix: "Get post insights" Modul ergänzen.
+**Nächster Schritt:** Contentideen-Agent bauen (/ideen Trigger in Telegram, separates Make-Szenario)
+
+## Übergeordnete Prioritäten
+
+1. **Reichweite** — schneller auf Instagram wachsen
+2. **Conversion** — Content, der direkt verkauft oder qualifiziert
+3. **Positionierung** — klare Unterscheidbarkeit, unverwechselbare Stimme

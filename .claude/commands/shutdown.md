@@ -1,65 +1,82 @@
 # Shutdown
 
-> Session sauber beenden: Workspace scannen, aufräumen, alles auf den neuesten Stand bringen, committen und pushen.
+> Session zusammenfassen, Workspace aufräumen, alle Änderungen speichern und committen.
 
 ## Instructions
 
-Führe die folgenden Schritte der Reihe nach aus. Überspringe keinen Schritt.
+Führe die folgenden Schritte der Reihe nach aus. Überspringe keinen.
 
-### Schritt 1: Workspace scannen
+---
 
-1. Lies `CLAUDE.md` — prüfe, ob die dokumentierte Struktur noch stimmt
-2. Scanne alle Verzeichnisse:
-   - `context/` — Sind alle Dateien aktuell? Gibt es veraltete Einträge?
-   - `plans/` — Gibt es Pläne mit Status "Draft", die auf "Implemented" stehen sollten?
-   - `outputs/` — Gibt es temporäre oder verwaiste Dateien?
-   - `scripts/` — Gibt es unbenutzte Skripte?
-   - `reference/` — Gibt es veraltete Referenzdokumente?
-3. Prüfe auf Dateien, die nicht in die Struktur gehören (z.B. .DS_Store, temp files, __pycache__, .pyc, logs)
+### Schritt 1: Session-Zusammenfassung
 
-### Schritt 2: Aufräumen
+Fasse die Session in 3–5 Punkten zusammen:
+- Was wurde besprochen oder bearbeitet?
+- Welche Entscheidungen wurden getroffen?
+- Was wurde erstellt oder geändert?
+- Was ist offen geblieben?
 
-1. Lösche offensichtlich unnötige Dateien:
-   - `.DS_Store` Dateien
-   - `__pycache__/` Verzeichnisse
-   - `.pyc` Dateien
-   - Temporäre Dateien (*.tmp, *.bak, *.log)
-2. Für Dateien, bei denen unklar ist ob sie gebraucht werden: **NICHT löschen**, sondern in der Zusammenfassung auflisten und den User fragen
+---
 
-### Schritt 3: CLAUDE.md aktualisieren
+### Schritt 2: Workspace scannen
 
-Prüfe ob CLAUDE.md Änderungen braucht:
-- Neue Dateien/Ordner, die nicht dokumentiert sind?
-- Entfernte Dateien/Ordner, die noch dokumentiert sind?
-- Neue Commands, Skripte oder Workflows, die aufgelistet werden müssen?
-- Offene Punkte, die erledigt wurden und abgehakt werden können?
+```
+git status --short
+ls context/
+ls plans/
+ls outputs/
+ls inbox/ 2>/dev/null
+```
 
-Falls ja: Aktualisiere CLAUDE.md.
+Prüfe:
+- `context/` — Gibt es neue Erkenntnisse aus dieser Session, die festgehalten werden sollten?
+- `plans/` — Haben sich Plan-Status geändert? (Entwurf → In Arbeit → Abgeschlossen)
+- `outputs/` — Gibt es temporäre oder verwaiste Dateien?
+- `inbox/` — Gibt es erledigte Notizen, die archiviert oder gelöscht werden sollten?
 
-### Schritt 4: Context-Dateien prüfen
+---
 
-Prüfe jede Datei in `context/`:
-- Stimmen die Informationen noch mit dem überein, was in dieser Session passiert ist?
-- Gibt es neue Erkenntnisse, die festgehalten werden sollten?
+### Schritt 3: Dateien aktualisieren
 
-Falls ja: Aktualisiere die betreffenden Dateien.
+1. **CLAUDE.md** — Prüfe ob Struktur, Commands oder Workflows dokumentiert werden müssen
+2. **context/** — Aktualisiere relevante Kontext-Dateien mit neuen Erkenntnissen
+3. **Plans** — Aktualisiere Status-Zeilen in Plänen, die sich geändert haben
 
-### Schritt 5: Git — Committen und Pushen
+Für Dateien, bei denen unklar ist ob sie gebraucht werden: **NICHT löschen**, sondern im Abschluss-Report auflisten.
+
+---
+
+### Schritt 4: Aufräumen
+
+Lösche offensichtlich unnötige Dateien:
+- `.DS_Store`
+- `__pycache__/` und `.pyc`-Dateien
+- Temporäre Dateien (`*.tmp`, `*.bak`, `*.log`)
+
+---
+
+### Schritt 5: Git — Committen
 
 1. `git status` — Was hat sich geändert?
 2. Stage alle relevanten Änderungen (KEINE Secrets, KEINE .env)
-3. Commit mit beschreibender Message: "Shutdown: [was aufgeräumt/aktualisiert wurde]"
+3. Commit-Message: `"shutdown: {kurze Beschreibung der Session-Ergebnisse}"`
 4. Push auf Remote
 
-### Schritt 6: Zusammenfassung
+---
+
+### Schritt 6: Abschluss-Report
 
 Liefere einen kurzen Report:
 
-1. **Aufgeräumt:** Welche Dateien wurden gelöscht oder bereinigt?
-2. **Aktualisiert:** Welche Dateien wurden auf den neuesten Stand gebracht?
-3. **Offen:** Was konnte nicht automatisch erledigt werden? (Fragen an den User)
-4. **Nächste Session:** Was sollte als nächstes angegangen werden?
+| Bereich | Was passiert ist |
+| ------- | ---------------- |
+| **Erstellt** | Neue Dateien / Outputs dieser Session |
+| **Aktualisiert** | Geänderte Dateien |
+| **Offen** | Was nicht erledigt wurde — mit nächstem Schritt |
+| **Nächste Session** | Empfehlung, womit man anfangen sollte |
+
+---
 
 ### Schritt 7: Verabschiedung
 
-Verabschiede dich persönlich und freundlich vom Benutzer. Fasse kurz zusammen, was ihr in dieser Session gemeinsam erreicht habt, und wünsche einen guten Tag/Abend. Halte den Ton warm aber professionell — wie ein guter Kollege, der Feierabend macht. Warte auf die Antwort des Benutzers, damit er sich auch verabschieden kann, bevor die Session endet.
+Verabschiede dich persönlich und fasse in einem Satz zusammen, was heute erreicht wurde. Warm aber knapp — wie ein guter Kollege, der Feierabend macht.
