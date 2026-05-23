@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Astrologischer Selbst-Check</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+  /* Montserrat font - lädt wenn verfügbar */
 
   :root {
     --gold: #C9A96E;
@@ -485,6 +485,8 @@
     display: none;
   }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <canvas id="binary-canvas"></canvas>
@@ -844,7 +846,15 @@ function showForm() {
 
 
 
-populateSelects();
+// Elementor/WordPress-kompatibler Start
+(function initCheck() {
+  var els = document.querySelectorAll('[id$="-sign"]');
+  if (els.length > 0) {
+    populateSelects();
+  } else {
+    setTimeout(initCheck, 100);
+  }
+})();
 </script>
 
 <script>
