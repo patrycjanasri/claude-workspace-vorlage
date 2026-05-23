@@ -4,3 +4,7 @@ __pycache__/
 *.tmp
 *.bak
 *.log
+
+# Videos — zu groß für git
+videos/raw/
+videos/clips/
