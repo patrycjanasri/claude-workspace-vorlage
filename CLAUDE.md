@@ -50,7 +50,8 @@ Diese Datei ist die Pflichtgrundlage für jeden Text. Vor jedem Schreibauftrag l
 ├── plans/                 # Projektpläne (/plan) und Implementierungspläne (/create-plan)
 ├── outputs/               # Arbeitsergebnisse und Deliverables
 ├── reference/             # Vorlagen, Beispiele, wiederverwendbare Patterns
-└── scripts/               # Automatisierungsskripte (falls zutreffend)
+└── scripts/
+    └── telegram-story-bot/    # Instagram Story Agent (Telegram + Railway)
 ```
 
 **Verzeichnisse:**
@@ -62,7 +63,7 @@ Diese Datei ist die Pflichtgrundlage für jeden Text. Vor jedem Schreibauftrag l
 | `plans/`     | Projekt- und Implementierungspläne. Erstellt mit `/plan` oder `/create-plan`.           |
 | `outputs/`   | Deliverables, Analysen, Reports und Arbeitsergebnisse.                                 |
 | `reference/` | Hilfreiche Dokumentation, Vorlagen und Patterns für verschiedene Workflows. Enthält `post-tracking-template.md` für Instagram-Analyse. |
-| `scripts/`   | Automatisierungs- und Tooling-Skripte.                                                 |
+| `scripts/`   | Automatisierungs- und Tooling-Skripte. Enthält `telegram-story-bot/` — den täglichen Instagram Story Agent. |
 
 ---
 
