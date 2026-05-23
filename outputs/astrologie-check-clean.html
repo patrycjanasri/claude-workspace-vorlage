@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrologischer Selbst-Check</title>
+<style>
+/* ============================================
+   STRUKTURELLES CSS — NUR LAYOUT-GRUNDLAGEN
+   Alle visuellen Entscheidungen (Farben, Fonts,
+   Hintergründe, Abstände) bitte hier ergänzen.
+   ============================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Onboarding-Box */
+.tip-box {
+  margin-bottom: 32px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.video-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: 1px solid #333;
+}
+
+/* Formular */
+.name-group {
+  margin-bottom: 28px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+/* Planeten-Grid */
+.planets-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.planet-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.planet-label {
+  min-width: 160px;
+  font-weight: bold;
+}
+
+.planet-icon {
+  margin-right: 4px;
+}
+
+select {
+  padding: 10px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  min-width: 150px;
+}
+
+.house-fixed {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Fehler & Button */
+.error-msg {
+  display: none;
+  color: red;
+  margin-bottom: 16px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background: #333;
+  color: #fff;
+}
+
+/* Ergebnisse */
+.results-header {
+  margin-bottom: 32px;
+}
+
+.results-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.reading-block {
+  margin-bottom: 32px;
+  padding: 24px;
+  border: 1px solid #ddd;
+}
+
+.reading-block-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.reading-planet-icon {
+  font-size: 1.4rem;
+}
+
+.reading-planet-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.badge {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #999;
+  border-radius: 20px;
+}
+
+.planet-intro {
+  font-style: italic;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.house-addition {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f7f7f7;
+  border-left: 3px solid #999;
+  font-size: 0.9rem;
+}
+
+.summary-block {
+  margin-bottom: 32px;
+  padding: 24px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+
+.summary-block h3 {
+  margin-bottom: 12px;
+}
+
+.cta-block {
+  margin-bottom: 32px;
+  padding: 32px;
+  border: 2px solid #333;
+}
+
+.cta-block h3 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid #333;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  .planet-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  select {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="tip-box">
+    <p><strong>Schaue dir zu aller erst das Onboarding Video an, bevor du startest.</strong> Erstelle dein Geburtshoroskop wie im Onboarding Video gezeigt und trage alle Positionen im Check ein.</p>
+    <a href="#onboarding-video" class="video-btn" onclick="alert('Dein Onboarding Video Link kommt hier rein.'); return false;">&#9654; Zum Onboarding Video</a>
+  </div>
+
+  <div class="form-section">
+    <div class="name-group">
+      <label class="field-label" for="userName">Dein Name</label>
+      <input type="text" id="userName" placeholder="Wie heißt du?" autocomplete="off">
+    </div>
+
+    <label class="field-label" style="margin-bottom: 18px; display:block;">Deine Planetenstellungen</label>
+
+    <div class="planets-grid">
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9728;&#65039;</span> Sonne</div>
+        <select id="sonne-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="sonne-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#127769;</span> Mond</div>
+        <select id="mond-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="mond-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#11014;&#65039;</span> Aszendent (AC)</div>
+        <select id="ac-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <span class="house-fixed">immer im 1. Haus &middot; Das Ich</span>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9792;&#65039;</span> Venus</div>
+        <select id="venus-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="venus-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9794;&#65039;</span> Mars</div>
+        <select id="mars-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="mars-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9791;</span> Merkur</div>
+        <select id="merkur-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="merkur-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9795;</span> Jupiter</div>
+        <select id="jupiter-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="jupiter-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+      <div class="planet-row">
+        <div class="planet-label"><span class="planet-icon">&#9796;</span> Saturn</div>
+        <select id="saturn-sign"><option value="">Zeichen wählen</option><option value="Widder">Widder</option><option value="Stier">Stier</option><option value="Zwillinge">Zwillinge</option><option value="Krebs">Krebs</option><option value="Löwe">Löwe</option><option value="Jungfrau">Jungfrau</option><option value="Waage">Waage</option><option value="Skorpion">Skorpion</option><option value="Schütze">Schütze</option><option value="Steinbock">Steinbock</option><option value="Wassermann">Wassermann</option><option value="Fische">Fische</option></select>
+        <select id="saturn-house"><option value="">Haus wählen</option><option value="1">1. Haus</option><option value="2">2. Haus</option><option value="3">3. Haus</option><option value="4">4. Haus</option><option value="5">5. Haus</option><option value="6">6. Haus</option><option value="7">7. Haus</option><option value="8">8. Haus</option><option value="9">9. Haus</option><option value="10">10. Haus</option><option value="11">11. Haus</option><option value="12">12. Haus</option></select>
+      </div>
+
+    </div>
+
+    <div class="error-msg" id="errorMsg">Bitte wähle mindestens ein Zeichen aus, um dein Reading zu erhalten.</div>
+
+    <button class="submit-btn" onclick="generateReading()">Mein astrologisches Reading anzeigen</button>
+  </div>
+
+</div>
+
+<div id="results-page" style="display:none;">
+  <div class="container">
+    <div id="results"></div>
+  </div>
+</div>
+
+<script>
+const signs = [
+  "Widder","Stier","Zwillinge","Krebs","Löwe","Jungfrau",
+  "Waage","Skorpion","Schütze","Steinbock","Wassermann","Fische"
+];
+
+const planets = [
+  { key: "sonne",   icon: "☀️",  name: "Sonne" },
+  { key: "mond",    icon: "🌙",  name: "Mond" },
+  { key: "ac",      icon: "⬆️",  name: "Aszendent (AC)" },
+  { key: "venus",   icon: "♀️",  name: "Venus" },
+  { key: "mars",    icon: "♂️",  name: "Mars" },
+  { key: "merkur",  icon: "☿",        name: "Merkur" },
+  { key: "jupiter", icon: "♃",        name: "Jupiter" },
+  { key: "saturn",  icon: "♄",        name: "Saturn" }
+];
+
+const houseThemes = {
+  1:  { name: "1. Haus", theme: "Identität und Auftreten", description: "Das erste Haus ist die Bühne deines Selbstausdrucks. Hier zeigt sich, wie du in die Welt eintrittst, wie andere dich wahrnehmen und welchen ersten Eindruck du hinterlässt. Es ist das Haus der Persona im Sinne C.G. Jungs: der Maske, die wir der Welt zeigen, und gleichzeitig des echten Kerns, der hinter ihr pulsiert. Planeten hier prägen deine körperliche Erscheinung, deine Initiative und das, was du sichtbar machen willst." },
+  2:  { name: "2. Haus", theme: "Selbstwert und Ressourcen", description: "Das zweite Haus spricht von dem, was du als wertvoll erachtest. Es zeigt dein Verhältnis zu Geld, materiellen Ressourcen und Talenten, aber vor allem zu deinem inneren Selbstwert. Was du besitzt, was du dir erlaubst zu verdienen und wie du Grenzen setzt, spiegelt sich hier. Planeten im zweiten Haus beeinflussen, wie sicher du dich in deiner eigenen Haut und in deinen Fähigkeiten fühlst." },
+  3:  { name: "3. Haus", theme: "Kommunikation und Denken", description: "Das dritte Haus regiert die Art, wie dein Geist funktioniert und wie du dich ausdrückst. Es zeigt deine Kommunikationsmuster, deine Lernweise und deine Beziehung zu näheren Geschwistern und der direkten Umgebung. Planeten hier formen deine Sprache, deinen Schreibstil, deine Neugier und die mentale Beweglichkeit, mit der du Ideen verarbeitest und teilst." },
+  4:  { name: "4. Haus", theme: "Wurzeln und Psyche", description: "Das vierte Haus ist das innerste Heiligtum deines Wesens. Es spricht von deiner Herkunft, deiner Familie und der emotionalen Atmosphäre, in der du aufgewachsen bist. Diese frühe Prägung formt das Fundament deiner Psyche, deinen Begriff von Heimat und Geborgenheit und die unsichtbaren Muster, die du in alle Beziehungen mitbringst. Planeten hier zeigen, welche Wunden und welche Stärken aus deiner Kindheit stammen." },
+  5:  { name: "5. Haus", theme: "Kreativität und Freude", description: "Das fünfte Haus ist der Spielplatz der Seele. Hier geht es um Freude, kreative Schöpferkraft, Selbstausdruck und das reine Vergnügen des Daseins. Es zeigt, wie du liebst, wie du spielst, was dich zum Strahlen bringt und wie du dich im tiefsten Sinne ausdrückst. Planeten hier beschreiben dein Verhältnis zu Kreativität, zu Kindern, zu romantischen Abenteuern und zur Kunst des Leichtseins." },
+  6:  { name: "6. Haus", theme: "Rituale und Gesundheit", description: "Das sechste Haus regiert die täglichen Strukturen des Lebens. Es zeigt deine Rituale, Gewohnheiten, deinen Umgang mit Gesundheit und die Art, wie du arbeitest und dienst. Hier findet die stille Disziplin statt, das Vervollkommnen von Fähigkeiten und die Einheit von Körper, Geist und Seele im Alltag. Planeten hier formen, wie du Ordnung schaffst, wie du deinen Körper behandelst und worin du Perfektion suchst." },
+  7:  { name: "7. Haus", theme: "Partnerschaften und Beziehungen", description: "Das siebte Haus zeigt, was wir im Anderen suchen und was wir anziehen. Es regiert alle engen Partnerschaften, ob romantisch, geschäftlich oder seelisch, und spiegelt gleichzeitig das wider, was wir in uns selbst noch nicht integriert haben. Planeten hier beschreiben die Qualität deiner bedeutsamsten Beziehungen, deine Muster in der Partnerschaft und den Spiegel, den andere dir vorhalten." },
+  8:  { name: "8. Haus", theme: "Transformation und Tiefe", description: "Das achte Haus ist das Haus der großen Wandlungen. Es spricht von Verlust und Wiedergeburt, von tiefen seelischen Verbindungen, von Erbschaften und den Themen der Ahnen. Hier sitzen die dunkleren Schichten der Psyche, die verborgenen Mächte und die transformativen Erfahrungen, die uns grundlegend verändern. Planeten hier zeigen an, wo du stirbst und wiedergeboren wirst, psychologisch wie spirituell." },
+  9:  { name: "9. Haus", theme: "Philosophie und Weisheit", description: "Das neunte Haus öffnet den Horizont. Es regiert höhere Bildung, Philosophie, lange Reisen, Spiritualität und die Suche nach Sinn. Hier lebt der innere Lehrer, der Theologe, der Wanderer und der Visionär. Planeten in diesem Haus prägen dein Weltbild, deinen Glauben, deine Beziehung zu Wahrheit und die Art, wie du Weisheit sammelst und teilst." },
+  10: { name: "10. Haus", theme: "Berufung und öffentliches Leben", description: "Das zehnte Haus steht für das, was du in der Welt sein sollst. Es zeigt deine Berufung, deinen gesellschaftlichen Ruf, deine Führungsrolle und das Vermächtnis, das du hinterlässt. Planeten hier formen deine Karriere, dein Ansehen in der Gemeinschaft und die Art, wie du Verantwortung trägst und Autorität verkörperst." },
+  11: { name: "11. Haus", theme: "Gemeinschaft und Visionen", description: "Das elfte Haus spricht von den großen Träumen und den Menschen, die sie teilen. Es regiert Freundschaften, Netzwerke, Gleichgesinnte und das kollektive Bewusstsein. Hier lebt die Sehnsucht nach Gemeinschaft, nach Innovation und nach einer Zukunft, die über das Persönliche hinausgeht. Planeten hier zeigen, wie du innerhalb von Gruppen wirkst und welche Visionen dich antreiben." },
+  12: { name: "12. Haus", theme: "Stille und das Verborgene", description: "Das zwölfte Haus ist das Haus des Unsichtbaren. Es spricht von Rückzug, Stille, Spiritualität und dem kollektiven Unbewussten. Hier liegen verborgene Stärken, alte Muster und die tiefste Verbindung zur universellen Seele. Planeten hier wirken meist im Verborgenen, im Traum, in der Intuition und in Momenten stiller Hingabe, wo das Ego leiser wird und etwas Größeres sprechen kann." }
+};
+
+const readings = {
+  sonne: {
+    "Widder": "Die Sonne im Widder ist ein Feuer, das sich selbst entfacht. Du bist eine Seele, die nicht wartet, bis die Welt ihr Erlaubnis gibt. Dein innerster Antrieb ist der Drang zur Authentizität, zum Handeln aus dem Bauch heraus, zum Sein ohne Umwege. Widder-Energie ist die Energie des ersten Atemzuges, der ersten Initiative, des Muts, der keinen Grund braucht ausser sich selbst. Du lebst intensiv, du liebst direkt, du handelst bevor andere noch denken. Das ist deine Stärke und gleichzeitig dein Lernfeld. Denn der Widder lernt, dass wahre Führung nicht das Überfahren anderer bedeutet, sondern das Entzünden von etwas in ihnen. Deine Sonne strahlt am hellsten, wenn du Vorreiterin bist. Du kannst gar nicht anders als zu beginnen. Das ist deine Natur. Die Welt braucht dein Feuer. Sie braucht deine Bereitschaft, als erste aufzustehen, die erste Tür zu öffnen, das erste Wort zu sprechen. Dein Schatten liegt im voreiligen Handeln, in der Ungeduld, die Risse hinterlässt. Deine Heilung liegt im Bewusstsein, dass deine Wildheit dein Geschenk ist, nicht dein Problem. Wenn du lernst, deinen Mut mit Mitgefühl zu verbinden, wirst du zu der Frau, die nicht nur fängt, sondern auch trägt.",
+    "Stier": "Die Sonne im Stier ist eine Seele, die weiß, was sie wert ist. Du bist in einem Zeichen geboren, das nicht hastet, das nicht sprintet, das versteht, dass das Tiefste im Langsamen liegt. Deine Sonne strahlt, wenn du in Kontakt mit deinen Sinnen bist, wenn du schmeckst, fühlst, berührst, wenn du die Erde unter deinen Füßen spürst und weißt, dass du hierher gehörst. Stier ist Erde, ist Beständigkeit, ist Qualität über Quantität. Du baust langsam und du baust für die Ewigkeit. Dein natürliches Fundament ist Loyalität und Verlässlichkeit. Du bist die Frau, auf die andere zählen können, weil du nicht bei jedem Wind zitterst. Dein Schatten ist die Sturheit, das Festhalten an dem, was war, auch wenn der Moment des Loslassens längst gekommen ist. Du vertraust nur langsam und das ist weise, solange es dich nicht vom Neuen fernhält. Deine tiefste Aufgabe ist es zu erkennen, dass Sicherheit keine äußere Bedingung ist, sondern ein innerer Zustand. Wenn du weißt, wer du bist und was du wert bist, brauchst du keine Welt, die das bestätigt. Dann führst du aus einem Fundament heraus, das kein Erdbeben erschüttern kann.",
+    "Zwillinge": "Die Sonne in den Zwillingen ist ein Geist, der niemals aufhört zu tanzen. Du bist eine Seele, die in Verbindung aufblühst, die im Gesprächsfaden lebendig wird, die in Ideen atmet. Deine Intelligenz ist beweglich, geschmeidig, schnell. Du erkennst Zusammenhänge, wo andere Chaos sehen. Du vermittelst zwischen Welten, zwischen Menschen, zwischen Gedankensystemen. Deine Gabe ist die Sprache, ob in Worten, Gedanken oder dem stillen Verstehen zwischen den Zeilen. Zwillinge tragen in sich immer zwei Seiten: den Botschafter und den Suchenden, den Clown und den Philosophen, den, der alles weiß, und den, der nie aufhört zu fragen. Diese Dualität ist kein Mangel. Sie ist dein Reichtum. Dein Schatten liegt in der Zerstreutheit, in der Oberflächlichkeit als Schutz vor der eigenen Tiefe. Wenn alles interessant ist und nichts für lange, kann das ein Ausweichen vor dem sein, was wirklich sitzt. Deine Heilung liegt im Erlauben von Tiefe, im Verweilen, im Merken, dass auch du Wurzeln brauchst, wenn auch andere als die meisten. Wenn dein Geist sich mit deiner Seele verbindet, bist du die Botschafterin, die nicht nur informiert, sondern transformiert.",
+    "Krebs": "Die Sonne im Krebs ist eine Seele, die aus der Tiefe ihrer Gefühle heraus leuchtet. Dein innerstes Wesen ist durchdrungen von Empathie, von Fürsorge, von der Fähigkeit zu spüren, was andere nicht einmal aussprechen können. Du trägst die Welt in deinem Inneren. Du bist die Mündung, durch die andere ihre Gefühle fliessen lassen, die stille Kraft hinter denen, die sichtbar sind. Krebs ist das Haus der Seele, und du bist eine Hüterin davon. Deine Intuition ist phänomenal. Du weißt, wie sich Menschen anfühlen, bevor sie sprechen. Eine Gabe, die kaum jemand hat. Dein Schatten liegt im Rückzug hinter der Schale, im Festhalten an altem Schmerz, in der Tendenz, dich selbst zuletzt zu sorgen. Du gibst so viel, dass du vergisst zu fragen, was du brauchst. Deine tiefste Aufgabe ist die Unterscheidung zwischen Mitgefühl und Selbstaufopferung. Du darfst eine Heimat für dich selbst sein, nicht nur für andere. Wenn du lernst, dir selbst dieselbe Zärtlichkeit entgegenzubringen, die du so selbstverständlich an andere vergibst, wirst du zu einer Kraft, die nicht aus Erschöpfung gibt, sondern aus unendlicher Fülle.",
+    "Löwe": "Die Sonne im Löwen ist in ihrem Zuhause. Hier strahlt die Sonne, hier darf sie sein, was sie ist: königliches Feuer, herzliche Wärme, schöpferische Kraft. Dein innerster Wesenskern ist Kreativität, Freude und Sichtbarkeit. Du bist nicht in diese Welt gekommen, um in der zweiten Reihe zu stehen. Deine Seele sehnt sich danach, zu schöpfen, zu leuchten, zu führen, und das nicht aus Ego, sondern aus einem tiefen Verständnis, dass dein Leuchten anderen erlaubt, sich selbst zu sehen. Der Löwe regiert das Herz und du führst mit deinem. Deine Warmherzigkeit ist unerschöpflich, wenn du nicht verletzt bist. Deine Großzügigkeit ist legendär. Dein Charisma entsteht nicht durch Berechnung, sondern durch die pure Freude an deinem eigenen Dasein. Dein Schatten ist die Abhängigkeit von Bestätigung, das Verblassen, wenn kein Applaus kommt. Deine tiefste Lektion ist die Unterscheidung zwischen Anerkennung und Zustimmung. Du brauchst keine, die dir sagen, wie groß du bist. Du brauchst das Feuer in dir, das weiß, dass es leuchtet, auch wenn niemand schaut. Wenn du das gefunden hast, bist du unaufhaltbar.",
+    "Jungfrau": "Die Sonne in der Jungfrau ist eine Seele, die Vollkommenheit nicht als Ziel sucht, sondern als Haltung lebt. Du bist in einem Zeichen geboren, das den Sinn der Details versteht, das weiß, dass Perfektion kein Zufall ist, sondern das Ergebnis aufmerksamer, liebevoller Arbeit. Dein Geist analysiert, sortiert und ordnet, nicht aus Angst, sondern aus einem tiefen Respekt vor dem Handwerk des Lebens. Jungfrau ist das Zeichen der Verfeinerung, der Gesundheit, des Dienstes. Du hast ein natürliches Gespür dafür, was funktioniert und was nicht, was geheilt werden muss und wie. Deine Fähigkeit zu unterscheiden ist eine seltene Gnade. Dein Schatten ist der innere Kritiker, der sich zuerst gegen dich richtet. Die Jungfrau analysiert sich selbst mit derselben Präzision, die sie auf alles andere anwendet, und manchmal wird daraus ein Gefängnis der Selbstkritik. Deine Heilung liegt im Verständnis, dass du nicht perfekt sein musst, um wert zu sein. Du bist nicht deine Leistung. Du bist die Seele dahinter, die mit bemerkenswerter Aufmerksamkeit durch das Leben geht und dabei alles, was sie berührt, etwas besser hinterlässt.",
+    "Waage": "Die Sonne in der Waage ist eine Seele, die für Harmonie geboren wurde, und die langsam lernt, dass sie selbst Teil dieser Harmonie sein darf. Dein innerstes Wesen sucht die Schönheit, die Gerechtigkeit, das Gleichgewicht zwischen Menschen und Ideen. Du hast ein angeborenes Gespür für das, was fehlt, Du spürst die Energie im Raum wenn du ihn betrittst, du spürst das Ungerechte in einer Situation. Und du hast die Gabe, es zu benennen, ohne zu verletzen. Waage ist Venus, ist Ästhetik, ist die Kunst der Begegnung. Du begegnest anderen mit einer Anmut, die einlädt. Du schaffst Räume, in denen sich Menschen gesehen fühlen. Das ist keine Kleinigkeit. Dein Schatten ist die Tendenz, dich im Anderen zu verlieren, deine eigenen Bedürfnisse hinter denen anderer zu begraben, um den Frieden zu wahren. Du sagst ja, wenn du nein meinst. Du vermeidest Konflikte, bis sie explodieren. Deine tiefste Aufgabe ist es zu lernen, dass du deine eigene Meinung haben darfst, ohne die Beziehung zu gefährden. Das echte Gleichgewicht beginnt in dir. Wenn du dich selbst so fair behandelst wie alle anderen, findest du endlich die Harmonie, nach der du dein Leben lang gesucht hast.",
+    "Skorpion": "Die Sonne im Skorpion ist eine Seele, die in der Tiefe zuhause ist. Du bist nicht für die Oberfläche geboren. Du lebst im Darunter, im Verborgenen, in dem, was die meisten nicht sehen wollen, aber alle spüren. Deine Wahrnehmung durchdringt Fassaden, deine Intuition ist ein Seismograf für das Ungesagte. Und du trägst das alles in dir, dieses Wissen, diese Tiefe, diese Intensität, ohne immer zu wissen, wohin damit. Skorpion ist das Zeichen der Transformation. Du bist nicht jemand, der unverändert durch das Leben geht. Du stirbst und wirst wiedergeboren, manchmal mehrmals in einem Leben. Jede große Krise, die dich getroffen hat, hat dich nicht gebrochen, sie hat dich enthüllt. Dein Schatten ist die Tendenz zu Kontrolle und zu Misstrauen. Du wurdest vielleicht so oft verletzt, dass dich öffnen sich wie ein Akt des Krieges anfühlt. Deine Heilung liegt im Vertrauen, dass deine Verletzlichkeit keine Schwäche ist, sondern deine größte Macht. Wenn du dich traust, gesehen zu werden, wirklich gesehen, entsteht eine Verbindung, die andere nie erreichen. Das ist deine tiefste Einladung.",
+    "Schütze": "Die Sonne im Schützen ist eine Seele auf ewiger Suche nach Wahrheit und Horizont. Du bist geboren mit einem inneren Feuer für den Sinn, für das Warum, für die große Bedeutung hinter den kleinen Ereignissen. Nichts genügt dir lange, wenn es nicht in ein größeres Bild passt. Du lebst für Expansion, für Freiheit, für die Bereitschaft, alles in Frage zu stellen und dann weiterzugehen. Schütze ist der Pfeil, der in die Weite zielt. Immer dem Ruf einer höheren Vision folgend. Deine Begeisterungsfähigkeit ist ansteckend. Du kannst eine Idee so tragen und strahlen, dass andere anfangen zu glauben, was sie allein niemals geglaubt hätten. Das ist Führung durch Inspiration. Dein Schatten ist die Flucht vor dem Nahen, vor dem Konkreten, vor der Verantwortung, die mit dem Bleiben kommt. Der Schütze liebt es anzufangen. Das Vollenden ist die Kunst. Deine tiefste Aufgabe ist es, deine Vision zu erden, das Große in das Kleine zu bringen, ohne deine Leichtigkeit zu verlieren. Wenn du lernst zu bleiben und trotzdem frei zu sein, wirst du zur Lehrerin, die nicht nur zeigt, wohin es geht, sondern auch den Weg geht.",
+    "Steinbock": "Die Sonne im Steinbock ist eine Seele, die weiß, wofür sie hier ist. Du baust auf, was bleibt. Du denkst in Jahrzehnten. Recht und Ordnung kommen aus dir, du brauchst sie nicht von außen. Du siehst instinktiv, wer an welchen Platz gehört. Du erkennst, wer jemand ist, bevor er es selbst sieht. Das ist Macht. Die stille Art, die bleibt. Deine Sonne ruft dich auf: 100% Verantwortung übernehmen. Für dich, für dein Wort, für das, was du aufbaust. Einfach weiter machen. Das ist deine Superkraft.",
+    "Wassermann": "Die Sonne im Wassermann ist eine Seele, die ihrer Zeit voraus ist. Du bist eine Visionärin, eine Denkerin, eine Revolutionärin des Gewöhnlichen. Dein innerstes Wesen rebelliert gegen das Vorgeschriebene, nicht aus Prinzip, sondern weil du eine Wahrheit siehst, die andere noch nicht erkennen. Wassermann denkt in Systemen, in Gemeinschaften, in Zukünften. Du fragst nicht nur, was für dich gut ist, sondern was für alle gut wäre. Das macht dich zur natürlichen Führerin kollektiver Bewegungen, zur Frau, die die Spielregeln nicht nur spielt, sondern verändert. Dein Verstand ist brillant, unkonventionell und unerschrocken. Du liebst das Andere, das Originale, das Ungesehene. Dein Schatten liegt in der emotionalen Distanz, in der Tendenz, das Allgemeine dem Persönlichen vorzuziehen, in der Schwierigkeit, dich einzelnen Menschen so tief zu zeigen wie du es Ideen gegenüber tust. Deine Heilung liegt im Verstehen, dass Revolution auch in der Tiefe einer einzigen echten Verbindung stattfinden kann. Wenn du lernst, nah zu sein ohne deine Freiheit zu verlieren, wirst du zur Brücke zwischen Zukunft und Herz.",
+    "Fische": "Die Sonne in den Fischen ist eine Seele, die zwischen den Welten lebt. Du bist durchlässig für das, was über das Sichtbare hinausgeht. Traumbilder, intuitive Eingebungen, das emotionale Feld um dich herum, all das nimmst du wahr wie andere Temperaturen wahrnehmen. Du empfängst und spürst die Botschaften, die zwischen den Zeilen liegen. Ein tiefes intuitives Bewusstsein für das Unsichtbare, für das, was andere nicht sehen können. Fische ist das zwölfte Zeichen, die Summe aller Erfahrungen, die große Hingabe. Du bist mit einem Mitgefühl ausgestattet, das keine Grenzen kennt, und das ist sowohl deine Schönheit als auch deine Herausforderung. Du kannst lösen, übergehen, aufgeben, was nicht mehr gebraucht wird. Du kannst vergeben, was andere jahrelang tragen. Dein Schatten ist die Auflösung der eigenen Grenzen im Strom anderer Bedürfnisse. Die Fische können sich so sehr im Anderen verlieren, dass das eigene Selbst wie ein Schemen wird. Deine tiefste Aufgabe ist es zu lernen, dass Spiritualität keine Flucht aus dir selbst ist, sondern eine tiefere Ankunft in dir. Wenn du lernst, geerdet zu sein und gleichzeitig offen, wirst du zur Heilerin, die nicht verbrennt, weil sie weiß, wer sie ist."
+  },
+
+  mond: {
+    "Widder": "Der Mond im Widder zeigt eine emotionale Welt, die sich sofort ausdrückt. Du fühlst schnell, reagierst sofort und erledigst emotionale Verarbeitung am liebsten in Bewegung. Deine Gefühle sind echt und direkt, sie kommen ohne Umhang. Das kann heilsam sein, weil niemand raten muss, was du fühlst. Dein inneres Kind braucht Autonomie, braucht das Gefühl, selbst entscheiden zu dürfen. Einengung ist für dich emotional fast unerträglich. Du brauchst Raum und Freiheit, um dich sicher zu fühlen. Dein Schatten liegt in der Impulsivität, im Handeln aus ungeklärten Emotionen heraus, im Bereuen des schnell Gesagten. Deine Heilung liegt im Innehalten, im Erkennen, dass deine Gefühle real sind und gleichzeitig nicht immer die Wahrheit über die Situation. Wenn du lernst, deine Intensität als Kraft zu nutzen statt als Reaktion, wirst du emotional unerschütterlich.",
+    "Stier": "Der Mond im Stier ist in seiner Erhöhung, und das ist kein Zufall. Hier ist emotionale Stabilität, hier ist Beständigkeit, hier ist das Gefühl von Sicherheit in allem, was bleibt. Du fühlst dich durch Sinnliches, durch Essen, durch Berühren, durch das Schöne in deiner Umgebung. Du brauchst keine Drama-Energie. Du brauchst Verlässlichkeit, Qualität und Ruhe, um dich emotional ganz zu fühlen. Dein inneres Kind wünscht sich Beständigkeit über alles. Plötzliche Veränderungen, Instabilität, das Aufbrechen von Vertrautem rüttelt dich tief. Dein Schatten ist das Festhalten, das Horten von Gefühlen und Menschen und Situationen, die längst gegangen werden könnten. Deine Stärke ist deine emotionale Zuverlässigkeit. Wer dich an seiner Seite hat, hat ein Fundament. Das ist ein seltenes Geschenk.",
+    "Zwillinge": "Der Mond in den Zwillingen verarbeitet Gefühle durch Worte und Gedanken. Du fühlst dich leichter, sobald du gesprochen oder geschrieben hast. Das Benennen ist für dich der Schlüssel zur Verarbeitung. Du bist emotional neugierig, interessierst dich für die Gefühlswelt anderer und kannst zwischen verschiedenen emotionalen Zuständen rasch wechseln. Das kann wie Oberflächlichkeit wirken, ist aber eigentlich eine große Flexibilität. Dein inneres Kind brauchte Gespräch, brauchte Zuhörende, brauchte das Gefühl, dass sein Denken Wert hat. Dein Schatten liegt in der Rationalisierung von Gefühlen, im Analysieren, wo Fühlen nötig wäre. Deine Heilung liegt im Erlauben von Stille, in der ein Gefühl ankommen und landen darf, ohne sofort in Sprache übersetzt zu werden.",
+    "Krebs": "Der Mond im Krebs ist in seinem Heimatzeichen, und das spürt man. Du bist emotional tief verwurzelt, feinfühlig und von einer Empfindsamkeit, die kaum eine Erschütterung in der emotionalen Atmosphäre deiner Umgebung übersieht. Du weißt, wie sich Menschen fühlen. Du weißt es, bevor sie es selbst wissen. Dein inneres Kind sehnt sich nach Geborgenheit, nach bedingungslosem Annehmen, nach einem Ort, der immer da ist. Deine größte emotionale Stärke ist deine Fähigkeit zur Fürsorge. Du gibst ohne Berechnung. Du weißt intuitiv, was jemand braucht. Dein Schatten liegt in der Stimmungsabhängigkeit, in der Schwierigkeit, eigene Gefühle von fremden zu trennen, und in dem Schmerz, wenn die Fürsorge, die du gibst, nicht zurückkommt. Deine Heilung liegt im Lernen, dir selbst dieselbe Heimat zu sein, die du anderen bietest.",
+    "Löwe": "Der Mond im Löwen braucht Herzlichkeit als emotionale Nahrung. Du blühst auf, wenn du gesehen, gefeiert und anerkannt wirst, nicht aus Eitelkeit, sondern weil dein inneres Kind gelernt hat, dass Liebe sich in Sichtbarkeit zeigt. Du liebst mit Größe. Deine Zuneigung ist offen, warm und ungeteilt. Wenn du liebst, liebst du vollständig. Dein emotionales Ausdrückungsbedürfnis ist stark. Du machst aus Gefühlen keine halbe Sache. Dein Schatten liegt in der Dramaturgie, im Übertreiben emotionaler Ereignisse um Aufmerksamkeit zu sichern. Deine Heilung liegt im Erkennen, dass du geliebt wirst, auch wenn kein Scheinwerfer auf dich gerichtet ist. Wenn du das weißt, leuchtest du aus dir selbst heraus.",
+    "Jungfrau": "Der Mond in der Jungfrau verarbeitet Gefühle durch Sortieren und Verstehen. Du fühlst dich am besten, wenn du weißt, warum du dich so fühlst, wenn Ordnung im Inneren herrscht und du das Diffuse in Greifbares umwandeln kannst. Dein inneres Kind brauchte das Gefühl, nützlich und gut genug zu sein. Kritik hat sich tief eingeprägt. Deine emotionale Sicherheit hängt oft an Kontrolle über Details und Abläufe. Dein Schatten liegt in der Selbstkritik, im emotionalen Perfektionismus, im Gefühl, nie gut genug zu sein. Deine Heilung liegt im Erlauben von Unordnung, im Erkennen, dass auch ungeklärte Gefühle vollständig sein dürfen. Du darfst fühlen, ohne es sofort verstehen zu müssen.",
+    "Waage": "Der Mond in der Waage sucht emotionale Harmonie. Du fühlst dich am wohlsten in Beziehungen, die sich ausgewogen anfühlen, in denen gegenseitig Raum gegeben wird und niemand zu kurz kommt. Konflikte belasten dich emotional stark, selbst wenn du gar nicht beteiligt bist. Du bist sensitiv für die Stimmungen in Räumen und Beziehungen und möchtest ausgleichen, wo Ungleichgewicht herrscht. Dein inneres Kind brauchte Frieden und Schönheit. Dein Schatten liegt in der Vermeidung, im Unterdrücken eigener Gefühle um der Harmonie willen. Du sagst ja, wenn nein dran wäre, und schluckst, was dich verletzt. Deine Heilung liegt im Erkennen, dass echte Harmonie nur entstehen kann, wenn alle Teile, auch die unbequemen, Raum haben. Das schließt dich ein.",
+    "Skorpion": "Der Mond im Skorpion ist eine emotionale Kraft ohne Mittelmass. Du fühlst nicht halb. Du fühlst alles oder nichts, mit einer Intensität, die andere manchmal erschreckt und dich manchmal erschöpft. Deine Gefühle sind tief, schichtenreich und gehen nicht verloren. Du trägst sie mit dir, manchmal lange, manchmal zu lange. Du hast ein unheimliches Gespür für das Unausgesprochene in Beziehungen. Lügen, Verbergen, gespieltes Interesse, das alles spürst du sofort. Dein Schatten liegt in der Kontrolle als emotionalem Schutzmechanismus, im Rachegedanken, der aufsteigt, wenn Vertrauen gebrochen wird. Deine Heilung liegt im Vertrauen als bewusstem Akt, nicht als blindem Glauben, sondern als entschiedene Öffnung nach dem Schmerz. Das erfordert Mut. Du hast diesen Mut.",
+    "Schütze": "Der Mond im Schützen braucht Freiheit als emotionalen Sauerstoff. Du fühlst dich am lebendigsten, wenn der Horizont offen ist, wenn du lernen kannst, reisen kannst, dich entwickeln kannst. Einengung, Enge, das Gefühl von emotionaler Gefangenschaft bringt dich zum Verstummen. Du verarbeitest Gefühle durch Bewegung, durch Humor, durch das Einordnen in ein größeres Bild. Schwere, die ohne Bedeutung bleibt, ist für dich unerträglich. Dein Schatten liegt in der Vermeidung von Tiefe, im Über-Humor als Schutzschicht, im emotionalen Davonlaufen statt Durchfühlen. Deine Heilung liegt im Vertrauen, dass Gefühle, die du durchfühlst, deine Freiheit nicht zerstören. Im Gegenteil: Sie erweitern sie.",
+    "Steinbock": "Du verarbeitest Gefühle durch Handlung. Dein Mond im Steinbock hält die Form, auch wenn innen viel passiert. Das ist Würde. Dein innerer Anker ist dein eigenes Wort, das du dir gibst und hältst. Wenn du dir selbst gegenüber verlässlich bist, bist du stabil. Dein Mond braucht Klarheit: Was ist wahr? Was ist meine Verantwortung? Was muss ich akzeptieren? Deine emotionale Stärke zeigt sich im Weitermachen. Auch wenn es schwer ist.",
+    "Wassermann": "Der Mond im Wassermann verarbeitet Gefühle mit intellektuellem Abstand. Du beobachtest deine eigenen Emotionen oft wie eine Forscherin, die ein Phänomen untersucht. Das gibt dir Klarheit, aber manchmal auf Kosten der Verbindung. Du brauchst emotionale Freiheit, das Recht, anders zu sein, zu fühlen was nicht erwartet wird, zu lieben auf deine eigene Art. Dein inneres Kind wollte nicht eingepasst werden in emotionale Schubladen. Dein Schatten liegt in der Entfremdung von den eigenen Gefühlen, im Rationalisieren statt Durchfühlen, in der emotionalen Unnahbarkeit als Schutz. Deine Heilung liegt im Erlauben von Wärme, im Zulassen von Nähe ohne den Verlust deiner Individualität. Du darfst nah sein und trotzdem du.",
+    "Fische": "Der Mond in den Fischen ist wie das Meer: grenzenlos und tief und voller unsichtbarer Strömungen. Du fühlst alles und oft weißt du nicht, was davon deins ist und was du aufgenommen hast. Du bist ein emotionaler Schwamm, der die Schmerzen und Freuden anderer aufsaugt, ohne es zu wollen. Deine Empathie ist außerordentlich und sie kann erschöpfend sein. Dein inneres Kind brauchte Zauber, Stille, das Gefühl des Verbundenseins mit etwas Größerem. Dein Schatten liegt im emotionalen Aufgehen in anderen, im Verlust der eigenen Mitte, in der Flucht in Fantasie statt Konfrontation. Deine Heilung liegt in klaren Grenzen, in geerdeten Ritualen, in dem Wissen, wo du aufhörst und die andere beginnt. Wenn du diesen Boden findest, ist deine Empathie kein Fluch mehr. Sie wird zu deiner größten Gabe."
+  },
+
+  ac: {
+    "Widder": "Der Aszendent im Widder ist das Schild und die Lanze zugleich. Du betrittst jeden Raum mit einer Energie, die unmittelbar spürbar ist. Andere nehmen dich wahr als jemanden, der weiß, was er will, bevor du auch nur ein Wort gesprochen hast. Deine Ausstrahlung ist direkt, frisch und manchmal herausfordernd. Du bist nicht jemand, der sich anschleicht. Du gehst auf Dinge zu. Die Welt lernt dich kennen als Vorreiterin, als jemanden, der keine Zeit mit Umwegen verliert. Deine Aufgabe ist es, diese Energie zu nuancieren, die Direktheit mit Bewusstsein für andere zu verbinden, ohne deine Authentizität zu verlieren. Du wirst geliebt für deine Unverstelltheit. Du wirst herausgefordert durch deine Impulsivität. Der Widder-Aszendent wächst, indem er lernt, dass Stärke auch im Warten liegt.",
+    "Stier": "Der Aszendent im Stier vermittelt Ruhe und Verlässlichkeit. Menschen spüren deine Stabilität, bevor sie dich kennen. Du wirkst geerdet, solide, angenehm in deiner Präsenz. Du bist nicht jemand, der hastet oder reißt. Du bewegst dich mit Bedacht und begegnest dir selbst und anderen mit Schönheit und Qualität. Andere suchen deine Nähe, weil sie sich in ihr sicher fühlen. Deine Ausstrahlung ist sinnlich und warm. Du liebst das Ästhetische und das zeigt sich in allem: wie du lebst, wie du dich kleidest, wie du einen Raum gestaltest. Dein Wachstum liegt im Öffnen für Veränderung, im Loslassen von Sicherheitsdenken, wenn das Neue anklopft.",
+    "Zwillinge": "Der Aszendent in den Zwillingen vermittelt Leichtigkeit, Neugier und Witz. Du bist die Person, die Gespräche lebendig macht, die Verbindungen zieht, die andere mit Ideen und Energie aufweckt. Du wirkst jung, beweglich, geistig präsent. Andere erleben dich als vielseitig, manchmal schwer einzuordnen, immer interessant. Du springst von Thema zu Thema mit einer Geschwindigkeit, die manche fasziniert und andere erschöpft. Dein Wachstum liegt in der Tiefe, im Bleiben, im Verweilen länger als es bequem ist, bis das Wesentliche sichtbar wird. Dein Zwillinge-Aszendent ist eine Brücke zwischen Welten. Lerne, auch mal eine Brücke tief in eine Welt hineinzuführen.",
+    "Krebs": "Der Aszendent im Krebs strahlt Zärtlichkeit und Schutz zugleich aus. Du wirkst warmherzig, intuitiv und gleichzeitig einladend wie schutzenswert. Menschen spüren sofort, dass du fühlst und dass du fürsorglich bist. Du hast eine natürliche Fähigkeit, andere willkommen zu heissen und zu halten. Gleichzeitig trägst du eine unsichtbare Schale: dein Innerstes zeigst du nur, wenn Vertrauen gewachsen ist. Du nimmst die Stimmungen deiner Umgebung unmittelbar auf, was Einfühlung ermöglicht, aber auch erschöpft. Dein Wachstum liegt im Schützen deiner eigenen Energie, in der bewussten Wahl, wo du deine Fürsorge einbringst.",
+    "Löwe": "Der Aszendent im Löwen strahlt Königlichkeit aus, auch wenn du nicht danach strebst. Du betrittst Räume mit einer natürlichen Präsenz. Menschen nehmen dich wahr. Du kannst gar nichts dagegen tun. Deine Erscheinung ist warm, einladend und führend. Du wirkst selbstbewusst, auch in Momenten, wo du es nicht fühlst. Das ist sowohl Gabe als auch Verantwortung. Du bist eine natürliche Anzieherin von Aufmerksamkeit und damit trägst du das Angebot, diese Aufmerksamkeit für etwas einzusetzen, das größer ist als Bestätigung. Dein Wachstum liegt im Führen aus echtem Herzensfeuer, nicht aus dem Bedürfnis nach Beifall.",
+    "Jungfrau": "Der Aszendent in der Jungfrau vermittelt Präzision, Bescheidenheit und Zuverlässigkeit. Du wirkst ordentlich, durchdacht und real. Andere nehmen dich wahr als jemanden, dem man vertrauen kann, der Handhabbares liefert. Du bist nicht jemand, der mit großer Geste auffällt, aber du bist diejenige, die tatsächlich die Dinge richtig macht. Deine Aufmerksamkeit für Details ist sofort spürbar. Menschen wissen, dass wenn du etwas sagst, es durchdacht ist. Dein Wachstum liegt im Vertrauen in dich selbst, im Erkennen, dass deine Leistung wertvoll ist, auch wenn sie still passiert.",
+    "Waage": "Der Aszendent in der Waage ist Ästhetik in Person. Du bist jemand, der Harmonie ausstrahlt, der Schönheit liebt und in Begegnungen eine natürliche Diplomatie zeigt. Menschen mögen dich sofort. Du bist charmant, zugewandt, angenehm. Konflikte meidest du nach aussen, was dich manchmal unklar macht in dem, was du wirklich willst. Dein Wachstum liegt im Entwickeln einer eigenen Position, in der Bereitschaft, auch in der Begegnung mit anderen klar zu sagen, was du brauchst und was du denkst. Die schönste Waage ist jene, die Harmonie nicht durch Selbstaufgabe schafft.",
+    "Skorpion": "Der Aszendent im Skorpion vermittelt Intensität und Tiefe, auch wenn du kein Wort sagst. Menschen spüren, dass du mehr weißt, als du zeigst. Dein Blick ist durchdringend, deine Präsenz undurchdringlich für jene, die du nicht reinlässt. Du wirkst geheimnisvoll, magnetisch, manchmal einschüchternd. Das ist nicht Berechnung, das ist dein natürliches Ausdrucksfeld. Du ziehst an und hältst auf Abstand gleichzeitig. Dein Wachstum liegt in der bewussten Öffnung, im Erkennen, dass du durch Transparenz nicht verletzlich wirst, sondern kräftiger. Deine Tiefe, wenn sie sich zeigt, ist das Wertvollste, was du geben kannst.",
+    "Schütze": "Der Aszendent im Schützen strahlt Enthusiasmus und Weite aus. Du wirkst offen, optimistisch und großzügig. Menschen erleben dich als jemanden, der Lebensfreude mitbringt und Horizonte öffnet. Du liebst das Abenteuer und das zeigt sich in deiner Erscheinung. Du wirkst nie ganz festgezurrt, immer leicht bereit, die nächste Reise anzutreten. Dein Wachstum liegt im Erden deiner Visionen, im Fertigmachen, was du angefangen hast, und im Entdecken, dass Tiefe genauso befreiend sein kann wie Weite.",
+    "Steinbock": "Du trittst in die Welt ein, bevor du ein Wort sagst. Dein Aszendent im Steinbock gibt dir eine Ausstrahlung, die sofort ernst genommen wird. Du wirkst wie jemand, der weiß, wo er steht. Menschen übergeben dir instinktiv Verantwortung, weil du aussiehst, als würdest du sie tragen können. Meistens kannst du das auch. Verletzlichkeit ist kein Widerspruch zu Stärke. Wer beides kennt, führt auf einem anderen Level. Du bist hier, um zu bauen. Um etwas zu hinterlassen, das zählt.",
+    "Wassermann": "Der Aszendent im Wassermann strahlt Originalität und Unabhängigkeit aus. Du bist jemand, der auffällt ohne es zu wollen, der anders ist ohne Anstrengung. Menschen erleben dich als visionär, ein wenig unvorhersehbar, stimulierend. Du bringst neue Perspektiven in jedes Gespräch. Du bist nicht bereit, dich anzupassen, nur um dazuzugehören, und das respektieren andere, auch wenn es manchmal irritiert. Dein Wachstum liegt im Verbinden deiner Vision mit emotionaler Nähe, im Erkennen, dass du anderen noch mehr geben kannst, wenn du auch dein Herz mitbringst.",
+    "Fische": "Der Aszendent in den Fischen strahlt Sanftheit und Empfänglichkeit aus. Du wirkst wie ein Mensch, zu dem andere sich hingezogen fühlen ohne zu wissen warum. Du vermittelst Offenheit und Einfühlung. Deine Augen halten oft mehr als deine Worte. Du nimmst die Atmosphäre deiner Umgebung tief auf und das prägt, wie du wirkst: manchmal fliessend, manchmal verloren, immer nahbar. Dein Wachstum liegt in klaren Grenzen, in der bewussten Gestaltung des eigenen Auftretens, im Erkennen, dass du nicht alles aufnehmen musst, was um dich herum ist."
+  },
+
+  venus: {
+    "Widder": "Venus im Widder liebt mit Feuer und ohne Umwege. Du bist in der Liebe direkt, leidenschaftlich und unerschrocken. Du gehst auf das zu, was dich anzieht, ohne lange zu warten oder zu taktieren. Dein Liebesstil ist intensiv und ehrlich. Dein Schatten ist Ungeduld in Beziehungen, das Erlöschen des Interesses, wenn der Funke nicht mehr sprüht. Deine Gabe ist die Frische, die Unverstelltheit, die Bereitschaft, alles zu riskieren für das, was sich real anfühlt. In der Partnerschaft brauchst du Autonomie und Bewunderung, nicht um dein Ego zu nähren, sondern weil deine Flamme Luft braucht um zu brennen. Du lernst das Halten, das Vertiefen, das Lieben, das bleibt.",
+    "Stier": "Venus im Stier ist in ihrer Stärke. Du liebst sinnlich, beständig und tief. Für dich ist Liebe nichts Abstraktes. Liebe schmeckt, riecht, berührt. Du schaffst Atmosphären der Geborgenheit. Du gibst mit Beständigkeit, nicht mit Dramatik. Dein Schatten ist Besitzdenken, das Festhalten an Beziehungen über den richtigen Zeitpunkt hinaus. Deine Gabe ist die Fähigkeit, echte Heimat in einer Verbindung zu schaffen, einen Ort, an dem der andere wirklich ankommen kann. Du liebst Qualität in allem und das gilt auch für die Menschen, mit denen du dich umgibst.",
+    "Zwillinge": "Venus in den Zwillingen liebt durch Geist und Gespräch. Intellektuelle Verbindung ist für dich genauso erotisch wie physische Nähe. Du brauchst jemanden, der mit dir denkt, der dich herausfordert, der mit dir spielen kann. Du liebst das Leichte und das Tiefe gleichzeitig, den Flirt und die philosophische Diskussion. Dein Schatten ist die Schwierigkeit mit Verbindlichkeit, das Davonschweben, wenn Beziehungen zu schwer werden. Deine Gabe ist die Leichtigkeit, mit der du Freude in Verbindungen bringst.",
+    "Krebs": "Venus im Krebs liebt mit der ganzen Seele und dem ganzen Haus. Du lebst Fürsorge als Liebessprache. Du schaffst Nest, du nährst, du bist da. Dein Schatten ist das Erwarten derselben Fürsorge zurück und der Rückzug, wenn sie ausbleibt. Deine Gabe ist die Tiefe deiner Hingabe, die Intuition in Beziehungen, das Wissen, was der andere braucht. Du liebst nicht für eine Saison. Du liebst für immer.",
+    "Löwe": "Venus im Löwen liebt groß und zeigt das. Du liebst mit Geste, mit Herzlichkeit, mit Freude am Schönen. Für dich ist Liebe ein Fest. Du willst gefeiert werden und du feierst zurück. Dein Schatten ist das Ego in der Liebe, die Abhängigkeit von Bestätigung, das Verblassen ohne Bühne. Deine Gabe ist die Großzügigkeit deines Herzens, die Fähigkeit, aus echter Wärme zu schenken, das Schöne des Lebens mit anderen zu teilen.",
+    "Jungfrau": "Venus in der Jungfrau liebt durch Dienst und Aufmerksamkeit. Deine Liebessprache ist das Tun: du kochst, du organisierst, du merkst, wenn jemand Hilfe braucht. Du liebst durch Qualität, nicht Quantität. Dein Schatten ist der überkritische Blick, der sich auf den Partner richtet, wenn die Perfektion nicht eintritt. Deine Gabe ist die seltene Aufmerksamkeit, mit der du liebst, das Bemerken der kleinen Dinge, das Pflegen von Verbindung im Alltag.",
+    "Waage": "Venus in der Waage ist in ihrem Heimatzeichen und liebt mit Anmut und Ästhetik. Du suchst Gleichgewicht in Verbindungen, Schönheit im Miteinander. Du bist eine natürliche Partnerin. Du magst niemanden allein lassen. Dein Schatten ist die Selbstaufgabe für die Harmonie, das Verlorengehen der eigenen Stimme. Deine Gabe ist die Fähigkeit zu echter Partnerschaft, zum Ausgleich, zur Verbindung, die beide größer macht.",
+    "Skorpion": "Venus im Skorpion liebt tief, total und transformativ. Oberflächliche Verbindungen erfüllen dich nicht. Du willst die ganze Wahrheit des anderen kennen und zeigen. Liebe ist für dich Wandlung. Dein Schatten ist Eifersucht, das Kontrollbedürfnis aus Angst vor Verlust. Deine Gabe ist die Intensität deiner Verbindungsfähigkeit, die seltene Tiefe, die entsteht, wenn du dich öffnest.",
+    "Schütze": "Venus im Schützen liebt frei und abenteuerlustig. Du brauchst Raum in der Liebe, intellektuellen Austausch, das Gefühl von Wachstum. Beziehungen, die dich einengen, verlierst du innerlich, bevor du sie aufgibst. Dein Schatten ist die Schwierigkeit beim Bleiben. Deine Gabe ist die Leichtigkeit und Großzügigkeit deiner Liebe, die Bereitschaft, gemeinsam zu wachsen.",
+    "Steinbock": "Venus im Steinbock liebt mit Entscheidung. Wenn du dein Herz öffnest, hast du es gewählt. Du baust Verbindungen auf wie ein Fundament. Schicht für Schicht, mit Sorgfalt und Intention. Du liebst durch Loyalität, durch Verlässlichkeit, durch das, was du tust. Dein Wort ist dein Geschenk. Wer dein Vertrauen hat, hat etwas, das hält. Übe auch: Wärme zeigen, bevor sie perfekt ist. Liebe braucht kein fertiges Fundament.",
+    "Wassermann": "Venus im Wassermann liebt frei und aussergewöhnlich. Du brauchst in Beziehungen Raum für deine Individualität, keine Erwartungen, keine Schubladen. Du liebst das Originale an anderen. Dein Schatten ist die emotionale Distanz, die Schwierigkeit mit tiefer Intimität. Deine Gabe ist die Freiheit, die du in Beziehungen schaffst, das Erlauben des anderen, ganz er selbst zu sein.",
+    "Fische": "Venus in den Fischen liebt bedingungslos und manchmal zu sehr. Du gibst ohne Grenze, du siehst das Schönste in anderen, manchmal auch dort, wo es nicht ganz vorhanden ist. Dein Schatten ist das Idealisieren, das Verlorengehen im anderen. Deine Gabe ist das tiefste Mitgefühl in der Liebe, die Fähigkeit zu bedingungslosem Annehmen."
+  },
+
+  mars: {
+    "Widder": "Mars im Widder ist in seinem Heimatzeichen und handelt ohne Zaudern. Du hast einen klaren, schnellen Antrieb. Wenn du etwas willst, gehst du. Keine langen Vorbereitungen, keine Absicherungen. Dein Schatten ist die Impulsivität, die Handlungen auslöst, die du bereust. Deine Kraft ist die Stärke des ersten Schritts, die Fähigkeit, Dinge zu beginnen, bevor die Angst Zeit hat aufzutauchen.",
+    "Stier": "Mars im Stier handelt langsam aber unaufhaltsam. Wenn du dich einmal entschieden hast, gibt es kein Zurückweichen. Dein Antrieb ist beständig, ausdauernd, stur im besten Sinne. Dein Schatten ist die Inflexibilität, das Weitermachen auch wenn der Kurs schon längst korrigiert werden müsste. Deine Kraft ist die Ausdauer, die Bereitschaft zu bleiben, bis das Ziel erreicht ist.",
+    "Zwillinge": "Mars in den Zwillingen ist in Worten, Gedanken und Ideen aktiv. Dein Antrieb wird durch Kommunikation ausgelebt, durch das Debattieren, das Schreiben, das Bewegen von Ideen. Dein Schatten ist die Zerstreutheit, das Verlieren des roten Fadens. Deine Kraft ist die geistige Beweglichkeit, die Fähigkeit, multiple Wege gleichzeitig zu erkunden.",
+    "Krebs": "Mars im Krebs handelt aus emotionaler Motivation. Du wirst aktiv, wenn du von innen her berührt bist, wenn es um Schutz, Familie oder das eigene Zuhause geht. Dein Schatten ist das indirekte Ausdrücken von Ärger, das Brodeln unter der Oberfläche. Deine Kraft ist die leidenschaftliche Verteidigung von dem, was dir heilig ist.",
+    "Löwe": "Mars im Löwen handelt mit Königlichkeit und Stil. Dein Antrieb ist kreativ, selbstausdrückend, führend. Du gehst auf Ziele zu mit Charme und Beharrlichkeit. Dein Schatten ist das Ego, das sich in Konflikten profilieren will. Deine Kraft ist die Herzlichkeit, mit der du andere mobilisierst und mitreißt.",
+    "Jungfrau": "Mars in der Jungfrau handelt präzise und durchdacht. Dein Antrieb zeigt sich in der sorgfältigen Ausführung, in der Bereitschaft, Details zu optimieren. Dein Schatten ist die Überanalyse, die Handlung verhindert. Deine Kraft ist die außerordentliche Fähigkeit, Dinge richtig zu machen.",
+    "Waage": "Mars in der Waage handelt durch Diplomatie und Aushandlung. Du setzt dich durch, aber mit Anmut. Dein Schatten ist die Unentschlossenheit, das Zögern durch übermäßige Rücksicht. Deine Kraft ist die Fähigkeit, Dinge zu bewegen ohne zu zerbrechen, was wichtig ist.",
+    "Skorpion": "Mars im Skorpion handelt strategisch und mit Tiefe. Dein Antrieb ist kraftvoll, fokussiert und langfristig. Wenn du ein Ziel hast, verlierst du es nicht aus dem Blick. Dein Schatten ist die Obsession, die Manipulation als Mittel. Deine Kraft ist die transformative Kraft deiner Handlungen, die Fähigkeit, auch in Krisen zielgerichtet zu bleiben.",
+    "Schütze": "Mars im Schützen handelt aus Vision und Begeisterung. Dein Antrieb ist das große Bild, der Sinn, der hinter dem Ziel steht. Dein Schatten ist die Übertreibung, das Sich-Verzetteln in zu vielen Richtungen. Deine Kraft ist die Fähigkeit, andere mit deiner Energie und Überzeugung mitzureissen.",
+    "Steinbock": "Mars im Steinbock ist eines der stärksten Placements für Handlungskraft. Ausdauernd, strukturiert, gerichtet. Du kämpfst mit Plan. Du weißt, wofür du kämpfst, und du weißt, wann du aufhören musst, gegen Wände zu rennen. Mit einem klaren Warum bist du unaufhaltbar. Dein Schatten: die Tendenz, so sehr auf das Ziel fokussiert zu sein, dass du vergisst, auch den Weg zu leben. Ergebnis und Präsenz. Beides ist Macht.",
+    "Wassermann": "Mars im Wassermann handelt revolutionär und kollektiv. Dein Antrieb gilt dem Neuen, dem Anderen, dem, was die Gemeinschaft voranbringt. Dein Schatten ist das Sprunghaft-Werden, das Aufgeben, wenn die Routine kommt. Deine Kraft ist die Originalität deiner Handlungen und die Bereitschaft, Wege zu gehen, die noch niemand gegangen ist.",
+    "Fische": "Mars in den Fischen handelt intuitiv und fluide. Dein Antrieb ist nicht immer sichtbar für andere, aber er ist da, getrieben von inneren Bildern und spirituellen Impulsen. Dein Schatten ist die Passivität, das Warten auf den richtigen Moment bis der Moment vorbei ist. Deine Kraft ist die Sensibilität deiner Handlungen, die Fähigkeit zu heilen und zu helfen durch das, was du tust."
+  },
+
+  merkur: {
+    "Widder": "Merkur im Widder denkt schnell und spricht direkt. Dein Geist springt zu Lösungen, bevor andere die Frage zu Ende formuliert haben. Du bist impulsiv in der Kommunikation, was ehrlich und erfrischend ist. Dein Schatten ist das Überspringen von Details. Deine Stärke ist die Geschwindigkeit und Klarheit deines Denkens.",
+    "Stier": "Merkur im Stier denkt gründlich und praktisch. Du verarbeitest Informationen langsam aber sicher und vergisst nicht, was du einmal durchdacht hast. Dein Schatten ist die Sturheit in Meinungen. Deine Stärke ist das verlassliche, fundierte Denken, das Bauen auf solidem Fundament.",
+    "Zwillinge": "Merkur in den Zwillingen ist in seinem Heimatzeichen und denkt in Netzen und Zusammenhängen. Du bist mental geschmeidig, neugierig und schnell. Deine Kommunikation ist brillant und vielseitig. Dein Schatten ist die Oberflächlichkeit. Deine Stärke ist die außerordentliche Fähigkeit zu verbinden, zu kommunizieren und zu lernen.",
+    "Krebs": "Merkur im Krebs denkt intuitiv und emotional. Dein Verstand ist kein rein analytisches Instrument, er fühlt mit. Du erkennst emotionale Unterströmungen in Gesprächen sofort. Dein Schatten ist die Subjektivität, das Färben von Fakten durch Gefühle. Deine Stärke ist das empathische Verstehen, das über das Gesagte hinausgeht.",
+    "Löwe": "Merkur im Löwen kommuniziert mit Herz und Stil. Du liebst es, Geschichten zu erzählen, du liebst Sprache als Aufführung. Dein Schatten ist die Tendenz zur Selbstinszenierung im Gespräch. Deine Stärke ist die mitreissende Qualität deiner Kommunikation, die Fähigkeit, Menschen zu inspirieren.",
+    "Jungfrau": "Merkur in der Jungfrau ist in seinem Heimatzeichen und analysiert präzise. Du merkst, was andere übersehen. Dein Denken ist systematisch, deine Kommunikation klar und hilfreich. Dein Schatten ist der überkritische Blick, das Zerlegen von Dingen, die intakt gelassen werden könnten. Deine Stärke ist die Präzision, die echten Wert schafft.",
+    "Waage": "Merkur in der Waage denkt diplomatisch und abgewogen. Du siehst beide Seiten, fast immer. Das macht dich zum fairsten Gesprächspartner, manchmal aber auch zum unentschlossensten. Dein Schatten ist das Zurückhalten der eigenen Meinung. Deine Stärke ist die Fähigkeit zur Vermittlung und zum fairen Dialog.",
+    "Skorpion": "Merkur im Skorpion denkt in die Tiefe. Du bist nicht an der Oberfläche interessiert. Du willst das Verborgene verstehen, das Unausgesprochene benennen, das Echte hinter der Fassade sehen. Dein Schatten ist die Obsession, das Nicht-Loslassen-Können von Gedanken. Deine Stärke ist die psychologische Schärfe deines Geistes.",
+    "Schütze": "Merkur im Schützen denkt in großen Bildern und Bedeutungen. Du liebst Philosophie, Zusammenhänge, das Warum hinter dem Was. Dein Schatten ist die Ungeduld mit Details. Deine Stärke ist die visionäre Qualität deines Denkens, die Fähigkeit, Menschen zu inspirieren.",
+    "Steinbock": "Merkur im Steinbock denkt extrem logisch. Du magst kein Kreisgerede, keine leeren Worte. Du sagst, was du meinst. Du meinst, was du sagst. Dein Verstand arbeitet in Strukturen, in Fakten, in Konsequenzen. Das macht dich zu jemandem, dem man vertraut. Wenn du etwas sagst, hat es Hand und Fuß. Übe auch: Abstraktes zulassen. Manchmal haben Dinge ohne fertige Form trotzdem Wahrheit in sich. Dein Verstand ist dein stärkstes Werkzeug.",
+    "Wassermann": "Merkur im Wassermann denkt revolutionär und originell. Dein Geist sucht das Unerwartete, das Neue, das Andere. Du erkennst Systemmuster und weißt, wie man sie verändert. Dein Schatten ist das Springen über das Praktische. Deine Stärke ist die außerordentliche Originalität deines Denkens.",
+    "Fische": "Merkur in den Fischen denkt in Bildern und Symbolen. Dein Verstand ist kreativ, poetisch, intuitiv. Du weißt Dinge, ohne zu wissen, woher du es weißt. Dein Schatten ist die Unklarheit in der Kommunikation. Deine Stärke ist die künstlerische Tiefe deines Ausdrucks, die Fähigkeit, das Unsagbare in Sprache zu bringen."
+  },
+
+  jupiter: {
+    "Widder": "Jupiter im Widder bringt Wachstum durch Mut und Initiative. Dein Glück expandiert, wenn du der Erste bist, wenn du beginnst, wenn du ohne Garantie losgehst. Du wächst durch Abenteuer und Selbstbehauptung. Dein Schatten ist Übertreibung und Leichtsinn. Deine Gabe ist der grenzenlose Pioniergeist.",
+    "Stier": "Jupiter im Stier bringt Wachstum durch Beständigkeit und Qualität. Dein Wohlstand baut sich langsam und solide auf. Du wächst durch Geduld, durch das Vertrauen in natürliche Prozesse, durch das Investieren in echten Wert. Dein Schatten ist Übertreibung in Genuss. Deine Gabe ist das Aufbauen von nachhaltigem Wohlstand.",
+    "Zwillinge": "Jupiter in den Zwillingen bringt Wachstum durch Lernen und Kommunikation. Dein Glück expandiert durch Bildung, durch Verbindungen, durch die Weitergabe von Wissen. Dein Schatten ist das Verzettle dich im Vielen. Deine Gabe ist die Begeisterung für das Lernen, die andere ansteckt.",
+    "Krebs": "Jupiter im Krebs bringt Wachstum durch Fürsorge und emotionale Tiefe. Dein Glück kommt durch Verbindung, durch das Schaffen von Geborgenheit, durch das Investieren in Familie und Heimat. Dein Schatten ist das Klammern. Deine Gabe ist die grenzenlose Fähigkeit zu nähren.",
+    "Löwe": "Jupiter im Löwen bringt Wachstum durch Kreativität und Sichtbarkeit. Dein Glück expandiert, wenn du dich zeigst, wenn du schöpfst, wenn du führst. Dein Schatten ist Übertreibung und Prahlerei. Deine Gabe ist die herzliche Großzügigkeit, die andere mit in dein Leuchten einlädt.",
+    "Jungfrau": "Jupiter in der Jungfrau bringt Wachstum durch Vervollkommnung und Dienst. Dein Glück kommt durch das Feintunen, durch das Helfen, durch die Meisterschaft in deinem Handwerk. Dein Schatten ist der Perfektionismus, der Expansion verhindert. Deine Gabe ist die aussergewöhnliche Qualität deiner Arbeit.",
+    "Waage": "Jupiter in der Waage bringt Wachstum durch Partnerschaften und Gerechtigkeit. Dein Glück expandiert durch kooperative Beziehungen, durch Fairness, durch das Schaffen von Harmonie. Dein Schatten ist die Unentschlossenheit. Deine Gabe ist die Fähigkeit, durch Partnerschaft mehr zu werden.",
+    "Skorpion": "Jupiter im Skorpion bringt Wachstum durch Transformation. Dein Glück liegt in der Tiefe, in den großen Wandlungen, in dem, was nach der Krise kommt. Dein Schatten ist Obsession und Machthunger. Deine Gabe ist die außerordentliche Regenerationsfähigkeit, die Ressourcen aus dem Verborgenen hebt.",
+    "Schütze": "Jupiter im Schützen ist in seinem Heimatzeichen und bringt natürliches Wachstum. Dein Glück liegt in Weite, Bildung, Reisen und Vision. Du wächst, wenn du groß denkst, wenn du glaubst, wenn du die Grenzen des Bekannten überschreitest. Dein Schatten ist Übertreibung. Deine Gabe ist der unerschütterliche Optimismus.",
+    "Steinbock": "Jupiter im Steinbock bringt Wachstum durch Disziplin. Dein Glück ist verdient. Du baust es auf, Schritt für Schritt, mit Beharrlichkeit und Verantwortungsbewusstsein. Wenn du dein Wort hältst, öffnen sich Türen. Das ist das Prinzip Steinbock: Konsequenz wird belohnt. Dein Wachstum passiert, wenn du Fundamentales wählst. Wenn du Integrität über schnellen Erfolg stellst. Du bist der lebende Beweis: Disziplin schlägt Talent.",
+    "Wassermann": "Jupiter im Wassermann bringt Wachstum durch Gemeinschaft und Innovation. Dein Glück expandiert, wenn du zur Gruppe beiträgst, wenn du Neues wagst, wenn du Systeme veränderst. Dein Schatten ist die Zerstreutheit in Kollektiven. Deine Gabe ist die visionäre Kraft im Dienst des Ganzen.",
+    "Fische": "Jupiter in den Fischen bringt Wachstum durch Spiritualität und Mitgefühl. Dein Glück kommt durch das Öffnen für das Große, durch Hingabe, durch Kreativität. Dein Schatten ist die Schwierigkeit mit Grenzen. Deine Gabe ist das grenzenlose Mitgefühl, das heilt und verbindet."
+  },
+
+  saturn: {
+    "Widder": "Saturn im Widder lehrt dich, Führung zu verdienen, nicht zu beanspruchen. Deine Lektionen liegen in Geduld und Konsequenz. Du wirst herausgefordert, deinen Mut mit Verantwortungsbewusstsein zu verbinden. Das Wachstum kommt durch das Vollenden, nicht nur durch das Beginnen. Wenn du gelernt hast, deine Energie zu fokussieren, wirst du eine Autorität in dem, was du anpackst.",
+    "Stier": "Saturn im Stier lehrt dich, echten Wert aufzubauen und dir selbst zu vertrauen. Deine Lektionen kreisen um Selbstwert und materielle Sicherheit. Du wirst herausgefordert, das Fundament deines Lebens aus innerer Überzeugung zu bauen, nicht aus Angst. Wenn du gelernt hast, dir selbst genug zu sein, kommt der Wohlstand als Folge deiner Integrität.",
+    "Zwillinge": "Saturn in den Zwillingen lehrt dich, Gedanken in Tiefe statt Breite zu entwickeln. Deine Lektionen liegen in fokussierter Kommunikation und diszipliniertem Denken. Du wirst herausgefordert, dein Wissen zu vertiefen und klar zu sprechen. Wenn du das beherrschst, wird deine Stimme eine Autorität.",
+    "Krebs": "Saturn im Krebs lehrt dich emotionale Verantwortung. Deine Lektionen liegen in der Unterscheidung von Fürsorge und Kontrolle, von Schutz und Einengung. Du wirst herausgefordert, dir selbst ein sicheres inneres Zuhause zu bauen. Wenn du das kannst, bist du für andere eine unerschütterliche Stütze.",
+    "Löwe": "Saturn im Löwen lehrt dich, aus innerer Autorität zu strahlen, nicht aus dem Bedürfnis nach Beifall. Deine Lektionen liegen in authentischer Führung und echter Kreativität. Du wirst herausgefordert, sichtbar zu sein, auch wenn niemand applaudiert. Wenn du das schaffst, ist dein Leuchten unabhängig und unaufhaltbar.",
+    "Jungfrau": "Saturn in der Jungfrau lehrt dich, Perfektion in Weisheit zu wandeln. Deine Lektionen liegen im Unterschied zwischen sinnvollem Verbessern und erschöpfendem Perfektionismus. Du wirst herausgefordert, deine Arbeit anzubieten, auch wenn sie nicht fertig genug scheint. Die Meisterschaft liegt im Tun.",
+    "Waage": "Saturn in der Waage lehrt dich, echte Gerechtigkeit zu verkörpern. Deine Lektionen liegen in Partnerschaften, in der Kunst, die eigene Position zu halten und gleichzeitig offen für den anderen zu sein. Du wirst herausgefordert, Entscheidungen zu treffen, auch wenn beide Seiten Argumente haben. Wenn du das lernst, wirst du zur Friedensstifterin aus Stärke.",
+    "Skorpion": "Saturn im Skorpion lehrt dich, Macht verantwortungsvoll zu tragen. Deine Lektionen liegen darin, Kontrolle loszulassen, im Vertrauen als Praxis, in der Bereitschaft zu transformieren, was schmerzt. Du wirst herausgefordert, deine Tiefe ohne Manipulation einzusetzen. Wenn du das lernst, wirst du zu einer Kraft der echten Heilung.",
+    "Schütze": "Saturn im Schützen lehrt dich, Visionen in die Realität zu erden. Deine Lektionen liegen im Übertragen von Glauben in Handlung, von Inspiration in Konsequenz. Du wirst herausgefordert, Verpflichtungen einzugehen, auch wenn der Horizont noch lockend weiter erscheint. Wenn du das schaffst, wirst du zur Lehrerin, die vorlebt, was sie lehrt.",
+    "Steinbock": "Saturn ist zu Hause im Steinbock. Die Energie des Richters, des Baumeisters, der Macht ist in dir rein. Du brauchst keine Disziplin von außen. Sie kommt von innen. Deine tiefste Lektion: 100% Verantwortung für dein Leben übernehmen. Saturn im Steinbock ruft dich auf, etwas Bleibendes aufzubauen. Etwas, das über dich hinausgeht. Das ist deine Berufung. Wahrhaftigkeit, Klarheit, Ausdauer. Das bist du.",
+    "Wassermann": "Saturn im Wassermann lehrt dich, Freiheit und Struktur zu verbinden. Deine Lektionen liegen in der Verantwortung innerhalb von Gemeinschaften, in der Frage, wie du zur Gesellschaft beiträgst ohne deine Individualität aufzugeben. Wenn du das lernst, wirst du zur Architektin von Systemen, die wirklich funktionieren.",
+    "Fische": "Saturn in den Fischen lehrt dich, Spiritualität zu erden und Grenzen zu heiligen. Deine Lektionen liegen im Unterschied zwischen Hingabe und Selbstaufgabe, zwischen Mitgefühl und Verlorengehen. Du wirst herausgefordert, deinem Innen eine Form zu geben. Wenn du das lernst, wird deine Spiritualität eine praktische, lebendige Kraft."
+  }
+};
+
+const planetIntros = {
+  sonne:   "Die Sonne ist deine Identität. Das Ich. Sie zeigt, was dich im Kern antreibt und worauf dein ganzes Leben ausgerichtet ist.",
+  mond:    "Der Mond ist deine emotionale Welt. Er zeigt, wie du fühlst, was du innerlich brauchst und wie du dich wirklich zuhause fühlst.",
+  ac:      "Der Aszendent ist die Energie, die andere als erstes von dir wahrnehmen. Dein Auftreten, deine Ausstrahlung, der erste Eindruck bevor du ein Wort sagst.",
+  venus:   "Venus zeigt, wie du liebst und was du anzieht. Deine Werte, dein Beziehungsstil und das, womit du dich verbunden fühlst.",
+  mars:    "Mars ist dein Antrieb. Er zeigt, wie du handelst, kämpfst und was dich in Bewegung setzt.",
+  merkur:  "Merkur zeigt, wie dein Geist funktioniert. Wie du denkst, kommunizierst und Informationen aufnimmst und verarbeitest.",
+  jupiter: "Jupiter zeigt, wo du wächst. Wo dein Glück liegt, wie du expandierst und was dir Sinn gibt.",
+  saturn:  "Saturn zeigt deine tiefsten Lektionen. Wo du kämpfst, woran du reifst und worin du zur Meisterschaft wirst."
+};
+
+const elementMap = {
+  "Widder": "Feuer", "Löwe": "Feuer", "Schütze": "Feuer",
+  "Stier": "Erde", "Jungfrau": "Erde", "Steinbock": "Erde",
+  "Zwillinge": "Luft", "Waage": "Luft", "Wassermann": "Luft",
+  "Krebs": "Wasser", "Skorpion": "Wasser", "Fische": "Wasser"
+};
+
+const elementDescriptions = {
+  "Feuer": "Dein Chart trägt starke Feuer-Energie. Das bedeutet Leidenschaft, Lebendigkeit, Mut und ein natürliches Charisma. Du bist jemand, der zündet. Achte darauf, dieses Feuer mit Erdung zu verbinden, damit es lange brennt.",
+  "Erde": "Dein Chart trägt starke Erd-Energie. Das bedeutet Beständigkeit, Zuverlässigkeit, Qualität und einen soliden Sinn für das Reale. Du baust. Du hältst. Du bleibst. Achte darauf, dich gelegentlich auch ins Unstrukturierte zu wagen.",
+  "Luft": "Dein Chart trägt starke Luft-Energie. Das bedeutet geistige Beweglichkeit, kommunikative Stärke, Neugier und die Fähigkeit, Perspektiven zu wechseln. Du verbindest. Du denkst. Achte darauf, das Denken auch im Herz zu verankern.",
+  "Wasser": "Dein Chart trägt starke Wasser-Energie. Das bedeutet emotionale Tiefe, Intuition, Empathie und eine natürliche Verbindung zum Unsichtbaren. Du fühlst, was andere nicht sehen. Achte darauf, dich selbst nicht in den Gefühlen anderer zu verlieren."
+};
+
+function generateReading() {
+  const name = document.getElementById('userName').value.trim() || 'Du';
+  const errorEl = document.getElementById('errorMsg');
+  let hasAny = false;
+  planets.forEach(p => { if (document.getElementById(p.key + '-sign').value) hasAny = true; });
+  if (!hasAny) { errorEl.style.display = 'block'; return; }
+  errorEl.style.display = 'none';
+
+  const resultsEl = document.getElementById('results');
+  let html = `<div class="results-header"><h2>Das Horoskop von ${name}</h2><p>Gelesen aus den Mustern deiner Geburtsenergie</p></div>`;
+  const elementCounts = { "Feuer": 0, "Erde": 0, "Luft": 0, "Wasser": 0 };
+
+  planets.forEach(p => {
+    const sign = document.getElementById(p.key + '-sign').value;
+    const houseEl = document.getElementById(p.key + '-house');
+    const house = houseEl ? houseEl.value : '';
+    if (!sign) return;
+    const planetReadings = readings[p.key];
+    if (!planetReadings) return;
+    const signReading = planetReadings[sign];
+    if (!signReading) return;
+    if (elementMap[sign]) elementCounts[elementMap[sign]]++;
+    const houseInfo = house ? houseThemes[parseInt(house)] : null;
+    let houseHtml = '';
+    if (houseInfo) {
+      houseHtml = `<div class="house-addition">Im ${houseInfo.name} zeigt sich diese Energie im Bereich von ${houseInfo.theme}. ${houseInfo.description}</div>`;
+    }
+    html += `
+    <div class="reading-block">
+      <div class="reading-block-header">
+        <span class="reading-planet-icon">${p.icon}</span>
+        <span class="reading-planet-name">${p.name}</span>
+        <span class="badge sign-badge">${sign}</span>
+        ${house ? `<span class="badge house-badge">${house}. Haus</span>` : ''}
+      </div>
+      <div class="reading-text">
+        ${planetIntros[p.key] ? `<p class="planet-intro">${planetIntros[p.key]}</p>` : ''}
+        <p>${signReading}</p>
+        ${houseHtml}
+      </div>
+    </div>`;
+  });
+
+  const maxEl = Object.entries(elementCounts).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]>0);
+  if (maxEl.length > 0) {
+    const dominantEl = maxEl[0][0];
+    html += `
+    <div class="summary-block">
+      <h3>Dein dominantes Element: ${dominantEl}</h3>
+      <p>${elementDescriptions[dominantEl]}</p>
+    </div>`;
+  }
+
+  html += `
+  <div class="cta-block">
+    <h3>Identitycode</h3>
+    <p>Du hast gerade die erste Schicht deines astrologischen Blueprint berührt. Wer bin ich? ist die tiefste aller Fragen. Dieses Reading gibt dir einen ersten Blick. Im Identitycode gehen wir tiefer. Du erkennst nicht nur, wer du bist. Du wirst es. Du bewegst dich zu der Frau, die du in dir trägst. Du führst dein Business, deine Beziehungen und dein Leben aus deiner tiefsten Identität heraus.</p>
+    <p style="margin-top:20px; padding-top:18px; border-top: 1px solid #ccc;">Speicher dir am besten dein Geburtshoroskop ab. Die nächsten Tage bekommst du von mir noch den ein oder anderen Impuls in dein Postfach, einen Prompt und ein Workbook mit tiefen Reflektionsfragen. Ich möchte Astrologie mit modernen Tools so praxisnah in dein Leben bringen, wie es heute möglich ist. Bewegte Astrologie hat mein ganzes Leben verändert. Dank der Möglichkeiten der KI können wir heute so viel tiefer ins Experiment Identität eintauchen.</p>
+  </div>`;
+
+  html += `<button class="back-btn" onclick="showForm()">&#8592; Neues Reading starten</button>`;
+
+  resultsEl.innerHTML = html;
+
+  document.querySelector('.container').style.display = 'none';
+  const resultsPage = document.getElementById('results-page');
+  resultsPage.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showForm() {
+  document.querySelector('.container').style.display = 'block';
+  document.getElementById('results-page').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
