@@ -17,7 +17,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 | Programm | Status | Fokus |
 | --- | --- | --- |
 | Moneycode | Aktiv | Geldidentität, finanzielle Umprogrammierung |
-| Identitycode | Aktiv | Identitätsarbeit, Selbstführung |
+| **Identitycode** | **Launch steht bevor** | Identitätsarbeit, Selbstführung — nächster Launch |
 | Emotioncode | Aktiv | Emotionale Intelligenz, innere Klarheit |
 
 ## Community aufbauen
@@ -29,6 +29,15 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Recherche: Was funktioniert aktuell auf Instagram für ihr Nischen-Segment
 - Content-Strategie mit klarer Conversion-Absicht
 - Funnel-Aufbau: Instagram → Angebot → Abschluss
+
+## Instagram Karussell-Agent — AUF IDENTITYCODE LAUNCH FOKUSSIERT
+
+**Status:** Läuft täglich 09:00 Uhr — SKILL.md auf Identitycode-Launch umgestellt (23.05.2026)
+**Themen:** 10 Identitycode-Kernthemen (Stirb-und-Werde, Frequenz, Genus, Nervensystem etc.)
+**CTA:** Alle auf IDENTITYCODE / IDENTITY / GENIUS umgestellt
+**Rückstellen auf allgemein:** Erst nach Launch — dann neue Session
+
+---
 
 ## Instagram Analyse Agent (Make + Telegram) — IN BETRIEB
 
