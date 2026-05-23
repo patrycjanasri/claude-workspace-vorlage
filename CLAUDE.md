@@ -34,11 +34,10 @@ Claude arbeitet als **starker Business-Partner** — nicht als Assistent, der ni
 ├── CLAUDE.md              # Diese Datei — Kern-Kontext, immer geladen
 ├── .claude/
 │   └── commands/          # Slash-Commands, die Claude ausführen kann
-│       ├── start.md       # /start — Kompakter Session-Status
+│       ├── start.md       # /start — Session-Initialisierung mit vollständigem Kontext
 │       ├── capture.md     # /capture — Schnelle Notiz in inbox/ speichern
 │       ├── plan.md        # /plan — Projektplan in plans/ erstellen
 │       ├── shutdown.md    # /shutdown — Session zusammenfassen & committen
-│       ├── prime.md       # /prime — Ausführliche Session-Initialisierung
 │       ├── create-plan.md # /create-plan — Technischer Implementierungsplan
 │       ├── implement.md   # /implement — Plan aus plans/ umsetzen
 │       └── analyse.md     # /analyse — Instagram Post-Analyse & Muster-Erkennung
@@ -55,7 +54,7 @@ Claude arbeitet als **starker Business-Partner** — nicht als Assistent, der ni
 
 | Verzeichnis  | Zweck                                                                                   |
 | ------------ | --------------------------------------------------------------------------------------- |
-| `context/`   | Wer der User ist, seine Rolle, aktuelle Prioritäten, Strategien. Gelesen von `/start` und `/prime`. |
+| `context/`   | Wer der User ist, seine Rolle, aktuelle Prioritäten, Strategien. Gelesen von `/start`. |
 | `inbox/`     | Schnelle Notizen und Captures. Erstellt mit `/capture`, bei `/shutdown` überprüft.      |
 | `plans/`     | Projekt- und Implementierungspläne. Erstellt mit `/plan` oder `/create-plan`.           |
 | `outputs/`   | Deliverables, Analysen, Reports und Arbeitsergebnisse.                                 |
@@ -68,9 +67,9 @@ Claude arbeitet als **starker Business-Partner** — nicht als Assistent, der ni
 
 ### /start
 
-**Zweck:** Kompakten Session-Status ausgeben — schneller Überblick ohne langen Monolog.
+**Zweck:** Session-Initialisierung mit vollständigem Kontext-Bewusstsein.
 
-Liest `CLAUDE.md` und alle Dateien in `context/`, zeigt dann in einer Bildschirmseite: Workspace-Zweck, offene Pläne, letzte Outputs, Inbox-Stand und Git-Status.
+Liest `~/.claude/SOUL.md`, `CLAUDE.md` und alle Dateien in `context/`. Gibt eine vollständige Zusammenfassung: wer Patrycja ist, Workspace-Struktur, verfügbare Commands, aktuelle Strategien und Prioritäten.
 
 ### /capture [notiz]
 
@@ -93,12 +92,6 @@ Beispiel: `/plan Newsletter-Workflow aufbauen`
 **Zweck:** Session zusammenfassen, Workspace aktualisieren, alle Änderungen committen und pushen.
 
 Fasst die Session zusammen, prüft alle Verzeichnisse, aktualisiert Context- und Plan-Dateien und erstellt einen Git-Commit.
-
-### /prime
-
-**Zweck:** Ausführliche Session-Initialisierung mit vollständigem Kontext-Bewusstsein.
-
-Tiefere Alternative zu `/start` — liest alles inklusive `~/.claude/SOUL.md` und gibt eine detaillierte Zusammenfassung von User, Workspace, Strategien und verfügbaren Commands.
 
 ### /create-plan [anforderung]
 
@@ -165,7 +158,7 @@ Vollständige Kontextdateien:
 
 ## Session-Workflow
 
-1. **Start**: `/start` für kompakten Status — oder `/prime` für ausführliche Initialisierung
+1. **Start**: `/start` für vollständige Session-Initialisierung mit Kontext
 2. **Notizen**: `/capture` für schnelle Ideen und To-dos unterwegs
 3. **Planen**: `/plan` für Projekte — `/create-plan` für technische Workspace-Änderungen
 4. **Umsetzen**: `/implement` zum Ausführen technischer Pläne
