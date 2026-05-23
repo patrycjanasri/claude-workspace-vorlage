@@ -5,23 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Astrologischer Selbst-Check</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --bg: #08041A;
+    --burgundy: #5C0A28;
+    --deep-purple: #1E0535;
+    --mid-purple: #2D0A45;
+    --text: #E8E0F0;
+    --text-muted: #9B8AB0;
+    --accent-purple: #7B3FA0;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background-color: #0D0A1A;
-    color: #E8E0F0;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: 'Georgia', serif;
     min-height: 100vh;
     line-height: 1.7;
   }
 
+  /* Binary Code Canvas Background */
+  #binary-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+
+  /* Header gradient overlay — Bild 1 Stil */
   .stars-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(107,79,160,0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 60% 80%, rgba(107,79,160,0.10) 0%, transparent 50%);
+      radial-gradient(ellipse at 0% 0%, rgba(120,10,50,0.55) 0%, transparent 45%),
+      radial-gradient(ellipse at 100% 0%, rgba(80,5,40,0.35) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%, rgba(45,10,70,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 50%, rgba(60,0,30,0.2) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
@@ -49,9 +75,11 @@
 
   h1 {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: #C9A96E;
-    font-weight: 400;
-    letter-spacing: 0.05em;
+    font-family: 'Benzin', 'Montserrat', sans-serif;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     margin-bottom: 12px;
   }
 
@@ -121,11 +149,12 @@
   }
 
   .form-section {
-    background: rgba(255,255,255,0.03);
+    background: rgba(30,5,50,0.5);
     border: 1px solid rgba(201,169,110,0.15);
     border-radius: 16px;
     padding: 32px;
     margin-bottom: 30px;
+    backdrop-filter: blur(4px);
   }
 
   .name-group {
@@ -226,7 +255,7 @@
   }
 
   select option {
-    background: #1A1228;
+    background: #1A0530;
     color: #E8E0F0;
   }
 
@@ -234,20 +263,21 @@
     width: 100%;
     margin-top: 36px;
     padding: 16px 32px;
-    background: linear-gradient(135deg, #6B4FA0 0%, #8B6AC0 50%, #6B4FA0 100%);
-    border: 1px solid rgba(201,169,110,0.4);
+    background: linear-gradient(135deg, #7B1040 0%, #5C0A28 50%, #7B1040 100%);
+    border: 1px solid rgba(201,169,110,0.5);
     border-radius: 10px;
     color: #F0E8D8;
     font-size: 1.05rem;
-    font-family: 'Georgia', serif;
-    letter-spacing: 0.08em;
+    font-family: 'Montserrat', 'Georgia', serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s;
   }
 
   .submit-btn:hover {
-    background: linear-gradient(135deg, #7B5FB0 0%, #9B7AD0 50%, #7B5FB0 100%);
-    box-shadow: 0 4px 24px rgba(107,79,160,0.4);
+    background: linear-gradient(135deg, #9B1550 0%, #7B1040 50%, #9B1550 100%);
+    box-shadow: 0 4px 30px rgba(120,10,50,0.5);
     transform: translateY(-1px);
   }
 
@@ -278,13 +308,14 @@
   }
 
   .reading-block {
-    background: rgba(255,255,255,0.03);
+    background: rgba(30,5,55,0.55);
     border: 1px solid rgba(201,169,110,0.2);
     border-radius: 16px;
     padding: 28px 30px;
     margin-bottom: 24px;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(4px);
   }
 
   .reading-block::before {
@@ -401,11 +432,11 @@
   }
 
   .planet-intro {
-    font-size: 0.95rem;
-    color: var(--gold);
+    font-size: 0.93rem;
+    color: #C9A96E;
     opacity: 0.85;
     font-style: italic;
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid #C9A96E;
     padding-left: 12px;
     margin-bottom: 16px;
   }
@@ -456,11 +487,11 @@
 </style>
 </head>
 <body>
+<canvas id="binary-canvas"></canvas>
 <div class="stars-bg"></div>
 <div class="container">
 
   <header>
-    <span class="crown-symbol">* * *</span>
     <h1>Dein astrologischer Selbst-Check</h1>
     <p class="subtitle">Entdecke, welche Energien du in dir trägst und wer du wirklich bist.</p>
     <div class="divider"></div>
@@ -789,7 +820,8 @@ function generateReading() {
   html += `
   <div class="cta-block">
     <h3>Identitycode</h3>
-    <p>Du hast gerade die erste Schicht deiner astrologischen Blueprint berührt. Wer bin ich? ist die tiefste aller Fragen. Dieses Reading gibt dir einen ersten Blick. Im Identitycode gehen wir tiefer. Du erkennst nicht nur, wer du bist. Du wirst es. Du bewegst dich zu der Frau, die du in dir trägst. Du führst dein Business, deine Beziehungen und dein Leben aus deiner tiefsten Identität heraus.</p>
+    <p>Du hast gerade die erste Schicht deines astrologischen Blueprint berührt. Wer bin ich? ist die tiefste aller Fragen. Dieses Reading gibt dir einen ersten Blick. Im Identitycode gehen wir tiefer. Du erkennst nicht nur, wer du bist. Du wirst es. Du bewegst dich zu der Frau, die du in dir trägst. Du führst dein Business, deine Beziehungen und dein Leben aus deiner tiefsten Identität heraus.</p>
+    <p style="margin-top:20px; padding-top:18px; border-top: 1px solid rgba(201,169,110,0.2);">Speicher dir am besten dein Geburtshoroskop ab. Die nächsten Tage bekommst du von mir noch den ein oder anderen Impuls in dein Postfach, einen Prompt und ein Workbook mit tiefen Reflektionsfragen. Ich möchte Astrologie mit modernen Tools so praxisnah in dein Leben bringen, wie es heute möglich ist. Bewegte Astrologie hat mein ganzes Leben verändert. Dank der Möglichkeiten der KI können wir heute so viel tiefer ins Experiment Identität eintauchen.</p>
   </div>`;
 
   html += `<button class="back-btn" onclick="showForm()">&#8592; Neues Reading starten</button>`;
@@ -813,6 +845,46 @@ function showForm() {
 
 
 populateSelects();
+</script>
+
+<script>
+// Binary Code Canvas Animation
+(function() {
+  const canvas = document.getElementById('binary-canvas');
+  const ctx = canvas.getContext('2d');
+  const chars = '10188011180818108801881010010118810001';
+  const fontSize = 13;
+  let columns, drops;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(1);
+  }
+
+  function draw() {
+    ctx.fillStyle = 'rgba(8, 4, 26, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      // Vary color between purple and wine tones
+      const r = Math.floor(Math.random() * 60) + 140;
+      const g = Math.floor(Math.random() * 30) + 50;
+      const b = Math.floor(Math.random() * 80) + 160;
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  setInterval(draw, 60);
+})();
 </script>
 </body>
 </html>
