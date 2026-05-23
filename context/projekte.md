@@ -30,6 +30,13 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Content-Strategie mit klarer Conversion-Absicht
 - Funnel-Aufbau: Instagram → Angebot → Abschluss
 
+## Instagram Analyse Agent (Make + Telegram) — IN BETRIEB
+
+**Status:** Läuft — Szenario in Make.com aufgebaut
+**Funktion:** Wöchentlicher Instagram-Report jeden Montag 08:00 Uhr via Telegram (Patrycja Analyse Bot)
+**Einschränkung:** Engagement-Metriken (Likes, Saves) noch leer — "List public user posts" liefert keine Zahlen. Fix: "Get post insights" Modul ergänzen.
+**Nächster Schritt:** Contentideen-Agent bauen (/ideen Trigger in Telegram, separates Make-Szenario)
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
