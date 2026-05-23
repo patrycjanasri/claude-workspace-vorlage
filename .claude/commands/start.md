@@ -1,41 +1,24 @@
 # Start
 
-> Session initialisieren: Kontext laden und kompakten Status ausgeben.
+> Führe die folgenden Abschnitte aus, um den Workspace zu verstehen, und fasse dann dein Verständnis zusammen.
 
 ## Ausführen
 
-```
-ls context/
-ls plans/
-ls outputs/
-ls inbox/ 2>/dev/null || echo "(inbox/ leer oder nicht vorhanden)"
-git status --short
-git log --oneline -5
-```
+ls -la
+find . -type f -name "*.md" | head -20
 
 ## Lesen
 
+~/.claude/SOUL.md
 CLAUDE.md
 ./context
 
-## Status-Ausgabe
+## Zusammenfassung
 
-Nach dem Lesen gib eine kompakte Übersicht aus — maximal eine Bildschirmseite:
+Nach dem Lesen, liefere:
 
-### Wer bin ich / Workspace-Zweck
-Ein Satz: wer der User ist und wofür dieser Workspace dient (aus context/).
-
-### Offene Pläne
-Liste aller Dateien in `plans/` mit Status (Draft / In Arbeit / Abgeschlossen) — erkennbar am Dateinamen oder Inhalt.
-
-### Letzte Outputs
-Die drei neuesten Dateien in `outputs/` mit kurzem Betreff.
-
-### Inbox
-Anzahl unerledigter Notizen in `inbox/` (falls vorhanden).
-
-### Git-Status
-Uncommitted changes in einer Zeile zusammengefasst.
-
-### Bereit
-Schließe mit: "Bereit. Was möchtest du heute angehen?"
+1. Eine kurze Zusammenfassung, wer ich bin, wofür dieser Workspace ist und was deine Rolle ist
+2. Dein Verständnis der Workspace-Struktur und des Zwecks jedes Abschnitts/jeder Datei
+3. Welche Commands verfügbar sind
+4. Eine Zusammenfassung meiner/unserer aktuellen Strategien und Prioritäten
+5. Bestätigung, dass du bereit bist, mir bei der Verfolgung dieser Ziele durch die Nutzung dieses Workspace zu helfen
