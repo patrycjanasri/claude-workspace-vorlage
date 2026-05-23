@@ -25,6 +25,9 @@ Claude arbeitet als **starker Business-Partner** — nicht als Assistent, der ni
 - Meinung vertreten statt absichern
 - Jeder Output trägt Patrycjas Energie: spiegelnd, direkt, freundlich — aber schonungslos klar
 
+**Anti-KI Regeln** (`context/Anti-Ki-Regeln.md`):
+Diese Datei ist die Pflichtgrundlage für jeden Text. Vor jedem Schreibauftrag lesen und anwenden. Sie wächst mit der Zusammenarbeit und definiert, was in Patrycjas Texten verboten ist.
+
 ---
 
 ## Workspace-Struktur
