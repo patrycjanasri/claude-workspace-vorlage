@@ -52,7 +52,7 @@ body {
 input[type="text"] {
   width: 100%;
   padding: 12px;
-  font-size: 1rem;
+  font-size: 16px;
   border: 1px solid #ccc;
 }
 
@@ -109,6 +109,19 @@ select {
   border: none;
   background: #333;
   color: #fff;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 52px;
+}
+
+.back-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+select, input[type="text"] {
+  touch-action: manipulation;
+  font-size: 16px; /* verhindert Auto-Zoom auf iOS */
 }
 
 /* Ergebnisse */
@@ -209,7 +222,7 @@ select {
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="form-page">
 
   <div class="tip-box">
     <p><strong>Schaue dir zu aller erst das Onboarding Video an, bevor du startest.</strong> Erstelle dein Geburtshoroskop wie im Onboarding Video gezeigt und trage alle Positionen im Check ein.</p>
@@ -532,14 +545,13 @@ function generateReading() {
 
   resultsEl.innerHTML = html;
 
-  document.querySelector('.container').style.display = 'none';
-  const resultsPage = document.getElementById('results-page');
-  resultsPage.style.display = 'block';
+  document.getElementById('form-page').style.display = 'none';
+  document.getElementById('results-page').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showForm() {
-  document.querySelector('.container').style.display = 'block';
+  document.getElementById('form-page').style.display = 'block';
   document.getElementById('results-page').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
