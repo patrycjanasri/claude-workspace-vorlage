@@ -291,7 +291,7 @@ select, input[type="text"] {
 
     <div class="error-msg" id="errorMsg">Bitte wähle mindestens ein Zeichen aus, um dein Reading zu erhalten.</div>
 
-    <button class="submit-btn" onclick="generateReading()">Mein astrologisches Reading anzeigen</button>
+    <button class="submit-btn" type="button" id="submit-btn">Mein astrologisches Reading anzeigen</button>
   </div>
 
 </div>
@@ -541,7 +541,7 @@ function generateReading() {
     <p style="margin-top:20px; padding-top:18px; border-top: 1px solid #ccc;">Speicher dir am besten dein Geburtshoroskop ab. Die nächsten Tage bekommst du von mir noch den ein oder anderen Impuls in dein Postfach, einen Prompt und ein Workbook mit tiefen Reflektionsfragen. Ich möchte Astrologie mit modernen Tools so praxisnah in dein Leben bringen, wie es heute möglich ist. Bewegte Astrologie hat mein ganzes Leben verändert. Dank der Möglichkeiten der KI können wir heute so viel tiefer ins Experiment Identität eintauchen.</p>
   </div>`;
 
-  html += `<button class="back-btn" onclick="showForm()">&#8592; Neues Reading starten</button>`;
+  html += `<button class="back-btn" type="button" id="back-btn">&#8592; Neues Reading starten</button>`;
 
   resultsEl.innerHTML = html;
 
@@ -563,6 +563,23 @@ function showForm() {
     try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) {}
   }, 50);
 }
+
+// Event Listeners — robuster als onclick-Attribut
+document.addEventListener('DOMContentLoaded', function() {
+  var submitBtn = document.getElementById('submit-btn');
+  if (submitBtn) submitBtn.addEventListener('click', generateReading);
+});
+
+// Fallback falls DOMContentLoaded bereits gefeuert hat
+(function() {
+  var submitBtn = document.getElementById('submit-btn');
+  if (submitBtn) submitBtn.addEventListener('click', generateReading);
+})();
+
+// Back-Button wird dynamisch erstellt — Event Delegation
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'back-btn') showForm();
+});
 </script>
 </body>
 </html>
