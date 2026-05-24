@@ -291,7 +291,7 @@ select, input[type="text"] {
 
     <div class="error-msg" id="errorMsg">Bitte wähle mindestens ein Zeichen aus, um dein Reading zu erhalten.</div>
 
-    <button class="submit-btn" type="button" id="submit-btn">Mein astrologisches Reading anzeigen</button>
+    <button class="submit-btn" type="button" id="submit-btn" onclick="generateReading()">Mein astrologisches Reading anzeigen</button>
   </div>
 
 </div>
@@ -482,6 +482,7 @@ const elementDescriptions = {
 };
 
 function generateReading() {
+  try {
   const name = document.getElementById('userName').value.trim() || 'Du';
   const errorEl = document.getElementById('errorMsg');
   let hasAny = false;
@@ -552,6 +553,10 @@ function generateReading() {
     resultsPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
     try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) {}
   }, 50);
+  } catch(err) {
+    document.getElementById('errorMsg').style.display = 'block';
+    document.getElementById('errorMsg').innerText = 'Fehler: ' + err.message;
+  }
 }
 
 function showForm() {
