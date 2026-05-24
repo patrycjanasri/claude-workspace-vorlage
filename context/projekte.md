@@ -46,6 +46,16 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Einschränkung:** Engagement-Metriken (Likes, Saves) noch leer — "List public user posts" liefert keine Zahlen. Fix: "Get post insights" Modul ergänzen.
 **Nächster Schritt:** Contentideen-Agent bauen (/ideen Trigger in Telegram, separates Make-Szenario)
 
+## Embodied Astrology Kanal — Tägliche Astrologieimpulse
+
+**Status:** Aktiver Workflow ab 24.05.2026
+**Funktion:** Patrycja nennt Aspekt + Uhrzeit → Claude schreibt Impulstext für den Kanal
+**Astroworkbook:** `/Users/patrycjakaczorowska/Downloads/workbook_astrologie.md` — für Aspektdefinitionen nutzen
+**Stil:** Direkte Ansprache (du), keine Metaphern für Aspekte, Erdung konkret (barfuß/Wald/Natur), keine Zeitbeschränkungen, direkte Abschlussfrage ohne Einleitung
+**Memory:** `feedback_embodied_astrology_channel.md` — vollständige Voice-Regeln für diesen Kanal
+
+---
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
