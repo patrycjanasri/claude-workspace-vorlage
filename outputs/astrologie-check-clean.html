@@ -546,14 +546,22 @@ function generateReading() {
   resultsEl.innerHTML = html;
 
   document.getElementById('form-page').style.display = 'none';
-  document.getElementById('results-page').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const resultsPage = document.getElementById('results-page');
+  resultsPage.style.display = 'block';
+  setTimeout(function() {
+    resultsPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) {}
+  }, 50);
 }
 
 function showForm() {
-  document.getElementById('form-page').style.display = 'block';
   document.getElementById('results-page').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const formPage = document.getElementById('form-page');
+  formPage.style.display = 'block';
+  setTimeout(function() {
+    formPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(e) {}
+  }, 50);
 }
 </script>
 </body>
