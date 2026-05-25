@@ -25,10 +25,8 @@ Eine Woche, die nicht für Halbherzigkeit gemacht ist.
 
 Diese Woche steht vor allem für eins: für deine wahrhaftigen Worte. Denn Lilith befindet sich im Tierkreiszeichen Schütze, und Schütze ist immer der Sinn dahinter. Lilith ist die Rebellin, die wilde Seite in uns, die ausspricht, was sie denkt, und kein Blatt vor den Mund nimmt. Genau diese wilde Energie steht Merkur gegenüber, unserem Planeten der für unsere Sprache, Kommunikation und Geist zuständig ist, und dieser steht auch noch in seinem Zeichen Zwillinge. Eine luftige Energie, die dank der Energie von Lilith Worte spricht, die mitten aus deiner Identität kommen.
 
-Alle Impulse zu diesen Konstellationen gibt es in meinem Embodied Astrology Kanal.
+Was du hier liest, ist der Überblick. Was dich täglich durch diese Woche begleitet, wartet im Kanal auf dich. Alle ausführlichen Informationen zu Konstellationen gibt es in meinem Embodied Astrology Kanal. Dieser WhatsApp Kanal ist übrigens anonym. Keiner sieht deine Handynummer oder sensible Daten.
 
 [ Hier kommst du zum Kanal ]
-
-Dieser WhatsApp Kanal ist anonym. Keiner sieht deine Handynummer oder sensible Daten.
 
 Kennst du jemanden, der keine neusten Astronews mehr verpassen soll? Dann teile meine News aus dem Kanal mit deinen Freunden. Du kannst jede Nachricht von mir im Kanal einfach weiterleiten. Sprich es in die Welt! Meine Intention ist BEWUSSTSEIN in die Welt bringen! Denn Bewusstsein schafft im kollektiv eine Transformation! Für eine neue Erde, für unsere Kinder, für ein friedvolles bewusstes Miteinander!
