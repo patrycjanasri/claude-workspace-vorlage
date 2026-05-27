@@ -56,6 +56,22 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Digitales Produkt — Astro Workbook
+
+**Status:** Rohversion fertig — 27.05.2026
+**Datei:** `outputs/astro-workbook-prompt-sammlung-2026-05-27.pdf` (127 Seiten)
+**Konzept:** KI-Prompt-Workbook für Horoskop-Analyse — in Patrycjas Nische (Business, Identität, Geldcode, Nervensystem, Leadership). Inspiriert von Liliths_astrology, aber stärker positioniert.
+**Inhalt:** Teil 1 — 36 Planeten-Prompts (Sonne bis IC) | Teil 2 — 16 thematische Tiefenprompts
+**Format:** Pro Seite ein Prompt-Kasten + Schreiblinien — druckfähig, auch digital ausfüllbar
+**Generator:** `outputs/create_astro_workbook.py` — jederzeit neu generieren/anpassen
+**Nächste Schritte:**
+- Design-Upgrade in Canva (Cover, Branding, Patrycja-Ästhetik)
+- Titel/Positionierung festlegen
+- Preis und Verkaufskanal entscheiden (Digistore, eigene Website, Stan Store)
+- Ggf. als Freebie/Lead-Magnet einsetzen
+
+---
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
