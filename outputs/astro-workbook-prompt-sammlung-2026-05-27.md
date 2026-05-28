@@ -509,5 +509,22 @@
 
 ---
 
-*Patrycja Nasri — [dein Business-Name / Marke]*
-*© 2026 — Alle Rechte vorbehalten*
+---
+
+## RECHTLICHE HINWEISE
+
+**Patrycja Nasri | Alle Rechte vorbehalten.**
+
+Dieses Workbook und alle enthaltenen Inhalte, Texte und Designs unterliegen dem Urheberrecht.
+
+Jede Vervielfältigung, Verbreitung oder Weitergabe — auch auszugsweise — ist ohne ausdrückliche schriftliche Genehmigung von Patrycja Nasri nicht gestattet.
+
+Dieses Workbook ist ausschließlich im Rahmen des Kurses **DEIN ASTROCODE** erhältlich und für den persönlichen Gebrauch bestimmt. Eine private Nutzung — einschließlich des Ausdrucks für den eigenen Gebrauch — ist ausdrücklich gestattet. Eine Weitergabe an Dritte ist nicht erlaubt.
+
+Anfragen zur Nutzung: **info@patrycja-nasri.de**
+
+*Design by Patricia — Visual Venus Design*
+
+*© 2026 Patrycja Nasri | www.patrycja-nasri.de*
+
+*Unbefugte Nutzung wird rechtlich verfolgt.*

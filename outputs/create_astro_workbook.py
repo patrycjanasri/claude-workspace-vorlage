@@ -427,6 +427,90 @@ def draw_prompt_page(c, prompt_text, planet_label, page_num):
     c.showPage()
 
 
+def draw_legal_page(c):
+    """Rechtliche Hinweisseite — letzte Seite des Workbooks."""
+    # Dark background wie Cover
+    c.setFillColor(DARK_BG)
+    c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
+
+    # Gold top + bottom bar
+    c.setFillColor(ACCENT_GOLD)
+    c.rect(0, PAGE_H - 0.6*cm, PAGE_W, 0.6*cm, fill=1, stroke=0)
+    c.rect(0, 0, PAGE_W, 0.6*cm, fill=1, stroke=0)
+
+    # Dekoratives Symbol oben
+    c.setFont("Times-Roman", 22)
+    c.setFillColor(LIGHT_GOLD)
+    c.drawCentredString(PAGE_W/2, PAGE_H - 3.2*cm, "✦")
+
+    # Haupttitel
+    c.setFont("Times-Roman", 18)
+    c.setFillColor(WHITE)
+    c.drawCentredString(PAGE_W/2, PAGE_H - 4.5*cm, "RECHTLICHE HINWEISE")
+
+    # Goldene Trennlinie
+    c.setStrokeColor(ACCENT_GOLD)
+    c.setLineWidth(0.8)
+    c.line(PAGE_W/2 - 4*cm, PAGE_H - 5.1*cm, PAGE_W/2 + 4*cm, PAGE_H - 5.1*cm)
+
+    # Textblock — zentriert, mehrzeilig
+    legal_lines = [
+        ("Patrycja Nasri  |  Alle Rechte vorbehalten.", "Helvetica-Bold", 10, WHITE),
+        ("", "Helvetica", 9, WHITE),
+        ("Dieses Workbook und alle enthaltenen Inhalte, Texte und Designs", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("unterliegen dem Urheberrecht.", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("", "Helvetica", 9, WHITE),
+        ("Jede Vervielfältigung, Verbreitung oder Weitergabe —", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("auch auszugsweise — ist ohne ausdrückliche schriftliche", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("Genehmigung von Patrycja Nasri nicht gestattet.", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("", "Helvetica", 9, WHITE),
+        ("Dieses Workbook ist ausschließlich im Rahmen des Kurses", "Helvetica-Bold", 9.5, LIGHT_GOLD),
+        ("DEIN ASTROCODE", "Times-Roman", 13, LIGHT_GOLD),
+        ("erhältlich und für den persönlichen Gebrauch bestimmt.", "Helvetica-Bold", 9.5, LIGHT_GOLD),
+        ("", "Helvetica", 9, WHITE),
+        ("Eine private Nutzung — einschließlich des Ausdrucks für den", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("eigenen Gebrauch — ist ausdrücklich gestattet.", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("Eine Weitergabe an Dritte ist nicht erlaubt.", "Helvetica", 9, colors.HexColor('#C8B89A')),
+        ("", "Helvetica", 9, WHITE),
+        ("Design by Patricia — Visual Venus Design", "Helvetica-Oblique", 9, colors.HexColor('#8B7355')),
+        ("", "Helvetica", 9, WHITE),
+        ("www.patrycja-nasri.de", "Helvetica-Bold", 9.5, LIGHT_GOLD),
+    ]
+
+    start_y = PAGE_H - 6.2*cm
+    line_h = 16
+
+    for text, font, size, color in legal_lines:
+        if text == "":
+            start_y -= line_h * 0.4
+            continue
+        c.setFont(font, size)
+        c.setFillColor(color)
+        c.drawCentredString(PAGE_W/2, start_y, text)
+        start_y -= line_h
+
+    # Untere Goldlinie
+    c.setStrokeColor(ACCENT_GOLD)
+    c.setLineWidth(0.8)
+    c.line(PAGE_W/2 - 4*cm, 3.5*cm, PAGE_W/2 + 4*cm, 3.5*cm)
+
+    # Copyright unten
+    c.setFont("Helvetica", 8)
+    c.setFillColor(ACCENT_GOLD)
+    c.drawCentredString(PAGE_W/2, 2.8*cm, "© 2026 Patrycja Nasri  |  www.patrycja-nasri.de")
+
+    c.setFont("Helvetica", 8)
+    c.setFillColor(colors.HexColor('#6B5B4E'))
+    c.drawCentredString(PAGE_W/2, 2.2*cm, "Unbefugte Nutzung wird rechtlich verfolgt.")
+
+    # Kontakt & Website
+    c.setFont("Helvetica", 8.5)
+    c.setFillColor(LIGHT_GOLD)
+    c.drawCentredString(PAGE_W/2, 1.6*cm, "info@patrycja-nasri.de  |  www.patrycja-nasri.de")
+
+    c.showPage()
+
+
 # ─── MAIN ────────────────────────────────────────────────────────────────────
 
 def main():
@@ -462,9 +546,12 @@ def main():
             draw_prompt_page(c, prompt_text, num_label, page_num)
             page_num += 1
 
+    # 6. Rechtliche Seite
+    draw_legal_page(c)
+
     c.save()
     print(f"PDF erstellt: {output_path}")
-    print(f"Seiten: ~{page_num}")
+    print(f"Seiten: ~{page_num + 1}")
 
 
 if __name__ == "__main__":
