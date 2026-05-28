@@ -56,7 +56,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
-## Digitales Produkt — Astro Workbook
+## Digitales Produkt — Astro Workbook + Identitätsprompt Leadmagnet
 
 **Status:** Rohversion fertig — 27.05.2026
 **Datei:** `outputs/astro-workbook-prompt-sammlung-2026-05-27.pdf` (127 Seiten)
@@ -64,11 +64,18 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Inhalt:** Teil 1 — 36 Planeten-Prompts (Sonne bis IC) | Teil 2 — 16 thematische Tiefenprompts
 **Format:** Pro Seite ein Prompt-Kasten + Schreiblinien — druckfähig, auch digital ausfüllbar
 **Generator:** `outputs/create_astro_workbook.py` — jederzeit neu generieren/anpassen
+
+### Identitätsprompt Leadmagnet — FERTIG 28.05.2026
+
+**URL:** https://erfolgsqueen.de/identityprompt/
+**Funnel-Texte:** `outputs/identitaetsprompt-leadmagnet-2026-05-28.md`
+**Enthält:** Opt-in Formular, Double Opt-in Seite, Danke-Seite, Willkommensmail, Marketing-Satz
 **Nächste Schritte:**
-- Design-Upgrade in Canva (Cover, Branding, Patrycja-Ästhetik)
-- Titel/Positionierung festlegen
-- Preis und Verkaufskanal entscheiden (Digistore, eigene Website, Stan Store)
-- Ggf. als Freebie/Lead-Magnet einsetzen
+- Seite in MailerLite/Website live schalten
+- Feedback Call mit Annika Stadler führen (Tiefe Fragen in Output-Datei)
+- Testimonial-Reaktionen für Salespage nutzen
+- Design-Upgrade Astro Workbook in Canva
+- Verkaufskanal entscheiden (Digistore / Stan Store / eigene Website)
 
 ---
 
