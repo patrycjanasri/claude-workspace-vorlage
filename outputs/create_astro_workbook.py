@@ -499,14 +499,10 @@ def draw_legal_page(c):
     c.setFillColor(ACCENT_GOLD)
     c.drawCentredString(PAGE_W/2, 2.8*cm, "© 2026 Patrycja Nasri  |  www.patrycja-nasri.de")
 
-    c.setFont("Helvetica", 8)
-    c.setFillColor(colors.HexColor('#6B5B4E'))
-    c.drawCentredString(PAGE_W/2, 2.2*cm, "Unbefugte Nutzung wird rechtlich verfolgt.")
-
     # Kontakt & Website
     c.setFont("Helvetica", 8.5)
     c.setFillColor(LIGHT_GOLD)
-    c.drawCentredString(PAGE_W/2, 1.6*cm, "info@patrycja-nasri.de  |  www.patrycja-nasri.de")
+    c.drawCentredString(PAGE_W/2, 1.9*cm, "info@patrycja-nasri.de  |  www.patrycja-nasri.de")
 
     c.showPage()
 
