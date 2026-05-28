@@ -527,4 +527,3 @@ Anfragen zur Nutzung: **info@patrycja-nasri.de**
 
 *© 2026 Patrycja Nasri | www.patrycja-nasri.de*
 
-*Unbefugte Nutzung wird rechtlich verfolgt.*
