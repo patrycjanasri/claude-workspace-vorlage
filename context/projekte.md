@@ -79,6 +79,33 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## DeinAstroCode — Erster eigener Minikurs
+
+**Status:** Konzept fertig — 28.05.2026
+**Datei:** `outputs/deinastrocode-kurskonzept-2026-05-27.md`
+**Plattform:** systeme.io + astroqueen.de | E-Mail: patrycja@astroqueen
+**Konzept:** Minikurs zum Astroprompt Workbook — Chart erstellen, Prompts + KI nutzen, Transformation starten. Kein Vorwissen nötig, schnelle Erfolgserlebnisse.
+**Tool für Chart:** astroschmid.ch (kein Account, alles ausgeschrieben)
+**Lehrplan:**
+- Modul 1: Herzlich Willkommen (Vorstellung, Workbook + Promptguide zeigen)
+- Modul 2: Geburtshoroskop erstellen (astroschmid.ch, Screen Recording)
+- Modul 3: ChatGPT und Claude im Vergleich (Prompts live durcharbeiten)
+- Modul 4: Abschluss — Drucken, täglich arbeiten, Bewusstsein als Schlüssel
+**Kursbeschreibung:** Fertig — "Schicht für Schicht schälst du ab, wer du wirklich bist"
+**Nächste Schritte:**
+- Videos drehen (1 Drehtag, 4 Module)
+- Kurs in systeme.io aufbauen
+- Domain astroqueen.de verbinden
+- Workbook-Design von Designerin einbinden + als Download
+
+**Produkttreppe:**
+Stufe 0: Astroprompt Workbook + Promptguide (27-49€) — beim Design
+Stufe 1: DeinAstroCode Minikurs (47-97€) — Konzept fertig, Videos ausstehend
+Stufe 2: Energien in der Praxis — 12 Zeichen + 12 Häuser (197-297€)
+Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
+
+---
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
