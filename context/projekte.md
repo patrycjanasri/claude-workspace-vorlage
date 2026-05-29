@@ -102,6 +102,19 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Workbook-Design von Designerin einbinden
 - Workbook-Design von Designerin einbinden + als Download
 
+---
+
+## Astrologie-Guide — "Ein Blick in deine Sterne"
+
+**Status:** In Arbeit — 29.05.2026
+**Datei:** `outputs/astrologie-guide-2026-05-29.md`
+**Konzept:** Patrycjas Astrofibel. Einmal das klare Bild über alle Bausteine (Zeichen, Planeten, Asteroiden, Häuser, Aspekte, Transite), dann geht die Arbeit mit den Prompts ins eigene Chart (Teil 8).
+**Prinzip:** Tiefe statt Nachschlagewerk. Drei-Schichten-Lesemodell (Planet/Zeichen/Haus). Bewusstseinsastrologie als Lesebrille: Schatten oder volles Potenzial.
+**Diese Session:** Titel "Ein Blick in deine Sterne", Abschnitt Bewusstseinsastrologie (TEIL 1), Elemente-Gesamtbild, Horizont (über/unter = extro/introvertiert).
+**Offen:** Teil 8 Stimme (du/ich), finale PDF-Generierung.
+
+---
+
 **Produkttreppe:**
 Stufe 0: Astroprompt Workbook + Promptguide (27-49€) — beim Design
 Stufe 1: DeinAstroCode Minikurs (47-97€) — Konzept fertig, Videos ausstehend
