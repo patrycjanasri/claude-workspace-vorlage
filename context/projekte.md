@@ -81,21 +81,25 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ## DeinAstroCode — Erster eigener Minikurs
 
-**Status:** Konzept fertig — 28.05.2026
-**Datei:** `outputs/deinastrocode-kurskonzept-2026-05-27.md`
-**Plattform:** systeme.io + astroqueen.de | E-Mail: patrycja@astroqueen
-**Konzept:** Minikurs zum Astroprompt Workbook — Chart erstellen, Prompts + KI nutzen, Transformation starten. Kein Vorwissen nötig, schnelle Erfolgserlebnisse.
+**Status:** VIDEOS GEDREHT + TEXTE FERTIG — 28.05.2026
+**Plattform:** Tentary (Entscheidung 28.05. — nicht mehr systeme.io)
+**Preis:** 89€ Einführungspreis (offen: Workbook alleine oder Bundle mit Kurs?)
 **Tool für Chart:** astroschmid.ch (kein Account, alles ausgeschrieben)
 **Lehrplan:**
-- Modul 1: Herzlich Willkommen (Vorstellung, Workbook + Promptguide zeigen)
-- Modul 2: Geburtshoroskop erstellen (astroschmid.ch, Screen Recording)
-- Modul 3: ChatGPT und Claude im Vergleich (Prompts live durcharbeiten)
-- Modul 4: Abschluss — Drucken, täglich arbeiten, Bewusstsein als Schlüssel
-**Kursbeschreibung:** Fertig — "Schicht für Schicht schälst du ab, wer du wirklich bist"
+- Modul 1: Herzlich Willkommen
+- Modul 2: Geburtshoroskop erstellen
+- Modul 3: Claude und ChatGPT im Vergleich
+- Modul 4: Dein Experiment beginnt jetzt
+**Dateien:**
+- Videotexte: `outputs/deinastrocode-videotexte-2026-05-28.md`
+- Salespage: `outputs/deinastrocode-salespage-2026-05-28.md`
+- Kurskonzept: `outputs/deinastrocode-kurskonzept-2026-05-27.md`
+**Brand Voice Referenz:** "Dein Experiment beginnt jetzt" — kurz, direkt, Aufbruch statt Abschluss
 **Nächste Schritte:**
-- Videos drehen (1 Drehtag, 4 Module)
-- Kurs in systeme.io aufbauen
-- Domain astroqueen.de verbinden
+- Tentary-Link einrichten
+- Klären: Workbook alleine (89€) oder Bundle Workbook + Kurs (89€)?
+- Launch-Post veröffentlichen (Text fertig in Salespage-Datei)
+- Workbook-Design von Designerin einbinden
 - Workbook-Design von Designerin einbinden + als Download
 
 **Produkttreppe:**
