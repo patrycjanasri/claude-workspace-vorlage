@@ -5,6 +5,9 @@
 - Keine Floskeln wie "Stell dir vor".
 - Keine Konstruktionen wie "nicht weil ... sondern ...".
 - Keine leeren Verstärker wie "extrem", "unglaublich", "massiv" ohne Beleg.
+- Keine dramatischen Ein-Wort-Sätze als Klarstellung. Verboten: "Nicht religiös. Existenziell." / "Nicht theoretisch. Jetzt." / "Nicht irgendwann. Heute." — das ist KI-Dramatik, kein echter Ausdruck.
+- Keine kurzen Parallel-Sätze als Aufzählung desselben Gedankens. Verboten: "Er dachte. Er formulierte. Er suchte." / "Sie analysiert. Sie zweifelt. Sie perfektioniert." — wirkt wie eine KI-Liste, ist kein echter Satz.
+- Verbotene Wörter: "dosiert" (z.B. "Wahrheit dosiert"), "verdaulich" (z.B. "für andere verdaulich").
 
 ## Ausdruck
 - Jeder Satz enthält eine konkrete Aussage oder ein klares Beispiel.
