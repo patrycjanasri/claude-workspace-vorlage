@@ -104,6 +104,37 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Womancode — Promptguide
+
+**Status:** FERTIG (Rohversion) — 30.05.2026
+**Datei:** `outputs/womancode-promptguide-2026-05-29.md`
+**Konzept:** KI-Promptguide für Frauen — Weiblichkeit durch den persönlichen Astro-Chart lesen. Feminine Planeten, weibliche Häuser, Seelenweg, Tiefenthemen.
+**Struktur:**
+- Teil 1: Feminine Planeten (Mond, Venus, Lilith, Chiron, Asteroiden)
+- Teil 2: Weibliche Häuser (4., 7., 8., 12.)
+- Teil 3: Seelenweg (Mondknoten, IC)
+- Teil 4: Übergreifende Tiefenprompts (Körper, Liebe, Kraft, Führung, Geld, Vision)
+**Asteroiden:** Ceres, Juno, Eva, Aphrodite, Medusa — alle mit [Zeichen]/[Haus] Feldern. Quelle: astro.com → Erweitertes Horoskop
+**Chart-Quelle für den Rest:** astroschmid.ch (kein Account nötig)
+**Nächste Schritte:**
+- Format/Design entscheiden (wie Astro Workbook oder eigenes Womancode-Layout?)
+- Pricing klären
+- Verbindung zu Moneycode-Launch definieren
+
+---
+
+## Astro Live Workshop — Mittwoch
+
+**Status:** GEPLANT — Mittwoch 04.06.2026
+**Format:** Live Workshop für Patrycjas Community (Telegram-Gruppe)
+**Inhalt:** Patrycja zeigt live, wie sie eine Astro-Chart erstellt + mit Asteroiden arbeitet
+**Hook:** "Blick mir hinter die Schultern. It's a juicy Portal."
+**Energie:** Moneycode trifft auf die Sterne
+**Einladungstext:** Fertig (Telegram-Format, Uhrzeit + Link noch einzufügen)
+**Offen:** Uhrzeit bestätigen, Plattform/Link ergänzen, Einladung rausschicken
+
+---
+
 ## Astrologie-Guide — "Ein Blick in deine Sterne"
 
 **Status:** In Arbeit — 29.05.2026
