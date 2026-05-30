@@ -121,6 +121,21 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Pricing klären
 - Verbindung zu Moneycode-Launch definieren
 
+**Erweiterung 30.05.2026:** Asteroiden-Teil ausgebaut — 7 neue Anziehungs-Asteroiden (Hera, Glo, Nymphe, Eros, Psyche, Sirene, Bella) als eigener Block ergänzt. Guide jetzt 45 Prompts. Alle Asteroiden in der Chart-Vorlage mit astro.com-Nummern.
+
+---
+
+## Asteroiden-Promptbook — "Die verborgenen Kräfte in deinem Chart"
+
+**Status:** Rohversion fertig — 30.05.2026
+**Datei:** `outputs/asteroiden-promptbook-2026-05-30.md`
+**Konzept:** Eigenständiges Promptbook über ALLE Asteroiden aus dem "Amazing Asteroids Course"-PDF, im Womancode-Stil (Archetyp + tiefe Selbstfrage). 40 Prompts, 37 Asteroiden mit astro.com-Nummern.
+**Aufbau:** Teil 1 Ruhm & Sichtbarkeit | Teil 2 Anziehung (maskulin + feminin) | Teil 3 Talente & Sehergabe | Teil 4 Asteroiden der Astrologen | Teil 5 Zusammenspiel
+**Offen:**
+- Überschneidung mit Womancode klären (10 Asteroiden in beiden Büchern — bei Bundle ggf. kürzen)
+- Titel/Positionierung final entscheiden (näher an Marke Moneycode/Identität?)
+- Format/Design + Pricing
+
 ---
 
 ## Astro Live Workshop — Mittwoch

@@ -28,14 +28,21 @@ Trage deine Daten einmal hier ein — dann kannst du sie in jeden Prompt einfüg
 - 7. Haus: Zeichen ___ / Planeten ___
 - 8. Haus: Zeichen ___ / Planeten ___
 - 12. Haus: Zeichen ___ / Planeten ___
-- Ceres: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Juno: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Eva: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Aphrodite: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Medusa: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Fortuna: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Abundantia: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
-- Midas: Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Ceres (#1): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Juno (#3): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Eva (#164): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Aphrodite (#1388): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Medusa (#149): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Hera (#103): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Glo (#3267): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Nymphe (#875): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Eros (#433): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Psyche (#16): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Sirene (#1009): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Bella (#695): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Fortuna (#19): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Abundantia (#151): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
+- Midas (#1981): Zeichen ___ / Haus ___ *(astro.com → Erweitertes Horoskop)*
 
 ---
 
@@ -91,7 +98,7 @@ Mein Chiron steht in [Zeichen] im [Haus]. Chiron heilt nicht durch Beseitigung, 
 ---
 
 ### Feminine Asteroiden
-*Ceres und Juno findest du auf astro.com → Erweitertes Horoskop → Asteroiden aktivieren*
+*Alle Asteroiden findest du auf astro.com → Erweitertes Horoskop → Asteroiden aktivieren (Nummern in der Chart-Vorlage oben)*
 
 **Prompt 12 — Ceres: Deine Fürsorge-Energie**
 Meine Ceres steht in [Zeichen] im [Haus]. Ceres zeigt, wie ich Fürsorge gebe und empfange — Mütterlichkeit, Ernährung, den Zyklus von Verlust und Wiederkehr. Was sagt meine Ceres-Position über meine Fürsorge-Energie? Frage mich dann: Für wen oder was sorge ich in meinem Leben — und wer sorgt für mich? Wo kommt meine Fürsorge aus Liebe und wo aus Angst, nicht gebraucht zu werden?
@@ -119,44 +126,70 @@ Meine Midas steht in [Zeichen] im [Haus]. Midas zeigt, wo du die Gabe hast, aus 
 
 ---
 
+### Anziehungs-Asteroiden — Deine feminine Anziehungskraft
+*Diese Asteroiden findest du auf astro.com → Erweitertes Horoskop → Asteroiden aktivieren (Nummern in der Chart-Vorlage oben)*
+
+**Prompt 20 — Hera: Deine weibliche Reife**
+Meine Hera steht in [Zeichen] im [Haus]. Hera ist die reife, thronende Weiblichkeit: die Frau, die ihren Wert kennt und ihn nicht mehr beweisen muss. Was sagt meine Hera-Position über meine weibliche Reife und Souveränität? Frage mich dann: Wo trage ich meine Krone schon sichtbar, und wo mache ich mich noch kleiner, als ich bin? Was würde sich ändern, wenn ich ab heute wie eine Frau auftrete, die ihren Wert nicht mehr verhandelt?
+
+**Prompt 21 — Glo: Dein Glanz & deine Ausstrahlung**
+Mein Glo steht in [Zeichen] im [Haus]. Glo ist das sichtbare Leuchten, die Ausstrahlung, die einen Raum füllt, bevor ich ein Wort sage. Was sagt meine Glo-Position darüber, wann und wodurch ich strahle? Frage mich dann: In welchen Momenten leuchte ich von innen, und was dimmt mich, sobald ich einen Raum betrete? Wovor schütze ich mich, wenn ich mein Licht kleiner mache?
+
+**Prompt 22 — Nymphe: Deine zeitlose Weiblichkeit**
+Meine Nymphe steht in [Zeichen] im [Haus]. Nymphe steht für die spielerische, zeitlose Weiblichkeit, die jung bleibt, egal wie alt der Körper wird: Leichtigkeit, Frische, Lust am Leben. Was sagt meine Nymphe-Position über diese spielerische Seite in mir? Frage mich dann: Wo habe ich meine Leichtigkeit unter Ernst, Pflicht und Verantwortung begraben? Wann habe ich zuletzt gespielt, ohne ein Ziel dahinter?
+
+**Prompt 23 — Eros: Dein Verlangen & deine Lebenskraft**
+Mein Eros steht in [Zeichen] im [Haus]. Eros ist die pure Lebenskraft, das Verlangen, die Energie, die mich lebendig und hungrig macht. Sie zeigt sich sexuell und in allem, was ich wirklich begehre. Was sagt meine Eros-Position über meine Begierde und meine Lebenslust? Frage mich dann: Wo lebt mein Verlangen ungebremst, und wo habe ich es heruntergeschluckt, weil ich gelernt habe, dass Wollen unweiblich ist? Was begehre ich gerade wirklich, ohne es mir einzugestehen?
+
+**Prompt 24 — Psyche: Deine Schönheit & Seelentiefe**
+Meine Psyche steht in [Zeichen] im [Haus]. Psyche steht für die Schönheit der Seele, die über das Äußere hinausgeht: Tiefe, Anmut und die Fähigkeit, durch Dunkelheit zu gehen und daraus verwandelt hervorzukommen. Was sagt meine Psyche-Position über meine seelische Schönheit? Frage mich dann: Was an mir ist schön auf eine Art, die man nur fühlen kann? Wo verstecke ich diese Tiefe, weil ich glaube, dass nur das Sichtbare zählt?
+
+**Prompt 25 — Sirene: Deine magnetische Anziehung**
+Meine Sirene steht in [Zeichen] im [Haus]. Sirene ist die hypnotische, fast gefährliche Anziehung: die Kraft, die fasziniert und zugleich Respekt einfordert. Was sagt meine Sirene-Position über diese magnetische, machtvolle Seite meiner Weiblichkeit? Frage mich dann: Wo spüre ich diese Kraft in mir, und wo habe ich sie gedämpft, weil ich Angst hatte, zu viel zu sein? Was wäre, wenn diese Intensität meine Signatur ist statt einer Bedrohung?
+
+**Prompt 26 — Bella: Deine natürliche Schönheit**
+Meine Bella steht in [Zeichen] im [Haus]. Bella steht für die schlichte, natürliche Schönheit, die nichts beweisen und nichts hinzufügen muss: das, was schön ist, wenn alle Masken fallen. Was sagt meine Bella-Position über meine natürliche Schönheit? Frage mich dann: Wann fühle ich mich schön, ohne mich vorher hergerichtet zu haben? Was müsste ich loslassen, um zu glauben, dass ich genau so genug bin?
+
+---
+
 ## Teil 2 — Deine weiblichen Häuser
 
 ### Das 4. Haus — Wurzeln, Ursprung, innere Heimat
 
-**Prompt 20 — Wo du herkommst**
+**Prompt 27 — Wo du herkommst**
 Mein 4. Haus steht im Zeichen [Zeichen], darin befinden sich folgende Planeten: [Planeten oder "keine"]. Das 4. Haus zeigt meine Wurzeln, meine Familie und das, was ich als innere Heimat erlebe. Was sagt mein 4. Haus über mein Ursprungsmilieu und was ich daraus mitgenommen habe? Frage mich: Was habe ich von Zuhause über Frauen, Sicherheit und Zugehörigkeit gelernt — und was davon will ich nicht weitergeben?
 
-**Prompt 21 — Innere Sicherheit**
+**Prompt 28 — Innere Sicherheit**
 Mein 4. Haus steht im Zeichen [Zeichen]. Das 4. Haus zeigt auch, was ich brauche, um mich innerlich sicher zu fühlen. Was beschreibt mein 4. Haus als meine Quelle innerer Sicherheit? Frage mich: Hole ich mir diese Sicherheit von innen oder von außen — von anderen Menschen, Kontrolle, Bestätigung? Was müsste sich verändern, damit ich diese Sicherheit in mir selbst finde?
 
 ---
 
 ### Das 7. Haus — Beziehungen & Partnerschaft
 
-**Prompt 22 — Dein Beziehungsblauplan**
+**Prompt 29 — Dein Beziehungsblauplan**
 Mein 7. Haus steht im Zeichen [Zeichen], darin befinden sich folgende Planeten: [Planeten oder "keine"]. Das 7. Haus zeigt, wen ich anziehe und was ich in Beziehungen lerne. Was sagt mein 7. Haus über das Muster meiner wichtigsten Beziehungen? Frage mich: Erkenne ich dieses Muster in meinen echten Beziehungen? Was zieht mich immer wieder an — und was steckt dahinter?
 
-**Prompt 23 — Was ich in anderen suche**
+**Prompt 30 — Was ich in anderen suche**
 Mein 7. Haus steht im Zeichen [Zeichen]. Das 7. Haus zeigt oft auch, was wir in anderen suchen, weil wir es in uns selbst nicht leben. Was könnte ich in anderen suchen, das eigentlich in mir selbst entwickelt werden will? Frage mich: Welche Eigenschaft bewundere ich an Menschen, die mir nahestehen — und wann habe ich diese Eigenschaft zuletzt selbst gezeigt?
 
 ---
 
 ### Das 8. Haus — Tiefe, Transformation, Sexualität
 
-**Prompt 24 — Deine Tiefe**
+**Prompt 31 — Deine Tiefe**
 Mein 8. Haus steht im Zeichen [Zeichen], darin befinden sich folgende Planeten: [Planeten oder "keine"]. Das 8. Haus steht für Transformation, Sexualität, Tabu und das Verborgene. Was sagt mein 8. Haus darüber, wie ich mit Tiefe, Veränderung und dem Vergänglichen umgehe? Frage mich: Welche Transformation in meinem Leben habe ich noch nicht vollständig integriert? Was ist noch nicht wirklich abgeschlossen?
 
-**Prompt 25 — Sexualität & Macht**
+**Prompt 32 — Sexualität & Macht**
 Mein 8. Haus steht im Zeichen [Zeichen]. Das 8. Haus verbindet Sexualität mit Macht und persönlicher Kraft. Was zeigt mein 8. Haus über meine Beziehung zu meiner sexuellen Energie und wie ich Macht erlebe — eigene und fremde? Frage mich direkt: Erlebe ich meine Sexualität als Quelle meiner Kraft oder als Verletzlichkeit? Was hat mir das beigebracht?
 
 ---
 
 ### Das 12. Haus — Schatten, Verborgenes, innere Stille
 
-**Prompt 26 — Dein verborgenes Selbst**
+**Prompt 33 — Dein verborgenes Selbst**
 Mein 12. Haus steht im Zeichen [Zeichen], darin befinden sich folgende Planeten: [Planeten oder "keine"]. Das 12. Haus zeigt, was ich vor der Welt verberge — oft sogar vor mir selbst. Was sagt mein 12. Haus über das, was ich in mir trage, ohne es zu zeigen? Frage mich: Was zeige ich keinem Menschen — nicht weil es schlecht ist, sondern weil ich nicht weiß, wie es aufgenommen wird?
 
-**Prompt 27 — Deine spirituelle Wurzel**
+**Prompt 34 — Deine spirituelle Wurzel**
 Mein 12. Haus steht im Zeichen [Zeichen]. Das 12. Haus ist auch das Haus der inneren Stille, der Intuition und des Kontakts mit etwas Größerem. Was zeigt mein 12. Haus über meine spirituelle Natur und wie ich Zugang zur inneren Stille finde? Frage mich: Wann bin ich wirklich still — innerlich, nicht nur äußerlich? Was entsteht in dieser Stille?
 
 ---
@@ -165,45 +198,45 @@ Mein 12. Haus steht im Zeichen [Zeichen]. Das 12. Haus ist auch das Haus der inn
 
 ### Mondknoten — Vergangenheit & Bestimmung
 
-**Prompt 28 — Woher du kommst (Südknoten)**
+**Prompt 35 — Woher du kommst (Südknoten)**
 Mein Südknoten steht in [Zeichen] im [Haus]. Der Südknoten zeigt, was ich bereits gut kann — Muster, die mir vertraut sind, aber die mich nicht wachsen lassen. Was beschreibt mein Südknoten als mein altes Muster als Frau? Frage mich: Welches Verhalten in meinem Leben fühlt sich automatisch an — fast zu einfach, weil es so vertraut ist? Und was kostet mich dieses Muster?
 
-**Prompt 29 — Wohin du gehst (Nordknoten)**
+**Prompt 36 — Wohin du gehst (Nordknoten)**
 Mein Nordknoten steht in [Zeichen] im [Haus]. Der Nordknoten zeigt meine Wachstumsrichtung — das, was sich neu und manchmal unbequem anfühlt, aber meine Seele erfüllt. Was beschreibt mein Nordknoten als den Weg, den ich als Frau gehen soll? Frage mich: Wo widersetze ich mich genau dieser Qualität in meinem Leben — wann taucht sie auf und warum weiche ich ihr aus?
 
 ---
 
 ### IC — Dein inneres Fundament
 
-**Prompt 30 — Dein Fundament als Frau**
+**Prompt 37 — Dein Fundament als Frau**
 Mein IC (4. Haussspitze) steht im Zeichen [Zeichen]. Der IC ist das tiefste, innerste Fundament meiner Persönlichkeit — das, worauf ich mein Leben aufbaue, oft unbewusst. Was beschreibt mein IC-Zeichen als mein innerlichstes Fundament als Frau? Frage mich: Woraus schöpfe ich wirklich Kraft, wenn alles andere wegfällt? Was ist das Letzte, das in mir bleibt?
 
 ---
 
 ## Teil 4 — Dein weibliches Leben im Chart
 
-**Prompt 31 — Deine feminine Blaupause**
+**Prompt 38 — Deine feminine Blaupause**
 Ich teile dir meinen vollständigen Chart mit: Mond in [Zeichen]/[Haus], Venus in [Zeichen]/[Haus], Lilith in [Zeichen]/[Haus], Chiron in [Zeichen]/[Haus], Nordknoten in [Zeichen]/[Haus], 4. Haus [Zeichen], 7. Haus [Zeichen], 8. Haus [Zeichen]. Lies meinen Chart als Ganzes und beschreibe mir meine weibliche Blaupause: Welche femininen Themen kehren immer wieder? Wo liegen meine größten Stärken als Frau — und wo meine größten Wachstumsbereiche?
 
-**Prompt 32 — Dein Körper im Chart**
+**Prompt 39 — Dein Körper im Chart**
 Mein Mond steht in [Zeichen], meine Venus in [Zeichen], mein 8. Haus im Zeichen [Zeichen]. Was sagen diese Positionen über meine Beziehung zu meinem Körper, meiner Sinnlichkeit und meinem Zyklus? Frage mich dann: Wann habe ich meinen Körper zuletzt wirklich gespürt — nicht als Werkzeug, sondern als Zuhause? Was brauche ich, um diese Verbindung zu vertiefen?
 
-**Prompt 33 — Liebe & Anziehung im Chart**
+**Prompt 40 — Liebe & Anziehung im Chart**
 Meine Venus steht in [Zeichen]/[Haus], mein 7. Haus im Zeichen [Zeichen] mit [Planeten]. Was sagt dieser Liebesblauplan über das Muster, das sich in meinen Beziehungen wiederholt? Frage mich konkret: Wer zieht mich immer wieder an — welcher Typ Mensch, welche Energie? Und was sagt dieses Muster über mich selbst aus?
 
-**Prompt 34 — Deine Kraft im Chart**
+**Prompt 41 — Deine Kraft im Chart**
 Meine Lilith steht in [Zeichen]/[Haus], mein 8. Haus im Zeichen [Zeichen]. Was sagen diese Positionen über meine wilde, ungezähmte feminine Kraft? Frage mich dann: Wann habe ich diese Kraft zuletzt gespürt — wirklich gespürt, nicht kontrolliert? In welchen Situationen halte ich sie zurück und warum?
 
-**Prompt 35 — Führen & Sichtbarkeit im Chart**
+**Prompt 42 — Führen & Sichtbarkeit im Chart**
 Mein Mond steht in [Zeichen]/[Haus], meine Venus in [Zeichen]/[Haus]. Was sagen diese Positionen darüber, wie ich führe und mich zeige — und wo ich meine Präsenz zurückhalte? Frage mich: In welchen Momenten führe ich wirklich aus meiner femininen Kraft — und wann schalte ich in einen maskulinen Modus, weil es sich sicherer anfühlt?
 
-**Prompt 36 — Geld & Wert im Chart**
+**Prompt 43 — Geld & Wert im Chart**
 Meine Venus steht in [Zeichen]/[Haus], mein 8. Haus im Zeichen [Zeichen] mit [Planeten]. Was sagen diese Positionen über meine Beziehung zu Geld, Wert und dem, was ich mir zu empfangen erlaube? Frage mich dann: Was wäre mein nächster Schritt, um meinen vollen Wert finanziell zu verlangen und zu halten?
 
-**Prompt 37 — Deine Wunden & deine Heilung im Chart**
+**Prompt 44 — Deine Wunden & deine Heilung im Chart**
 Mein Chiron steht in [Zeichen]/[Haus], mein 12. Haus im Zeichen [Zeichen]. Was zeigt mir dieser Teil meines Charts über meine tiefsten Wunden als Frau und den Weg zur Heilung? Frage mich konkret: Was ist die eine alte Geschichte über mich selbst als Frau, die ich immer noch mit mir trage — obwohl ich weiß, dass sie nicht mehr stimmt?
 
-**Prompt 38 — Dein weiblicher Seelenweg**
+**Prompt 45 — Dein weiblicher Seelenweg**
 Mein Nordknoten steht in [Zeichen]/[Haus], mein IC im Zeichen [Zeichen]. Was beschreibt dieser Seelenweg für mich als Frau? Welche Qualitäten soll ich in diesem Leben verkörpern und was ist die nächste Schwelle auf diesem Weg? Frage mich: Was wäre anders in meinem Leben, wenn ich diesen Seelenweg wirklich annehmen würde — konkret, im Alltag?
 
 ---
