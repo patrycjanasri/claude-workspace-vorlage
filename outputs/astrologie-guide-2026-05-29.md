@@ -8,19 +8,21 @@
 
 ## So liest du diesen Guide
 
-Dieser Guide gibt dir einmal das klare Bild über die Bausteine eines Horoskops: die Grundlagen, die zwölf Tierkreiszeichen, die zehn Planeten plus Mondknoten, die wichtigen Asteroiden, die zwölf Häuser, die Aspekte und die Transite.
+Die meisten Menschen kennen ihr Sternzeichen, das wars. Sie gehen durchs Leben und wissen nicht, welche Energien in ihnen schlummern, die gelebt werden wollen!
 
-Lies ihn nicht von vorne bis hinten durch. Geh dahin, wo du gerade arbeitest. Du deutest einen Mars im achten Haus im Skorpion? Dann liest du den Mars, das achte Haus und den Skorpion und legst die drei Bedeutungen übereinander.
+Das hier ändert das! Dieser Guide zeigt dir die Bausteine, aus denen du gemacht bist: die Zeichen, die Planeten, die Häuser, die Aspekte. Jeder Baustein eine Energie, die in dir wirkt, ob du sie kennst oder nicht.
 
-Astrologie funktioniert in drei Schichten, die du immer zusammen denkst:
+Lies ihn nicht von vorne bis hinten. Geh dahin, wo dein Thema gerade liegt. Du hast Mars im achten Haus im Skorpion? Dann liest du Mars, das achte Haus und den Skorpion und legst die drei übereinander. Das ist deine Deutung.
 
-1. **Der Planet** sagt, *was* aktiv ist (Wille, Liebe, Kommunikation, Struktur).
-2. **Das Zeichen** sagt, *wie* es sich ausdrückt (feurig, kontrolliert, vorsichtig, expansiv).
-3. **Das Haus** sagt, *wo* es im Leben passiert (Geld, Partnerschaft, Beruf, Spiritualität).
+Denn jede Deutung läuft in drei Schichten:
 
-Ein Satz pro Deutung: *Dieser Planet zeigt dieses Thema, ausgedrückt auf diese Art, in diesem Lebensbereich.* Wenn du das beherrschst, kannst du jedes Horoskop lesen.
+1. **Der Planet** sagt, *was* in dir aktiv ist. Dein Wille, deine Liebe, dein Denken, deine Struktur.
+2. **Das Zeichen** sagt, *wie* du es ausdrückst. Feurig, kontrolliert, vorsichtig, expansiv.
+3. **Das Haus** sagt, *wo* es in deinem Leben passiert. In deinem Geld, deiner Partnerschaft, deinem Beruf, deiner Spiritualität.
 
-Dieser Guide ist deine Astrofibel. Er gibt dir einmal das klare Bild, damit du dich danach tiefer hineinarbeiten kannst. Die eigentliche Arbeit beginnt, wenn du mit den Prompts in dein eigenes Chart gehst. Wie das geht, steht in Teil 8.
+Planet, Zeichen, Haus. Drei Schichten, ein Satz, dein ganzes Bild. Wenn du das beherrschst, liest du jedes Horoskop.
+
+Das hier ist deine Astrofibel. Sie gibt dir einmal das klare Bild. Die eigentliche Arbeit beginnt, wenn du mit den Prompts in dein eigenes Chart gehst. Wie das geht, steht in Teil 8.
 
 ---
 
