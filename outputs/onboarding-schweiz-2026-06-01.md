@@ -1,4 +1,4 @@
-# Onboarding Schweiz — Schein Up Team
+# Onboarding Schweiz — ShineUp Team
 
 > Dein Start bei MONAT in der Schweiz. Alles, was du in den ersten Tagen wirklich brauchst, in der Reihenfolge, in der du es brauchst.
 
@@ -12,7 +12,7 @@ Der Launch in der Schweiz läuft heute, 1. Juni, ab 14 Uhr.
 - Du bekommst von mir um 14 Uhr deinen **Registrierungs-Link**. Darüber registrierst du dich und bestellst direkt im Shop.
 - Es gibt ein **zweites Onboarding**, sobald die App live ist. Dann zeige ich dir alles nochmal in der App.
 
-**Deine Teamstruktur:** Du bist im Team Schein Up (mein Team). Darüber liegt das Team von Stefanie Goya. Du hast Zugriff auf das gesamte Repertoire an Templates, Designs und Material.
+**Deine Teamstruktur:** Du bist im Team ShineUp (mein Team). Darüber liegt das Team von Stefanie Goya. Du hast Zugriff auf das gesamte Repertoire an Templates, Designs und Material.
 
 ---
 
@@ -131,9 +131,9 @@ Wenn dein neuer Market Partner selbst MP wird, bekommst du **900 Euro Produktgut
 
 | Gruppe / Plattform | Kanal | Wofür |
 | --- | --- | --- |
-| **Schein Up Archiv** | Telegram | Dein Hauptarchiv. Onboarding ganz oben angepinnt. Alle Videos, Infoblätter, Produktkataloge, Vergütungsplan. |
+| **ShineUp Archiv** | Telegram | Dein Hauptarchiv. Onboarding ganz oben angepinnt. Alle Videos, Infoblätter, Produktkataloge, Vergütungsplan. |
 | **Business Lawine** | WhatsApp | Mein Team-Austausch. Hier füge ich dich nach deiner Bestellung hinzu. |
-| **Produktaustauschgruppe Schein Up** | WhatsApp | Produktberatung. Bei Unsicherheit Fragen stellen. Vorher Gruppenbeschreibung lesen, wie wir ein Haarquiz teilen. |
+| **Produktaustauschgruppe ShineUp** | WhatsApp | Produktberatung. Bei Unsicherheit Fragen stellen. Vorher Gruppenbeschreibung lesen, wie wir ein Haarquiz teilen. |
 | **Boards App** | App | Infoblätter, Produktpakete, Vergütungsplan, Präsentationen. Kostenlos, du musst dich anmelden. |
 | **Kundenlounge** | — | Für deine Kunden. Neue Aktionen werden hier geteilt. |
 | **Becoming (Steffi)** | Telegram | 90-Tage-Sichtbarkeitschallenge, verlängert und aktiv. Optional, ich leite alles Wichtige weiter. |
@@ -141,11 +141,11 @@ Wenn dein neuer Market Partner selbst MP wird, bekommst du **900 Euro Produktgut
 
 > Am Anfang lieber in wenigen Gruppen bleiben, sonst wird es unübersichtlich.
 
-### Was im Schein Up Archiv liegt
+### Was im ShineUp Archiv liegt
 
 - Onboarding-Call (wird neu aufgenommen und eingepinnt).
 - Erste Infos für Interessenten: 4-Min-Video inkl. Kid Care (Denise), 5-Min-Video (Steffi), "MONAT in 13 Minuten", Video zu VIP-Vorteilen.
-- Haarquiz im neuen Schein-Up-Design, inkl. Anleitung, wie man es über ChatGPT erstellt.
+- Haarquiz im neuen ShineUp-Design, inkl. Anleitung, wie man es über ChatGPT erstellt.
 - Videos zu Power Start, Backoffice, Warenkorb packen (für Kunden und für Partner), Provisionsabrechnungen.
 - Produktschulungen (Bond IQ-Serie ggf. noch nicht in der Schweiz).
 - YouTube-Video von Iris (Team Kerstin Werner, meine First Line, Friseurmeisterin): Haarquiz auswerten und Haarpflege für Kunden.
@@ -175,7 +175,7 @@ Wenn dein neuer Market Partner selbst MP wird, bekommst du **900 Euro Produktgut
 Erreichbar Montag bis Freitag, per Chat, E-Mail oder Telefon.
 
 - **E-Mail:** serviceclient@monatglobal.com (Schreibweise gegen offizielle Quelle prüfen)
-- **Telefon:** im Transkript verstümmelt (klang nach 0800 71 003). Bitte die korrekte Schweizer Servicenummer aus der Präsentation oder dem Schein Up Archiv übernehmen und als Screenshot sichern.
+- **Telefon:** im Transkript verstümmelt (klang nach 0800 71 003). Bitte die korrekte Schweizer Servicenummer aus der Präsentation oder dem ShineUp Archiv übernehmen und als Screenshot sichern.
 
 ---
 
@@ -196,8 +196,8 @@ Erreichbar Montag bis Freitag, per Chat, E-Mail oder Telefon.
 - [ ] Land auf Schweiz stellen.
 - [ ] Als Market Partner registrieren.
 - [ ] Dream Big Paket bestellen (700 CHF).
-- [ ] Nach der Bestellung füge ich dich in die WhatsApp Business Lawine und ins Telegram Schein Up Archiv.
-- [ ] Onboarding-Call im Schein Up Archiv anschauen (oben angepinnt).
+- [ ] Nach der Bestellung füge ich dich in die WhatsApp Business Lawine und ins Telegram ShineUp Archiv.
+- [ ] Onboarding-Call im ShineUp Archiv anschauen (oben angepinnt).
 - [ ] Kundenservice-Nummer als Screenshot sichern.
 - [ ] Ersten Kunden oder Partner einschreiben und damit direkt deinen ersten Rang sichern.
 - [ ] Überlegen, ob Mailand in 2 Wochen für dich machbar ist.

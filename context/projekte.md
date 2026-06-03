@@ -12,7 +12,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Conversion optimieren: Follower → Partner / Kunden
 - Team-Führung und Duplikation stärken
 
-### Schweiz-Launch — Team Schein Up (ab 01.06.2026)
+### Schweiz-Launch — Team ShineUp (ab 01.06.2026)
 **Status:** Launch live ab 14 Uhr, erste Schweizer Partnerinnen (Birklind, Natalie) eingeschrieben
 **Besonderheiten:** Start nur über Browser (App noch nicht freigeschaltet), CHF-Preise, Gründerprogramm mit 2 Founder Shares, Power Start in CHF
 **Onboarding-Dokument:** `outputs/onboarding-schweiz-2026-06-01.md` — vollständiger Start-Guide für neue Schweizer Partner

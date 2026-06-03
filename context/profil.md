@@ -28,3 +28,9 @@ In den letzten 12 Monaten hat Patrycja über **1.700 Kunden und Partner** im Net
 ## Markt & Zielgruppe
 
 Frauen, die ein profitables Business aufbauen wollen. Kaufstarke Community — keine breite Masse, sondern klare Positionierung für Menschen, die wirklich bereit sind.
+
+## Persönliche Story & Astro-Marker (für Content wiederverwendbar)
+
+- **Kern-Narrativ "Bleiben":** Jahrelang in der Schattenenergie der Waage (angepasst, von jedem gemocht werden wollen). Hat ihre Skorpionenergie "getötet", um dazuzugehören. Als sie sie wieder rausließ, kamen die Trigger. Ihre Lektion: bleiben, stehen bleiben, weiterziehen. → starkes Identitycode-Thema.
+- **Astro:** MC im Skorpion ("Skorpion durch und durch"), Sonne im 8. Haus, viele Planeten im 8. Haus.
+- Quelle: Voice an Tiziana, 02.06.2026 — Goldnuggets in `outputs/goldnuggets-voice-tiziana-2026-06-02.md`
