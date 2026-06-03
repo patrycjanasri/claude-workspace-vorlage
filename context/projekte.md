@@ -101,10 +101,12 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Salespage: `outputs/deinastrocode-salespage-2026-05-28.md`
 - Kurskonzept: `outputs/deinastrocode-kurskonzept-2026-05-27.md`
 **Brand Voice Referenz:** "Dein Experiment beginnt jetzt" — kurz, direkt, Aufbruch statt Abschluss
+**Werbe-Karussell (NEU 02.06.2026):** `outputs/instagram-werbung-deinastrocode-portal-2026-06-02.md` — komplett aus Patrycjas Original-Voice (Skorpion/Waage-Story), CTA "PORTAL". Pendant für Identitycode: `outputs/instagram-karussell-bleiben-skorpion-2026-06-02.md`, CTA "IDENTITY".
 **Nächste Schritte:**
 - Tentary-Link einrichten
 - Klären: Workbook alleine (89€) oder Bundle Workbook + Kurs (89€)?
 - Launch-Post veröffentlichen (Text fertig in Salespage-Datei)
+- Werbe-Karussell in Canva designen + DM-Funnel für Codewort PORTAL aufsetzen
 - Workbook-Design von Designerin einbinden
 - Workbook-Design von Designerin einbinden + als Download
 
