@@ -169,6 +169,17 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Transit-Promptbook — "Lies, was der Himmel heute mit dir macht"
+
+**Status:** Rohversion fertig — 03.06.2026
+**Datei:** `outputs/transit-promptbook-2026-06-03.md`
+**Konzept:** Erstes Promptbook über TRANSITE (nicht statisches Geburtschart). Doppelter Datensatz pro Prompt: natale Position + aktueller Transit. Zweck: Produkt UND Patrycjas tägliches Tool (Basis für Embodied-Astrology-Impulse).
+**Aufbau:** Master-Tagesprompt | Prompts nach Aspektart | nach Transit-Planet | durch die Häuser | Tiefenprompts (Nervensystem, Business-Entscheidung, Geldcode, Synthese). 20 Prompts + 2 Schnellreferenzen.
+**Transit-Quelle:** astroschmid.ch (Transit-Funktion) oder astro.com
+**Offen:** Pricing/Positionierung, Überschneidung mit Astro-Workbook klären, Format/Design
+
+---
+
 **Produkttreppe:**
 Stufe 0: Astroprompt Workbook + Promptguide (27-49€) — beim Design
 Stufe 1: DeinAstroCode Minikurs (47-97€) — Konzept fertig, Videos ausstehend
