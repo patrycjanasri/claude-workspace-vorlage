@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeinAstroCode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#E8633F;
+    --pink:#C45CA8;
+    --violet:#8B6FC4;
+    --blue:#5B8FD9;
+    --bg:#FBF6F2;
+    --ink:#2A2230;
+    --muted:#6c6376;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+  /* HERO */
+  .hero{
+    position:relative;min-height:80vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:100px 24px 90px;overflow:hidden;
+    background:
+      radial-gradient(120% 80% at 82% 12%, rgba(232,99,63,.65) 0%, rgba(232,99,63,0) 45%),
+      radial-gradient(130% 100% at 88% 45%, rgba(155,123,201,.6) 0%, rgba(155,123,201,0) 55%),
+      linear-gradient(160deg,#d9663f 0%,#c45ca8 30%,#9b7bc9 58%,#6ba4e0 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='150'><text x='0' y='22' font-family='monospace' font-size='14' fill='white' opacity='0.12'>8 1 0 8 8 1 1 8 0 1</text><text x='0' y='52' font-family='monospace' font-size='14' fill='white' opacity='0.12'>1 8 8 0 1 1 8 8 8 1</text><text x='0' y='82' font-family='monospace' font-size='14' fill='white' opacity='0.12'>0 8 1 8 8 1 8 0 1 1</text><text x='0' y='112' font-family='monospace' font-size='14' fill='white' opacity='0.12'>8 1 1 8 8 8 1 8 8 0</text></svg>");
+  }
+  .hero > *{position:relative;z-index:1}
+  .brandmark{font-weight:800;letter-spacing:8px;color:#fff;font-size:16px;text-transform:uppercase;margin-bottom:22px;opacity:.95}
+  .prehead{color:#fff;font-size:19px;font-weight:600;opacity:.96;margin-bottom:16px;text-shadow:0 1px 12px rgba(0,0,0,.16)}
+  .hero h1{font-size:52px;line-height:1.1;font-weight:800;color:#fff;max-width:700px;text-shadow:0 2px 26px rgba(0,0,0,.18)}
+  .hero .sub{color:#fff;font-size:22px;font-weight:500;margin-top:26px;max-width:560px;text-shadow:0 1px 14px rgba(0,0,0,.16)}
+
+  /* CTA */
+  .cta{
+    display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:21px;
+    padding:21px 50px;border-radius:60px;margin-top:38px;
+    background:linear-gradient(120deg,var(--coral),var(--pink) 55%,var(--violet));
+    box-shadow:0 16px 38px rgba(196,92,168,.45);transition:transform .15s,box-shadow .15s;
+  }
+  .cta:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(196,92,168,.55)}
+  .cta-mini{font-size:15px;color:var(--muted);margin-top:16px}
+  .hero .cta-mini{color:#fff;opacity:.95}
+  .center{text-align:center}
+
+  /* SECTIONS */
+  section{padding:96px 0}
+  h2{font-size:38px;font-weight:800;line-height:1.2;margin-bottom:14px}
+  .narrative p{font-size:23px;font-weight:500;margin:22px 0}
+  .narrative .pop{color:var(--coral);font-weight:700}
+  .section-head{text-align:center;margin-bottom:50px}
+  .lead-text p{font-size:20px;margin:20px 0}
+  .lead-text .strong{font-weight:700;font-size:24px;color:var(--ink)}
+
+  /* STIMMEN: voll, ungeschnitten */
+  .voices{display:flex;flex-direction:column;gap:34px;align-items:center}
+  .voice{width:100%;max-width:580px;border-radius:18px;overflow:hidden;
+    box-shadow:0 14px 38px rgba(60,40,90,.16);border:1px solid #efe6df;background:#fff}
+  .voice img{width:100%;height:auto}
+
+  /* MODULE */
+  .mod{border-left:5px solid var(--coral);background:#fff;border-radius:0 16px 16px 0;
+    padding:26px 30px;margin-bottom:22px;box-shadow:0 10px 28px rgba(60,40,90,.07)}
+  .mod h3{font-size:21px;font-weight:700;margin-bottom:6px}
+  .mod p{font-size:17px;color:var(--muted)}
+
+  /* QUAL */
+  .qual{display:grid;gap:30px}
+  @media(min-width:640px){.qual{grid-template-columns:1fr 1fr}}
+  .qual .box{background:#fff;border-radius:20px;padding:34px;box-shadow:0 10px 28px rgba(60,40,90,.08)}
+  .qual h3{font-size:20px;margin-bottom:18px}
+  .qual .yes h3{color:#2e7d4f}.qual .no h3{color:#b1442f}
+  .qual ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .qual li{font-size:17px;padding-left:28px;position:relative}
+  .qual .yes li::before{content:"✓";position:absolute;left:0;color:#2e7d4f;font-weight:800}
+  .qual .no li::before{content:"✕";position:absolute;left:0;color:#b1442f;font-weight:700}
+
+  /* ANGEBOT */
+  .offer{background:linear-gradient(160deg,#fff,#fbf1ec);border:1px solid #f0e2da;
+    border-radius:28px;padding:56px 40px;text-align:center;box-shadow:0 22px 56px rgba(60,40,90,.12)}
+  .offer h2{font-size:34px;margin-bottom:32px}
+  .check{list-style:none;display:flex;flex-direction:column;gap:18px;text-align:left;max-width:520px;margin:0 auto 40px}
+  .check li{position:relative;padding-left:36px;font-size:18px}
+  .check li::before{content:"";position:absolute;left:0;top:9px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#fff 0 16%,var(--coral) 22% 100%)}
+  .anchor{font-size:21px;color:var(--muted);margin-bottom:2px}
+  .anchor s{opacity:.8}
+  .price{font-size:66px;font-weight:800;color:var(--coral);line-height:1;margin-bottom:8px}
+  .price small{display:block;font-size:14px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+  .price-note{font-size:15px;color:var(--muted);margin-top:16px}
+
+  /* WAS SICH AENDERT */
+  .change-card{background:#fff;border-radius:24px;padding:46px 40px;box-shadow:0 18px 50px rgba(60,40,90,.10);border:1px solid #efe6df}
+  .change-card .check{margin:0 auto;max-width:560px}
+  .change-card .check li{font-size:19px}
+
+  /* AUTOR */
+  .author p{font-size:19px;margin:20px 0}
+
+  /* FINALE */
+  .finale{background:
+      radial-gradient(120% 90% at 80% 15%,rgba(232,99,63,.6) 0%,rgba(232,99,63,0) 50%),
+      linear-gradient(160deg,#d9663f,#c45ca8 40%,#9b7bc9 75%,#6ba4e0);
+    color:#fff;text-align:center}
+  .finale h2{color:#fff;font-size:36px;text-shadow:0 2px 18px rgba(0,0,0,.18)}
+  .finale .big{font-size:25px;font-weight:700;margin:24px 0;text-shadow:0 1px 14px rgba(0,0,0,.16)}
+
+  /* FAQ */
+  details{background:#fff;border:1px solid #efe6df;border-radius:14px;padding:22px 26px;margin-bottom:14px}
+  summary{font-weight:600;font-size:18px;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--coral);font-weight:800}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:14px;font-size:16px;color:var(--muted)}
+
+  @media(max-width:640px){
+    .hero{min-height:72vh;padding:80px 22px 70px}
+    .hero h1{font-size:34px}.hero .sub{font-size:18px}
+    h2{font-size:28px}.narrative p{font-size:20px}.price{font-size:52px}
+    section{padding:64px 0}
+    .voices{gap:26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="brandmark">DeinAstroCode</div>
+  <p class="prehead">Du weißt, dass da mehr in dir steckt.</p>
+  <h1>Verstehe in wenigen Prompts, wer du wirklich bist.</h1>
+  <p class="sub">Dein Geburtshoroskop als Spiegel. Ohne Vorwissen, ohne jahrelange Selbstsuche, ohne dich durch hundert Bücher zu lesen.</p>
+  <a class="cta" href="https://erfolgsqueen.tentary.com/p/astrocode/checkout" target="_blank" rel="noopener noreferrer">Ja, ich gehe durch mein Portal 🔥</a>
+  <p class="cta-mini">Sofortiger Zugang</p>
+</header>
+
+<!-- PROBLEM -->
+<section class="wrap narrative center">
+  <p>Du spürst es. Schon lange.</p>
+  <p>Dieses Gefühl, noch nicht wirklich angekommen zu sein. Bei dir. In deiner Energie. In dem, wer du wirklich bist.</p>
+  <p>Du sammelst Wissen. Liest. Hörst. Suchst.</p>
+  <p>Und trotzdem bleibt diese Lücke.</p>
+  <p class="pop">Weil Wissen nicht transformiert. Verkörperung transformiert.</p>
+</section>
+
+<!-- STIMMEN A -->
+<section class="wrap">
+  <div class="section-head">
+    <h2>Was Frauen schreiben, nachdem sie durchgegangen sind</h2>
+  </div>
+  <div class="voices">
+    <figure class="voice"><img src="feedback-astrocode/feedback-09.jpeg" alt="Ladies das ist der SHIT, danach ist nichts mehr wie zuvor"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-16.jpeg" alt="du revolutionierst die Persönlichkeitsentwicklung"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-15.jpeg" alt="Du granate"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-05.jpeg" alt="Was zur Hölle Patrycja, die Prompts sind unglaublich"></figure>
+  </div>
+</section>
+
+<!-- SPIEGEL -->
+<section class="wrap lead-text center">
+  <div class="section-head"><h2>Dein Spiegel</h2></div>
+  <p class="strong">Dein Geburtshoroskop ist keine Prophezeiung.</p>
+  <p>Es ist ein Spiegel. Präzise. Tief. Unbestechlich.</p>
+  <p>Es zeigt dir, welche Energien dich tragen. Welche Potenziale in dir schlummern, die du noch nicht lebst. Welche Konditionierungen dich steuern, ohne dass du es merkst.</p>
+  <p>Mit dem richtigen Prompt und der KI als Spiegel bekommst du Antworten, die tiefer gehen als Jahre der Selbstreflexion.</p>
+</section>
+
+<!-- STIMME solo -->
+<section class="wrap">
+  <div class="voices">
+    <figure class="voice"><img src="feedback-astrocode/feedback-07.jpeg" alt="hey ich hab hier Tränen in den Augen, weil es einfach so wahr ist"></figure>
+  </div>
+</section>
+
+<!-- PORTAL -->
+<section class="wrap lead-text center">
+  <div class="section-head"><h2>Das Portal</h2></div>
+  <p class="strong">DeinAstroCode ist kein Kurs.</p>
+  <p>Es ist ein Portal. Du öffnest es. Du gehst durch.</p>
+  <p>Schicht für Schicht siehst du, wer du wirklich bist. Welche Energie wirklich deine ist. Was du die ganze Zeit schon wusstest, aber noch nicht aussprechen konntest.</p>
+  <p>In 4 Videos zeige ich dir, wie du deine Astrochart erstellst. Wie du sie liest. Wie du mit gezielten Prompts und der KI in eine Tiefe gehst, die du alleine kaum erreicht hättest.</p>
+  <p>Du brauchst kein Vorwissen. Nur dich, deine Chart und den Mut, wirklich hinzuschauen.</p>
+</section>
+
+<!-- WAS SICH AENDERT -->
+<section class="wrap">
+  <div class="section-head"><h2>Was sich für dich ändert</h2></div>
+  <div class="change-card">
+    <ul class="check">
+      <li>Du verstehst, warum du in bestimmten Situationen immer gleich reagierst, und woher das kommt.</li>
+      <li>Du siehst die Potenziale in deiner Chart, die du noch nicht lebst, und weißt, wo du ansetzt.</li>
+      <li>Du erkennst die Konditionierungen, die dich bisher unbewusst gesteuert haben.</li>
+      <li>Du bekommst Antworten über dich, die tiefer gehen als Jahre Selbstreflexion, an einem einzigen Abend.</li>
+      <li>Du hast ein Werkzeug, zu dem du immer wieder zurückkehrst, wenn eine neue Frage in dir aufkommt.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MODULE -->
+<section class="wrap">
+  <div class="section-head"><h2>Das erwartet dich</h2></div>
+  <div class="mod"><h3>Modul 1 · Herzlich Willkommen</h3><p>Dein Portal öffnet sich. Du verstehst, worum es hier wirklich geht. Um die Begegnung mit dir.</p></div>
+  <div class="mod"><h3>Modul 2 · Dein Geburtshoroskop erstellen</h3><p>Einfach, schnell, ohne Registrierung. In wenigen Minuten hast du deine komplette Chart vor dir, mit allen Positionen, mit denen wir arbeiten.</p></div>
+  <div class="mod"><h3>Modul 3 · Claude und ChatGPT im Vergleich</h3><p>Du siehst live, wie die Prompts arbeiten. Welche KI tiefer geht. Wie du aus einer Antwort eine echte Erkenntnis machst.</p></div>
+  <div class="mod"><h3>Modul 4 · Dein Experiment beginnt jetzt</h3><p>Wissen wird Verkörperung. Hier zeige ich dir, wie du das, was du siehst, in deinen Alltag holst. Tag für Tag.</p></div>
+</section>
+
+<!-- STIMMEN B -->
+<section class="wrap">
+  <div class="voices">
+    <figure class="voice"><img src="feedback-astrocode/feedback-12.jpeg" alt="Du revolutionierst alles, bäääm in your Face, nicht von dieser Welt"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-08.jpeg" alt="Es ist ja so krass, nach 6 Prompts so heftige Erkenntnisse"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-06.jpeg" alt="boah shit, nach dem ersten Prompt schon Gänsehaut"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-03.jpeg" alt="ja man 100%, geil wie es einfach zu 100% matched"></figure>
+  </div>
+</section>
+
+<!-- AUTOR -->
+<section class="wrap author">
+  <div class="section-head" style="text-align:left;margin-bottom:30px"><h2>Wer ich bin</h2></div>
+  <p>Ich beschäftige mich seit 6 Jahren mit Astrologie. Ich erinnere mich genau an den Moment, in dem ich das erste Mal die Codes hinter meiner eigenen Chart gesehen habe. Mir wurde klar, wie viele Konditionierungen in mir stecken. Und wie viele Potenziale ich nicht lebe.</p>
+  <p>In den letzten 6 Jahren habe ich daraus ein System gebaut, das dir die Arbeit selbst in die Hand gibt. Mit deiner Chart. Mit der KI als Spiegel. Alles, was ich dir hier zeige, ist erprobt. Ich weiß, was dieser Prozess in den Frauen ausgelöst hat, die in den letzten Monaten in meinen Räumen waren.</p>
+  <p>Ich möchte dir etwas in die Hand geben, mit dem du deine eigene Chart selbst entzifferst.</p>
+</section>
+
+<!-- QUAL -->
+<section class="wrap">
+  <div class="qual">
+    <div class="box yes">
+      <h3>Für dich, wenn</h3>
+      <ul>
+        <li>Du spürst, dass da mehr in dir steckt als du gerade lebst.</li>
+        <li>Du aufgehört hast zu glauben, dass noch ein Kurs die Antwort ist.</li>
+        <li>Du bereit bist, wirklich hinzuschauen.</li>
+      </ul>
+    </div>
+    <div class="box no">
+      <h3>Nicht für dich, wenn</h3>
+      <ul>
+        <li>Du noch ein Zertifikat sammeln willst, um es ins Regal zu stellen.</li>
+        <li>Du über dich lesen, aber dich nicht bewegen willst.</li>
+        <li>Du willst, dass jemand anderes die Arbeit für dich macht.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ANGEBOT -->
+<section class="wrap">
+  <div class="offer">
+    <h2>Was du bekommst</h2>
+    <ul class="check">
+      <li>4 Videos, die dich Schritt für Schritt durch deine eigene Chart führen</li>
+      <li>Das Prompt Book mit den Prompts, die diese Erkenntnisse auslösen</li>
+      <li>Die Anleitung, wie du deine Chart ohne Registrierung in Minuten erstellst</li>
+      <li>Der Planeten Guide für die Positionen, die nicht direkt dabeistehen (IC und Deszendent)</li>
+      <li>Lebenslanger Zugang. Du gehst durch dein Portal, wann immer du willst.</li>
+    </ul>
+    <p class="anchor">Statt <s>555€</s></p>
+    <div class="price"><small>Einführungspreis</small>333€</div>
+    <a class="cta" href="https://erfolgsqueen.tentary.com/p/astrocode/checkout" target="_blank" rel="noopener noreferrer">Ja, ich gehe durch mein Portal 🔥</a>
+    <p class="cta-mini">Sofort nach deiner Bestellung bekommst du Zugang und startest dein ganz persönliches Experiment zur Selbstkenntnis.</p>
+    <p class="price-note">Zum Einführungspreis von 333€, solange er steht. Danach 555€.</p>
+  </div>
+</section>
+
+<!-- STIMMEN C -->
+<section class="wrap">
+  <div class="voices">
+    <figure class="voice"><img src="feedback-astrocode/feedback-04.jpeg" alt="Ich bin baff was Claude da rausgehauen hat und wie stimmig das ist"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-01.jpeg" alt="Was mir Saturn im Zwilling im 12. Haus sagt, hat mich sprachlos gemacht"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-02.jpeg" alt="Wie krass ist das bitte, ich bin begeistert"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-10.jpeg" alt="Du bist mir so ein Augenöffner, wie ich ihn dringend gebraucht habe"></figure>
+    <figure class="voice"><img src="feedback-astrocode/feedback-11.jpeg" alt="Ich bin einfach geflasht"></figure>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="wrap">
+    <h2>Die meisten Menschen lesen über sich und suchen immer nach mehr.</h2>
+    <p class="big">Du kannst stattdessen durchgehen.</p>
+    <p class="big">Dein Experiment beginnt jetzt.</p>
+    <a class="cta" href="https://erfolgsqueen.tentary.com/p/astrocode/checkout" target="_blank" rel="noopener noreferrer">Ja, ich gehe durch mein Portal 🔥</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="wrap">
+  <div class="section-head"><h2>Fragen</h2></div>
+  <details><summary>Brauche ich Vorkenntnisse in Astrologie?</summary><p>Nein. Modul 2 zeigt dir, wie du deine Chart in wenigen Minuten erstellst. Du startest bei null und gehst sofort in die Tiefe.</p></details>
+  <details><summary>Brauche ich einen bezahlten KI-Zugang?</summary><p>Nein. Es gibt eine kostenlose Version von Claude. Meine klare Empfehlung ist Claude, weil die Antworten tiefer gehen.</p></details>
+  <details><summary>Wie lange habe ich Zugriff?</summary><p>Lebenslang. Du gehst durch dein Portal, sooft du willst.</p></details>
+  <details><summary>Was, wenn ich meine Geburtszeit nicht kenne?</summary><p>Frag beim Standesamt deines Geburtsortes nach. Die Geburtszeit ist entscheidend für die genaue Chart.</p></details>
+  <details><summary>Ich hab eine Frage, die hier nicht steht.</summary><p>Schreib mir: info@patrycja-nasri.de oder auf Instagram.</p></details>
+</section>
+
+</body>
+</html>
