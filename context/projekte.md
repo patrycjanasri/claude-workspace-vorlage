@@ -89,7 +89,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 **Status:** VIDEOS GEDREHT + TEXTE FERTIG — 28.05.2026
 **Plattform:** Tentary (Entscheidung 28.05. — nicht mehr systeme.io)
-**Preis:** 89€ Einführungspreis (offen: Workbook alleine oder Bundle mit Kurs?)
+**Preis:** 333€ Einführungspreis, regulär 555€ (entschieden 04.06.2026). Keine Garantie, dafür Sofort-Zugang zu Promptguide + Workbook als Kauf-Hebel.
 **Tool für Chart:** astroschmid.ch (kein Account, alles ausgeschrieben)
 **Lehrplan:**
 - Modul 1: Herzlich Willkommen
@@ -102,12 +102,12 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - Kurskonzept: `outputs/deinastrocode-kurskonzept-2026-05-27.md`
 **Brand Voice Referenz:** "Dein Experiment beginnt jetzt" — kurz, direkt, Aufbruch statt Abschluss
 **Werbe-Karussell (NEU 02.06.2026):** `outputs/instagram-werbung-deinastrocode-portal-2026-06-02.md` — komplett aus Patrycjas Original-Voice (Skorpion/Waage-Story), CTA "PORTAL". Pendant für Identitycode: `outputs/instagram-karussell-bleiben-skorpion-2026-06-02.md`, CTA "IDENTITY".
+**Salespage (NEU 04.06.2026):** `outputs/deinastrocode-salespage.html` — eigenständige HTML im hellen, cleanen Verkaufs-Style (Vorbild: Katrin Steck). 14 einzigartige Kundenfeedbacks als Screenshots eingebettet (Base64, Originale 1:1, nichts gecroppt). Hero mit Ergebnis-Headline, "Ohne"-Zeile, Block "Was sich ändert", Workbook-Bonus, Preisanker 333€/555€. CTA → `erfolgsqueen.tentary.com/p/astrocode/checkout`. Bearbeitungsquelle: `outputs/salespage-src.html` (externe Bildpfade, dann per Python Base64 einbacken). Feedback-Bilder: `outputs/feedback-astrocode/`. Teilbare Kopie auf dem Schreibtisch.
 **Nächste Schritte:**
-- Tentary-Link einrichten
-- Klären: Workbook alleine (89€) oder Bundle Workbook + Kurs (89€)?
-- Launch-Post veröffentlichen (Text fertig in Salespage-Datei)
+- Salespage online stellen für echten Link (Tentary-Landingpage oder Netlify Drop), Datei-Version reicht nur zum Zeigen
+- Echtes Hero-Banner (Hände/Planeten/ASTROOCODE) statt CSS-Verlauf einsetzen
+- Tentary-Checkout final verknüpfen + testen
 - Werbe-Karussell in Canva designen + DM-Funnel für Codewort PORTAL aufsetzen
-- Workbook-Design von Designerin einbinden
 - Workbook-Design von Designerin einbinden + als Download
 
 ---
