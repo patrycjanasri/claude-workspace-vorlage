@@ -188,6 +188,27 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 
 ---
 
+## AstroCheck — Funnel-Einstieg (automatische Berechnung)
+
+**Status:** Fertig & verifiziert — 07.06.2026
+**Datei:** `outputs/astrologie-check.html` | **Upload-fertig:** `outputs/astrocheck-netlify/index.html` (für Netlify Drop)
+**Was:** Nutzerin gibt nur Name, Geburtsdatum, Geburtszeit, Geburtsort ein. Die Seite rechnet das volle **Placidus**-Chart automatisch im Browser (Engine `circular-natal-horoscope-js` via jsDelivr + Open-Meteo-Geocoding) und schreibt ein fertiges Reading. Keine manuellen Dropdowns mehr.
+**Design:** Auf Page-Look (patrycja-nasri.de/dein-astrocode) gehoben — Benzin + Collidge (eingebettet), echter Mond, kosmische Tiefe, NP-Logo-Footer mit Impressum/Datenschutz.
+**Daten-Block:** Am Ende alle 18 Punkte (Planeten inkl. Uranus–Pluto, AC/DC/MC/IC, Mondknoten, Chiron, Lilith) mit Zeichen + Haus, plus Kopier-Button → prompt-fertiger Text für den Funnel.
+**Offen:** Netlify-Upload durch Patrycja; optional Datenschutz-Absatz auf ihrer DS-Seite ergänzen (Open-Meteo + CDN erwähnen).
+**Details:** Memory `project_astrocheck_auto.md`.
+
+---
+
+## AstroChart Reader — reines Geburtshoroskop-Tool
+
+**Status:** Fertig & verifiziert — 07.06.2026
+**Datei:** `outputs/astrochart-reader.html` | **Upload-fertig:** `outputs/astrochart-reader-netlify/index.html` (für Netlify Drop)
+**Was:** Geschwister des AstroCheck, aber ohne die langen Reading-Texte. Nutzerin gibt Name, Geburtsdatum, Geburtszeit, Geburtsort ein → nächste Seite zeigt nur alle Platzierungen sauber als Liste. Gleiche Engine (`circular-natal-horoscope-js` via jsDelivr + Open-Meteo, Placidus/tropisch), gleiches Design (Benzin/Collidge, Mond, NP-Footer).
+**Ergebnis-Seite:** Überschrift „Dein Geburtshoroskop, [Name]" + Geburtsdaten-Zeile, Block „Deine Platzierungen" mit allen 18 Punkten (Zeichen + Haus), Kopier-Button (prompt-fertiger Text), kurzer dominantes-Element-Hinweis, CTA zu DeinAstroCode.
+**Zweck:** Praktisches Tool für DeinAstroCode — Chart erstellen, Platzierungen kopieren, in die Prompts geben.
+**Offen:** Netlify-Upload durch Patrycja; echtes Hero-Banner optional.
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
