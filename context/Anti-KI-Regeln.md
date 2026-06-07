@@ -5,7 +5,7 @@
 - Keine Floskeln wie "Stell dir vor".
 - Keine Konstruktionen wie "nicht weil ... sondern ...".
 - Keine leeren Verstärker wie "extrem", "unglaublich", "massiv" ohne Beleg.
-- Keine dramatischen Ein-Wort-Sätze als Klarstellung. Verboten: "Nicht religiös. Existenziell." / "Nicht theoretisch. Jetzt." / "Nicht irgendwann. Heute." — das ist KI-Dramatik, kein echter Ausdruck.
+- Keine dramatischen Kurz-Sätze als Klarstellung oder Verstärkung. Verboten: "Nicht religiös. Existenziell." / "Nicht irgendwann. Jetzt." / "Heute. Nicht morgen." / "Jetzt. Hier." — das ist KI-Dramatik, kein Ausdruck von Patrycja.
 - Keine kurzen Parallel-Sätze als Aufzählung desselben Gedankens. Verboten: "Er dachte. Er formulierte. Er suchte." / "Sie analysiert. Sie zweifelt. Sie perfektioniert." — wirkt wie eine KI-Liste, ist kein echter Satz.
 - Verbotene Wörter: "dosiert" (z.B. "Wahrheit dosiert"), "verdaulich" (z.B. "für andere verdaulich"), "echt/echter/echte" (z.B. "sich echter anfühlen", "ein echter Ausdruck"), "stille Disziplin", "Vervollkommnen/Vervollkommnung" (schlechtes Deutsch, klingt konstruiert), "selten/seltene" als Aufwerter (z.B. "seltene Tiefe", "seltenes Geschenk" — Dinge brauchen keine KI-Aufwertung).
 
