@@ -1137,15 +1137,7 @@ function showForm() {
 
 
 
-// Elementor/WordPress-kompatibler Start
-(function initCheck() {
-  var els = document.querySelectorAll('[id$="-sign"]');
-  if (els.length > 0) {
-    populateSelects();
-  } else {
-    setTimeout(initCheck, 100);
-  }
-})();
+// Optionen bereits statisch im HTML — kein populateSelects() nötig
 </script>
 
 <script>
