@@ -1,11 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "astrocode-salespage",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["/tmp/astrocode_preview/serve.py"],
-      "port": 8910
-    }
+    { "name": "astro-engine-test", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/serve.py"], "port": 8765 }
   ]
 }
