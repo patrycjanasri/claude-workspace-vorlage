@@ -209,6 +209,20 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 **Zweck:** Praktisches Tool für DeinAstroCode — Chart erstellen, Platzierungen kopieren, in die Prompts geben.
 **Offen:** Netlify-Upload durch Patrycja; echtes Hero-Banner optional.
 
+---
+
+## Schatten-Check — Emotioncode Woche 3 (automatische Schattenanalyse)
+
+**Status:** Fertig & verifiziert — 07.06.2026
+**Datei:** `outputs/schatten-check.html` | **Upload-fertig:** `outputs/schatten-check-netlify/index.html` (für Netlify Drop)
+**Was:** Drittes Tool der AstroCheck-Familie, fokussiert auf Schattenarbeit. Nutzerin gibt nur Name, Geburtsdatum, Geburtszeit, Geburtsort ein. Die Seite rechnet das Placidus-Chart automatisch (gleiche Engine `circular-natal-horoscope-js` via jsDelivr + Open-Meteo) und schreibt ein fertiges Schatten-Reading. Kein Prompt nötig.
+**Schattenpunkte:** Lilith, Saturn, Pluto, Chiron, Mond, Mars, Südknoten, Deszendent — je Reading aus Zeichen + Haus, plus goldene „Deine Schattenfrage" pro Punkt. Abschluss-Block „Dein Weg durch den Schatten" + Daten-Block (alle 18 Punkte, Kopier-Button) + CTA „Mittwoch tauchen wir tiefer" (Transmission).
+**Design:** Identisch zum AstroCheck (Benzin-Font, kosmischer Hintergrund, Gold-Akzente, NP-Footer).
+**Build:** Generiert aus `astrologie-check.html` über `outputs/build_schatten_check.py` (tauscht nur das Reading-Gehirn, behält Engine + Design + eingebettete Fonts 1:1).
+**Verifiziert:** Im Browser getestet (Geburtsdaten → 8 Schattenpunkte mit Zeichen/Haus, Schattenfrage, Daten-Block alle korrekt).
+**Offen:** Netlify-Upload durch Patrycja; CTA-Link final setzen (steht auf patrycja-nasri.de, evtl. direkt auf Emotioncode-/Transmissions-Seite ändern).
+**Begleitend:** Markdown-Promptbook `outputs/schattenarbeit-promptbook-2026-06-07.md` (30 Prompts zum Selber-Eingeben) als Alternative/Vertiefung.
+
 ## Übergeordnete Prioritäten
 
 1. **Reichweite** — schneller auf Instagram wachsen
