@@ -211,17 +211,33 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 
 ---
 
-## Schatten-Check — Emotioncode Woche 3 (automatische Schattenanalyse)
+## Schattenarbeit-Paket — Emotioncode Woche 3 (4 Bausteine)
 
-**Status:** Fertig & verifiziert — 07.06.2026
-**Datei:** `outputs/schatten-check.html` | **Upload-fertig:** `outputs/schatten-check-netlify/index.html` (für Netlify Drop)
-**Was:** Drittes Tool der AstroCheck-Familie, fokussiert auf Schattenarbeit. Nutzerin gibt nur Name, Geburtsdatum, Geburtszeit, Geburtsort ein. Die Seite rechnet das Placidus-Chart automatisch (gleiche Engine `circular-natal-horoscope-js` via jsDelivr + Open-Meteo) und schreibt ein fertiges Schatten-Reading. Kein Prompt nötig.
-**Schattenpunkte:** Lilith, Saturn, Pluto, Chiron, Mond, Mars, Südknoten, Deszendent — je Reading aus Zeichen + Haus, plus goldene „Deine Schattenfrage" pro Punkt. Abschluss-Block „Dein Weg durch den Schatten" + Daten-Block (alle 18 Punkte, Kopier-Button) + CTA „Mittwoch tauchen wir tiefer" (Transmission).
-**Design:** Identisch zum AstroCheck (Benzin-Font, kosmischer Hintergrund, Gold-Akzente, NP-Footer).
-**Build:** Generiert aus `astrologie-check.html` über `outputs/build_schatten_check.py` (tauscht nur das Reading-Gehirn, behält Engine + Design + eingebettete Fonts 1:1).
-**Verifiziert:** Im Browser getestet (Geburtsdaten → 8 Schattenpunkte mit Zeichen/Haus, Schattenfrage, Daten-Block alle korrekt).
-**Offen:** Netlify-Upload durch Patrycja; CTA-Link final setzen (steht auf patrycja-nasri.de, evtl. direkt auf Emotioncode-/Transmissions-Seite ändern).
-**Begleitend:** Markdown-Promptbook `outputs/schattenarbeit-promptbook-2026-06-07.md` (30 Prompts zum Selber-Eingeben) als Alternative/Vertiefung.
+**Status:** Statisches Tool + Promptbook + Workbook fertig & verifiziert; Live-KI-Version gebaut, Deploy offen — 08.06.2026
+
+### 1. Schatten-Check (statisch, automatische Analyse)
+**Datei:** `outputs/schatten-check.html` | **Upload-fertig:** `outputs/schatten-check-netlify/index.html` (Netlify Drop)
+**Was:** Drittes Tool der AstroCheck-Familie. Geburtsdaten rein → Placidus-Chart wird automatisch gerechnet (Engine `circular-natal-horoscope-js` via jsDelivr + Open-Meteo) → fertiges Schatten-Reading. Kein Prompt nötig.
+**9 Schattenpunkte:** Lilith, Saturn, Pluto, Chiron, Mond, **IC** (Wurzel/Kindheit, nur Zeichen), Mars, Südknoten, Deszendent. Je Reading aus Zeichen + Haus, in Patrycjas Tiefe (Wurzel UND wie sich der Schatten heute zeigt: Business/Geld/Sichtbarkeit/Beziehungen, plus „du darfst lernen"-Wendepunkt). Pro Punkt goldene „Deine Schattenfrage" (auf das Jetzt gerichtet). Abschluss „Dein Weg durch den Schatten" + Daten-Block (alle Punkte, Kopier-Button). CTA-Block entfernt, Eyebrow nur „Emotioncode", Untertitel „Begegne dem, was du nie sehen wolltest. Deine Chart ist der Spiegel."
+**Build:** `outputs/build_schatten_check.py` (aus `astrologie-check.html`, tauscht nur das Reading-Gehirn). Bei Design-Updates am AstroCheck Skript neu laufen lassen.
+**Offen:** Netlify-Upload durch Patrycja.
+
+### 2. Schattenarbeit-Promptbook (Markdown, zum Selber-Eingeben)
+**Datei:** `outputs/schattenarbeit-promptbook-2026-06-07.md` — 36 Prompts, placement-only (Zeichen + Haus), keine Aspekte. Teile zu Lilith, Saturn, Pluto, Chiron, 8./12. Haus, Südknoten, Mars, Mond, Deszendent, Spannungsaspekte, **IC** (Teil 12) und **Neptun** (Teil 13), plus Integration. Jeder Prompt mit Erklärung + Schattenfrage.
+
+### 3. Live-KI-Version (Geburtsdaten → Opus schreibt live)
+**Ordner:** `outputs/schatten-check-ki/` (Frontend index.html noch zu generieren) + `netlify/functions/reading.mjs` (fertig) + `netlify.toml`
+**Architektur:** Netlify Function streamt Claude **Opus** (`claude-opus-4-8`, SSE, Prompt-Caching im System-Prompt). Reading kommt sofort/frei (nur für Kursteilnehmerinnen), kein E-Mail-Gate. System-Prompt enthält Voice + Anti-KI-Regeln + 9 Punkte inkl. IC.
+**Wichtig:** API-Key NIE in Code/Chat — kommt als Env-Var `ANTHROPIC_API_KEY` ins Netlify-Dashboard. Braucht echte Netlify-Seite (Git/CLI), kein Drag-and-Drop.
+**Offen:** KI-Frontend index.html bauen (Streaming-Anzeige); Deploy + Key durch Patrycja; Entscheidung Neptun als 10. Punkt.
+
+### 4. Schattenarbeit-Workbook (zum Schreiben + Drucken)
+**Datei:** `outputs/schattenarbeit-workbook.html` | **Upload-fertig:** `outputs/schattenarbeit-workbook-netlify/index.html` (Netlify Drop, reine HTML ohne Funktion)
+**Was:** Eigenständiges Arbeitsbuch ohne Chart/Prompts. Cover + Einleitung + täglicher Schatten-Check-in (7 Tage) + 8 Übungen (Trigger-Spiegel, verbotene Emotion, Klein-Machen, wiederkehrendes Muster, Schatten von heute, Selbstlüge, Schattengeschenk, Brief ans innere Kind) + Integration. Design: kosmisch/Gold, Cormorant-Serif. Print-CSS schaltet auf hell mit Schreiblinien (PDF-tauglich).
+**Speichern (7-Tage-fest):** Auto-Speichern im Browser (localStorage) + Knöpfe „Sichern" (Stand als .json herunterladen) / „Laden" (auf jedem Gerät zurückholen) / „Als PDF speichern". Verlässliches Speichern braucht einen festen Link → bei Netlify Drop hochladen.
+**Verifiziert:** Browser-Test (8 Übungen, 18 Schreibfelder, Auto-Speichern + Sichern/Laden-Round-Trip ok).
+
+**Verbleibende Schatten-Punkte zur Diskussion:** Neptun (Flucht/Selbsttäuschung, generationsbedingt → Haus personalisiert) — Beispiel gezeigt, Entscheidung offen.
 
 ## Übergeordnete Prioritäten
 
