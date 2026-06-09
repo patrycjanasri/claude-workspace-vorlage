@@ -211,6 +211,15 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 
 ---
 
+## Business-Reader — "Dein Business-Code" (09.06.2026)
+
+**Datei:** `outputs/astro-business-reader.html` | **Upload-fertig:** `outputs/astro-business-reader-netlify/index.html` (Netlify Drop)
+**Was:** Eigene Business-Variante des AstroChart Readers, gleiches Design + Engine + Aspekte (5° Orb). Nach dem Chart kommt ein Block „Dein Business-Reading mit KI" mit goldenem Button **„Business-Prompt + Daten kopieren"** (`copyBusinessReading()`): legt den fertigen Business-Prompt UND die Chart-Daten (Platzierungen + Aspekte) zusammen in die Zwischenablage. Nutzerin fügt alles in ChatGPT/Claude ein und bekommt ein Reading zu Führungsstil, Positionierung, Geldcode, Zone of Genius, Stolpersteinen, nächstem Schritt + rotem Faden.
+**Prompt-Logik:** 6 Punkte (Führung: Sonne/Mars/MC/Saturn/10. Haus; Positionierung: AC/MC/Sonne/Merkur/1. Haus; Geldcode: 2./8./6. Haus/Venus/Jupiter; Zone of Genius: Sonne/Jupiter/MC/5. Haus; Stolpersteine: Saturn/Neptun/Lilith/Südknoten/12. Haus/Spannungsaspekte; nächster Schritt) + roter Faden. Anti-KI-Regeln im Prompt. Prompt-Text steht als const `BUSINESS_PROMPT` im File.
+**Offen:** Netlify-Upload durch Patrycja.
+
+---
+
 ## Schattenarbeit-Paket — Emotioncode Woche 3 (4 Bausteine)
 
 **Status:** Statisches Tool + Promptbook + Workbook fertig & verifiziert; Live-KI-Version gebaut, Deploy offen — 08.06.2026
