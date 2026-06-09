@@ -1287,6 +1287,13 @@ function generateReading() {
       <div class="data-grid aspect-grid">${arows}</div>
       <button class="copy-btn" id="copyAspBtn" onclick="copyAspects()">Aspekte kopieren</button>
     </div>`;
+
+    html += `
+    <div class="cta-block">
+      <h3>Dein Aspekte-Reading mit KI</h3>
+      <p>Ein Klick kopiert deine Aspekte zusammen mit dem fertigen Prompt. Füg alles in ChatGPT oder Claude ein, schick es ab und du bekommst dein Reading: was jeder Aspekt über deine Identität sagt, wo Reibung sitzt, wo Fluss, und der rote Faden.</p>
+      <button class="copy-btn" id="copyAspReadingBtn" onclick="copyAspectReading()">Prompt + Aspekte kopieren</button>
+    </div>`;
   }
 
   const maxEl = Object.entries(elementCounts).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]>0);
@@ -1531,6 +1538,35 @@ function showForm() {
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
     } else { fallbackCopy(text, done); }
+  };
+
+  const ASPECT_PROMPT = `Du bist eine erfahrene Bewusstseinsastrologin und Identitäts- und Business-Mentorin. Du liest ein Geburtshoroskop als Blueprint: jeder Aspekt zeigt, wie zwei innere Kräfte in mir zusammenspielen, wo Reibung sitzt und wo Fluss.
+
+Ich gebe dir unten meine wichtigsten Geburtsaspekte. Jeder steht im Format "Planet in Zeichen [Aspekt] Planet in Zeichen". Deute sie für mich.
+
+Gehe so vor:
+
+1. Nimm jeden Aspekt einzeln. Für jeden schreibe:
+   - Worum es geht: welche zwei Energien hier miteinander reden und was der Aspekt (Konjunktion, Trigon, Sextil, Quadrat, Opposition) daraus macht. Trigon und Sextil fliessen, Quadrat und Opposition spannen, Konjunktion verschmilzt.
+   - Wie es sich in meinem Leben zeigt: konkret in Identität, Selbstführung, Business, Geld, Sichtbarkeit und Beziehungen. Nenne reale Situationen, keine Allgemeinplätze.
+   - Der Schatten und das Geschenk: wo dich diese Kombination klein hält und welche Kraft darin liegt, wenn du sie bewusst lebst.
+   - Eine ehrliche Selbstfrage, die mich heute weiterbringt.
+
+2. Am Ende: der rote Faden. Welches eine Kernthema zieht sich durch alle Aspekte? Was ist die zentrale Aufgabe meiner Identität, die hier immer wieder anklopft?
+
+Schreib auf Deutsch, in der Du-Form, direkt und konkret. Keine Floskeln, keine Gedankenstriche, keine "nicht... sondern"-Konstruktionen, keine leeren Verstärker wie "unglaublich" oder "tief". Jeder Satz sagt etwas Konkretes.
+
+Hier sind meine Aspekte:`;
+
+  window.copyAspectReading = function(){
+    const ASP = window.__aspects || [];
+    const lines = ASP.map(a => a.p1 + (a.s1 ? (' in ' + a.s1) : '') + ' ' + a.type + ' ' + a.p2 + (a.s2 ? (' in ' + a.s2) : ''));
+    const full = ASPECT_PROMPT + '\n\n' + lines.join('\n');
+    const btn = document.getElementById('copyAspReadingBtn');
+    const done = () => { if(btn){ const o=btn.getAttribute('data-label')||btn.textContent; btn.setAttribute('data-label', o); btn.textContent='✓ Kopiert! Jetzt in ChatGPT einfügen'; setTimeout(()=>{ btn.textContent=o; }, 2800); } };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(full).then(done).catch(()=>fallbackCopy(full, done));
+    } else { fallbackCopy(full, done); }
   };
 
   document.addEventListener('DOMContentLoaded', function(){
