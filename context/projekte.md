@@ -206,8 +206,8 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 **Datei:** `outputs/astrochart-reader.html` | **Upload-fertig:** `outputs/astrochart-reader-netlify/index.html` (für Netlify Drop)
 **Was:** Geschwister des AstroCheck, aber ohne die langen Reading-Texte. Nutzerin gibt Name, Geburtsdatum, Geburtszeit, Geburtsort ein → nächste Seite zeigt nur alle Platzierungen sauber als Liste. Gleiche Engine (`circular-natal-horoscope-js` via jsDelivr + Open-Meteo, Placidus/tropisch), gleiches Design (Benzin/Collidge, Mond, NP-Footer).
 **Ergebnis-Seite:** Überschrift „Dein Geburtshoroskop, [Name]" + Geburtsdaten-Zeile, Block „Deine Platzierungen" mit allen 18 Punkten (Zeichen + Haus), Kopier-Button (prompt-fertiger Text), kurzer dominantes-Element-Hinweis, CTA zu DeinAstroCode.
-**Zweck:** Praktisches Tool für DeinAstroCode — Chart erstellen, Platzierungen kopieren, in die Prompts geben.
-**Offen:** Netlify-Upload durch Patrycja; echtes Hero-Banner optional.
+**Aspekte-Block (09.06.2026):** Block „Deine wichtigsten Aspekte" unter den Platzierungen. Nur die 5 Hauptaspekte (Konjunktion, Opposition, Trigon, Quadrat, Sextil), **Orb bis 5°**. Generationsaspekte gefiltert: rausgeworfen nur, wenn BEIDE Punkte langsame Planeten sind (Saturn, Uranus, Neptun, Pluto, Chiron) — dadurch bleiben Lilith- und Knoten-Aspekte zu Außenplaneten drin (persönlich relevant). Sirius und Südknoten raus. Jede Zeile zeigt beide Planeten MIT Zeichen (Planet weiß, Zeichen gold), Orb wird NICHT angezeigt (interessiert nicht, nur intern zum Sortieren — engste zuerst). Eigener Button „Aspekte kopieren" + Aspekte auch im großen „Alle Daten kopieren". Engine rechnet Aspekte nativ (`aspectTypes:['major']`).
+**Offen:** Netlify-Upload durch Patrycja; echtes Hero-Banner optional. **Lilith-Abgleich:** Engine nutzt Mean Lilith — falls Patrycjas Quelle (astro.com) andere Aspekte zeigt (z.B. Lilith-Uranus Opposition statt Quadrat), liegt es an True/Wahre Lilith vs. Asteroid Lilith 1181; bei Bedarf prüfen.
 
 ---
 

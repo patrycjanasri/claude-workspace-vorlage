@@ -959,6 +959,10 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
 .data-values{ display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
 .copy-btn{ width:100%; padding:15px 20px; border:none; border-radius:12px; cursor:pointer; font-family:'Benzin', sans-serif; font-size:1rem; letter-spacing:0.05em; text-transform:uppercase; color:#1a0d2e; background:linear-gradient(135deg, #C9A96E 0%, #EACD8E 50%, #C9A96E 100%); box-shadow:0 10px 36px rgba(201,169,110,0.4); transition:transform .2s, box-shadow .2s; }
 .copy-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 50px rgba(201,169,110,0.58); }
+.aspect-note{ color:#D9C9E6; font-size:0.95rem; line-height:1.55; margin:0 0 18px; font-style:italic; }
+.aspect-grid{ grid-template-columns:1fr; }
+.asp-sym{ color:rgba(201,169,110,0.6); font-weight:400; padding:0 5px; }
+.asp-sign{ color:var(--gold); font-weight:600; font-size:0.82rem; letter-spacing:0.02em; }
 @media (max-width:600px){ .data-grid{ grid-template-columns:1fr; } }
 
 /* ---- Rechtlicher Footer ---- */
@@ -1274,6 +1278,18 @@ function generateReading() {
     </div>`;
   }
 
+  const ASP = window.__aspects || [];
+  if (ASP.length) {
+    const arows = ASP.map(a => `<div class="data-row"><span class="data-planet">${a.p1}${a.s1 ? ` <span class="asp-sign">${a.s1}</span>` : ''} <span class="asp-sym">·</span> ${a.p2}${a.s2 ? ` <span class="asp-sign">${a.s2}</span>` : ''}</span><span class="data-values"><span class="badge sign-badge">${a.type}</span></span></div>`).join('');
+    html += `
+    <div class="data-block">
+      <h3>Deine wichtigsten Aspekte</h3>
+      <p class="aspect-note">Die fünf großen Aspekte, nur mit persönlichem Bezug, keine reinen Generationsaspekte. Die stärksten zuerst.</p>
+      <div class="data-grid aspect-grid">${arows}</div>
+      <button class="copy-btn" id="copyAspBtn" onclick="copyAspects()">Aspekte kopieren</button>
+    </div>`;
+  }
+
   const maxEl = Object.entries(elementCounts).sort((a,b)=>b[1]-a[1]).filter(e=>e[1]>0);
   if (maxEl.length > 0) {
     const dominantEl = maxEl[0][0];
@@ -1402,7 +1418,7 @@ function showForm() {
       const Origin = window.module.exports.Origin;
       const Horoscope = window.module.exports.Horoscope;
       const origin = new Origin({ year: dp[0], month: dp[1]-1, date: dp[2], hour: tp[0], minute: tp[1], latitude: place.lat, longitude: place.lon });
-      const horo = new Horoscope({ origin: origin, houseSystem: 'placidus', zodiac: 'tropical', language: 'en' });
+      const horo = new Horoscope({ origin: origin, houseSystem: 'placidus', zodiac: 'tropical', language: 'en', aspectTypes: ['major'] });
 
       const chart = {};
       Object.keys(PLANET_MAP).forEach(key => {
@@ -1440,6 +1456,31 @@ function showForm() {
       ].filter(e => e.sign);
       window.__meta = { name: (document.getElementById('userName').value || '').trim(), date: date, time: time, place: place.label };
 
+      // Relevante Aspekte: nur die 5 grossen, Orb <= 3 Grad, Sirius/Suedknoten raus, dedupe, nach Orb sortiert
+      (function(){
+        const ASP_DE = { conjunction:'Konjunktion', opposition:'Opposition', trine:'Trigon', square:'Quadrat', sextile:'Sextil' };
+        const ASP_SYM = { conjunction:'☌', opposition:'☍', trine:'△', square:'□', sextile:'⚹' };
+        const BODY_DE = { 'Sun':'Sonne','Moon':'Mond','Mercury':'Merkur','Venus':'Venus','Mars':'Mars','Jupiter':'Jupiter','Saturn':'Saturn','Uranus':'Uranus','Neptune':'Neptun','Pluto':'Pluto','Chiron':'Chiron','North Node':'Nordknoten','South Node':'Südknoten','Lilith':'Lilith','Ascendant':'Aszendent','Midheaven':'MC','Sirius':'Sirius' };
+        const EXCLUDE = { 'Sirius':1, 'South Node':1 };
+        // Reiner Generationsaspekt = beide Punkte langsame Planeten. Nur die fliegen raus.
+        const SLOW = { 'Saturn':1, 'Uranus':1, 'Neptune':1, 'Pluto':1, 'Chiron':1 };
+        const all = (horo.Aspects && horo.Aspects.all) ? horo.Aspects.all : [];
+        const SIGNOF = {}; (window.__fullChart || []).forEach(e => { SIGNOF[e.label] = e.sign; });
+        const seen = {}, list = [];
+        all.forEach(a => {
+          if (typeof a.orb !== 'number' || a.orb > 5) return;
+          const e1 = a.point1Label, e2 = a.point2Label;
+          if (EXCLUDE[e1] || EXCLUDE[e2]) return;
+          if (SLOW[e1] && SLOW[e2]) return;
+          const k = [e1, e2].sort().join('|') + '|' + a.aspectKey;
+          if (seen[k]) return; seen[k] = 1;
+          const p1 = BODY_DE[e1] || e1, p2 = BODY_DE[e2] || e2;
+          list.push({ p1: p1, p2: p2, s1: SIGNOF[p1] || '', s2: SIGNOF[p2] || '', type: ASP_DE[a.aspectKey] || a.aspectKey, orb: a.orb });
+        });
+        list.sort((x, y) => x.orb - y.orb);
+        window.__aspects = list;
+      })();
+
       window.__chart = chart;
       generateReading();
     }catch(e){
@@ -1465,9 +1506,29 @@ function showForm() {
     if(m.place) lines.push('Geburtsort: ' + m.place);
     lines.push('');
     FULL.forEach(e => lines.push(e.label + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')));
+    const ASP = window.__aspects || [];
+    if(ASP.length){
+      lines.push('');
+      lines.push('Wichtigste Aspekte:');
+      ASP.forEach(a => lines.push(a.p1 + (a.s1 ? (' in ' + a.s1) : '') + ' ' + a.type + ' ' + a.p2 + (a.s2 ? (' in ' + a.s2) : '')));
+    }
     const text = lines.join('\n');
     const btn = document.getElementById('copyBtn');
     const done = () => { if(btn){ const o=btn.getAttribute('data-label')||btn.textContent; btn.setAttribute('data-label', o); btn.textContent='\u2713 Kopiert!'; setTimeout(()=>{ btn.textContent=o; }, 2200); } };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+    } else { fallbackCopy(text, done); }
+  };
+
+  window.copyAspects = function(){
+    const ASP = window.__aspects || [];
+    const m = window.__meta || {};
+    const lines = [];
+    lines.push('Wichtigste Aspekte' + (m.name ? ' für ' + m.name : '') + ' (nur mit persönlichem Bezug):');
+    ASP.forEach(a => lines.push(a.p1 + (a.s1 ? (' in ' + a.s1) : '') + ' ' + a.type + ' ' + a.p2 + (a.s2 ? (' in ' + a.s2) : '')));
+    const text = lines.join('\n');
+    const btn = document.getElementById('copyAspBtn');
+    const done = () => { if(btn){ const o=btn.getAttribute('data-label')||btn.textContent; btn.setAttribute('data-label', o); btn.textContent='✓ Kopiert!'; setTimeout(()=>{ btn.textContent=o; }, 2200); } };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
     } else { fallbackCopy(text, done); }
