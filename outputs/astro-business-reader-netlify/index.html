@@ -940,6 +940,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
 
 /* ---- CTA ---- */
 .cta-block{ background:linear-gradient(135deg, rgba(91,16,40,0.42), rgba(54,38,98,0.5)) !important; border:1px solid rgba(248,216,232,0.25) !important; box-shadow:0 18px 70px rgba(0,0,0,0.5) !important; }
+.cta-kicker{ color:var(--gold) !important; font-style:italic; font-size:1rem; margin-bottom:10px !important; }
 .cta-link{ background:linear-gradient(135deg, #C9A96E, #EACD8E) !important; color:#1a0d2e !important; box-shadow:0 12px 44px rgba(201,169,110,0.45) !important; }
 
 
@@ -1003,7 +1004,7 @@ html{ background-color:#080414 !important; }
   <header>
     <p class="header-eyebrow">Dein kosmischer Business-Blueprint</p>
     <h1>Dein Business-Code</h1>
-    <p class="subtitle">Gib deine Geburtsdaten ein. Auf der nächsten Seite bekommst du deinen Chart und einen fertigen KI-Prompt, der dir sagt, wie du dein Business führst, dich positionierst und Geld verdienst.</p>
+    <p class="subtitle">Gib deine Geburtsdaten ein. Auf der nächsten Seite bekommst du dein Geburtshoroskop angezeigt und einen fertigen KI-Prompt, der dir sagt, wie du dein Business führst, dich positionierst, skalierst und Geld verdienst.</p>
     <div class="divider"></div>
   </header>
 
@@ -1302,9 +1303,15 @@ function generateReading() {
   html += `
   <div class="cta-block">
     <h3>Dein Business-Reading mit KI</h3>
-    <p>Ein Klick kopiert deine Chart-Daten zusammen mit dem fertigen Business-Prompt. Füg alles in ChatGPT oder Claude ein, schick es ab und du bekommst dein Reading: wie du dein Business führst, wie du dich positionierst, wo deine Zone of Genius liegt und wie du am natürlichsten Geld verdienst.</p>
+    <p>Kopiere den Prompt und füg ihn in ChatGPT oder Claude ein. Dein Reading zeigt dir, wie du dein Business führst, wie du dich positionierst, wo deine Zone of Genius liegt und wie du am natürlichsten Geld verdienst.</p>
     <button class="copy-btn" id="copyBizBtn" onclick="copyBusinessReading()">Business-Prompt + Daten kopieren</button>
-    <a href="https://patrycja-nasri.de/dein-astrocode/" target="_blank" class="cta-link" style="display:inline-block; margin-top:20px;">Zu DeinAstroCode &rarr;</a>
+  </div>`;
+
+  html += `
+  <div class="cta-block">
+    <p class="cta-kicker">Möchtest du noch tiefer in deine Chart eintauchen?</p>
+    <h3>Lerne dich tiefer kennen, als Jahre der Selbstreflexion es je konnten.</h3>
+    <a href="https://patrycja-nasri.de/dein-astrocode/" target="_blank" class="cta-link">Hier erfährst du mehr: Dein AstroCode &rarr;</a>
   </div>`;
 
   html += `<button class="back-btn" onclick="showForm()">&#8592; Neuen Business-Code erstellen</button>`;
@@ -1534,31 +1541,21 @@ function showForm() {
     } else { fallbackCopy(text, done); }
   };
 
-  const BUSINESS_PROMPT = `Du bist eine Meisterin der Bewusstseinsastrologie und liest ein Geburtshoroskop als Business-Blueprint. Du arbeitest in drei Schichten: Planet (welche Kraft), Zeichen (wie sie sich zeigt), Haus (in welchem Lebensbereich sie wirkt). Aspekte liest du als lebendige Dialoge zwischen diesen Kräften, dort sitzen die inneren Spannungen und die Genialität. Du deutest nichts isoliert. Du suchst das Muster, das sich durch das ganze Chart zieht.
+  const BUSINESS_PROMPT = `Du bist eine erfahrene Bewusstseinsastrologin und Business-Mentorin. Du liest ein Geburtshoroskop als Blueprint: jeder Aspekt zeigt, wie zwei innere Kräfte in mir zusammenspielen, wo Reibung sitzt und wo Fluss.
 
-Ich gebe dir unten meine Platzierungen und Aspekte. Lies sie wirklich, bevor du schreibst. Erst das Gesamtbild, dann die Tiefe.
+Ich gebe dir unten meine Platzierungen und meine wichtigsten Aspekte. Jeder Aspekt steht im Format "Planet in Zeichen [Aspekt] Planet in Zeichen". Deute sie für mich mit Blick auf mein Business.
 
-Deine Tiefe-Regel: Jede Aussage muss so spezifisch sein, dass sie auf keinen anderen Menschen mit einem anderen Chart zutreffen würde. Wenn du etwas behauptest, zeig mir die Platzierung oder den Aspekt, aus dem es kommt, und übersetz es in eine konkrete Situation in meinem Business. Keine Sätze, die in jedem Coaching-Buch stehen könnten.
+Gehe so vor:
 
-Schreibe mir folgendes:
+1. Nimm jeden Aspekt einzeln. Für jeden schreibe:
+   - Worum es geht: welche zwei Energien hier miteinander reden und was der Aspekt (Konjunktion, Trigon, Sextil, Quadrat, Opposition) daraus macht. Trigon und Sextil fliessen, Quadrat und Opposition spannen, Konjunktion verschmilzt.
+   - Wie es sich in meinem Business zeigt: konkret in Führung, Positionierung, Geld, Sichtbarkeit, Verkauf und Skalierung. Nenne reale Situationen, keine Allgemeinplätze.
+   - Der Schatten und das Geschenk: wo diese Kombination mein Business klein hält und welche Kraft darin liegt, wenn ich sie bewusst nutze.
+   - Eine ehrliche Selbstfrage, die mein Business heute weiterbringt.
 
-1. Meine Business-Signatur. In einem Absatz die eine Energie, die entsteht, wenn Sonne, Mond, Aszendent und MC zusammenwirken. Synthese, kein Aufzählen der Einzelteile.
+2. Am Ende der rote Faden. Welches eine Kernthema zieht sich durch alle Aspekte? Wie führe, positioniere und skaliere ich mein Business aus meiner tiefsten Identität heraus, und wie verdiene ich am natürlichsten Geld? Nutze dabei auch meine Platzierungen (Zeichen und Häuser) als Kontext. Schließe mit einer einzigen konkreten Sache, die ich diese Woche in meinem Business anders mache.
 
-2. Wie ich führe. Mein Entscheidungsmuster, mein Tempo, meine natürliche Autorität und der Punkt, an dem ich mir selbst im Weg stehe. Nutze Sonne, Mars, Saturn, MC und das 10. Haus, vor allem die Aspekte zwischen ihnen. Wo spannt es, wo fließt es? Was passiert in meinem Business, wenn ich gegen dieses Muster arbeite?
-
-3. Meine Positionierung. Wofür kommen Menschen zu genau mir und zu niemandem sonst? Was ist mein unverwechselbarer Ton, mein Magnetfeld? Lies Aszendent, MC, Sonne und Merkur in Zeichen und Haus. Sag mir auch, welche Positionierung sich für mich falsch anfühlt, obwohl sie bei anderen funktioniert.
-
-4. Mein Geldcode. Wie fließt Geld bei mir am natürlichsten? Über welchen Kanal, welche Art von Angebot, welche Beziehung zu Wert und Preis? Lies das 2. Haus, Venus, Jupiter, das 8. Haus und das 6. Haus. Nenn mir dann die genaue Stelle, an der ich Geld blockiere, das konkrete Muster aus Saturn, Neptun, Lilith, Südknoten oder einem harten Aspekt. Bleib präzise statt allgemein.
-
-5. Meine Zone of Genius. Die eine Sache, die nur ich so kann, weil mein Chart sie hergibt. Sonne, Jupiter, MC, das 5. Haus und meine stärksten Aspekte. Beschreib, wie sich diese Genialität anfühlt, wenn ich in ihr bin, und woran ich merke, dass ich sie gerade verrate.
-
-6. Mein Schatten im Business. Wo halte ich mich klein, mache mich unsichtbar oder erschöpfe mich? Lies Saturn, Neptun, das 12. Haus, Lilith, den Südknoten und die Spannungsaspekte als ein zusammenhängendes Muster. Was ist die alte Geschichte dahinter, und was darf gehen, damit mein Business wächst?
-
-7. Mein Nervensystem. Wie führe ich nachhaltig, ohne mich zu verbrennen? Mond, das 6. Haus, Saturn. Was braucht mein System, um Sichtbarkeit und Wachstum zu halten?
-
-Zum Schluss der rote Faden und der Schritt. In einem Absatz das eine Kernthema, das sich durch alles zieht, die zentrale Aufgabe meiner Identität im Business. Dann eine einzige konkrete Sache, die ich diese Woche anders mache und die direkt aus diesem Kernthema kommt.
-
-Schreib auf Deutsch, in der Du-Form, direkt und tief. Keine Floskeln, keine Gedankenstriche, keine "nicht... sondern"-Konstruktionen, keine leeren Verstärker. Geh in die Tiefe statt in die Breite. Lieber wenige Sätze, die sitzen, als viele, die an der Oberfläche bleiben.
+Schreib auf Deutsch, in der Du-Form, direkt und konkret. Keine Floskeln, keine Gedankenstriche, keine "nicht... sondern"-Konstruktionen, keine leeren Verstärker wie "unglaublich" oder "tief". Jeder Satz sagt etwas Konkretes.
 
 Hier sind meine Daten:`;
 
