@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Die Diamanten – Emotioncode Teil 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Benzin';
+    src: url('Benzin-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root {
+    --gold: #c9a24b;
+    --gold-soft: #e6cf95;
+    --ink: #f4f0e6;
+    --ink-dim: #cfc8ba;
+    --bg: #0b0d18;
+    --bg2: #131628;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 22mm 20mm;
+  }
+
+  html { background: var(--bg); }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Full-bleed cosmic background that repeats on every printed page */
+  .bg {
+    position: fixed;
+    top: -30mm; left: -30mm; right: -30mm; bottom: -30mm;
+    background:
+      radial-gradient(circle at 80% 10%, rgba(201,162,75,0.16), transparent 40%),
+      radial-gradient(circle at 10% 92%, rgba(201,162,75,0.09), transparent 44%),
+      linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+    z-index: -1;
+  }
+
+  /* COVER */
+  .cover {
+    height: 253mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+  }
+  .moon {
+    width: 118px; height: 118px;
+    border-radius: 50%;
+    margin-bottom: 38px;
+    background:
+      radial-gradient(circle at 36% 34%, #f6efdc 0%, #d9cba4 38%, #b89e63 70%, #8a7340 100%);
+    box-shadow: 0 0 60px rgba(201,162,75,0.35), inset -14px -10px 30px rgba(0,0,0,0.35);
+  }
+  .cover .eyebrow {
+    font-family: 'Benzin', sans-serif;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 26px;
+  }
+  .cover h1 {
+    font-family: 'Benzin', sans-serif;
+    font-size: 52px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .cover h1 .accent { color: var(--gold-soft); }
+  .cover .sub {
+    font-size: 21px;
+    font-style: italic;
+    color: var(--ink-dim);
+    max-width: 380px;
+    margin: 0 auto 40px;
+  }
+  .cover .meta {
+    font-family: 'Benzin', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid rgba(201,162,75,0.4);
+    padding-top: 18px;
+  }
+  .cover .meta span { color: var(--ink-dim); }
+
+  /* SECTION HEADERS */
+  .section-intro {
+    text-align: center;
+    margin: 8px 0 26px;
+    page-break-after: avoid;
+  }
+  .section-intro.fresh { page-break-before: always; padding-top: 6mm; }
+  .section-intro .who {
+    font-family: 'Benzin', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 14px;
+    color: var(--gold);
+  }
+  .section-intro .line {
+    width: 54px; height: 1px;
+    background: var(--gold);
+    margin: 16px auto 0;
+    opacity: 0.6;
+  }
+
+  /* DIAMOND BLOCKS */
+  .diamond {
+    margin-bottom: 20px;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(201,162,75,0.22);
+    border-radius: 4px;
+    page-break-inside: avoid;
+  }
+  .diamond h2 {
+    font-family: 'Benzin', sans-serif;
+    font-size: 14.5px;
+    letter-spacing: 0.04em;
+    color: var(--gold-soft);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .diamond h2 .bullet { color: var(--gold); font-size: 11px; margin-right: 8px; }
+  .diamond p {
+    font-size: 16.5px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .diamond p:last-child { margin-bottom: 0; }
+  .pull {
+    font-style: italic;
+    color: var(--gold-soft);
+    font-size: 18px;
+  }
+
+  /* CLOSING */
+  .closing {
+    height: 253mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-before: always;
+  }
+  .closing .quote {
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+  .closing .quote .accent { color: var(--gold-soft); }
+  .closing .by {
+    font-family: 'Benzin', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="moon"></div>
+  <div class="eyebrow">Emotioncode &middot; Teil 3</div>
+  <h1>Die <span class="accent">Diamanten</span></h1>
+  <div class="sub">Schattenarbeit, Nervensystem und das Leben jenseits des Bekannten</div>
+  <div class="meta">Mit Katrin Krappweis &amp; Patrycja Nasri &nbsp;<span>&middot;&nbsp; 10. Juni 2026</span></div>
+</section>
+
+<!-- KATRIN -->
+<div class="section-intro">
+  <div class="who">Katrin spricht</div>
+  <div class="line"></div>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Der Medizinball</h2>
+  <p>Ladies, streck mal deine Arme aus und stell dir vor, du stehst bis zur Brust in einem See und hältst einen Medizinball in den Händen. Jetzt drück ihn runter. Tief runter, so tief, dass ihn keiner mehr sehen kann. Und jetzt halt ihn da. Zehn Minuten. Eine Stunde. Spürst du, wie viel Kraft das kostet?</p>
+  <p>Genau das machst du jeden Tag mit den Anteilen in dir, die du weggedrückt hast. Und wisst ihr, was das für Energie ist, die da unten gebunden ist? Es ist deine Lebensenergie.</p>
+  <p class="pull">Schattenarbeit ist nichts anderes, als den Ball wieder loszulassen. Ihn hochkommen zu lassen. Sichtbar werden zu lassen. Und dann hast du die ganze Energie zurück für das, was du wirklich kreieren willst.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Sicherheit heißt nicht sicher</h2>
+  <p>Achtung, das ist wichtig. Sicherheit heißt nicht sicher. Nur weil dein Nervensystem Sicherheit generiert, heißt das nicht, dass dein Leben geil ist. Es heißt nur, dass es das Bekannte ist.</p>
+  <p>Viele wünschen sich, etwas loszulassen, um sich frei zu fühlen. Aber ihre Identität ist so verwoben mit diesem alten Muster, dass der Körper es festhält, obwohl der Kopf längst weiterwill.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Angstgeneralisierung</h2>
+  <p>Ich erzähl euch was aus meinem Leben. Bei mir war es erst Platzangst. Dann konnte ich nicht mehr Bahn fahren, weil ich dachte, da steht einer mit Rucksack und sprengt sich gleich in die Luft. Dann kein Fahrstuhl mehr. Dann Sprechangst. Dann konnte ich nachts nicht mehr allein sein. Wir haben ein riesiges Panzerschloss an die Tür gemacht. Drei Tage war die Angst betäubt, dann kam sie über die Terrasse.</p>
+  <p>Angst ist Energie, die bewegt werden will. Du kannst ihr nicht aus dem Weg gehen, du betäubst sie nur. Und mit jedem Ausweichen wird dein Lebensraum kleiner und kleiner.</p>
+  <p class="pull">In Wahrheit nimmst du dir gerade dein Leben.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Disruption an der Grenze</h2>
+  <p>Ladies, wenn wir wachsen wollen, brauchen wir Disruption. Schreibt's auf. Disruption. Und wo findet Disruption statt? An der Grenze. Am Rand deines Fassungsvermögens.</p>
+  <p>Woran erkennst du, dass du da bist? Es wird laut. Plötzlich sind tausend Gedanken und Bewertungen über dich aktiviert. Geschichten, von denen du dachtest, du hast sie vor 20 Jahren überwunden. Du fühlst dich plötzlich klein wie das kleine Mädchen, das du mal warst.</p>
+  <p>Und genau da gehen die meisten zurück ins Bekannte. Aber ich wünsche dir, dass du in genau diesem Moment einen Schritt weiter nach vorn fällst. Einen Schritt weiter. Einen Schritt weiter. Bis es dein neues Normal ist.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Die ersten drei Sekunden</h2>
+  <p>Wenn eine Frau in meinen Räumen ein Business aufbaut, ist ihr allererstes Experiment, jeden Tag in die Story zu sprechen. Und es geht mir nicht um Stunden. Es geht mir um die ersten drei Sekunden. Diese zu triggern und es zu tun. Diese zu triggern und es zu tun. Jeden Tag wieder durch die Wand.</p>
+  <p>Ich sag euch, eineinhalb Jahre bin ich um sechs Uhr morgens live gegangen, jeden Tag, damit dieser Raum so groß wird, dass ich heute so spreche, wie ich spreche.</p>
+  <p class="pull">Geh an die Orte, die du fürchtest. Da sitzt oft das größte Geschenk für dich.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Du wirst ready, weil du es tust</h2>
+  <p>Wer glaubt denn, dass er erst mit dem Schwimmen anfängt, wenn er ready ist und schwimmen kann? So funktioniert das nicht. Du lernst schwimmen, indem du schwimmst. Du nimmst deinen Körper mit.</p>
+  <p>Solange du in der Komfortzone bleibst, kannst du dich niemals ready fühlen. Das ist eine Lüge deines Verstandes. Du beginnst dich ready zu fühlen, weil du es machst. Und Ladies, wie viele Optionen haben wir schon an uns vorbeiziehen lassen, weil wir uns nicht ready gefühlt haben?</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Tag 1 und Tag 100</h2>
+  <p>Stell dir vor, ich setz dich in eine völlig fremde Kultur. Du verstehst die Sprache nicht, das Essen schmeckt anders, alles riecht anders, du kennst niemanden. Und ich sag dir: Du bleibst hier 100 Tage, du kommst nicht eher raus. Wie fühlt sich Tag 1 an für dein Nervensystem? Horror. Überforderung.</p>
+  <p>Und jetzt schau auf Tag 100. Da sprichst du vielleicht schon die Sprache. Du kennst die Kultur. Dieselbe Frau, eine ganz andere Geschichte.</p>
+  <p class="pull">Würde ich dich nach zwei Stunden rausholen, gingst du nie wieder hin. An Tag 100 sagst du: Lass mich noch ein bisschen bleiben, hier gefällt es mir.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Die Landkarte deiner Seele</h2>
+  <p>Schau mal auf die Landkarte deiner Seele von oben. Ein paar Orte sind ganz klar, da bist du tausendmal gewesen, das sind deine Lieblingsanteile. Ein paar liegen leicht im Nebel, da warst du ein, zwei Mal. Und dann gibt es 95 Prozent, die im Dunkeln liegen. Da warst du noch nie.</p>
+  <p>Und genau da liegt das Gold. Da liegt die gebundene Energie. Da liegen Skills und Potenzial in dir, von denen du nicht mal mehr weißt, dass sie existieren. Die meisten bleiben ihr Leben lang in Berlin oder München und denken, warum sollte ich woanders hingehen.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Geh bewusst rein</h2>
+  <p>Was passiert, wenn du aus Versehen am Rand landest? Shutdown. Freeze. Flucht. Du reproduzierst automatisch das Bekannte. Deswegen mache ich es bewusst. Ich warte nicht, bis das Leben mir die Herausforderung schickt. Ich gehe bewusst in die Disruption.</p>
+  <p>Ich suche mir Räume, in denen ich meinen tiefen Schattenfrequenzen begegne. Und in dem Moment öffne ich einen Raum zwischen Reiz und Reaktion. Ich bleibe, bis das Neue meine Sicherheit wird.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Glaub mir gar nichts</h2>
+  <p>Das ist mir ganz wichtig: Glaub mir gar nichts. Ich will nicht, dass Frauen trockene Schwämme sind. Geh in dein Live-Experiment. Beobachte dich selbst im Leben. Beobachte andere. Aber vor allem dich selbst.</p>
+  <p>Und nimm deinen Körper mit. Gerade in der spirituellen Welt sind wir die ganze Zeit in den höheren Sphären unterwegs, weil es sich da oben so friedlich anfühlt. Aber wir sind menschliche Entitäten. Nimm deinen Körper mit.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Das Bekannte ist der Tod</h2>
+  <p>Das Leben ist die unbekannte Komponente. Der Tod ist das Bekannte. Alles, was du schon kennst, hast du schon erfahren. Aber da draußen, in dem, was du noch nicht weißt, da trägt jeder Moment das Potenzial in sich, alles zu verändern.</p>
+  <p class="pull">Die Frage ist nur: Wo bist du?</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Das Todesbett</h2>
+  <p>Denzel Washington hat mal ein Bild geprägt, das ich in einer meiner ersten Speeches genutzt habe. Stell dir vor, du liegst auf deinem Todesbett, und um dich herum stehen ganz viele Gestalten. Das sind die Identitäten, die du hättest sein können. Die Liebe, die du abgewählt hast, weil du zu viel Angst hattest. Der Beruf, den du dir nie getraut hast, weil dir jemand erzählt hat, Kunst sei brotlos.</p>
+  <p>Und ich hab mir gedacht: Wisst ihr, was ich möchte? Ich möchte ausgeträumt sterben. Ich will all meinen Träumen Leben einhauchen.</p>
+  <p class="pull">Irgendwann realisierst du, dass all die Steine, die dir in den Weg gelegt wurden, die Gewichte waren, an denen du gewachsen bist.</p>
+</div>
+
+<!-- PATRYCJA -->
+<div class="section-intro fresh">
+  <div class="who">Patrycja spricht</div>
+  <div class="line"></div>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Meine Geld-Angst</h2>
+  <p>Ihr müsst euch das vorstellen. Letztes Jahr im November hatte ich Todesangst zu kündigen. Wirklich Todesangst. Ich bin sogar wieder arbeiten gegangen, Sicherheit suchend. Und Anfang des Jahres war alles fertig, alles lag bereit, und ich kam einfach nicht zu Potte. Ich saß im Gefängnis in meinem eigenen Kopf. Was ist, wenn es nicht funktioniert? Was ist, wenn ich das alles nicht zahlen kann?</p>
+  <p>Und ich weiß ja, wo das herkommt, das ist die ganze Ladung aus der Kindheit. Ich kenne meine Prompts, ich kenne meine Arbeit. Aber das Wissen war es nicht. Die Bewegung war es, die alles transformiert hat.</p>
+  <p class="pull">Im Januar hätte ich für einen Raum niemals so viel Geld ausgegeben. Und heute denke ich mir: Hallo, I will figure it out.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Die Macht des Geldscheins</h2>
+  <p>Wisst ihr, wie viel Macht wir einem Geldschein geben? Wir werden unlebendig. Wir sind tot, weil wir dem Geldschein so viel Macht geben. Wir kommen ohne nichts auf diese Welt, und wir gehen ohne nichts.</p>
+  <p>Und wenn dein Kontostand minus eine Million anzeigt und du heute Abend tot umfällst, dann bist du einfach nicht mehr da. Das ist es, was mich antreibt. Ich werde irgendwann gehen, und ich werde sicher nicht im Bett liegen und denken: Scheiße.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Was ist das Schlimmste, was passieren kann?</h2>
+  <p>Ich kann euch wirklich allen nur ans Herz legen: Nimm diesen Schatten. Fürchte dich nicht davor und geh einfach durch. Was ist das Schlimmste, was passieren kann? Was ist das Schlimmste? Gehst du halt wieder zurück und machst was anderes.</p>
+  <p class="pull">Aber es wird sich ein Weg zeigen. Es wird sich immer ein Weg finden. Nur sterben, das ist endgültig.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Emotionale Resonanz in Zeiten von KI</h2>
+  <p>Ihr Lieben, das ist mir gerade so wichtig. Du folgst mir nicht, weil ich dir Impact liefere. Du folgst mir im allerersten Schritt, weil ich dir eine Geschichte erzähle. Und ein KI-Mensch wird dir niemals eine echte Geschichte erzählen. Es fehlt die Resonanz. Es fehlen die Tränen. Es fehlt die Emotion. Es fehlt die Energie.</p>
+  <p>Das, was wir in diesem Kapitel brauchen, ist emotionale Resonanz. Klar, ich habe jetzt ein paar Sachen mit KI gebaut. Aber meine neueste Salespage habe ich am Ende der Patricia gegeben, und sie hat sie viel geiler designt, weil sie meine Energie in eine bildliche Sprache übersetzt.</p>
+  <p class="pull">Vergesst nie das Menschliche. Schaut euch um, alles sieht gerade gleich aus, immer das Gleiche. Da fehlt die Energie dahinter.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Du bist der Tempel</h2>
+  <p>Ich habe mich lange Zeit nicht geliebt und nicht schön gefunden, weil ich Übergewicht mit mir rumtrage. Aber wer gibt denn dem Geldschein die Macht? Und wer entscheidet, ob ich mich sexy fühle und sexy durchs Leben gehe? Wer hat das zu entscheiden?</p>
+  <p>Ich kann von mir behaupten, dass ich eine ziemlich geile Frau bin, weil ich mit meinem Körper arbeite, weil ich mit meiner Weiblichkeit arbeite.</p>
+  <p class="pull">Sieh dich selbst wieder als den absoluten Tempel. Du brauchst niemanden im Außen, du kannst dir die Liebe selbst geben. Du bist das Wichtigste in deinem Leben, alles andere folgt danach. Denn dann hören die Abhängigkeiten auf.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Dein Umfeld schafft deinen Erfolg</h2>
+  <p>Erinnert ihr euch an mein Reel mit dem faulen Apfel? Was passiert mit den Früchten links und rechts? Sie faulen mit. Bei den Erdbeeren ist der Schimmel. Also müssen wir weise manifestieren, wen wir an unserer Seite haben.</p>
+  <p class="pull">Du zahlst nicht für irgendetwas. Du zahlst für die Energie, wohin du dich entwickeln willst. Dein Umfeld schafft deinen Erfolg.</p>
+</div>
+
+<div class="diamond">
+  <h2><span class="bullet">&#9670;</span>Erfolg kommt in Wellen</h2>
+  <p>Erfolg kommt in Wellenbewegungen. Und was machst du in dem Moment, wo es nach unten geht? Du kannst in der Angst verharren, oder du kannst lernen, dich da zu halten. Wir sind alle Generationen, die kein gut tonisiertes Nervensystem haben. Und mit einem disregulierten Nervensystem reagierst du nur, immer wieder.</p>
+  <p>Aber raus aus der Reaktion kommst du erst, wenn du in den Beobachter gehst. Dein Geld ist gekoppelt an dein Gefühl. Wenn du dich richtig geil fühlst und Bock hast, sprießen die Ideen und du lässt sie einfach raus.</p>
+  <p class="pull">Bei Stress nimmt dir das keiner ab.</p>
+</div>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="moon" style="width:88px;height:88px;margin-bottom:34px;"></div>
+  <div class="quote">
+    &bdquo;Geh an die Orte, die du f&uuml;rchtest.<br>
+    Denn da sitzt oft das <span class="accent">gr&ouml;&szlig;te Geschenk</span> f&uuml;r dich.&ldquo;
+  </div>
+  <div class="by">Emotioncode &middot; Teil 3 &middot; 10. Juni 2026</div>
+</section>
+
+</body>
+</html>
