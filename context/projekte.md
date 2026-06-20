@@ -124,8 +124,10 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 **GROSSE WENDE (19.06.2026) — Womancode wird 6-Wochen-Live-Mentoring (nicht mehr Promptguide):**
 - **Format:** 6 intensive Wochen, **Start 22.07.2026, Ende 26.08.2026**
-- **4 Live-Calls** je 20:00 Uhr: 22.07., 05.08. (Patrycja schrieb 05.07. = Tippfehler, zu bestätigen), 12.08., 26.08.
-- **Telegram-Begleitung** über die 6 Wochen
+- **4 Live-Calls** je 20:00 Uhr: 22.07., 29.07., 12.08., 26.08. (final bestätigt 19.06.)
+- **Intensive Telegram-Begleitung** über die 6 Wochen
+- **Im Preis enthalten:** Promptguide zu deiner Weiblichkeit (wie liebst du, wie fühlst du, was ist dir in einer Partnerschaft wichtig = „Sinnlichkeitsbooster") · eine intensive Deep Sensual Transmission · eine Goodiebag mit sinnlichem Secret-Öl
+- **VIP (nur 2 Plätze):** 2 tiefe 1:1 Calls mit Patrycja (zurück in die Weiblichkeit, wo stockt Energie/wo steht sie sich im Weg) + Designcall mit Branddesignerin (Creationcall + Schriftzug für Name/Team + Symbol/Initiale + 10 Canva-Vorlagen, Wert allein 2222€). Designer-Name offen (Memory: Tiziana / Pitch: Patrycia).
 - **Patrycjas echte Story (Verkaufsanker, roh halten!):** gefühlt halbes Leben übergewichtig, in den 2000ern nie dazugehörig gefühlt, sich versteckt in weiter schwarzer Kleidung, Körper verurteilt. Periode nur 2x/Jahr, Gynäkologe: „liegt an Ihrem Gewicht, abnehmen". Wendepunkt: Buch **„Die Wolfsfrau"** → Bewusstsein fürs **Sakralchakra** → Weiblichkeit + Lust leben. 2023 Periode/Zyklus zurück. Heute: kleidet sich bunt + sinnlich, kreist Becken, tanzt, „ich bin WILD", finanziell unabhängig. Kernbotschaft: **„Weiblichkeit ist der Schlüssel für den Erfolgsflow. Money wird nicht aus männlicher Energie kreiert."**
 - **Weibliche Urwunde** als gesellschaftlicher Aufhänger: verbannte Göttlichkeit, Trümmerfrauen, Size-Zero-Ideal der 90er/2000er, Frau als Objekt.
 - **Salespage v2 (vollständig, auf ihrem Pitch):** `outputs/womancode-salespage-v2-2026-06-19.md`. Hook „Jeder steht bei dir an erster Stelle, nur du nicht." Erste Version (Promptguide-Annahme): `outputs/womancode-salespage-2026-06-19.md`.

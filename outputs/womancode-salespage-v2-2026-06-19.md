@@ -2,7 +2,7 @@
 
 *Stand 19.06.2026. Auf Basis von Patrycjas eigenem Pitch + ihrer echten Story. Ihre Worte so nah wie möglich am Original gehalten. Voice-geprüft: keine Gedankenstriche, kein "nicht…sondern" in meinen Sätzen, keine verbotenen Wörter.*
 
-*Offen / bitte bestätigen: Call-Datum 2 (du schriebst 05.07., das liegt vor dem Start, ich nehme 05.08.). Preis. Anmeldelink.*
+*Offen: Preis. Anmeldelink. Name der Branddesignerin bestätigen (im Memory stand „Tiziana", du schriebst „Patrycia").*
 
 ---
 
@@ -86,21 +86,38 @@ Du kommst zurück in deinen Körper, raus aus dem Kopf. Du entdeckst deine Sinnl
 
 ---
 
+## DAS IST ALLES DRIN
+
+**Vier Live-Calls mit mir** je 20:00 Uhr, sechs Wochen lang an deiner Seite.
+
+**Intensive Telegram-Begleitung** über die gesamten sechs Wochen.
+
+**Dein Promptguide zu deiner Weiblichkeit.** Wie liebst du, wie fühlst du, was ist dir in einer Partnerschaft wirklich wichtig. Allein dieses Wissen wird dein Sinnlichkeitsbooster.
+
+**Eine intensive Deep Sensual Transmission.**
+
+**Eine Goodiebag mit einem sinnlichen Secret-Öl**, das deine Leidenschaft für das Leben wieder entfacht.
+
+---
+
+## DEIN VIP-RAUM (nur 2 Plätze)
+
+In diesem Raum gebe ich dir die Möglichkeit, mit mir ins VIP zu gehen. Es gibt nur zwei Plätze.
+
+**Zwei tiefe 1:1 Calls mit mir.** Wir gehen gemeinsam zurück in deine Weiblichkeit. Wo stockt deine Energie, wo stehst du dir selbst im Weg. Ich sehe, was du nicht siehst, und allein meine Präsenz bewegt.
+
+**Ein Designcall mit meiner Branddesignerin.** Ein Creationcall mit ihr und mir, dazu ein Schriftzug für deinen Namen oder dein Team, ein Symbol (deine Initiale) und zehn Canva-Vorlagen. Allein der Designpart hat einen Wert von 2222 Euro.
+
+---
+
 ## DIE FAKTEN
 
-**Start:** 22.07.2026
-**Zeitraum:** 22.07.2026 bis 26.08.2026
-**Dauer:** 6 intensive Wochen
+**Start:** 22.07.2026 · **Zeitraum:** 22.07.2026 bis 26.08.2026 · **Dauer:** 6 intensive Wochen
 
-**Vier Live-Calls** jeweils um 20:00 Uhr:
-- 22.07.2026
-- 05.08.2026 [[bitte bestätigen]]
-- 12.08.2026
-- 26.08.2026
+**Die vier Live-Calls** je 20:00 Uhr: 22.07. · 29.07. · 12.08. · 26.08.2026
 
-**Telegram-Begleitung** über die gesamten sechs Wochen.
-
-**Investment:** [[Preis einsetzen]]
+**Investment Womancode:** [[Preis einsetzen]]
+**Investment VIP (2 Plätze):** [[Preis einsetzen]]
 
 **CTA-Button:** Ja, ich bin dabei → [[Anmeldelink]]
 
