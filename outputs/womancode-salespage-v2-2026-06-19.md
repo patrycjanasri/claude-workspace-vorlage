@@ -2,7 +2,7 @@
 
 *Stand 19.06.2026. Auf Basis von Patrycjas eigenem Pitch + ihrer echten Story. Ihre Worte so nah wie möglich am Original gehalten. Voice-geprüft: keine Gedankenstriche, kein "nicht…sondern" in meinen Sätzen, keine verbotenen Wörter.*
 
-*Offen: Preis. Anmeldelink. Name der Branddesignerin bestätigen (im Memory stand „Tiziana", du schriebst „Patrycia").*
+*Offen: Preis. Anmeldelink.*
 
 ---
 
@@ -106,7 +106,7 @@ In diesem Raum gebe ich dir die Möglichkeit, mit mir ins VIP zu gehen. Es gibt 
 
 **Zwei tiefe 1:1 Calls mit mir.** Wir gehen gemeinsam zurück in deine Weiblichkeit. Wo stockt deine Energie, wo stehst du dir selbst im Weg. Ich sehe, was du nicht siehst, und allein meine Präsenz bewegt.
 
-**Ein Designcall mit meiner Branddesignerin.** Ein Creationcall mit ihr und mir, dazu ein Schriftzug für deinen Namen oder dein Team, ein Symbol (deine Initiale) und zehn Canva-Vorlagen. Allein der Designpart hat einen Wert von 2222 Euro.
+**Ein Designcall mit meiner Branddesignerin Patricia.** Ein Creationcall mit ihr und mir, dazu ein Schriftzug für deinen Namen oder dein Team, ein Symbol (deine Initiale) und zehn Canva-Vorlagen. Allein der Designpart hat einen Wert von 2222 Euro.
 
 ---
 
