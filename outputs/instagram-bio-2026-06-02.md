@@ -4,17 +4,17 @@ Neu aufgebaut nach Bio-Framework (Klarname, Keyword, Wunsch der ZG, Problem, Erg
 
 ## Namensfeld
 ```
-Patrycja Nasri | Profitables Business mit Identität
+Patrycja Nasri | Mentorin für Bewusstsein, Astrologie & Network
 ```
 
-## Bio-Text
+## Bio-Text (final 18.06.2026)
 ```
 DEINE IDENTITÄT ENTSCHEIDET ÜBER DEIN GELD
-🌙 Bewusstseinsastrologie trifft Businessstrategie
-💸 Network Marketing oder eigenes Business, du wählst
-🔥 1700+ Kunden & Partner in 12 Monaten
-⬇️ Starte hier kostenlos
-www.patrycja-nasri.de
+🌙 Werde die Frau, die sich ihr Geld nimmt
+✨ 1900+ Kunden & Partner
+🎁 0€ Business-Code Check
+⬇️
+[Link-Ziel offen]
 ```
 
 ## Framework-Abdeckung
@@ -28,4 +28,5 @@ www.patrycja-nasri.de
 - Link: www.patrycja-nasri.de
 
 ## Offen
-- Link-Ziel für "Starte hier kostenlos" final festlegen (Vorschlag: Identitätsprompt-Leadmagnet erfolgsqueen.de/identityprompt)
+- Link-Ziel für den "0€ Business-Code Check" final festlegen (Business-Reader live schalten oder erstmal www.patrycja-nasri.de)
+- Kundenzahl 1900+ gegen aktuellen Stand bestätigen

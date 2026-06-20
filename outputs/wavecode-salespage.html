@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wavecode — Die Reise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#06141f;       /* tiefes Meer */
+    --deep2:#0a2233;
+    --teal:#0e3a4d;
+    --aqua:#37b6c4;       /* Türkis */
+    --aqua-l:#7fdce6;
+    --foam:#cdeef0;
+    --sand:#f4ece0;
+    --gold:#d9b06a;       /* Premium */
+    --gold-l:#ecd29a;
+    --ink:#0b1a24;
+    --paper:#fbf8f3;
+    --muted:#7c93a1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--paper);line-height:1.75;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .serif{font-family:'Cormorant Garamond',serif}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:92vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:120px 24px 110px;overflow:hidden;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(127,220,230,.30) 0%, rgba(127,220,230,0) 50%),
+      radial-gradient(140% 90% at 80% 30%, rgba(55,182,196,.28) 0%, rgba(55,182,196,0) 55%),
+      linear-gradient(180deg,#0a2a3a 0%,#072030 38%,#06141f 100%);
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:120px;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1440' height='120' preserveAspectRatio='none'><path d='M0 60 C 240 110 480 10 720 60 C 960 110 1200 10 1440 60 L1440 120 L0 120 Z' fill='%23fbf8f3'/></svg>");
+    background-size:cover;background-repeat:no-repeat;
+  }
+  .hero > *{position:relative;z-index:1}
+  .brandmark{font-weight:600;letter-spacing:10px;color:var(--aqua-l);font-size:14px;text-transform:uppercase;margin-bottom:26px}
+  .hero h1{font-size:84px;line-height:1.02;font-weight:600;color:#fff;max-width:760px;letter-spacing:.5px}
+  .hero h1 .em{color:var(--aqua-l);font-style:italic}
+  .hero .kicker{color:var(--foam);font-size:21px;font-weight:300;margin-top:8px;letter-spacing:2px}
+  .hero .sub{color:#d7e7ec;font-size:21px;font-weight:300;margin-top:30px;max-width:580px;line-height:1.7}
+  .hero .meta{margin-top:30px;color:var(--aqua-l);font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:500}
+  .hero .meta span{opacity:.55;padding:0 6px}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    display:inline-block;text-decoration:none;color:#06141f;font-weight:600;font-size:19px;
+    padding:20px 48px;border-radius:60px;margin-top:40px;letter-spacing:.5px;
+    background:linear-gradient(120deg,var(--gold-l),var(--gold));
+    box-shadow:0 16px 40px rgba(217,176,106,.28);transition:transform .15s,box-shadow .15s;
+  }
+  .cta:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(217,176,106,.42)}
+  .cta-aqua{background:linear-gradient(120deg,var(--aqua-l),var(--aqua));color:#06141f;box-shadow:0 16px 40px rgba(55,182,196,.3)}
+  .cta-mini{font-size:14px;color:var(--muted);margin-top:16px;letter-spacing:.5px}
+  .hero .cta-mini{color:var(--foam);opacity:.85}
+  .center{text-align:center}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:100px 0}
+  h2{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;line-height:1.1;margin-bottom:18px}
+  .eyebrow{color:var(--aqua);font-size:13px;font-weight:600;letter-spacing:5px;text-transform:uppercase;margin-bottom:18px}
+  .section-head{text-align:center;margin-bottom:54px}
+
+  .narrative p{font-size:23px;font-weight:300;margin:24px 0;line-height:1.65}
+  .narrative .pop{color:var(--teal);font-weight:500}
+  .lead-text p{font-size:20px;font-weight:300;margin:22px 0}
+  .lead-text .strong{font-weight:500;font-size:24px;color:var(--ink)}
+
+  /* dunkle Zwischensektionen */
+  .dark{background:linear-gradient(180deg,#072030,#06141f);color:#dceaef}
+  .dark h2{color:#fff}
+  .dark .eyebrow{color:var(--aqua-l)}
+  .dark .narrative p{color:#cfe1e7}
+  .dark .narrative .pop{color:var(--aqua-l)}
+
+  /* ---------- REISE-TAGE / MODULE ---------- */
+  .mod{border-left:3px solid var(--aqua);background:#fff;border-radius:0 16px 16px 0;
+    padding:28px 32px;margin-bottom:20px;box-shadow:0 12px 30px rgba(10,40,55,.06)}
+  .mod h3{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;margin-bottom:6px}
+  .mod p{font-size:17px;color:#55707d;font-weight:300}
+
+  /* ---------- INKLUSIVE ---------- */
+  .incl{display:grid;gap:16px}
+  @media(min-width:640px){.incl{grid-template-columns:1fr 1fr}}
+  .incl li{list-style:none;background:rgba(255,255,255,.04);border:1px solid rgba(127,220,230,.16);
+    border-radius:14px;padding:18px 22px 18px 50px;position:relative;font-size:16.5px;font-weight:300;color:#e4f0f3}
+  .incl li::before{content:"";position:absolute;left:20px;top:24px;width:9px;height:9px;border-radius:50%;
+    background:var(--aqua-l);box-shadow:0 0 12px rgba(127,220,230,.8)}
+
+  /* ---------- QUAL ---------- */
+  .qual{display:grid;gap:26px}
+  @media(min-width:640px){.qual{grid-template-columns:1fr 1fr}}
+  .qual .box{background:#fff;border-radius:20px;padding:36px;box-shadow:0 12px 30px rgba(10,40,55,.07)}
+  .qual h3{font-family:'Cormorant Garamond',serif;font-size:26px;margin-bottom:20px}
+  .qual .yes h3{color:#127a86}.qual .no h3{color:#a85a3a}
+  .qual ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .qual li{font-size:16.5px;font-weight:300;padding-left:28px;position:relative}
+  .qual .yes li::before{content:"✓";position:absolute;left:0;color:#159aa8;font-weight:700}
+  .qual .no li::before{content:"✕";position:absolute;left:0;color:#bb6240;font-weight:700}
+
+  /* ---------- PAKETE ---------- */
+  .pakete{display:grid;gap:30px;align-items:stretch}
+  @media(min-width:780px){.pakete{grid-template-columns:1fr 1fr}}
+  .pak{background:#fff;border-radius:26px;padding:46px 38px;box-shadow:0 18px 50px rgba(10,40,55,.10);
+    border:1px solid #e8eef0;display:flex;flex-direction:column}
+  .pak.vip{background:linear-gradient(170deg,#0a2233,#06141f);color:#e4f0f3;border:1px solid rgba(217,176,106,.4)}
+  .pak .tag{font-size:12px;letter-spacing:4px;text-transform:uppercase;font-weight:600;color:var(--aqua);margin-bottom:14px}
+  .pak.vip .tag{color:var(--gold-l)}
+  .pak h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1.1;margin-bottom:8px}
+  .pak .platz{font-size:14px;color:var(--muted);margin-bottom:22px}
+  .pak.vip .platz{color:#9fb6c1}
+  .pak .preis{font-size:46px;font-weight:600;color:var(--teal);line-height:1;margin-bottom:6px}
+  .pak.vip .preis{color:var(--gold-l)}
+  .pak .preis small{display:block;font-size:13px;font-weight:500;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:8px}
+  .pak ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin:26px 0 30px}
+  .pak li{position:relative;padding-left:28px;font-size:16px;font-weight:300}
+  .pak li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--aqua)}
+  .pak.vip li::before{background:var(--gold)}
+  .pak .cta{margin-top:auto;align-self:flex-start}
+
+  /* ---------- URGENCY ---------- */
+  .urgency{text-align:center}
+  .seats{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:600;color:var(--aqua-l);line-height:1}
+  .urgency .big{font-size:24px;font-weight:300;margin:18px 0;color:#dceaef}
+
+  /* ---------- AUTOR ---------- */
+  .author p{font-size:19px;font-weight:300;margin:22px 0}
+  .author .sign{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--teal);margin-top:14px}
+
+  /* ---------- FINALE ---------- */
+  .finale{background:
+      radial-gradient(120% 80% at 50% 0%, rgba(55,182,196,.30) 0%, rgba(55,182,196,0) 55%),
+      linear-gradient(180deg,#0a2a3a,#06141f);
+    color:#fff;text-align:center}
+  .finale h2{color:#fff;font-size:56px}
+  .finale .big{font-size:24px;font-weight:300;margin:26px 0;color:#dceaef}
+
+  /* ---------- FAQ ---------- */
+  details{background:#fff;border:1px solid #e8eef0;border-radius:14px;padding:22px 28px;margin-bottom:14px}
+  summary{font-weight:500;font-size:18px;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";float:right;color:var(--aqua);font-weight:700}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:14px;font-size:16px;color:#55707d;font-weight:300}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#06141f;color:#6c8794;text-align:center;padding:50px 24px;font-size:13px;letter-spacing:1px}
+  footer a{color:#9fb6c1;text-decoration:none}
+
+  @media(max-width:640px){
+    .hero{min-height:84vh;padding:90px 22px 90px}
+    .hero h1{font-size:50px}.hero .sub{font-size:18px}
+    h2{font-size:38px}.finale h2{font-size:40px}
+    .narrative p{font-size:20px}.seats{font-size:60px}
+    section{padding:74px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="brandmark">Wavecode</div>
+  <h1 class="serif">Sieben Tage,<br>in denen du <span class="em">dich</span><br>wieder hörst.</h1>
+  <p class="sub">Eine Woche geankert auf dem Roten Meer. Kein Handy, kein Lärm, kein ständiges Nachfragen bei einer KI. Nur du, die Frequenz der Delfine und der Raum, aus dem deine nächsten Visionen kommen.</p>
+  <div class="meta">19.–26. September 2026 <span>•</span> Rotes Meer, Hurghada <span>•</span> 8 Frauen</div>
+  <a href="#pakete" class="cta">Ich sichere mir meinen Platz</a>
+  <div class="cta-mini">Nur 8 Plätze. Jede Frau ein eigenes Zimmer.</div>
+</header>
+
+<!-- ============ DER SPIEGEL ============ -->
+<section class="narrative">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Wo du gerade stehst</div>
+      <h2 class="serif">Dein Business läuft. Und du fragst dich, wofür du losgegangen bist.</h2>
+    </div>
+    <p>Du wachst auf und greifst zum Handy, bevor du den ersten Atemzug bewusst genommen hast. Eine neue Idee hier. Eine Werbeanzeige dort. Die nächste Frage an ChatGPT, weil dir selbst gerade nichts mehr einfällt.</p>
+    <p>Dein Business wirft Geld ab. Und trotzdem ist es so eng geworden, dass du es kaum noch spürst. Du funktionierst, du lieferst, du hältst alles am Laufen.</p>
+    <p>Dein Nervensystem ist seit Monaten auf <span class="pop">überreguliert</span>. Es ist so laut in dir, dass deine eigene Stimme darin untergeht.</p>
+    <p>Und irgendwo unter all dem Lärm liegt die Frau, die mal aus sich heraus kreiert hat. Aus Freude. Aus ihrer Essenz. Nicht aus dem Hustle.</p>
+  </div>
+</section>
+
+<!-- ============ DIE WAHRHEIT (dark) ============ -->
+<section class="dark narrative">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Die Wahrheit</div>
+      <h2 class="serif">Du brauchst keine neue Strategie. Du brauchst einen Reset.</h2>
+    </div>
+    <p>Wir haben Uranus in den Zwillingen. Die Welt dreht durch, alles wird schneller, lauter, dopamingetrieben. Ideen werden gesammelt statt geboren. Niemand lässt mehr etwas aus sich selbst heraus entstehen.</p>
+    <p>Deine größten Visionen kommen nicht aus dem Machen. Sie kommen aus der Stille. Aus dem Moment, in dem du endlich abschaltest und dir von links und rechts Früchte gereicht werden, während die Sonne ins Meer fällt.</p>
+    <p>Sieben Tage offline sind für dein Nervensystem kein Verzicht. Sie sind die <span class="pop">Aufzeichnung, die du dir selbst schenkst.</span> Erst nach ein paar Tagen beruhigt es sich. Erst dann hörst du wieder, was wirklich aus dir kommen will.</p>
+    <p>Wasser ist Uterus. Es ist der Ort, an dem du in deiner Essenz geboren wurdest, bevor du den ersten Atemzug gemacht hast. Dorthin gehen wir zurück.</p>
+  </div>
+</section>
+
+<!-- ============ WAS WAVECODE IST ============ -->
+<section class="lead-text">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Was Wavecode ist</div>
+      <h2 class="serif">Kein Kurs. Ein Experiment, das du lebst.</h2>
+    </div>
+    <p class="strong">Wavecode ist eine Woche auf einer Yacht, geankert auf dem glasklaren Roten Meer vor Hurghada.</p>
+    <p>Acht Frauen, drei Köche, eine Crew, die dich umsorgt. Kein Internet, kein Telefon, kein Funkloch, das dich zurück in die Matrix zieht. Du wirst abgeholt, du gibst dein Handy ab und du tauchst ein in eine Welt mit anderen Tönen.</p>
+    <p>Tagsüber schwimmst du mit Delfinen oder hältst nur die Füße ins Wasser. Du liest ein Buch zu Ende. Du isst, wenn du Hunger hast, und schläfst, wenn du müde bist. Du schaust morgens und abends direkt in die Sonne.</p>
+    <p>Und während dein Nervensystem sich beruhigt, öffnet sich der Raum für das, was als Nächstes durch dich kommen will. Deine Vision. Deine Stimme. Dein nächstes Business aus deiner Essenz heraus.</p>
+  </div>
+</section>
+
+<!-- ============ DIE REISE / SO LÄUFT ES ============ -->
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">So läuft deine Reise</div>
+      <h2 class="serif">Vorbereitung, Reise, Nachklang.</h2>
+    </div>
+    <div class="mod" style="background:rgba(255,255,255,.04);border-color:var(--aqua)">
+      <h3 class="serif" style="color:#fff">Davor — wir öffnen den Raum</h3>
+      <p style="color:#aec6cf">Bevor wir reisen, gehen wir gemeinsam in Calls. Du bekommst dein eigenes Prompt-Book, gedruckt und mit Antworten, weil es an Bord bewusst keine KI gibt. Damit arbeitest du auf der Yacht in Ruhe weiter.</p>
+    </div>
+    <div class="mod" style="background:rgba(255,255,255,.04);border-color:var(--aqua)">
+      <h3 class="serif" style="color:#fff">7 Tage auf dem Roten Meer</h3>
+      <p style="color:#aec6cf">Geankert, offline, umsorgt. Delfine, Schnorcheln für die, die wollen, Sonnenuntergänge, ein geheimes Dinner am Strand. Eine Woche, in der du dich nicht erklären, nicht liefern und nicht erreichbar sein musst.</p>
+    </div>
+    <div class="mod" style="background:rgba(255,255,255,.04);border-color:var(--aqua)">
+      <h3 class="serif" style="color:#fff">Danach — du bringst es nach Hause</h3>
+      <p style="color:#aec6cf">Nach der Reise gehen wir noch einmal in gemeinsame Calls. Du verankerst, was sich geöffnet hat, in deinem Alltag und deinem Business. Dazu kommt dein neues Branding-Design, das aus dieser Energie entsteht.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIE DELFINE ============ -->
+<section class="narrative">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Die Frequenz</div>
+      <h2 class="serif">Warum Delfine.</h2>
+    </div>
+    <p>Delfine schlafen nie ganz. Eine Gehirnhälfte ruht, die andere bleibt wach, weil sie aktiv atmen müssen. Sie vertrauen in jedem Moment darauf, dass der nächste Atemzug kommt. Auch im Schlaf.</p>
+    <p>Diese Frequenz überträgt sich. Menschen fahren mit ihren Kindern zu den Delfinen, weil ihre Stimme tief in dir Blockaden und Emotionen löst, an die du sonst nicht herankommst.</p>
+    <p>Du musst nicht ins Wasser, wenn du nicht willst. Du kannst an Deck bleiben und nur die Hand reinhalten. Die Frequenz ist trotzdem da. Und vielleicht merkst du, dass das Unbekannte, vor dem du zurückschreckst, genau der Ort ist, an dem du am meisten wächst.</p>
+  </div>
+</section>
+
+<!-- ============ INKLUSIVE (dark) ============ -->
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Alles drin</div>
+      <h2 class="serif">Was in deiner Reise enthalten ist.</h2>
+    </div>
+    <ul class="incl">
+      <li>7 Nächte auf der Yacht, geankert auf dem Roten Meer</li>
+      <li>Dein eigenes Zimmer an Bord</li>
+      <li>Drei Köche, die dich morgens, mittags und abends bekochen</li>
+      <li>Geführtes Schnorcheln mit den Delfinen durch Profis</li>
+      <li>Shuttle vom Flughafen Hurghada und zurück</li>
+      <li>Visum für Ägypten</li>
+      <li>Vorbereitungs-Calls und dein gedrucktes Prompt-Book</li>
+      <li>Nachbereitungs-Calls für deinen Alltag</li>
+      <li>Dein neues Branding-Design aus dieser Reise</li>
+      <li>Ein geheimes Dinner am Strand</li>
+    </ul>
+    <p style="text-align:center;margin-top:36px;color:#9fb6c1;font-weight:300;font-size:15px">Deine Flüge nach Hurghada buchst du selbst. Du darfst gern ein bis zwei Tage früher anreisen für deine eigene Integrationszeit.</p>
+  </div>
+</section>
+
+<!-- ============ FÜR WEN ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Für wen</div>
+      <h2 class="serif">Ist das deine Reise?</h2>
+    </div>
+    <div class="qual">
+      <div class="box yes">
+        <h3>Wavecode ist für dich, wenn</h3>
+        <ul>
+          <li>du ein Business hast, das läuft, und trotzdem spürst, dass du dich darin verloren hast</li>
+          <li>du aus dem Hustle raus und aus deiner Essenz heraus kreieren willst</li>
+          <li>dein Nervensystem einen echten Reset braucht</li>
+          <li>du deine eigene Stimme und deine Intuition wieder hören willst</li>
+          <li>du bereit bist, dich für eine neue Erfahrung zu öffnen</li>
+        </ul>
+      </div>
+      <div class="box no">
+        <h3>Wavecode ist nichts für dich, wenn</h3>
+        <ul>
+          <li>du nicht sieben Tage offline gehen kannst oder willst</li>
+          <li>du eine weitere Strategie suchst statt einen Reset</li>
+          <li>du erreichbar bleiben willst, egal was passiert</li>
+          <li>du nur dabei sein willst, ohne wirklich einzutauchen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WER ICH BIN ============ -->
+<section class="author">
+  <div class="wrap" style="max-width:680px">
+    <div class="section-head">
+      <div class="eyebrow">Wer dich begleitet</div>
+      <h2 class="serif">Ich bin Patrycja.</h2>
+    </div>
+    <p>Ich verbinde Astrologie, Identitätsarbeit und Businessstrategie und begleite Frauen dabei, aus sich selbst heraus ein Business aufzubauen, das ihnen gehört.</p>
+    <p>Ich war jahrelang so angepasst, dass ich einen ganzen Teil von mir getötet habe, um dazuzugehören. Ich durfte lernen, zu bleiben. Zu stehen, zu bleiben und weiterzuziehen, auch wenn es unbequem wurde.</p>
+    <p>Diese Reise starte ich an meinem 39. und beende sie an meinem 40. Geburtstag. Ich gehe selbst ins Wasser, in das Unbekannte, in die Tiefe. Und ich nehme dich mit.</p>
+    <p>An meiner Seite ist Patricia, die den sinnlichen, kreativen Raum hält und dein Design gestaltet. Dazu eine Fotografin und Videografin, die diese Tage für dich festhält.</p>
+    <p class="sign serif">Patrycja</p>
+  </div>
+</section>
+
+<!-- ============ PAKETE ============ -->
+<section id="pakete" class="dark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Deine Wahl</div>
+      <h2 class="serif">Zwei Wege an Bord.</h2>
+    </div>
+    <div class="pakete">
+
+      <div class="pak">
+        <div class="tag">Die Reise</div>
+        <h3 class="serif">Wavecode</h3>
+        <div class="platz">8 Plätze • dein eigenes Zimmer</div>
+        <div class="preis">8.888&nbsp;€<small>einmalig</small></div>
+        <ul>
+          <li>7 Tage auf der Yacht, alles inklusive</li>
+          <li>Vorbereitungs- und Nachbereitungs-Calls</li>
+          <li>Dein gedrucktes Prompt-Book</li>
+          <li>Schnorcheln mit den Delfinen</li>
+          <li>Dein Branding-Design aus der Reise</li>
+          <li>Geheimes Dinner am Strand</li>
+        </ul>
+        <a href="[[Checkout-Link-Reise]]" class="cta cta-aqua">Ich komme mit</a>
+      </div>
+
+      <div class="pak vip">
+        <div class="tag">Hochexklusiv</div>
+        <h3 class="serif">Wavecode VIP</h3>
+        <div class="platz">2–3 Plätze • 1:1 mit Patrycja</div>
+        <div class="preis">[[VIP-Preis]]<small>einmalig</small></div>
+        <ul>
+          <li>Alles aus der Reise</li>
+          <li>1:1 Begleitung in der Vorbereitung</li>
+          <li>Persönliche Sessions an Bord</li>
+          <li>[[Hochkarätiges VIP-Extra, das es nur hier gibt]]</li>
+        </ul>
+        <a href="[[Checkout-Link-VIP]]" class="cta">Ich will den VIP-Raum</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:34px;color:#9fb6c1;font-weight:300;font-size:15px">Du sicherst deinen Platz mit einer Anzahlung von 2.000&nbsp;€. Den Rest zahlst du bis zwei Wochen vor Abreise. [[Zahlungsanbieter / Ratenoption hier ergänzen.]]</p>
+  </div>
+</section>
+
+<!-- ============ URGENCY ============ -->
+<section class="dark urgency" style="padding-top:0">
+  <div class="wrap" style="max-width:620px">
+    <div class="seats serif">8</div>
+    <p class="big">Mehr Plätze gibt es nicht. Eine Kabine, acht Frauen, ein Raum, der sich nicht wiederholt.</p>
+    <p style="color:#9fb6c1;font-weight:300">Wer sich heute Abend entscheidet, bekommt [[Launch-Bonus: z.B. größeres Branding-Paket oder zusätzliche 1:1-Sessions in der Vorbereitung]] dazu. Das gibt es nur jetzt.</p>
+    <a href="#pakete" class="cta" style="margin-top:34px">Ich sichere mir meinen Platz</a>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="finale">
+  <div class="wrap" style="max-width:680px">
+    <h2 class="serif">Komm mit. Schalt dein Handy ab.</h2>
+    <p class="big">Lass dich von der Frequenz der Delfine tragen, bis deine eigene Stimme wieder lauter ist als der Lärm.</p>
+    <p class="big">Sieben Tage. Acht Frauen. Eine Woche, die deine Visionen zurückbringt.</p>
+    <a href="#pakete" class="cta" style="margin-top:24px">Ja, ich komme mit</a>
+    <div class="cta-mini">19.–26. September 2026 • Rotes Meer</div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Bevor du fragst</div>
+      <h2 class="serif">Klare Antworten.</h2>
+    </div>
+
+    <details>
+      <summary>Muss ich mit den Delfinen schwimmen?</summary>
+      <p>Nein. Du kannst an Deck bleiben und nur die Füße oder die Hand ins Wasser halten. Die Frequenz ist trotzdem da. Wer schnorcheln will, wird von Profis begleitet.</p>
+    </details>
+    <details>
+      <summary>Was bedeutet wirklich offline?</summary>
+      <p>An Bord gibt es kein Internet und kein ChatGPT. Im Notfall lässt sich eine Nachricht durchschicken. Das ist genau der Sinn der Reise. Dein Nervensystem darf sich beruhigen, ohne dass du alle paar Minuten zurück in die Matrix gezogen wirst.</p>
+    </details>
+    <details>
+      <summary>Sind die Flüge im Preis enthalten?</summary>
+      <p>Die Flüge nach Hurghada und zurück buchst du selbst. Alles vor Ort ist dabei: Shuttle, Visum, dein Zimmer, drei Mahlzeiten am Tag, die Crew und die Guides.</p>
+    </details>
+    <details>
+      <summary>Wie sichere ich meinen Platz?</summary>
+      <p>Mit einer Anzahlung von 2.000&nbsp;€. Den Rest zahlst du bis zwei Wochen vor Abreise. Es gibt nur 8 Plätze, jede Frau bekommt ihr eigenes Zimmer.</p>
+    </details>
+    <details>
+      <summary>Brauche ich ein Business, um dabei zu sein?</summary>
+      <p>Wavecode ist für Unternehmerinnen gemacht, die aus dem Hustle raus und aus ihrer Essenz heraus kreieren wollen. Wenn du dir nicht sicher bist, ob die Reise zu dir passt, schreib mir einfach.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  Wavecode • 19.–26. September 2026 • Rotes Meer, Hurghada<br>
+  Patrycja Nasri • <a href="[[Impressum-Link]]">Impressum</a> • <a href="[[Datenschutz-Link]]">Datenschutz</a>
+</footer>
+
+</body>
+</html>

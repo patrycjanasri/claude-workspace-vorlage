@@ -2,6 +2,8 @@
   "version": "0.0.1",
   "configurations": [
     { "name": "astro-engine-test", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/serve.py"], "port": 8765 },
-    { "name": "astrocode-salespage", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/astrocode_preview/serve.py"], "port": 8910 }
+    { "name": "astrocode-salespage", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/astrocode_preview/serve.py"], "port": 8910 },
+    { "name": "business-reader", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/business_reader_serve.py"], "port": 8930 },
+    { "name": "wavecode-salespage", "runtimeExecutable": "python3", "runtimeArgs": ["/tmp/wavecode_serve.py"], "port": 8940 }
   ]
 }

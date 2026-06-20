@@ -117,6 +117,19 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Status:** FERTIG (Rohversion) — 30.05.2026
 **Datei:** `outputs/womancode-promptguide-2026-05-29.md`
 **Konzept:** KI-Promptguide für Frauen — Weiblichkeit durch den persönlichen Astro-Chart lesen. Feminine Planeten, weibliche Häuser, Seelenweg, Tiefenthemen.
+
+**Framing / Zielgruppe (19.06.2026):** Für die Frau, die im Alltag/Stress nur noch im Außen lebt und ihre Weiblichkeit vergessen hat. Sie funktioniert, versorgt alle, steht selbst an letzter Stelle, spürt ihren Körper kaum noch. Womancode bringt sie zurück: in den Körper (raus aus dem Kopf), zu ihrer Sinnlichkeit, ins Spüren, an die erste Stelle (ohne schlechtes Gewissen), ins Empfangen (Visionen/Fülle/Lust kommen aus der weiblichen Energie, nicht aus dem Machen). Kernsatz: „Womancode ist für die Frau, die wieder eine Frau sein will. Nicht die, die alles am Laufen hält. Die, die sich spürt." Positioniert als **Live Experiment** (erfahren statt lernen), nicht als Kurs — Voice wie DeinAstroCode „Dein Experiment beginnt jetzt". Abgrenzung: Moneycode=Geld, Identitycode=Selbstführung, **Womancode=Körper & Sinnlichkeit** (eigene Tür). Transformation: von „ich funktioniere" zu „ich spüre mich", von „ich versorge alle" zu „ich an erster Stelle", von „ich mache" zu „ich empfange".
+
+**Erweiterung (19.06.2026) — Womancode ist mehr als die Chart-Landkarte:** Zwei Ebenen. (1) Die Landkarte = der Chart zeigt, wo Sinnlichkeit/Lust/Empfangen liegen. (2) Das gelebte Experiment = sie bringt es in den echten Alltag. Sinnliche Erfahrungsfelder, die das Experiment anfasst: Kleiderschrank (woran halte ich fest, was trage ich um nicht aufzufallen, was würde die Frau anziehen die sich spürt), Essen zelebrieren (Genuss statt Funktion), Körper bewohnen (spüren statt nur im Kopf), Lust fürs Leben (auf den Tag, auf Schönheit, auf sich — nicht nur Lust im Bett). Womancode öffnet einen Raum / „öffnet den Raum für mehr". Kein Tool zum Lesen, ein Experiment zum Leben. Abgrenzung verschärft: Moneycode + Identitycode arbeiten im Innen/Business, **Womancode im gelebten, sinnlichen Alltag**.
+
+**GROSSE WENDE (19.06.2026) — Womancode wird 6-Wochen-Live-Mentoring (nicht mehr Promptguide):**
+- **Format:** 6 intensive Wochen, **Start 22.07.2026, Ende 26.08.2026**
+- **4 Live-Calls** je 20:00 Uhr: 22.07., 05.08. (Patrycja schrieb 05.07. = Tippfehler, zu bestätigen), 12.08., 26.08.
+- **Telegram-Begleitung** über die 6 Wochen
+- **Patrycjas echte Story (Verkaufsanker, roh halten!):** gefühlt halbes Leben übergewichtig, in den 2000ern nie dazugehörig gefühlt, sich versteckt in weiter schwarzer Kleidung, Körper verurteilt. Periode nur 2x/Jahr, Gynäkologe: „liegt an Ihrem Gewicht, abnehmen". Wendepunkt: Buch **„Die Wolfsfrau"** → Bewusstsein fürs **Sakralchakra** → Weiblichkeit + Lust leben. 2023 Periode/Zyklus zurück. Heute: kleidet sich bunt + sinnlich, kreist Becken, tanzt, „ich bin WILD", finanziell unabhängig. Kernbotschaft: **„Weiblichkeit ist der Schlüssel für den Erfolgsflow. Money wird nicht aus männlicher Energie kreiert."**
+- **Weibliche Urwunde** als gesellschaftlicher Aufhänger: verbannte Göttlichkeit, Trümmerfrauen, Size-Zero-Ideal der 90er/2000er, Frau als Objekt.
+- **Salespage v2 (vollständig, auf ihrem Pitch):** `outputs/womancode-salespage-v2-2026-06-19.md`. Hook „Jeder steht bei dir an erster Stelle, nur du nicht." Erste Version (Promptguide-Annahme): `outputs/womancode-salespage-2026-06-19.md`.
+- **Offen:** Call-Datum 2 bestätigen (05.08.?), Preis, Anmeldelink, Entscheidung ob Astro-Chart als Modul drin bleibt (v2 ist embodiment-fokussiert, Astro zurückgestellt).
 **Struktur:**
 - Teil 1: Feminine Planeten (Mond, Venus, Lilith, Chiron, Asteroiden)
 - Teil 2: Weibliche Häuser (4., 7., 8., 12.)
@@ -250,6 +263,19 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 **Verifiziert:** Browser-Test (8 Übungen, 18 Schreibfelder, Auto-Speichern + Sichern/Laden-Round-Trip ok).
 
 **Verbleibende Schatten-Punkte zur Diskussion:** Neptun (Flucht/Selbsttäuschung, generationsbedingt → Haus personalisiert) — Beispiel gezeigt, Entscheidung offen.
+
+## Wavecode — Delfin-Retreat auf dem Roten Meer (Salespage 19.06.2026)
+
+**Status:** Salespage gebaut & im Browser verifiziert — 19.06.2026
+**Datei:** `outputs/wavecode-salespage.html` (eigenständige HTML, oceanic/Deep-Sea-Look, Cormorant + Poppins, Gold/Türkis, keine externen Bilder)
+**Quelle:** VIP-Session-Transkript mit Katrin Krappweis (`2026-06-19_VIP-Transkript.pdf`, Pricing & Pakete).
+**Was es ist:** Patrycjas erstes Retreat. 7 Tage geankert auf einer Yacht auf dem Roten Meer vor Hurghada, **19.–26. September 2026** (ihr 39.→40. Geburtstag). Komplett offline (kein Handy/Internet/KI), Schwimmen mit Delfinen (Schnorcheln, freiwillig), 8 Frauen, je eigenes Zimmer, 3 Köche, Crew, Shuttle + Visum inkl. Flüge selbst.
+**Frame:** Business Ladies der neuen Zeit. Nervensystem-Reset, raus aus Hustle/Dopamin/Lärm (Uranus in Zwillingen), zurück zu Stimme/Vision/Intuition/Weiblichkeit. Wasser = Uterus/Essenz. Delfin-Frequenz (Vertrauen, halbes Gehirn wach). Live Experiment, kein Kurs. Inkl. Vorbereitung (Calls + gedrucktes Prompt-Book) + Reise + Nachbereitung (Calls) + Branding-Design. Co-Host: Patricia (Creation/sinnlich/Design) + Foto-/Videografin.
+**Pakete:** Hauptpaket 8 Plätze à **8.888€** (netto=brutto, Kleinunternehmerin) · VIP 2–3 Plätze, 1:1, ~18.000€ · Anzahlung 2.000€ (nicht erstattbar) · Urgency: nur 8 Plätze, Launch-Party-Bonus für Sofort-Bucher · Secret Dinner am Strand als Add-on.
+**Offene Platzhalter `[[ ]]` in der HTML (nur Patrycja entscheidet):** VIP-Preis, VIP-Extra, Launch-Bonus-Detail, Checkout-Links (Reise/VIP), Zahlungsanbieter/Raten, Impressum/Datenschutz.
+**Nächste Schritte:** Platzhalter füllen, Netlify-Upload, Masterclass-Pitch für den Launch, Anzahlungen über Konto bis 1. Juli (Ziel: erste Buchungen bis 30. Juni). Echtes Hero-Banner (Yacht/Delfine/Rotes Meer) optional statt CSS-Verlauf.
+
+---
 
 ## Übergeordnete Prioritäten
 

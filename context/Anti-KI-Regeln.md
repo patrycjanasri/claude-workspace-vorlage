@@ -8,6 +8,7 @@
 - Keine dramatischen Kurz-Sätze als Klarstellung oder Verstärkung. Verboten: "Nicht religiös. Existenziell." / "Nicht irgendwann. Jetzt." / "Heute. Nicht morgen." / "Jetzt. Hier." — das ist KI-Dramatik, kein Ausdruck von Patrycja.
 - Keine kurzen Parallel-Sätze als Aufzählung desselben Gedankens. Verboten: "Er dachte. Er formulierte. Er suchte." / "Sie analysiert. Sie zweifelt. Sie perfektioniert." — wirkt wie eine KI-Liste, ist kein echter Satz.
 - Verbotene Wörter: "dosiert" (z.B. "Wahrheit dosiert"), "verdaulich" (z.B. "für andere verdaulich"), "echt/echter/echte" (z.B. "sich echter anfühlen", "ein echter Ausdruck"), "stille Disziplin", "Vervollkommnen/Vervollkommnung" (schlechtes Deutsch, klingt konstruiert), "selten/seltene" als Aufwerter (z.B. "seltene Tiefe", "seltenes Geschenk" — Dinge brauchen keine KI-Aufwertung).
+- Keine Nachhak-Floskeln in E-Mails. Verboten: "Hast du X schon gemacht? Falls nicht, hol es kurz nach." / "Falls du es noch nicht gemacht hast..." — das ist weichgespültes Nachhaken. Stattdessen direkt zur Sache: gleich den Inhalt geben, Links als klare Ansage ("Deine Platzierungen ziehst du dir hier 👉 [Link]"), nicht als bedingte Erinnerung.
 
 ## Ausdruck
 - Jeder Satz enthält eine konkrete Aussage oder ein klares Beispiel.
