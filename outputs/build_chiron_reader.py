@@ -81,11 +81,11 @@ repl("<h2>Dein Business-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p
 repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neuen Chiron-Code erstellen", "back-btn")
 
 # --- 2. Chiron-Berechnung in runCheck einhaengen -------------------------
-meta_anchor = "      window.__meta = { name: name, email: email, date: date, time: time, place: place.label };"
-chiron_calc = meta_anchor + """
+# Anker NACH window.__chart, damit window.__aspects bereits gesetzt ist.
+calc_anchor = "      window.__chart = chart;\n      generateReading();"
+chiron_calc = """      window.__chart = chart;
 
-      // Chiron in Stier: in welchem Haus liegt Stier (dort wirkt der Transit),
-      // wo steht das natale Chiron, welche Planeten habe ich im Stier
+      // Chiron in Stier: mehrere Chart-Schichten fuer ein tiefes Reading
       (function(){
         const houses = horo.Houses || [];
         function houseOfLong(L){
@@ -102,12 +102,32 @@ chiron_calc = meta_anchor + """
         }
         const hs = [];
         [30.01, 45, 59.99].forEach(function(L){ const id = houseOfLong(L); if(id && hs.indexOf(id) === -1) hs.push(id); });
-        const chironEntry = (window.__fullChart || []).find(function(e){ return e.label === 'Chiron'; }) || {};
-        const ANGLE = { 'Aszendent':1, 'Deszendent':1, 'MC':1, 'IC':1 };
-        const taurusPlanets = (window.__fullChart || []).filter(function(e){ return e.sign === 'Stier' && e.label !== 'Chiron' && !ANGLE[e.label]; });
-        window.__chiron = { houses: hs, natalSign: chironEntry.sign || '', natalHouse: chironEntry.house || '', taurusPlanets: taurusPlanets };
-      })();"""
-repl(meta_anchor, chiron_calc, "chiron-calc-injection")
+        const FULL = window.__fullChart || [];
+        function find(label){ return FULL.find(function(e){ return e.label === label; }) || null; }
+        const chironEntry = find('Chiron') || {};
+        const venusEntry = find('Venus') || {};
+        // Alle Punkte im Stier, die Chiron auf seinem Weg beruehrt: Planeten,
+        // Knoten, Lilith UND die Achsen (AC/DC/MC/IC). Eine Chiron-Konjunktion
+        // zum IC oder MC ist genauso eine Aktivierung wie ueber einen Planeten.
+        const taurusPoints = FULL.filter(function(e){ return e.sign === 'Stier' && e.label !== 'Chiron'; });
+        const RULER = { 'Widder':'Mars','Stier':'Venus','Zwillinge':'Merkur','Krebs':'Mond','Loewe':'Sonne','Löwe':'Sonne','Jungfrau':'Merkur','Waage':'Venus','Skorpion':'Pluto','Schuetze':'Jupiter','Schütze':'Jupiter','Steinbock':'Saturn','Wassermann':'Uranus','Fische':'Neptun' };
+        const rulerName = RULER[chironEntry.sign] || '';
+        const rulerEntry = rulerName ? (find(rulerName) || {}) : {};
+        const ASP = window.__aspects || [];
+        const chironAspects = ASP.filter(function(a){ return a.p1 === 'Chiron' || a.p2 === 'Chiron'; });
+        window.__chiron = {
+          houses: hs,
+          natalSign: chironEntry.sign || '',
+          natalHouse: chironEntry.house || '',
+          taurusPoints: taurusPoints,
+          venus: { sign: venusEntry.sign || '', house: venusEntry.house || '' },
+          ruler: { name: rulerName, sign: rulerEntry.sign || '', house: rulerEntry.house || '' },
+          chironAspects: chironAspects
+        };
+      })();
+
+      generateReading();"""
+repl(calc_anchor, chiron_calc, "chiron-calc-injection")
 
 # --- 3. Reading-Block: sichtbares Chiron-Thema + Prompt-CTA --------------
 old_cta = """  html += `
@@ -121,14 +141,16 @@ new_cta = """  // Sichtbares Chiron-in-Stier-Thema
   const C = window.__chiron || {};
   const chs = C.houses || [];
   const houseStr = chs.length ? (chs.length === 1 ? (chs[0] + '. Haus') : (chs.slice(0,-1).join('., ') + '. und ' + chs[chs.length-1] + '. Haus')) : '';
-  const tps = (C.taurusPlanets || []).map(function(e){ return e.label; });
+  const tps = (C.taurusPoints || []).map(function(e){ return e.label; });
+  const ven = C.venus || {};
   let chiHtml = `
   <div class="data-block">
     <h3>Dein Chiron-in-Stier-Thema</h3>
     <div class="data-grid">`;
   if(houseStr) chiHtml += `<div class="data-row"><span class="data-planet">Stier liegt bei dir im</span><span class="data-values"><span class="badge house-badge">${houseStr}</span></span></div>`;
+  if(ven.sign) chiHtml += `<div class="data-row"><span class="data-planet">Venus (Herrscher des Stier)</span><span class="data-values"><span class="badge sign-badge">${ven.sign}</span>${ven.house ? `<span class="badge house-badge">${ven.house}. Haus</span>` : ''}</span></div>`;
   if(C.natalSign) chiHtml += `<div class="data-row"><span class="data-planet">Dein natales Chiron</span><span class="data-values"><span class="badge sign-badge">${C.natalSign}</span>${C.natalHouse ? `<span class="badge house-badge">${C.natalHouse}. Haus</span>` : ''}</span></div>`;
-  chiHtml += `<div class="data-row"><span class="data-planet">Planeten im Stier</span><span class="data-values"><span class="badge sign-badge">${tps.length ? tps.join(', ') : 'keine'}</span></span></div>`;
+  chiHtml += `<div class="data-row"><span class="data-planet">Punkte im Stier (Planeten & Achsen)</span><span class="data-values"><span class="badge sign-badge">${tps.length ? tps.join(', ') : 'keine'}</span></span></div>`;
   chiHtml += `</div>`;
   if(C.natalSign === 'Stier') chiHtml += `<p style="margin-top:14px;opacity:.92">Dein Chiron steht selbst im Stier. Du erlebst gerade deinen Chiron-Return, einen großen Zyklus rund um deinen Selbstwert.</p>`;
   chiHtml += `</div>`;
@@ -143,25 +165,35 @@ new_cta = """  // Sichtbares Chiron-in-Stier-Thema
 repl(old_cta, new_cta, "cta-block")
 
 # --- 4. Prompt-Gehirn + Copy-Funktion austauschen ------------------------
-new_region = r"""  const CHIRON_PROMPT = `Du bist eine erfahrene Bewusstseinsastrologin mit dem Blick für die Urwunde Chiron. Du schreibst klar, tief und direkt, so dass mich jeder Satz trifft. Keine Floskeln, keine allgemeinen Astro-Sätze, kein Lehrbuchton.
+new_region = r"""  const CHIRON_PROMPT = `Du bist eine erfahrene Bewusstseinsastrologin mit dem Blick für die Urwunde Chiron. Du liest meine Chart in Schichten und schreibst klar, tief und direkt, so dass mich jeder Satz trifft. Keine Floskeln, keine allgemeinen Astro-Sätze, kein Lehrbuchton.
 
-Mein Thema: Chiron läuft die nächsten Jahre durch das Tierkreiszeichen Stier. Ich will wissen, was das ganz persönlich für mich bedeutet. Stier steht für Selbstwert, Körper, Sinnlichkeit, Genuss, Geld, Sicherheit, Besitz und die Frage "Was bin ich wert?". Chiron ist die Urwunde, die nicht heilt, die berührt und integriert werden will und die mein größtes Geschenk an die Welt in sich trägt.
+Mein Thema: Chiron läuft die nächsten Jahre durch das Tierkreiszeichen Stier. Stier steht für Selbstwert, Körper, Sinnlichkeit, Genuss, Geld, Sicherheit, Besitz und die Frage "Was bin ich wert?". Chiron ist die Urwunde, die nicht heilt, die berührt und integriert werden will und die mein größtes Geschenk an die Welt in sich trägt.
 
-Unten findest du die entscheidenden Punkte aus meinem Geburtshoroskop: in welchem Haus bei mir das Tierkreiszeichen Stier liegt (dort wirkt der Chiron-Transit die nächsten Jahre), wo mein natales Chiron steht und welche Planeten ich im Stier habe. Dazu mein vollständiges Chart als Kontext.
+Unten bekommst du mehrere Schichten meiner Chart:
+- in welchem Haus bei mir Stier liegt (dort wirkt der Transit die nächsten Jahre)
+- Venus, die Herrscherin des Stier und damit der rote Faden meines Selbstwerts: ihr Zeichen und Haus zeigen, woran ich meinen Wert messe und wie ich empfange
+- die Punkte, die ich im Stier habe und die Chiron auf seinem Weg nacheinander berührt, egal ob Planet oder Achse wie MC oder IC (das sind meine Aktivierungs-Phasen)
+- mein natales Chiron mit Zeichen, Haus und seinen Aspekten (so ist meine Wunde verdrahtet)
+- der Herrscher meines Chiron-Zeichens (dorthin sucht die Wunde ihren Weg in die Heilung)
+- mein vollständiges Chart als Kontext
 
 Schreibe mir auf dieser Basis:
 
-1. Mein Kernthema. In einem kraftvollen Absatz: worum es in den nächsten Jahren für mich geht. Sprich mich direkt mit "du" an.
+1. Mein Kernthema. Ein kraftvoller Absatz: worum es in den nächsten Jahren für mich geht. Sprich mich direkt mit "du" an.
 
-2. Wo es sich in meinem Leben zeigt. Nimm das Haus, in dem Stier bei mir liegt, und mach konkret, in welchem Lebensbereich diese Selbstwert-Wunde berührt wird, zum Beispiel Geld, Arbeit, Beziehungen, Körper, Zuhause oder Sichtbarkeit.
+2. Wo es sich zeigt. Nimm das Haus, in dem Stier bei mir liegt, und mach konkret, in welchem Lebensbereich meine Selbstwert-Wunde berührt wird, zum Beispiel Geld, Arbeit, Beziehungen, Körper, Zuhause oder Sichtbarkeit.
 
-3. Der Schatten. Wo ich mich klein mache, festhalte, mir meinen Wert abspreche, mir Genuss verbiete oder Sicherheit im Außen suche, die es so nicht gibt.
+3. Venus als Schlüssel. Lies aus Venus' Zeichen und Haus, woran ich heute meinen Wert festmache und wie ich Geld, Genuss und Liebe empfange. Zeig mir, wo ich mich da kleiner mache, als ich bin.
 
-4. Das Geschenk. Was sich öffnet, wenn ich die Wunde berühre statt sie zu meiden. Welcher neue Selbstwert in den nächsten Jahren in mir wachsen darf.
+4. Die Aktivierungen. Geh jeden Punkt durch, den ich im Stier habe, egal ob Planet oder Achse. Sag mir, was in mir berührt wird, wenn Chiron darüberzieht, und wie ich diese Phase nutze. Steht eine Achse wie mein IC oder MC im Stier, geh besonders darauf ein, was es heißt, wenn Chiron über diesen sensiblen Lebenspunkt zieht (IC ist meine Wurzel, mein Zuhause, mein innerer Boden; MC ist mein Weg nach außen, meine Berufung). Habe ich keinen Punkt im Stier, dann arbeite mit dem Haus.
 
-5. Der Weg durch den Körper. Eine konkrete, sinnliche Einladung, wie ich zurück in meinen Körper und in den Genuss komme.
+5. Wie meine Wunde verdrahtet ist. Lies mein natales Chiron und seine Aspekte. Welche inneren Anteile zieht die Wunde mit hinein? Und über den Herrscher meines Chiron-Zeichens: wohin will sie geheilt werden?
 
-6. Meine Schattenfrage. Eine einzige, konfrontierende Frage, die mich nicht mehr loslässt.
+6. Schatten und Geschenk. Wo halte ich fest, mache mich klein, spreche mir meinen Wert ab oder suche Sicherheit im Außen, die es so nicht gibt. Und was wächst, wenn ich die Wunde berühre statt sie zu meiden.
+
+7. Der Weg durch den Körper. Eine konkrete, sinnliche Einladung, wie ich zurück in meinen Körper und in den Genuss komme.
+
+8. Meine Schattenfrage. Eine einzige, konfrontierende Frage, die mich nicht mehr loslässt.
 
 Wenn mein natales Chiron selbst im Stier steht, erlebe ich gerade meinen Chiron-Return. Geh in dem Fall besonders darauf ein, dass sich hier ein großer Lebenszyklus rund um meinen Selbstwert schließt.
 
@@ -182,9 +214,18 @@ Hier sind meine Daten:`;
     const hs = C.houses || [];
     const houseStr = hs.length ? (hs.length === 1 ? (hs[0] + '. Haus') : (hs.slice(0,-1).join('., ') + '. und ' + hs[hs.length-1] + '. Haus')) : '';
     if(houseStr) data.push('Das Tierkreiszeichen Stier liegt in meinem ' + houseStr + '. Dort wirkt der Chiron-Transit die nächsten Jahre.');
+    const ven = C.venus || {};
+    if(ven.sign) data.push('Venus (Herrscherin des Stier, roter Faden meines Selbstwerts): ' + ven.sign + (ven.house ? (', ' + ven.house + '. Haus') : '') + '.');
+    const tp = (C.taurusPoints || []).map(function(e){ return e.label; });
+    data.push('Punkte (Planeten und Achsen wie MC/IC), die ich im Stier habe und die Chiron nacheinander berührt (meine Aktivierungs-Phasen): ' + (tp.length ? tp.join(', ') : 'keine') + '.');
     if(C.natalSign) data.push('Mein natales Chiron steht in ' + C.natalSign + (C.natalHouse ? (', ' + C.natalHouse + '. Haus') : '') + '.');
-    const tp = (C.taurusPlanets || []).map(function(e){ return e.label; });
-    data.push('Planeten, die ich im Stier habe: ' + (tp.length ? tp.join(', ') : 'keine') + '.');
+    const ru = C.ruler || {};
+    if(ru.name && ru.sign) data.push('Herrscher meines Chiron-Zeichens (' + ru.name + ', dorthin sucht die Wunde ihre Heilung): ' + ru.sign + (ru.house ? (', ' + ru.house + '. Haus') : '') + '.');
+    const ca = C.chironAspects || [];
+    if(ca.length){
+      data.push('Aspekte meines natalen Chiron (so ist die Wunde verdrahtet):');
+      ca.forEach(function(a){ const other = (a.p1 === 'Chiron') ? a.p2 : a.p1; const os = (a.p1 === 'Chiron') ? a.s2 : a.s1; data.push('- Chiron ' + a.type + ' ' + other + (os ? (' in ' + os) : '')); });
+    }
     if(C.natalSign === 'Stier') data.push('Mein Chiron steht selbst im Stier: ich erlebe gerade meinen Chiron-Return.');
     data.push('');
     data.push('MEIN VOLLSTÄNDIGES CHART:');

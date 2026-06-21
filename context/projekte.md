@@ -242,6 +242,23 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 
 ---
 
+## Chiron-in-Stier Reader — „Dein Chiron-Code" (21.06.2026)
+
+**Anlass:** Chiron ist am 19.06.2026 (Freitag) ins Tierkreiszeichen Stier gewechselt (nach 7 Jahren Widder), wirkt die nächsten ~8 Jahre kollektiv auf Selbstwert/Geld/Körper. Erst entstand ein Embodied-Astrology-Text + ein eigener Chiron-in-Stier-Text (kollektiv, ohne Jahreszahlen-Liste, Voice-konform). Daraus die Idee: ein Reader, der den passenden KI-Prompt automatisch baut.
+**Datei:** `outputs/astro-chiron-reader.html` | **Upload-fertig:** `outputs/astro-chiron-reader-netlify/index.html` (Netlify Drop)
+**Generator:** `outputs/build_chiron_reader.py` — baut den Reader aus `astro-business-reader.html` (gleiches Design + Engine). Bei Design-Updates am Business-Reader Skript neu laufen lassen.
+**KEIN E-Mail-Gate (Entscheidung 21.06.):** Email-Feld, Validierung und `subscribeLead`/Netlify-Subscribe komplett entfernt. Nur Name, Geburtsdatum, Geburtszeit, Geburtsort. „Ich mach das anders" (Funnel läuft über Kommentar-CTA, nicht Opt-in).
+**Auto-Berechnung (das Besondere):** Engine (`circular-natal-horoscope-js`, Placidus) rechnet das Chart und der Reader zieht daraus mehrere Schichten in `window.__chiron`:
+- **Stier-Haus** = wo der Transit wirkt (via `houseOfLong()` über Hauscusps `ChartPosition.Start/EndPosition.Ecliptic.DecimalDegrees`, prüft 0°/15°/29° Stier, fängt auch 2 Häuser ab).
+- **Venus** als Herrscherin des Stier = roter Faden des Selbstwerts.
+- **Punkte im Stier (Planeten UND Achsen)** = was Chiron nacheinander überquert (Aktivierungs-Phasen). WICHTIG: Achsen NICHT rausfiltern — Patrycja hat z.B. ihre IC/MC-Achse im Stier; Chiron-Konjunktion zu IC/MC ist eigene große Aktivierung. Prompt-Schritt 4 behandelt IC/MC explizit (IC=Wurzel/Boden, MC=Weg nach außen).
+- **Natales Chiron + seine Aspekte** (aus `__aspects` gefiltert) = wie die Wunde verdrahtet ist.
+- **Herrscher des Chiron-Zeichens** (Dispositor) = wohin die Wunde geheilt werden will.
+**Prompt (`CHIRON_PROMPT`):** 8 Schritte (Kernthema, wo es sich zeigt, Venus-Schlüssel, Aktivierungen, Verdrahtung der Wunde, Schatten+Geschenk, Weg durch den Körper, Schattenfrage). Erkennt Chiron-Return (natales Chiron in Stier). Voice-konform (keine Gedankenstriche, kein „nicht…sondern"). Button **„Chiron-Prompt + Daten kopieren"** (`copyChironReading()`) legt Prompt + alle Schichten + volles Chart in die Zwischenablage.
+**Offen:** Netlify-Upload durch Patrycja; Verifikation im echten Browser steht aus (Preview-Sandbox kommt nicht an den Downloads-Pfad) — Patrycja soll prüfen, ob „Stier-Haus" und das Achsen-Zeichen (IC im Stier) mit astro.com übereinstimmen. Werbe-Karussell für Codewort CHIRON war angefragt, Patrycja mit den Entwürfen noch nicht zufrieden (Hooks zu abstrakt/„verschoben" verboten) — offen.
+
+---
+
 ## Schattenarbeit-Paket — Emotioncode Woche 3 (4 Bausteine)
 
 **Status:** Statisches Tool + Promptbook + Workbook fertig & verifiziert; Live-KI-Version gebaut, Deploy offen — 08.06.2026
