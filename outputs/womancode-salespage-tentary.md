@@ -1,26 +1,14 @@
-# Womancode — Salespage (v2, 6-Wochen-Mentoring)
+WOMANCODE
+6 Wochen zurück zu dir, zu deiner Weiblichkeit, zu deiner Sinnlichkeit.
+Start: 22.07.2026
 
-*Stand 19.06.2026. Auf Basis von Patrycjas eigenem Pitch + ihrer echten Story. Ihre Worte so nah wie möglich am Original gehalten. Voice-geprüft: keine Gedankenstriche, kein "nicht…sondern" in meinen Sätzen, keine verbotenen Wörter.*
 
-*Offen: Preis. Anmeldelink.*
+────────────────────────
 
----
-
-## HERO
-
-**Eyebrow:** Womancode · 6 Wochen · Start 22.07.2026
-
-**Headline:**
 Jeder steht bei dir an erster Stelle. Nur du nicht.
 
-**Sub:**
-Sechs Wochen zurück zu dir, zu deiner Weiblichkeit, zu deiner Sinnlichkeit. Womancode ist der Raum für die Frau, die wieder lebendig sein will.
+────────────────────────
 
-**CTA-Button:** Ich komme zurück zu mir → [[Anmeldelink]]
-
----
-
-## DER SPIEGEL
 
 Kennst du das? Jeder steht bei dir an erster Stelle, nur du nicht.
 
@@ -30,17 +18,15 @@ Sinnlichkeit? Was ist das eigentlich?
 
 Seit Jahren versuchst du, dir etwas aufzubauen. Und hast dabei das Gefühl, du bewegst dich im Kreis. Alles fühlt sich schwer an. Du hast kaum Ideen, schaust ständig auf Social Media, was die anderen Frauen machen, siehst die perfekte Fassade eines Lebens, das du auch gerne hättest. Und dein eigener Erfolg bleibt aus.
 
----
 
-## WAS WÄRE, WENN DAMIT SCHLUSS IST
+WAS WÄRE, WENN DAMIT SCHLUSS IST
 
 Was wäre, wenn ich dir sage, dass damit ab sofort Schluss ist?
 
 Ein Raum, den ich öffne, für die Frauen, die es satt haben, sich unter ihrem Wert zu verkaufen. Für die Frauen, die es satt haben, immer und immer wieder den gleichen Alltag zu durchleben und keine Lebendigkeit mehr zu fühlen.
 
----
 
-## DIE WEIBLICHE URWUNDE
+DIE WEIBLICHE URWUNDE
 
 Wenn ich zurückblicke auf die Gesellschaft, sehe ich Frauen, die für ihre Göttlichkeit verbannt wurden.
 
@@ -52,9 +38,8 @@ Und genau damit ist ab sofort Schluss.
 
 Brich den Womancycle. Brich die Urwunde, die von Generation zu Generation weitergegeben wird.
 
----
 
-## MEINE GESCHICHTE
+MEINE GESCHICHTE
 
 Lass mich ein bisschen über meine eigene Geschichte mit Womancode ausholen.
 
@@ -62,7 +47,7 @@ Ich bin gefühlt mein halbes Leben übergewichtig. In den 2000ern habe ich mich 
 
 Es war sogar so manifestiert, dass ich meine Periode nicht bekommen habe. Höchstens zweimal im Jahr. Die Worte vom Gynäkologen sind dir bestimmt bewusst: Es liegt an Ihrem hohen Gewicht, Sie müssen abnehmen.
 
-Bis zu dem Tag, als ich vor einigen Jahren das Buch "Die Wolfsfrau" gelesen habe. Mir wurde bewusst, was für eine krasse Fähigkeit wir Frauen haben. Unser Sakralchakra, unsere Intuition, unsere Weiblichkeit. Die Lust, die Sinnlichkeit, die Bewegung. Alles. Wir sind in der Lage, einen Menschen zu erschaffen und zu ernähren. Jeder Mensch auf dieser Erde ist durch den Körper einer Frau geboren. Durch dieses Portal.
+Bis zu dem Tag, als ich vor einigen Jahren das Buch „Die Wolfsfrau" gelesen habe. Mir wurde bewusst, was für eine krasse Fähigkeit wir Frauen haben. Unser Sakralchakra, unsere Intuition, unsere Weiblichkeit. Die Lust, die Sinnlichkeit, die Bewegung. Alles. Wir sind in der Lage, einen Menschen zu erschaffen und zu ernähren. Jeder Mensch auf dieser Erde ist durch den Körper einer Frau geboren. Durch dieses Portal.
 
 Ich fing an, mich mehr damit zu beschäftigen. Ich begann, meine Weiblichkeit und meine Lust immer mehr zu leben.
 
@@ -72,68 +57,68 @@ Und nicht nur das. Ich bin finanziell unabhängig. Denn Weiblichkeit und die wei
 
 Genau diesen Weg möchte ich in Womancode an dich weitergeben.
 
----
 
-## WAS DICH IN WOMANCODE ERWARTET
+WAS DICH IN WOMANCODE ERWARTET
 
 Sechs intensive Wochen zurück zu dir, zu deiner Weiblichkeit, zu mehr Sinnlichkeit.
 
 Du kommst zurück in deinen Körper, raus aus dem Kopf. Du entdeckst deine Sinnlichkeit im Alltag wieder, an einem ganz normalen Dienstag. Du lernst deinen Zyklus als Kraft kennen statt als Störung. Und du verstehst, wie deine weibliche Energie dein Erfolgsflow wird, im Leben und im Geld.
 
-**Dein Kleiderschrank** ist ein Anfang. Woran hältst du fest, das dich klein hält? Was würde die Frau anziehen, die sich spürt?
+Dein Kleiderschrank ist ein Anfang. Woran hältst du fest, das dich klein hält? Was würde die Frau anziehen, die sich spürt?
 
-**Dein Körper** wird wieder dein Zuhause. Becken kreisen, tanzen, dich bewegen, dich fühlen.
+Dein Körper wird wieder dein Zuhause. Becken kreisen, tanzen, dich bewegen, dich fühlen.
 
-**Deine Lust für das Leben** kommt zurück. Auf den Tag, auf Schönheit, auf dich.
+Deine Lust für das Leben kommt zurück. Auf den Tag, auf Schönheit, auf dich.
 
-**Deine Weiblichkeit wird dein Erfolgskanal.** Du erschaffst aus weiblicher Energie statt aus Druck und Funktionieren.
+Deine Weiblichkeit wird dein Erfolgskanal. Du erschaffst aus weiblicher Energie statt aus Druck und Funktionieren.
 
----
 
-## DAS IST ALLES DRIN
+DAS IST ALLES DRIN
 
-**Vier Live-Calls mit mir** je 20:00 Uhr, sechs Wochen lang an deiner Seite.
+Vier Live-Calls mit mir, je 20:00 Uhr, sechs Wochen lang an deiner Seite.
 
-**Intensive Telegram-Begleitung** über die gesamten sechs Wochen.
+Intensive Telegram-Begleitung über die gesamten sechs Wochen.
 
-**Dein Promptguide zu deiner Weiblichkeit.** Wie liebst du, wie fühlst du, was ist dir in einer Partnerschaft wirklich wichtig. Allein dieses Wissen wird dein Sinnlichkeitsbooster.
+Dein Promptguide zu deiner Weiblichkeit. Wie liebst du, wie fühlst du, was ist dir in einer Partnerschaft wirklich wichtig. Allein dieses Wissen wird dein Sinnlichkeitsbooster.
 
-**Eine intensive Deep Sensual Transmission.**
+Eine intensive Deep Sensual Transmission.
 
-**Eine Goodiebag mit einem sinnlichen Secret-Öl**, das deine Leidenschaft für das Leben wieder entfacht.
+Eine Goodiebag mit einem sinnlichen Secret-Öl, das deine Leidenschaft für das Leben wieder entfacht.
 
----
 
-## DEIN VIP-RAUM (nur 2 Plätze)
+DEIN VIP-RAUM – NUR 2 PLÄTZE
 
 In diesem Raum gebe ich dir die Möglichkeit, mit mir ins VIP zu gehen. Es gibt nur zwei Plätze.
 
-**Zwei tiefe 1:1 Calls mit mir.** Wir gehen gemeinsam zurück in deine Weiblichkeit. Wo stockt deine Energie, wo stehst du dir selbst im Weg. Ich sehe, was du nicht siehst, und allein meine Präsenz bewegt.
+Zwei tiefe 1:1 Calls mit mir. Wir gehen gemeinsam zurück in deine Weiblichkeit. Wo stockt deine Energie, wo stehst du dir selbst im Weg. Ich sehe, was du nicht siehst, und allein meine Präsenz bewegt.
 
-**Ein Designcall mit meiner Branddesignerin Patricia.** Ein Creationcall mit ihr und mir, dazu ein Schriftzug für deinen Namen oder dein Team, ein Symbol (deine Initiale) und zehn Canva-Vorlagen. Allein der Designpart hat einen Wert von 2222 Euro.
+Ein Designcall mit meiner Branddesignerin Patricia. Ein Creationcall mit ihr und mir, dazu ein Schriftzug für deinen Namen oder dein Team, ein Symbol (deine Initiale) und zehn Canva-Vorlagen. Allein der Designpart hat einen Wert von 2222 Euro.
 
----
 
-## DIE FAKTEN
+DIE FAKTEN
 
-**Start:** 22.07.2026 · **Zeitraum:** 22.07.2026 bis 26.08.2026 · **Dauer:** 6 intensive Wochen
+Start: 22.07.2026
+Zeitraum: 22.07.2026 bis 26.08.2026
+Dauer: 6 intensive Wochen
 
-**Die vier Live-Calls** je 20:00 Uhr: 22.07. · 29.07. · 12.08. · 26.08.2026
+Die vier Live-Calls je 20:00 Uhr:
+22.07.2026
+29.07.2026
+12.08.2026
+26.08.2026
 
-**Investment Womancode:** [[Preis einsetzen]]
-**Investment VIP (2 Plätze):** [[Preis einsetzen]]
+Investment Womancode: 〈Preis einsetzen〉
+Investment VIP (nur 2 Plätze): 〈Preis einsetzen〉
 
-**CTA-Button:** Ja, ich bin dabei → [[Anmeldelink]]
+→ BUTTON: Ja, ich bin dabei  ·  Link: 〈Anmeldelink〉
 
----
 
-## FÜR WEN
+FÜR WEN WOMANCODE IST
 
 Für die Frau, die es satt hat, sich unter ihrem Wert zu verkaufen. Für die Frau, die jeden Tag denselben Alltag durchlebt und keine Lebendigkeit mehr fühlt. Für die Frau, die sich an die erste Stelle setzen will und bereit ist, ihre Weiblichkeit zu leben.
 
----
 
-## ABSCHLUSS
+────────────────────────
 
 Du musst dich nicht länger verstecken. Du musst dich nicht länger an die letzte Stelle setzen.
 
@@ -141,6 +126,6 @@ Komm zurück in deinen Körper. Komm zurück in deine Sinnlichkeit. Komm zurück
 
 Womancode öffnet den Raum. Am 22.07.2026.
 
-**CTA-Button:** Ich bin dabei → [[Anmeldelink]]
+→ BUTTON: Ich bin dabei  ·  Link: 〈Anmeldelink〉
 
 Patrycja
