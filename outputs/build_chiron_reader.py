@@ -27,22 +27,55 @@ def repl(old, new, label):
         sys.exit("FEHLT (" + label + "): " + old[:80])
     s = s.replace(old, new, 1)
 
+# --- Womancode-Logo + CSS aus dem Womancode-Reader holen (Design-Signatur) ---
+WC = os.path.join(HERE, "womancode-reader.html")
+WC_LOGO_IMG = ""
+WC_SKIN = ""
+if os.path.exists(WC):
+    wsrc = open(WC, encoding="utf-8").read()
+    mi = re.search(r'<img class="wc-logo"[^>]*>', wsrc)
+    if mi:
+        WC_LOGO_IMG = mi.group(0)
+    # Kompletter Womancode-Skin-Block: Wein/Lotus-Hintergrund, killt Blau
+    # (binary-canvas, body::before, Sterne/Mond), Wein-Karten, warme Schrift,
+    # Gold-Buttons und das .wc-logo CSS. Erkennbar an Lotus-Bild + #220812.
+    for sm in re.finditer(r'<style[^>]*>(.*?)</style>', wsrc, re.DOTALL):
+        inner = sm.group(1)
+        if 'data:image/' in inner and '#220812' in inner:
+            WC_SKIN = inner
+            break
+
 # --- 1. Branding / sichtbare Texte ---------------------------------------
 repl("<title>Dein Business-Code</title>",
-     "<title>Dein Chiron-Code</title>", "title")
+     "<title>Womancode · Chiron in Stier</title>", "title")
 
+# Eyebrow-Zeile durch das Womancode-Logo ersetzen (so wie im Womancode-Reader)
 repl('<p class="header-eyebrow">Dein kosmischer Business-Blueprint</p>',
-     '<p class="header-eyebrow">Chiron in Stier · dein Thema der naechsten Jahre</p>'.replace("naechsten", "nächsten"),
-     "eyebrow")
+     (WC_LOGO_IMG if WC_LOGO_IMG else '<p class="header-eyebrow">Womancode</p>'),
+     "eyebrow-logo")
 
-repl("<h1>Dein Business-Code</h1>", "<h1>Dein Chiron-Code</h1>", "h1")
+# Kompletten Womancode-Skin als letzten Style-Block vor </body> einsetzen,
+# damit er alles (auch die blaue Ebene) ueberschreibt.
+if WC_SKIN:
+    repl("</body>", "<style>\n" + WC_SKIN + "\n</style>\n</body>", "wc-skin")
+
+# Mehr Luft zwischen den Karten und innerhalb des Womancode-CTA-Blocks.
+SPACING_CSS = """<style>
+  .data-block, .cta-block, .summary-block, .results-header{ margin-top:40px !important; margin-bottom:40px !important; }
+  .cta-block .cta-kicker{ margin-bottom:16px !important; }
+  .cta-block h3{ margin:14px 0 16px !important; line-height:1.3 !important; }
+  .cta-block .cta-text{ margin:0 0 24px !important; }
+</style>"""
+repl("</body>", SPACING_CSS + "\n</body>", "spacing-css")
+
+repl("<h1>Dein Business-Code</h1>", "<h1>Chiron in Stier trifft deine Weiblichkeit</h1>", "h1")
 
 repl('<p class="subtitle">Gib deine Geburtsdaten ein. Auf der nächsten Seite bekommst du dein Geburtshoroskop angezeigt und einen fertigen KI-Prompt, der dir sagt, wie du dein Business führst, dich positionierst, skalierst und Geld verdienst.</p>',
-     '<p class="subtitle">Chiron wandert die nächsten Jahre durch das Tierkreiszeichen Stier und berührt das Thema Selbstwert, Körper und Geld. Gib deine Geburtsdaten ein. Auf der nächsten Seite siehst du, in welchem Lebensbereich Chiron bei dir wirkt, und bekommst einen fertigen KI-Prompt für dein persönliches Chiron-Reading.</p>',
+     '<p class="subtitle">Chiron wandert die nächsten Jahre durch das Tierkreiszeichen Stier und rüttelt an deinem Selbstwert und deinem Körper. Gib deine Geburtsdaten ein. Du bekommst zwei fertige KI-Prompts: dein Chiron-Reading für die nächsten Jahre und deinen Womancode-Spiegel, der dir zeigt, wo du dich als Frau noch nicht lebst.</p>',
      "subtitle")
 
 repl('onclick="runCheck()">Meinen Business-Code aufdecken</button>',
-     'onclick="runCheck()">Mein Chiron-Thema aufdecken</button>', "submit-btn")
+     'onclick="runCheck()">Meine Chart aufdecken</button>', "submit-btn")
 
 # --- E-Mail komplett entfernen (kein Opt-in) ------------------------------
 repl('''    <div class="name-group">
@@ -75,10 +108,26 @@ repl('''  // Trägt die Lead über die Netlify-Funktion in die GetResponse-Liste
 ''', '', "subscribe-fn-remove")
 
 repl("<h2>Dein Business-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p>${metaLine || 'Dein Chart als Business-Blueprint'}</p>",
-     "<h2>Dein Chiron-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p>${metaLine || 'Dein Chart als Chiron-Landkarte'}</p>",
+     "<h2>Deine Chart${(name && name !== 'Du') ? ', ' + name : ''}</h2><p>${metaLine || 'Chiron in Stier trifft deine Weiblichkeit'}</p>",
      "results-header")
 
-repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neuen Chiron-Code erstellen", "back-btn")
+repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neue Chart erstellen", "back-btn")
+
+# --- Abschluss-CTA: AstroCode-Kurs raus, Womancode-Salespage rein ---------
+repl('''  html += `
+  <div class="cta-block">
+    <p class="cta-kicker">Möchtest du noch tiefer in deine Chart eintauchen?</p>
+    <h3>Lerne dich tiefer kennen, als Jahre der Selbstreflexion es je konnten.</h3>
+    <a href="https://patrycja-nasri.de/dein-astrocode/" target="_blank" class="cta-link">Hier erfährst du mehr: Dein AstroCode &rarr;</a>
+  </div>`;''',
+'''  html += `
+  <div class="cta-block">
+    <p class="cta-kicker">Hast du es satt, deine Weiblichkeit zu zügeln?</p>
+    <h3>Lebe dein Womancode im Live-Experiment und werde erfolgreich, glücklich und lebendig.</h3>
+    <p class="cta-text">Womancode steht für eine gelebte, lebendige Weiblichkeit. Eine Frau, die weiß, wer sie ist und aus ihrem tiefsten Inneren kreiert.</p>
+    <a href="https://patrycja-nasri.de/womancode/" target="_blank" class="cta-link">Hier geht's zu Womancode &rarr;</a>
+  </div>`;''',
+"womancode-salespage-cta")
 
 # --- 2. Chiron-Berechnung in runCheck einhaengen -------------------------
 # Anker NACH window.__chart, damit window.__aspects bereits gesetzt ist.
@@ -161,6 +210,13 @@ new_cta = """  // Sichtbares Chiron-in-Stier-Thema
     <h3>Dein Chiron-in-Stier-Reading mit KI</h3>
     <p>Kopiere den Prompt und füg ihn in ChatGPT oder Claude ein. Dein Reading zeigt dir dein persönliches Chiron-Thema für die nächsten Jahre: in welchem Lebensbereich dein Selbstwert berührt wird, was dein Schatten ist und welches Geschenk darin liegt.</p>
     <button class="copy-btn" id="copyChironBtn" onclick="copyChironReading()">Chiron-Prompt + Daten kopieren</button>
+  </div>`;
+
+  html += `
+  <div class="cta-block">
+    <h3>Und jetzt tiefer: Deine Weiblichkeit</h3>
+    <p>Chiron in Stier rührt an deinem Wert und an deinem Körper. Dieser zweite Prompt geht noch tiefer und zeigt dir aus deiner Chart, wo und warum du dich als Frau nicht lebst und deine weibliche Energie unterdrückst. Kopier ihn und füg ihn in ChatGPT oder Claude ein.</p>
+    <button class="copy-btn" id="copyWomancodeBtn" onclick="copyWomancodeReading()">Womancode-Painpoints + Daten kopieren</button>
   </div>`;"""
 repl(old_cta, new_cta, "cta-block")
 
@@ -232,6 +288,63 @@ Hier sind meine Daten:`;
     FULL.forEach(function(e){ data.push(e.label + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')); });
     const full = CHIRON_PROMPT + '\n\n' + data.join('\n');
     const btn = document.getElementById('copyChironBtn');
+    const done = function(){ if(btn){ const o = btn.getAttribute('data-label') || btn.textContent; btn.setAttribute('data-label', o); btn.textContent = '✓ Kopiert! Jetzt in ChatGPT einfügen'; setTimeout(function(){ btn.textContent = o; }, 2800); } };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(full).then(done).catch(function(){ fallbackCopy(full, done); });
+    } else { fallbackCopy(full, done); }
+  };
+
+  const WOMANCODE_PROMPT = `Du bist eine Bewusstseinsastrologin und Embodiment-Mentorin für Weiblichkeit. Du liest meine Chart als Spiegel meiner weiblichen Energie und sprichst schonungslos klar, warm und direkt. Du benennst meinen Schmerz so genau, dass ich mich erkenne und es weh tut, im guten Sinn. Keine Floskeln, keine allgemeinen Astro-Sätze, kein Lehrbuchton.
+
+Worum es geht: Ich bin eine Frau, die im Außen funktioniert. Ich versorge alle, halte alles am Laufen und stehe selbst an letzter Stelle. Ich lebe im Kopf, spüre meinen Körper kaum noch und habe meine Weiblichkeit irgendwann leise abgestellt. Meine Lust, meine Sinnlichkeit, mein Empfangen liegen brach. Ich will wissen, wo und warum ich mich als Frau nicht lebe und meine weibliche Energie unterdrücke.
+
+Lies dafür die weiblichen Marker in meiner Chart und deute sie auf genau diese Frage:
+- Mond: meine Bedürfnisse, mein Genährt-werden, das, was ich mir selbst nie gebe
+- Venus: mein Selbstwert, mein Genuss, mein Empfangen, ob ich mir Lust und Schönheit erlaube
+- Lilith: meine wilde, verbannte weibliche Kraft, das, was ich an mir unterdrückt habe, um dazuzugehören
+- Chiron: meine Urwunde, wo ich mich als Frau verletzt oder falsch gefühlt habe
+- IC und 4. Haus: meine weibliche Wurzel, die Frauenlinie, was ich von meiner Mutter über das Frausein übernommen habe
+- 8. Haus: meine Sexualität, meine Hingabe, meine Tiefe
+- 12. Haus: das, was ich versteckt und verleugnet habe
+- Mondknoten: wohin meine weibliche Seele eigentlich will
+
+Schreibe mir auf dieser Basis:
+
+1. Mein Spiegel. Ein kurzer, ehrlicher Absatz, der mich sofort trifft: wie ich heute lebe und wo ich mich selbst verloren habe.
+
+2. Meine Painpoints. Drei bis fünf konkrete, schmerzhafte Wunden aus meiner Chart. Für jede: benenne die Stelle in der Chart, dann die echte Alltagsszene, in der sich dieser Schmerz zeigt (zum Beispiel ich falle abends leer ins Bett, ich ziehe weite Kleidung an um nicht gesehen zu werden, ich habe keine Lust mehr auf Nähe, ich kann nicht annehmen wenn mir jemand etwas gibt). Sag mir auch, warum ich diese Energie abgestellt habe.
+
+3. Was es mich kostet. Was in meinem Leben fehlt, solange ich so weiterlebe: an Lebendigkeit, an Lust, an Anziehung, an Fülle.
+
+4. Die Brücke. Sanft und klar: dass diese Energie nicht verschwunden ist. Sie liegt unter dem Funktionieren begraben. Und Womancode ist der Weg zurück, ein gelebtes Experiment zurück in den Körper, in die Sinnlichkeit, ins Empfangen, an die erste Stelle. Lade mich ein, diesen Weg zu gehen, ohne mich zu drängen.
+
+5. Eine einzige Frage, die mich heute Nacht nicht schlafen lässt.
+
+Schreib auf Deutsch, in der Du-Form, in Tiefe statt in Breite. Jeder Satz konkret und aus einer echten Szene. Keine Gedankenstriche. Keine "nicht... sondern"-Konstruktionen. Keine leeren Verstärker.
+
+Hier sind meine Daten:`;
+
+  window.copyWomancodeReading = function(){
+    const FULL = window.__fullChart || [];
+    const ASP = window.__aspects || [];
+    const m = window.__meta || {};
+    const data = [];
+    if(m.name) data.push('Name: ' + m.name);
+    if(m.date){ const dp = m.date.split('-'); data.push('Geburtsdatum: ' + dp[2]+'.'+dp[1]+'.'+dp[0] + (m.time ? (' um ' + m.time + ' Uhr') : '')); }
+    if(m.place) data.push('Geburtsort: ' + m.place);
+    data.push('');
+    data.push('MEINE WEIBLICHEN PUNKTE:');
+    ['Mond','Venus','Lilith','Chiron','IC','Nordknoten'].forEach(function(lab){ const e = FULL.find(function(x){ return x.label === lab; }); if(e) data.push(lab + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')); });
+    data.push('');
+    data.push('MEIN VOLLSTÄNDIGES CHART:');
+    FULL.forEach(function(e){ data.push(e.label + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')); });
+    if(ASP.length){
+      data.push('');
+      data.push('MEINE WICHTIGSTEN ASPEKTE:');
+      ASP.forEach(function(a){ data.push(a.p1 + (a.s1 ? (' in ' + a.s1) : '') + ' ' + a.type + ' ' + a.p2 + (a.s2 ? (' in ' + a.s2) : '')); });
+    }
+    const full = WOMANCODE_PROMPT + '\n\n' + data.join('\n');
+    const btn = document.getElementById('copyWomancodeBtn');
     const done = function(){ if(btn){ const o = btn.getAttribute('data-label') || btn.textContent; btn.setAttribute('data-label', o); btn.textContent = '✓ Kopiert! Jetzt in ChatGPT einfügen'; setTimeout(function(){ btn.textContent = o; }, 2800); } };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(full).then(done).catch(function(){ fallbackCopy(full, done); });
