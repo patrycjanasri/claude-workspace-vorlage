@@ -131,6 +131,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 - **Patrycjas echte Story (Verkaufsanker, roh halten!):** gefühlt halbes Leben übergewichtig, in den 2000ern nie dazugehörig gefühlt, sich versteckt in weiter schwarzer Kleidung, Körper verurteilt. Periode nur 2x/Jahr, Gynäkologe: „liegt an Ihrem Gewicht, abnehmen". Wendepunkt: Buch **„Die Wolfsfrau"** → Bewusstsein fürs **Sakralchakra** → Weiblichkeit + Lust leben. 2023 Periode/Zyklus zurück. Heute: kleidet sich bunt + sinnlich, kreist Becken, tanzt, „ich bin WILD", finanziell unabhängig. Kernbotschaft: **„Weiblichkeit ist der Schlüssel für den Erfolgsflow. Money wird nicht aus männlicher Energie kreiert."**
 - **Weibliche Urwunde** als gesellschaftlicher Aufhänger: verbannte Göttlichkeit, Trümmerfrauen, Size-Zero-Ideal der 90er/2000er, Frau als Objekt.
 - **Salespage v2 (vollständig, auf ihrem Pitch):** `outputs/womancode-salespage-v2-2026-06-19.md`. Hook „Jeder steht bei dir an erster Stelle, nur du nicht." Erste Version (Promptguide-Annahme): `outputs/womancode-salespage-2026-06-19.md`.
+- **Salespage HTML (NEU 01.07.2026, Netlify-fertig):** `outputs/womancode-salespage-netlify/index.html` (self-contained, ~410 KB). Copy = v3 (`outputs/womancode-salespage-v3-2026-06-26.md`) 1:1. Design = echtes Womancode Wein/Gold (Palette #1A060C Wein / #E1BE7E Gold): eingebettete Benzin/Collidge-Fonts + „Woman CODE"-Gold-Logo (Base64) + echtes Hero-Bild Lotus/Lichtstrahl/Goldschwingen (das im Reader eingebettete Wein-JPEG, NICHT das AstroCode-Mond-Bild WEB-ASTRO3.png — das war der erste Fehlgriff). Sektionen: Hero, Problem, Stimme im Kopf, Urwunde, Fundament, Meine Geschichte, Was erwartet dich (4 Karten), Alles drin (Feature-Liste), VIP (Gold-Box „Nur 2 Plätze"), Fakten (Datums-Box), Für wen + Closing-CTA, Footer mit Impressum/Datenschutz. Generator: `outputs/build_womancode_salespage.py` (zieht Fonts+Logo aus dem Reader). **Offen:** echten Anmelde-/Checkout-Link eintragen (aktuell Platzhalter `href="#anmelden"`, im File oben markiert); Preis; Netlify-Upload durch Patrycja. Preview-Sandbox kann die Seite hier nicht rendern.
 - **Offen:** Call-Datum 2 bestätigen (05.08.?), Preis, Anmeldelink, Entscheidung ob Astro-Chart als Modul drin bleibt (v2 ist embodiment-fokussiert, Astro zurückgestellt).
 **Struktur:**
 - Teil 1: Feminine Planeten (Mond, Venus, Lilith, Chiron, Asteroiden)
@@ -256,6 +257,21 @@ Stufe 3: Bewusstseinskurs / Bewusstseinscode (497-997€+)
 - **Herrscher des Chiron-Zeichens** (Dispositor) = wohin die Wunde geheilt werden will.
 **Prompt (`CHIRON_PROMPT`):** 8 Schritte (Kernthema, wo es sich zeigt, Venus-Schlüssel, Aktivierungen, Verdrahtung der Wunde, Schatten+Geschenk, Weg durch den Körper, Schattenfrage). Erkennt Chiron-Return (natales Chiron in Stier). Voice-konform (keine Gedankenstriche, kein „nicht…sondern"). Button **„Chiron-Prompt + Daten kopieren"** (`copyChironReading()`) legt Prompt + alle Schichten + volles Chart in die Zwischenablage.
 **Offen:** Netlify-Upload durch Patrycja; Verifikation im echten Browser steht aus (Preview-Sandbox kommt nicht an den Downloads-Pfad) — Patrycja soll prüfen, ob „Stier-Haus" und das Achsen-Zeichen (IC im Stier) mit astro.com übereinstimmen. Werbe-Karussell für Codewort CHIRON war angefragt, Patrycja mit den Entwürfen noch nicht zufrieden (Hooks zu abstrakt/„verschoben" verboten) — offen.
+
+---
+
+## Mars-Uranus-Transit-Reader — „Dein Transit-Code" (02.07.2026)
+
+**Anlass:** Mars Konjunktion Uranus in den Zwillingen, exakt am Samstag 04.07.2026 um 6:07 Uhr.
+**Datei:** `outputs/astro-transit-reader.html` | **Upload-fertig:** `outputs/astro-transit-reader-netlify/index.html` (Netlify Drop)
+**Generator:** `outputs/build_transit_reader.py` — baut aus `astro-business-reader.html`. Für den NÄCHSTEN Transit nur die T_*-Konstanten (Datum/Uhrzeit) und die Texte (Prompt, Überschriften) anpassen, Skript neu laufen lassen. Wiederverwendbares Muster für alle künftigen Transit-Reader.
+**Das Besondere:** Die Seite rechnet ZWEI Charts mit derselben Engine: das Geburtshoroskop der Nutzerin und den Transit-Moment (04.07.2026 6:07, Berlin nur für die Zeitzone). Nichts hartkodiert, Mars/Uranus-Grade kommen live aus der Engine (verifiziert: 0,056° Abstand, Konjunktionspunkt 3°50' Zwillinge, Sommerzeit korrekt → 04:07 UTC).
+**Ganzzeichenhäuser:** Natal-Chart läuft komplett auf `houseSystem: 'whole-sign'` (Patrycja arbeitet bei Transiten mit Ganzzeichenhäusern). Ganzzeichenhaus der Zwillinge = Zeichenabstand zum AC-Zeichen, gegen Engine-Häuser verifiziert (1:1 konsistent).
+**Auto-Schichten in `window.__transit`:** Konjunktionsgrad · Ganzzeichenhaus der Zwillinge (Wirkungsort) · eigene Punkte in den Zwillingen · Aspekte der Konjunktion zu allen natalen Punkten inkl. AC/MC (Orb 3°, nach Orb sortiert) · nataler Mars + nataler Uranus (Verdrahtung).
+**Prompt (`TRANSIT_PROMPT`):** 8 Schritte (Zündung, Wirkungsort mit Alltagsszene, direkte Treffer, Aspekte engster Orb zuerst, Verdrahtung, Schatten+Geschenk mit Erkennungsmerkmal, Erdung fürs Nervensystem, Transit-Frage). Voice-konform. Button „Transit-Prompt + Daten kopieren" (`copyTransitReading()`).
+**Kein E-Mail-Gate** (wie Chiron-Reader). Abschluss-CTA → Womancode-Salespage.
+**Verifiziert per JavaScriptCore (osascript):** Engine-Bundle von jsDelivr lokal getestet, 2 Testpersonen End-to-End, Aspektformel-Bug (Trigon/Sextil vertauscht) gefunden und gefixt.
+**Offen:** Netlify-Upload durch Patrycja; Browser-Sichtprüfung des Designs (Rechenlogik ist verifiziert, Optik nicht).
 
 ---
 
