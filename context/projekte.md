@@ -60,6 +60,12 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Stil:** Direkte Ansprache (du), keine Metaphern für Aspekte, Erdung konkret (barfuß/Wald/Natur), keine Zeitbeschränkungen, direkte Abschlussfrage ohne Einleitung
 **Memory:** `feedback_embodied_astrology_channel.md` — vollständige Voice-Regeln für diesen Kanal
 
+### Mars/Uranus Content-Welle (Juli 2026)
+**Transit:** Mars ☌ Uranus in Zwillingen (exakt 04.07.2026), Nachfolge-Aspekte Mars ⚹ Neptun + Mars △ Pluto (05.07.2026)
+**Reader live:** https://mars-uranus-code.netlify.app — DM-Codewort **MARSCODE** (Instagram-Kommentar → Check zuschicken)
+**Content:** Tiefentext + Reader-CTA (`outputs/embodied-astrology-mars-uranus-tief-2026-07-02.md`), Karussell mit Nervensystem-Hook (`outputs/instagram-karussell-mars-uranus-2026-07-02.md`), Repost-Fassung mit CTA ab Slide 2 (`outputs/instagram-karussell-mars-uranus-repost-2026-07-04.md`), Kanaltexte 05.07. (`outputs/embodied-astrology-2026-07-05.md`)
+**E-Mail:** Wut/Energie-bewegen-Mail im Womancode-Samt-Design fertig als GetResponse-ZIP (`outputs/email-mars-uranus-wut-getresponse.zip`) — Betreff + Platz-Zähler noch offen
+
 ---
 
 ## Digitales Produkt — Astro Workbook + Identitätsprompt Leadmagnet
