@@ -67,6 +67,12 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **E-Mail:** Wut/Energie-bewegen-Mail im Womancode-Samt-Design fertig als GetResponse-ZIP (`outputs/email-mars-uranus-wut-getresponse.zip`) — Betreff + Platz-Zähler noch offen
 **E-Mail 2 (05.07.):** Lebendigkeits-Mail „Die explosivste Konstellation der letzten Jahre?" — Text komplett von Patrycja (nur Rechtschreibung korrigiert), Story: Uranus durchs 4. Haus, Tod einer früheren Kollegin (37), Mut-Anker Mutter/Polen, Wohnung für einen Monat gebucht. GetResponse-ZIP im Samt-Design: `outputs/email-mars-uranus-lebendigkeit-getresponse.zip`, Text: `outputs/email-mars-uranus-lebendigkeit-2026-07-05.md`. Buttons: ZUM MARSCODE + HOL DIR DEIN LEBEN ZURÜCK (→ patrycja-nasri.de/womancode/, Link prüfen). Offen: Testversand kam nicht an (vermutlich GMX-Spam, nicht Dateigröße — Absender-Verifizierung + Gegenprobe Gmail prüfen). Brandvoice-Marker der Mail als Memory gesichert (`feedback_brand_voice_email_storytelling.md`).
 
+### Sirius-Verkaufsmail Womancode (06.07.2026)
+**Anlass:** Sonne exakt auf Sirius (~14° Krebs) am 06.07. — bewusste Korrektur der Spirit-Bubble-Erzählung vom 08.08. (Lions Gate). Fakt verifiziert, jährlich wiederverwendbarer Content-Winkel.
+**Mail:** Text komplett von Patrycja (Sprachmemo, Diktierfehler korrigiert, ihre Nachkorrekturen eingearbeitet). Betreff: „Heute steht die Sonne auf Sirius (nicht am 08.08.)". GetResponse-ZIP im Samt-Design: `outputs/email-womancode-sirius-getresponse.zip`, Text: `outputs/email-womancode-sirius-2026-07-06.md`. Button: NIMM DIR DEINEN PLATZ → patrycja-nasri.de/womancode/.
+**Design-Entscheidung:** Zwei Leder-Texturen von Patrycja getestet (`WOMANCODE-2/3.png`, liegen im Mail-Ordner als velvet2/velvet3), beide verworfen — Original-Samt bleibt der Look.
+**Offen:** Checkout-Weg auf patrycja-nasri.de/womancode/ prüfen (Salespage hatte Platzhalter `#anmelden`), Testversand mit Gmail-Gegenprobe (GMX-Spam-Problem vom 05.07.).
+
 ---
 
 ## Digitales Produkt — Astro Workbook + Identitätsprompt Leadmagnet
