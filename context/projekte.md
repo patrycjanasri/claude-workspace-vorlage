@@ -65,6 +65,7 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Reader live:** https://mars-uranus-code.netlify.app — DM-Codewort **MARSCODE** (Instagram-Kommentar → Check zuschicken)
 **Content:** Tiefentext + Reader-CTA (`outputs/embodied-astrology-mars-uranus-tief-2026-07-02.md`), Karussell mit Nervensystem-Hook (`outputs/instagram-karussell-mars-uranus-2026-07-02.md`), Repost-Fassung mit CTA ab Slide 2 (`outputs/instagram-karussell-mars-uranus-repost-2026-07-04.md`), Kanaltexte 05.07. (`outputs/embodied-astrology-2026-07-05.md`)
 **E-Mail:** Wut/Energie-bewegen-Mail im Womancode-Samt-Design fertig als GetResponse-ZIP (`outputs/email-mars-uranus-wut-getresponse.zip`) — Betreff + Platz-Zähler noch offen
+**E-Mail 2 (05.07.):** Lebendigkeits-Mail „Die explosivste Konstellation der letzten Jahre?" — Text komplett von Patrycja (nur Rechtschreibung korrigiert), Story: Uranus durchs 4. Haus, Tod einer früheren Kollegin (37), Mut-Anker Mutter/Polen, Wohnung für einen Monat gebucht. GetResponse-ZIP im Samt-Design: `outputs/email-mars-uranus-lebendigkeit-getresponse.zip`, Text: `outputs/email-mars-uranus-lebendigkeit-2026-07-05.md`. Buttons: ZUM MARSCODE + HOL DIR DEIN LEBEN ZURÜCK (→ patrycja-nasri.de/womancode/, Link prüfen). Offen: Testversand kam nicht an (vermutlich GMX-Spam, nicht Dateigröße — Absender-Verifizierung + Gegenprobe Gmail prüfen). Brandvoice-Marker der Mail als Memory gesichert (`feedback_brand_voice_email_storytelling.md`).
 
 ---
 
