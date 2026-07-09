@@ -60,6 +60,11 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Stil:** Direkte Ansprache (du), keine Metaphern für Aspekte, Erdung konkret (barfuß/Wald/Natur), keine Zeitbeschränkungen, direkte Abschlussfrage ohne Einleitung
 **Memory:** `feedback_embodied_astrology_channel.md` — vollständige Voice-Regeln für diesen Kanal
 
+### Venus in der Jungfrau (09.07.2026)
+**Transit:** Venus wechselt vom Löwen in die Jungfrau, Ingress 09.07.2026 ca. 19:23 Uhr deutscher Zeit (= 17:23 UT; Patrycjas Tool zeigt 17:22 in Weltzeit — kein Widerspruch, nur Zeitzonen-Anzeige). Engine-verifiziert.
+**Kanaltext:** `outputs/embodied-astrology-venus-jungfrau-2026-07-09.md` — v2 nach Feedback: Patrycjas Absätze 1:1 (Fürsorge/Dienst, Ordnung aus Chaos), Tiefe aus ihrem Inspirationstext, plus 10 Reflexionsfragen. Wichtig fürs nächste Mal: keine banalen Alltagsszenen (Wäsche/Kaffee) im Kanal, Tiefe über Wesensbeschreibung der Energie.
+**Verwertungsidee (offen):** Karussell „Venus und das innere Frauenbild" aus dem Männer-Absatz des Inspirationstexts.
+
 ### Mars/Uranus Content-Welle (Juli 2026)
 **Transit:** Mars ☌ Uranus in Zwillingen (exakt 04.07.2026), Nachfolge-Aspekte Mars ⚹ Neptun + Mars △ Pluto (05.07.2026)
 **Reader live:** https://mars-uranus-code.netlify.app — DM-Codewort **MARSCODE** (Instagram-Kommentar → Check zuschicken)
@@ -74,6 +79,13 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Dateien:** `outputs/email-womancode-energie-2026-07-08.md` + GetResponse-ZIP `outputs/email-womancode-energie-getresponse.zip` (Samt-Design).
 **Offen:** „fernab von außen"-Satz bestätigen · Checkout-Weg prüfen (#anmelden-Platzhalter) · Salespage-VIP-Box auf AUSGEBUCHT umstellen (Widerspruch Mail↔Seite) · Testversand mit Gmail-Gegenprobe.
 **Vorfall 08.07.:** Patrycja hatte alle E-Mail-Dateien in outputs/ gelöscht — 27 committete Dateien aus Git wiederhergestellt, heutige Mail + Neptun-Mail (07.07.) aus dem Session-Kontext 1:1 neu gebaut. Nicht rekonstruierbar (ggf. im Papierkorb): `email-neptun-ruecklaeufig-brevo.txt`, `womancode-cycle-banner.jpg` (war in der HTML nicht verbaut).
+
+### Verkaufsmail „Der Preis spielt für mich keine Rolle" — Geld-Illusion (erstellt 08.07., Versand offen)
+**Winkel:** Geld als Ausrede entlarven. Text = 4 Story-Slides von Patrycja (08.07.) Wort für Wort: Reifenwechsel-Szene nach Deluxe-Gesichtsbehandlung → „Kein Geld!"-Eskalation (Mit 37!!!!!) → goldener Käfig/Marionette → zerbrechende Träume → 6fig-Beweis. Nur Rechtschreibung/Kommas korrigiert (Tabelle im Output-File).
+**Verknappung:** Only 5 seats left + VIP ausgebucht + **„Der Preis steigt demnächst!"** (Patrycjas Ansage) vor dem Button.
+**Betreff (Empfehlung, unbestätigt):** „Der Preis spielt für mich keine Rolle" · Preheader: „Die Ausrede mit dem Geld ist nur eine Illusion." Weitere Kandidaten im Output-File.
+**Dateien:** `outputs/email-womancode-geld-illusion-2026-07-09.md` + GetResponse-ZIP `outputs/email-womancode-geld-illusion-getresponse.zip` (Samt-Design, Quellordner `outputs/email-womancode-geld-illusion/`).
+**Offen:** Betreff bestätigen · Versandtag festlegen (Empfehlung 10.07., dann „heute Morgen" → „gestern Morgen"? entscheiden) · „Nimm dir deinen Platz, wenn du bereit bist…"-Anpassung (DM→Button) absegnen · Preis-Erhöhung intern terminieren · Salespage: VIP AUSGEBUCHT + 5-Plätze-Zähler spiegeln · Testversand mit Gmail-Gegenprobe.
 
 ### Sirius-Verkaufsmail Womancode (06.07.2026)
 **Anlass:** Sonne exakt auf Sirius (~14° Krebs) am 06.07. — bewusste Korrektur der Spirit-Bubble-Erzählung vom 08.08. (Lions Gate). Fakt verifiziert, jährlich wiederverwendbarer Content-Winkel.
