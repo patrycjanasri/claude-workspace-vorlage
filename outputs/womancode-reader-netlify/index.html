@@ -1282,6 +1282,18 @@ function generateReading() {
     </div>`;
   }
 
+  const WCH = window.__wcHouses || [];
+  if (WCH.length) {
+    const hrows = WCH.map(e => `<div class="data-row wc-house-row"><span class="data-planet">${e.house}. Haus</span><span class="data-values"><span class="badge sign-badge">${e.sign}</span></span><span class="wc-house-planets">${e.theme} &middot; Planeten darin: ${e.planets.length ? e.planets.join(', ') : 'keine'}</span></div>`).join('');
+    html += `
+    <div class="data-block">
+      <h3>Deine weiblichen Häuser</h3>
+      <p class="planet-intro">Die vier Häuser aus deinem Promptguide. Das Zeichen ist die Häuserspitze, dahinter stehen die Planeten, die in dem Haus liegen. Genau diese Angaben setzt du in die Haus-Prompts ein.</p>
+      <div class="data-grid">${hrows}</div>
+      <button class="copy-btn" id="copyHousesBtn" onclick="copyHouses()">Häuser kopieren</button>
+    </div>`;
+  }
+
   const AST = window.__asteroids || [];
   if (AST.length) {
     const arows = AST.map(e => `<div class="data-row"><span class="data-planet">${e.label}</span><span class="data-values"><span class="badge sign-badge">${e.sign}</span>${e.house ? `<span class="badge house-badge">${e.house}. Haus</span>` : ''}</span></div>`).join('');
@@ -1527,6 +1539,25 @@ function showForm() {
 
       window.__asteroids = wcComputeAsteroids(origin, horo);
 
+      // Weibliche Häuser (4, 7, 8, 12) für den Promptguide: Zeichen auf der Spitze + Planeten darin
+      (function(){
+        const cusps = wcHouseCusps(horo);
+        const WC_HOUSE_INFO = {
+          4:  'Wurzeln, Ursprung, innere Heimat',
+          7:  'Beziehungen & Partnerschaft',
+          8:  'Tiefe, Transformation, Sexualität',
+          12: 'Schatten, Verborgenes, innere Stille'
+        };
+        const list = [];
+        [4,7,8,12].forEach(h => {
+          const deg = cusps[h-1];
+          const sign = (deg == null) ? '' : wcSign(deg);
+          const inHouse = (window.__fullChart || []).filter(e => Number(e.house) === h).map(e => e.label);
+          list.push({ house: h, theme: WC_HOUSE_INFO[h], sign: sign, planets: inHouse });
+        });
+        window.__wcHouses = list.filter(e => e.sign);
+      })();
+
       window.__chart = chart;
       generateReading();
     }catch(e){
@@ -1552,6 +1583,12 @@ function showForm() {
     if(m.place) lines.push('Geburtsort: ' + m.place);
     lines.push('');
     FULL.forEach(e => lines.push(e.label + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')));
+    const Hd = window.__wcHouses || [];
+    if(Hd.length){
+      lines.push('');
+      lines.push('Weibliche Häuser:');
+      Hd.forEach(e => lines.push(e.house + '. Haus: Zeichen ' + e.sign + ' / Planeten: ' + (e.planets.length ? e.planets.join(', ') : 'keine')));
+    }
     const ASTd = window.__asteroids || [];
     if(ASTd.length){
       lines.push('');
@@ -1574,6 +1611,20 @@ function showForm() {
     AST.forEach(e => lines.push(e.label + ': ' + e.sign + (e.house ? (', ' + e.house + '. Haus') : '')));
     const text = lines.join('\n');
     const btn = document.getElementById('copyAstBtn');
+    const done = () => { if(btn){ const o=btn.getAttribute('data-label')||btn.textContent; btn.setAttribute('data-label', o); btn.textContent='✓ Kopiert!'; setTimeout(()=>{ btn.textContent=o; }, 2200); } };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+    } else { fallbackCopy(text, done); }
+  };
+
+  window.copyHouses = function(){
+    const H = window.__wcHouses || [];
+    const m = window.__meta || {};
+    const lines = [];
+    lines.push('Meine weiblichen Häuser' + (m.name ? ' (' + m.name + ')' : '') + ':');
+    H.forEach(e => lines.push(e.house + '. Haus: Zeichen ' + e.sign + ' / Planeten: ' + (e.planets.length ? e.planets.join(', ') : 'keine')));
+    const text = lines.join('\n');
+    const btn = document.getElementById('copyHousesBtn');
     const done = () => { if(btn){ const o=btn.getAttribute('data-label')||btn.textContent; btn.setAttribute('data-label', o); btn.textContent='✓ Kopiert!'; setTimeout(()=>{ btn.textContent=o; }, 2200); } };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
@@ -1703,6 +1754,8 @@ body::before, body::after{ content:none !important; background:none !important; 
 }
 .tip-box{ border-left:3px solid var(--gold) !important; }
 .data-row{ background:rgba(40,11,20,0.55) !important; border:1px solid rgba(225,190,126,0.18) !important; }
+.wc-house-row{ flex-wrap:wrap; }
+.wc-house-planets{ flex-basis:100%; font-size:0.84rem; line-height:1.5; color:#C6A896; margin-top:4px; }
 .place-results, .place-chosen{ background:#1d0710 !important; border:1px solid rgba(225,190,126,0.32) !important; }
 .place-item:hover{ background:rgba(225,190,126,0.12) !important; }
 
