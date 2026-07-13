@@ -81,6 +81,16 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Dateien:** `outputs/email-womancode-erlaubnis-2026-07-10.md` (Text + Korrektur-Doku) · GetResponse-ZIP `outputs/email-womancode-erlaubnis-getresponse.zip` (Samt-Design, Quellordner `outputs/email-womancode-erlaubnis/`) · Textfassung zweite Liste `outputs/email-womancode-erlaubnis-text.txt`.
 **Learning fürs Design:** Outline-Buttons (Gold-Rahmen, transparente Füllung) gehen im Samt unter — Check-Buttons ab sofort immer massiv gold wie der Haupt-CTA (im ZIP nach Versand korrigiert; versendete Fassung hatte noch den Outline-Button).
 
+### Verkaufsmail „Diese Lüge kannst du jemand anderem erzählen" — Chartruler-Mail (13.07.2026, versandfertig)
+**Winkel:** Chartruler-Reader als Aufhänger mit den ersten zwei Feedback-Screenshots (WhatsApp 11:27 + Telegram „Chatty gibt momentan wirklich bessere Antworten" 20:42, Originale 1:1 aus dem WhatsApp-Medienordner), dann Konsumieren-vs-Umsetzen-Konfrontation, Klinik-Story (Vollzeit, zwei Kinder, Nachtdienst), Pullquote „Ich habe das Brennen und ich habe mein BIG Why!!!", Womancode-Pitch (22.07., zehn Frauen, fünf weg), Goodie-Bag-Deadline Samstag 18.07., Womancode-Öl als Kaufgrund. Kasten-Text final von Patrycja: „Der Chartruler ist der Planet, der dein Leben lenkt…" (Claudes Astro-Mechanik-Fassung war ihr zu kompliziert).
+**Betreff (final, 3 Runden Brainstorming):** „Diese Lüge kannst du jemand anderem erzählen." · Preheader „Ich habe doch keine Zeit…" — Patrycjas eigener Satz aus der Mail; „Wer ist dein Chartruler?" und alle BILD-Stil-Kandidaten verworfen. Learning als Memory gesichert (`feedback_betreff_muster.md`). Geparkte Betreff-Idee für eigene Mail: `inbox/2026-07-13-betreff-idee-meinung-anderer.md`.
+**Dateien:** Doku + Korrektur-Tabelle `outputs/email-womancode-chartruler-2026-07-13.md` · GetResponse-ZIP `outputs/email-womancode-chartruler-getresponse.zip` (Samt-Design, Quellordner `outputs/email-womancode-chartruler/` inkl. feedback-1/2.jpg) · Claude-Referenzfassung (nicht gewählt, Patrycja bleibt bei ihrer Mail): `outputs/email-womancode-chartruler-claude/` + ZIP.
+**Zweitliste-Funnel Brevo/Tentary (13.07.):** Textfassung OHNE Netlify-Link `outputs/email-womancode-chartruler-text-brevo-tentary.txt` — Reader-Kasten wirbt fürs GetResponse-Eintragungsformular (Platzhalter [LINK ZUM EINTRAGUNGSFORMULAR] noch ersetzen!). Danke-Seite getextet (Chartruler-Fassung der Business-Code-Danke-Seite). Liefer-Mail nach Eintragung: `outputs/email-chartruler-lieferung-2026-07-13.txt` (Aufbau wie Business-Code-Liefermail: Hey [[firstname]], 5 Schritte, Button „👉 Chartruler Reader", Feedback-Screenshots, Antwort-Aufforderung für Zustellbarkeit, PS Womancode).
+**Offen:** Formular-URL in Brevo-Textfassung einsetzen · Testversand GMX + Gmail-Gegenprobe · Versand bis spätestens 14.07. (Deadline „bis Samstag" = 18.07.) · Salespage spiegeln: 5 von 10 Plätzen weg + VIP ausgebucht.
+
+### Kanaltexte 11.–13.07.2026
+`outputs/embodied-astrology-venus-suedknoten-2026-07-11.md` · `outputs/embodied-astrology-sonne-konjunktion-merkur-2026-07-13.md` · `outputs/embodied-astrology-venus-quadrat-uranus-2026-07-13.md`
+
 ### Mars/Uranus Content-Welle (Juli 2026)
 **Transit:** Mars ☌ Uranus in Zwillingen (exakt 04.07.2026), Nachfolge-Aspekte Mars ⚹ Neptun + Mars △ Pluto (05.07.2026)
 **Reader live:** https://mars-uranus-code.netlify.app — DM-Codewort **MARSCODE** (Instagram-Kommentar → Check zuschicken)
@@ -118,6 +128,28 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Mail:** Text komplett von Patrycja (Sprachmemo, Diktierfehler korrigiert, ihre Nachkorrekturen eingearbeitet). Betreff: „Heute steht die Sonne auf Sirius (nicht am 08.08.)". GetResponse-ZIP im Samt-Design: `outputs/email-womancode-sirius-getresponse.zip`, Text: `outputs/email-womancode-sirius-2026-07-06.md`. Button: NIMM DIR DEINEN PLATZ → patrycja-nasri.de/womancode/.
 **Design-Entscheidung:** Zwei Leder-Texturen von Patrycja getestet (`WOMANCODE-2/3.png`, liegen im Mail-Ordner als velvet2/velvet3), beide verworfen — Original-Samt bleibt der Look.
 **Offen:** Checkout-Weg auf patrycja-nasri.de/womancode/ prüfen (Salespage hatte Platzhalter `#anmelden`), Testversand mit Gmail-Gegenprobe (GMX-Spam-Problem vom 05.07.).
+
+---
+
+## Leader-Reader — „Dein Leader-Code" fürs ShineUp-Team (12.07.2026)
+
+**Was:** Werbefreier Network-Marketing-Reader für Patrycjas MONAT-Team. Geburtsdaten rein → Placidus-Chart automatisch → fertiger KI-Prompt für ein Erfolgs-Reading im Network Marketing.
+**Aufbau (11 Punkte in 3 Blöcken):** (1) Wie ich wirke und verkaufe: AC/1. Haus, Merkur/3. Haus, Venus · (2) Mein Geld und meine Arbeit: 2., 6., 8. Haus · (3) Vom Partner zum Leader: Sonne, 7. Haus, Jupiter/9. Haus, MC/10. Haus, 11. Haus. Mars, Saturn und Mond webt die KI dort ein, wo sie stehen. Abschluss: „Dein Weg vom Partner zum Leader" + ein konkreter Schritt diese Woche. Kernidee von Patrycja: jeder Partner soll Leader werden.
+**v2 (12.07., Patrycjas Feedback):** Zielgruppe hat keinen Astro-Hintergrund → Ergebnis-Seite zeigt keine Platzierungen, keine Aspekte, kein Element mehr. Stattdessen **Minireading** direkt auf der Seite (5 Punkte × 12 Zeichen = 60 Kurztexte in ihrer Voice, Anti-KI-geprüft): Aszendent (Außenauftritt), Sonne (Leadership-Kern), Merkur (Verkaufssprache), 2. Haus (Geld-Selbstwert), 11. Haus (Netzwerk/Team) — darunter direkt der Prompt-Button. Aspekte komplett gestrichen (auch aus Prompt und Kopier-Daten); volles Chart + Network-Häuser stecken unsichtbar im kopierten Prompt.
+**Network-Häuser-Berechnung:** Reader rechnet für die Häuser 1, 2, 3, 6, 7, 8, 9, 10, 11 das Zeichen auf der Placidus-Häuserspitze + Punkte im Haus, fließt ins Minireading (2./11. Haus) und in den kopierten Prompt (Cusp-Accessor 1:1 aus dem Womancode-Reader).
+**WERBEFREI (Patrycjas Ansage 12.07.):** kein E-Mail-Gate, kein Abschluss-CTA, keine Upsell-Box. Nur Impressum/Datenschutz im Footer.
+**Dateien:** `outputs/astro-leader-reader.html` | Upload-fertig: `outputs/astro-leader-reader-netlify/index.html` (Netlify Drop) | Generator: `outputs/build_leader_reader.py` (aus astro-business-reader.html).
+**Verifiziert:** Syntax aller 4 Inline-Skripte (JavaScriptCore), End-to-End mit 3 Testpersonen gegen die echte Engine (1. Spitze = AC, 10. Spitze = MC, Punkte-Zuordnung identisch mit Engine-Häusern), Anti-KI-Check der neuen Texte sauber.
+**Offen:** Netlify-Upload durch Patrycja · Browser-Sichtprüfung der Optik (Rechenlogik ist verifiziert) · optional Ankündigung im Team-Telegram.
+
+---
+
+## Chartruler-Reader — „Dein Chartruler" (12.07.2026, LIVE)
+
+**Was:** Reader liest den Aszendenten, bestimmt daraus den Chartruler (Horoskopherrscher), zeigt eine ausführliche Erklärung + automatisches Minireading (Planet + Zeichen + Haus + goldene Chartruler-Frage) und baut den fertigen KI-Prompt zum Kopieren (Button „Chartruler-Prompt + Daten kopieren": wie der Chartruler dein Leben führt, in welchem Lebensbereich sich alles entscheidet, welche Kräfte bei Entscheidungen mitreden). Gleiches Design + Placidus-Engine wie der Business-Reader, Womancode-CTA-Block am Ende.
+**LIVE:** https://chartruler.netlify.app — von Patrycja hochgeladen, erste Community-Feedbacks am 12./13.07. („mir zieht's die Socken aus", „Chatty gibt momentan wirklich bessere Antworten") → wurden zum Aufhänger der Chartruler-Verkaufsmail vom 13.07.
+**Dateien:** `outputs/astro-chartruler-reader.html` | Upload-fertig: `outputs/astro-chartruler-reader-netlify/index.html` | Generator: `outputs/build_chartruler_reader.py` (aus astro-business-reader.html, bei Design-Updates neu laufen lassen).
+**Funnel-Anbindung (13.07.):** Brevo/Tentary-Mail → GetResponse-Eintragungsformular → Danke-Seite → Liefer-Mail mit Reader-Link (Details bei der Chartruler-Mail unter Embodied Astrology).
 
 ---
 

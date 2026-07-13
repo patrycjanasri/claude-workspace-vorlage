@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8099", "--directory", "outputs/womancode-mail-kreieren"],
       "port": 8099
+    },
+    {
+      "name": "outputs-static",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/e858faab-120c-4dcd-b20f-f8688f55dbb3/scratchpad/preview && exec python3 -m http.server 8734"],
+      "port": 8734
     }
   ]
 }
