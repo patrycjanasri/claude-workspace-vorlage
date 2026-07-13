@@ -144,6 +144,20 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Reisecode — Astrokartographie-Reader „Dein Reise-Code" (13.07.2026)
+
+**Idee von Patrycja:** Anwenderin gibt Geburtsdaten + Reiseziel ein, bekommt die Linien, die durch diesen Ort laufen, und einen Wegweiser-Prompt: was sie dort erwartet, was sie erleben kann, wo ihr Fokus liegen darf. Name Reisecode = neues Portal in der Code-Familie.
+**Technik:** Relokationschart statt Weltkarte. Der Reader rechnet exakt denselben Geburtsmoment (`origin.julianDate`) ein zweites Mal für die Zielort-Koordinaten; die Wanduhrzeit am Ziel wird iterativ bestimmt, die Engine löst die Ziel-Zeitzone selbst auf (klappt auch Kathmandu +5:45 und über Datumsgrenzen). **Dieses Iterations-Muster ist wiederverwendbar für alle künftigen Relokations-Tools.** Linien = Planeten (Sonne–Pluto, Chiron, Lilith) nah an AC/DC/MC/IC des Zielorts (Orb bis 10°; ≤3° „direkt an deinem Ziel", ≤6° „stark spürbar", ≤10° „im Umfeld spürbar"). Dazu AC/MC-Zeichen am Zielort + Häuser-Verschiebung je Planet (Geburtshaus vs. Haus am Reiseziel). Zweites Open-Meteo-Ortsfeld fürs Reiseziel; Zurück-Button „Anderes Reiseziel prüfen" für mehrere Orte.
+**Ergebnis-Seite bewusst schlank (Patrycja 13.07.):** Platzierungen, Aspekte und Element-Block entfernt. Sichtbar nur: Linien-Block (mit AC/MC dort) + Wegweiser-Prompt-Button. Volles Chart + Aspekte stecken unsichtbar im kopierten Prompt (Muster Leader-Reader).
+**Geburtsdatum als Tippfeld:** `type="date"` ersetzt durch Textfeld TT.MM.JJJJ mit Auto-Punkten (08101986 → 08.10.1986), Ziffernblock auf dem Handy. Patrycjas Feedback: Date-Picker war mühsam. **Kandidat für Rollout in die ganze AstroCheck-Familie.**
+**Abschluss-CTA (final, Patrycjas Text 1:1):** „DU findest die Antwort von diesem KI-Prompt genial?" / „Weißt du, dass du dank meiner Prompts und meinem passenden Reader dein gesamtes Geburtshoroskop analysieren kannst?" → Button „Öffne das Portal von AstroCode" → patrycja-nasri.de/dein-astrocode/. (Zwischenstände Womancode-CTA und Tool-Entwickler-DM-Idee verworfen.)
+**Dateien:** `outputs/astro-reise-reader.html` | Upload-fertig: `outputs/astro-reise-reader-netlify/index.html` (Netlify Drop) | Generator: `outputs/build_reise_reader.py` (aus astro-business-reader.html; bei Design-Updates neu laufen lassen).
+**Verifiziert:** Syntax aller 4 Inline-Skripte (JavaScriptCore) · End-to-End 3 Testpersonen × 4 Ziele (New York, Sydney, Kathmandu, Hurghada) gegen die echte Engine · Identitätstest (Ziel = Geburtsort → Chart exakt identisch) · RAMC-Verschiebung = geografische Längendifferenz (Abweichung 0,000° in allen 12 Fällen). Kein E-Mail-Gate.
+**Offen:** Netlify-Upload durch Patrycja (Ordner im Finder übergeben, macht sie selbst) · Live-URL danach hier + im Memory nachtragen · Stichprobe gegen astro.com AstroClick Travel (Methode zodiakal, bei Pluto/Chiron leichte Abweichung zu „in mundo" möglich) · Datum-Tippfeld in die anderen Tools übernehmen, wenn es sich bewährt · Zubringer (Kommentar-Codewort REISECODE, Story/Kanaltext) nach Womancode-Start.
+**Wavecode-Verknüpfung (Patrycja: „genial!"):** Hurghada-Edition geplant — Reiseziel fest verdrahtet aufs Rote Meer, Ocean-Look der Wavecode-Salespage, CTA → Wavecode-Salespage, Codewort-Idee WAVE. Frauen sehen ihre Linien durchs Rote Meer = natürlichster Retreat-Funnel. Bau auf „Go" nach dem Womancode-Start (22.07.), Aufwand klein (Generator-Variante).
+
+---
+
 ## Chartruler-Reader — „Dein Chartruler" (12.07.2026, LIVE)
 
 **Was:** Reader liest den Aszendenten, bestimmt daraus den Chartruler (Horoskopherrscher), zeigt eine ausführliche Erklärung + automatisches Minireading (Planet + Zeichen + Haus + goldene Chartruler-Frage) und baut den fertigen KI-Prompt zum Kopieren (Button „Chartruler-Prompt + Daten kopieren": wie der Chartruler dein Leben führt, in welchem Lebensbereich sich alles entscheidet, welche Kräfte bei Entscheidungen mitreden). Gleiches Design + Placidus-Engine wie der Business-Reader, Womancode-CTA-Block am Ende.
