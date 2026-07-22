@@ -62,7 +62,7 @@ Diese Datei ist die Pflichtgrundlage für jeden Text. Vor jedem Schreibauftrag l
 | `inbox/`     | Schnelle Notizen und Captures. Erstellt mit `/capture`, bei `/shutdown` überprüft.      |
 | `plans/`     | Projekt- und Implementierungspläne. Erstellt mit `/plan` oder `/create-plan`.           |
 | `outputs/`   | Deliverables, Analysen, Reports und Arbeitsergebnisse.                                 |
-| `reference/` | Hilfreiche Dokumentation, Vorlagen und Patterns für verschiedene Workflows. Enthält `post-tracking-template.md` für Instagram-Analyse. |
+| `reference/` | Hilfreiche Dokumentation, Vorlagen und Patterns für verschiedene Workflows. Enthält `post-tracking-template.md` für Instagram-Analyse und `email-astrocode-design/` — das Standard-Design für alle Astrologie-E-Mails (Vorlage, Fonts, Generator, README mit Workflow). |
 | `scripts/`   | Automatisierungs- und Tooling-Skripte. Enthält `telegram-story-bot/` — den täglichen Instagram Story Agent. |
 
 ---
