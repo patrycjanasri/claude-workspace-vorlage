@@ -68,6 +68,15 @@
       "port": 8765
     },
     {
+      "name": "eklipsen-reader",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/28789e32-5815-4df6-8f7f-48c700a3a2e6/scratchpad/preview && exec python3 -m http.server 8773"
+      ],
+      "port": 8773
+    },
+    {
       "name": "timecode-reader",
       "runtimeExecutable": "bash",
       "runtimeArgs": [

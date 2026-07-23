@@ -252,6 +252,19 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Eklipsen-Reader — „Dein Eklipsen-Code" (23.07.2026, GEBAUT & VERIFIZIERT)
+
+**Entstehung:** Patrycja wollte den Reader für den Astrologin-Deal sofort gebaut sehen („Mich macht es neugierig was da für ein Ergebnis kommt") — Arbeitsstand VOR der Deal-Zusage, damit klar ist, was verkauft wird.
+**Was:** Ein Reader, beide August-Finsternisse. Rechnet DREI Charts: Geburtshoroskop (Placidus) + Sonnenfinsternis 12.08.2026 19:38 MESZ (engine-verifiziert: Sonne+Mond 20°02' Löwe, real total in Spanien) + Mondfinsternis 28.08.2026 6:20 MESZ (Mond 4°54' Fische, Sonne 4°54' Jungfrau). Erzählanker fachlich stark: **Genau zwischen den beiden Finsternissen wechselt die Mondknotenachse das Zeichen** (0°19' Fische → 29°30' Wassermann) — die SoFi im Löwen eröffnet die neue Löwe-Wassermann-Finsternis-Serie.
+**Auto-Schichten (`window.__eclipse`):** Placidus-Haus der SoFi (wo Neues beginnt) · MoFi als ACHSE (Haus des Mondes + Haus der Sonne gegenüber) · Aspekte beider Finsternis-Punkte zu 15 natalen Punkten (Orb 3°), **Chartruler-Treffer mit CHARTRULER-Flag** (moderner Herrscher + Mitherrscher Skorpion/Wassermann/Fische) · Knotenachse beider Momente mit natalen Häusern + Zeichenwechsel-Hinweis · natale Mondknoten (Seelenweg) · natale Sonne + Mond (die Lichter).
+**Prompt KOMPONIERT nach Birthcode-Muster:** 9 bis 11 Kapitel dynamisch nummeriert — Treffer-Kapitel nur bei Treffern (sonst ehrlicher Fallback-Satz im Haus-Kapitel), Chartruler-Kapitel nur bei Chartruler-Treffer. Kapitel: Tor, SoFi-Haus, SoFi-Treffer, MoFi-Achse, MoFi-Treffer, Chartruler, Richtung (Knoten + Seelenweg-Vergleich), Lichter, Schatten+Geschenk, roter Faden mit Ich-Satz + Handlung zwischen den Finsternissen, Finsternis-Frage. Fenster-Fokus August 2026 bis Anfang 2027 (~6.900–8.300 Zeichen).
+**Design:** ASTROCODE-Standard (Arbeitsstand) — das Branding der Astrologin kommt später von Patricia, Tausch über den Generator. Tippfeld-Datum TT.MM.JJJJ, kein E-Mail-Gate, schlanke Ergebnis-Seite (Finsternis-Block: SoFi-Haus, MoFi-Achse, Treffer, Knoten-Häuser + Prompt-Button), AstroCode-CTA (bei Übergabe an die Astrologin gegen ihren CTA tauschen).
+**Dateien:** `outputs/astro-eklipsen-reader.html` | Upload-fertig: `outputs/astro-eklipsen-reader-netlify/index.html` | Generator: `outputs/build_eklipsen_reader.py` (NAME-Konstante oben; aus astro-business-reader.html, Muster build_barbault_reader.py).
+**Verifiziert (23.07.):** Syntax 5/5 Inline-Skripte (JSC) · Finsternis-Momente per Minuten-Scan gegen die Engine (Neumond-Elongation 0,001°, Vollmond 0,003°) · JSC-Harness 4 Testpersonen, **133 Checks, 0 Fehler** (Haus-Zweitrechnung über Cusp-Offsets, Engine-Hauszuordnung 11 Körper, Aspekt-Zweitrechnung über Vektorwinkel, Vollmond-Achsen-Plausibilität) · Browser-E2E 2 Personen (Port 8773, launch.json „eklipsen-reader"): Browser = JSC 1:1, beide Kompositions-Zweige geprüft (P1: 11 Kapitel mit Chartruler-Kapitel, P4: 9 Kapitel mit Fallback), Auto-Punkte-Datum, Ortssuche, Zurück-Button, mobil ok, 0 Konsolenfehler, 0 Gedankenstriche im Prompt. Hinweis: Screenshot-Tool zeigte gescrollte Desktop-Ansichten leer (Capture-Artefakt der fixen Blend-Layer, per DOM-Prüfung + Mobil-Screenshots widerlegt — Seite selbst sauber).
+**Offen:** Zusage der Astrologin + Deal-Punkte (IP-Klausel!) · Name final (Arbeitstitel „Dein Eklipsen-Code", entscheidet sie) · Branding-Tausch durch Patricia nach Zusage · Netlify-URL (nicht erratbar, Link = Produkt) · Vereinbarungstext (Claude angeboten) · Patrycja soll ihr eigenes Reading einmal durchlaufen lassen (Qualitäts-Gefühl).
+
+---
+
 ## Womancode — GESTARTET 22.07.2026 ✅
 
 **7 Frauen sind dabei, erster Call „grandios" (Patrycja 23.07.).** Läuft bis 26.08. (Calls 29.07., 12.08., 26.08.). Patrycja im Liefermodus; Birthcode-Launch läuft parallel als Live-Case im Programm.
