@@ -173,6 +173,7 @@ Vollständige Kontextdateien:
 
 ## Notizen
 
+- **Transit-Timing:** Jede Terminempfehlung (Mailversand, Launches, Verträge, Preisentscheidungen) gegen `context/transite-business.md` prüfen — Patrycjas eigenes Business-Transitreading, operativ aufbereitet. Neues Reading ersetzt den Datei-Inhalt.
 - Kontext minimal aber ausreichend halten — kein Bloat
 - Pläne in `plans/` mit datierten Dateinamen für die Historie
 - Outputs nach Typ/Zweck in `outputs/` organisiert — typische Outputs: Instagram-Content, Verkaufstexte, E-Mails, Funnel-Strukturen, Programm-Konzepte, Präsentationen, ChatGPT-Prompts

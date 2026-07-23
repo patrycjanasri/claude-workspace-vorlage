@@ -218,6 +218,8 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 **Offen:** Preis final · Netlify-Upload durch Patrycja (Finder war geöffnet, Ordner markiert) · Live-URL nachtragen · Tentary-Produkt „Dein Birthcode" anlegen + Testkauf · Tentary-Produktbeschreibung + Kaufbestätigung vortexten (Claude angeboten) · Zubringer-Content nach Womancode-Start.
 
+**LAUNCHPLAN (23.07., transitbasiert):** `outputs/launchplan-birthcode-timecode-2026-07-23.md`. **Birthcode = Live-Case im Womancode-Raum: der KOMPLETTE Aufbau passiert live vor den Frauen, NICHTS wird vorher fertig gemacht** (Patrycjas Ansage 23.07., auch Tentary wird live gezeigt). Ablauf: 26.07. Preis intern festlegen (Empfehlung 22€, unbestätigt — Frage stand am Session-Ende offen) · **29.07. Branding-Session gemeinsam** (Vollmond Wassermann im 1. Haus + Womancode-Call 1) · 30.07.–11.08. Live-Aufbau in Etappen (Branding in Reader via Generator, Tentary, Netlify, Liefermail; PFLICHT: echter Testkauf vor dem Start, gern live gezeigt) · **12.08. VERKAUFSSTART** (Neumond Löwe im 7. Haus = SoFi + Call 2) · 15.–25.08. kein Push · 26.08. Abschluss-Call mit Zahlen.
+
 ---
 
 ## Timecode-Reader — „Dein Timecode" (22.07.2026) — ERSTER EVERGREEN-TRANSIT-READER
@@ -236,11 +238,25 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 **Dateien:** `outputs/astro-timecode-reader.html` | Upload-fertig: `outputs/astro-timecode-reader-netlify/` + ZIP (Finder war geöffnet, Ordner markiert) | Generator: `outputs/build_timecode_reader.py`.
 
-**Offen:** Monetarisierung (Patrycja unentschieden; Claudes Standpunkt: Premium-Kandidat über 22€, evergreen + Astrologin-Approval tragen den Preis; alternativ Quartals-Ritual 4x/Jahr bewerben) · Netlify-Upload durch Patrycja (bei Verkauf: URL nicht erratbar) · Live-URL nachtragen · ggf. Tentary-Produkt · Zubringer-Content.
+**Offen:** Netlify-Upload durch Patrycja (bei Verkauf: URL nicht erratbar) · Live-URL nachtragen · Tentary-Produkt · Zubringer-Content.
+
+**MONETARISIERUNG ENTSCHIEDEN (23.07.):** Timecode kommt **bezahlt und deutlich über 22€** (Patrycja: „Sicherlich nicht für 22 Euro!"; Barbault-Referenz: 22€ → ~600€ Umsatz). Positionierung: Evergreen-Skill (jedes Quartal neu nutzbar) **+ Business-Secret als Produktbestandteil: „Füttere deine KI mit deinem Timecode"** — Anleitung, das eigene Transitreading in Claude/ChatGPT einzuspielen und Launches/Mails/Verträge danach zu planen. Patrycjas Live-Beweis: macht sie selbst seit 23.07. (context/transite-business.md). Claudes Preisempfehlung: 44€, mit Secret auch 55€ — finale Zahl offen. **Launch-Fenster (transitbasiert, siehe launchplan-birthcode-timecode-2026-07-23.md):** 28.08. Seeding · 02.09. Secret-Story-Content (Mars △ Venus) · **05.09. Verkaufsstart** (Mars △ Jupiter im 2. Haus) · vor 19.09. zweite Welle vorterminieren (Wavecode-Yacht!) · 22.–30.09. stärkstes Geldfenster, 27.09. persönlicher Abschluss.
 
 ---
 
-## Astrologin-Deal — Eklipsen-Reader + Reader-Mentoring (besprochen 23.07.2026, Zusage offen)
+## Business-Transitreading — eingespielt & eingebaut (23.07.2026)
+
+**Patrycja hat ihr eigenes 3-Monats-Business-Transitreading (22.07.–22.10.2026, aus dem Timecode + Money Code + Partnership Code) eingespielt.** Ihr Wunsch: immer up to date sein und sich energetisch an ihren Energien ausrichten.
+
+**Operative Datei:** `context/transite-business.md` — kompletter Termin- und Fenster-Kalender, Basis-Signatur, Leitsätze, Money-/Partnership-Regeln, Mapping auf alle laufenden Projekte. **Arbeitsregel: Claude prüft ab jetzt JEDE Terminfrage (Mailversand, Launch, Vertrag, Preis) gegen diese Datei.** Ein neues Reading ersetzt den Inhalt (Zeitraum im Frontmatter nachziehen).
+
+**Kern-Fenster:** Chartruler-Termine (Saturn) 23.07. / 02.08. / 07.10. / 21.10. · stärkstes Geldfenster 22.–30.09. (kollidiert mit Wavecode-Yacht 19.–26.09. → vorher automatisieren; Vollmond 26.09. = Geburtstag im 2. Haus) · sensible Fenster u.a. 17.–20.09., 18.–22.10. · Merkur direkt ab 25.07.
+
+**Das ist zugleich das Timecode-„Business-Secret" in Aktion:** die eigene KI mit dem Transitreading füttern und danach planen — Patrycja lebt es seit 23.07. selbst, Story für den Timecode-Launch im September.
+
+---
+
+## Astrologin-Deal — Eklipsen-Reader + Reader-Mentoring (23.07.2026, PATRYCJA ÜBERLEGT — Offer offline genommen)
 
 **Die Lage:** Die Profiastrologin, die den Timecode approved hat, will Patrycja bezahlen: **8.888€ netto** für (1) einen **Eklipsen-Reader**, den Claude/Patrycja JETZT baut und den sie einmal vermarktet, und (2) ein **Mentoring im August**, in dem Patrycja ihr beibringt, wie man solche Reader baut. Dazu kommt Branding + Salespage von Branddesignerin Patricia (Klärung: rechnet Patricia direkt mit ihr ab?). Strategische Bedeutung: **erster B2B-Verkauf des Reader-Systems** — zweiter Umsatzstrom neben den Endkundinnen-Readern.
 
@@ -249,6 +265,11 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 **Claudes Deal-Punkte (an Patrycja übergeben, vor Zusage festzurren):** (1) Klären, ob 8.888 ohne Patricias Leistung · (2) **IP-Klausel: Methode nur für ihr eigenes Business, kein Weiterverkauf/kein eigenes „Reader-Bauen-Mentoring"** (sonst ist Patrycjas künftiges Mentoring-Produkt verschenkt) · (3) Nutzung des Eklipsen-Readers definieren (eine Kampagne vs. dauerhaft; Vorschlag: August-Eklipsen in ihrem Branding mit vollen Einnahmen, im Mentoring lernt sie den Reader für Februar 2027 selbst neu aufzusetzen) · (4) Mentoring ehrlich = Patrycjas Claude-Workflow lehren (Chart-Logik, Prompt-Komposition, Verifikation), kein Programmierkurs · (5) Preis fair für Pilot + Referenz, nächstes Mentoring teurer.
 
 **Nächster Schritt bei Zusage:** Claude skizziert den Eklipsen-Reader (Rechenschichten + Prompt) und einen kurzen Vereinbarungstext mit Punkten 1 bis 3.
+
+**Update 23.07. nachmittags:**
+- **Vereinbarungstext-Entwurf liegt vor:** `outputs/astrologin-deal-vereinbarung-2026-07-23.md` (versandfertig: Leistungen, 8.888€ netto mit 50/50-Zahlungsvorschlag, IP-Klausel „Methode nur fürs eigene Business, kein Weiterlehren", Patricia rechnet direkt ab [zu bestätigen], Zeitplan; plus interne Hinweise). Empfehlung war: Reader-Link + Deal-Punkte in EINER Nachricht, Zusage ab 25.07. (Merkur direkt).
+- **Dann die Wende: Patrycja hat ihr Offer offline genommen und überlegt grundsätzlich, ob sie den Deal eingeht.** Auslöser u.a. die IP-Diskussion („früher oder später baut das eh jemand nach" vs. Claudes Standpunkt: Klausel definiert, was 8.888€ kaufen, schützt das künftige Mentoring-Produkt).
+- **Entscheidungsrahmen (Claude, an ihrem Reading gespiegelt):** (1) Will sie das B2B-Standbein überhaupt? (2) Verträgt der August das Mentoring (Womancode läuft, Mars ab 10.08. im 6. Haus, Belastungsfenster 15.–25.08.)? (3) Fühlt sich 8.888 gut an? **Fallback aus Stärke: Eklipsen-Reader als EIGENES bezahltes Produkt zu den Finsternissen 12.08./28.08. vermarkten** — Reader ist fertig, gebrandet, nichts ist verloren. Transit-Timing: keine Eile, Zusage-Fenster laufen das ganze Quartal.
 
 ---
 
