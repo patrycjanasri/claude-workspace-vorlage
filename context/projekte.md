@@ -220,6 +220,44 @@ description: Was Patrycja gerade aufbaut, skaliert und launcht
 
 ---
 
+## Timecode-Reader — „Dein Timecode" (22.07.2026) — ERSTER EVERGREEN-TRANSIT-READER
+
+**Patrycjas Idee (22.07.):** Ein Reader, der die aktuellen Planeten über das Geburtshoroskop legt und einen Prompt für ein individuelles 3-Monats-Business-Transitreading komponiert: Welche Räume öffnen sich, wann investieren, worauf achten. Name final: **Dein Timecode**. Patrycja: „Das ist echt geil."
+
+**Der Kern-Unterschied:** kein fester Transit-Moment. Der Reader rechnet ab dem **Tag der Nutzung** drei Monate nach vorn (evergreen, beliebig oft nutzbar, Käuferin nutzt ihn jedes Quartal neu). Abtastung des Fensters in 2-Tages-Schritten (92 Tage = 47 Engine-Charts, ~200ms), Termine per Interpolation auf den Tag genau. **Dieses Abtast-Muster ist wiederverwendbar für alle künftigen Zeitraum-Reader.** Test-Hook `window.__tcNow` für deterministische Läufe.
+
+**Erkannte Ereignisse:** exakte Aspekt-Termine (Transit-Mars bis Chiron zu Sonne/Mond/Merkur/Venus/Mars/Jupiter/Saturn/AC/MC + Chartruler als Extra-Ziel, Mars ohne Sextil, CHARTRULER-Flag) · Dauer-Transite (ganzes Fenster eng im Orb ohne exakt zu werden, ≤1,2°) · Hauswechsel in die natalen Placidus-Häuser (houseOfLong, auch rückläufig) · Merkur-rx-Fenster · Neu-/Vollmonde mit natalem Haus. Prompt komponiert nach Birthcode-Muster, bis 11 Kapitel (Fundament, Räume, Timeline, Chartruler-Fokus, Dauer-Transite, Investieren/Säen, Merkur rx, Monde, Reibung, roter Faden, Frage), ~8.800 Zeichen. Ergebnis-Seite schlank: Zeitfenster + Top-3-Termine nach Gewicht + Merkur-rx + nächster Neumond + Prompt-Button. ASTROCODE-Design, Tippfeld-Datum, kein E-Mail-Gate, AstroCode-CTA.
+
+**Verifiziert (22.07.):** Syntax 5/5 (JSC) · JSC-Harness 4 Testpersonen gegen die echte Engine, **98 Checks, 0 Fehler** (unabhängiger Tages-Feinscan bestätigt jeden Termin ±1 Tag, Mond-Elongation ≤2°, houseOfLong = Engine-Häuser, Merkur-rx-Ende 23./24.07. korrekt, Startpositionen = verifizierte Barbault-Korb-Grade) · Browser-E2E 2 Personen (Prompt-Kopie abgefangen, Browser = JSC 1:1, mobil ok, 0 Konsolenfehler, Port 8771 launch.json „timecode-reader").
+
+**EXTERN APPROVED (22./23.07.):** Eine **Profiastrologin hat den Timecode gegen ihre eigene Software geprüft: „das stimmt alles überein."** Erster Reader mit fachlicher Freigabe von außen — als Social Proof für Verkaufstexte nutzbar (schriftlich/Screenshot einholen, Person nicht erkennbar machen).
+
+**Engine-Wissen dokumentiert (23.07.):** Chart-Berechnung = CircularNatalHoroscopeJS (0xStarcat, Public Domain/Unlicense, Meeus-Algorithmen + Moshier-Ephemeride, github.com/0xStarcat/CircularNatalHoroscopeJS) · Ortssuche = Open-Meteo · Asteroiden weiterhin via eingebackener JPL-Horizons-Ephemeride (build_womancode_asteroids.py). **KI-Recht geklärt:** AI Act (voll ab 02.08.2026) trifft die Prompt-Reader nicht (keine KI eingebaut, Anwenderin nutzt ihr eigenes ChatGPT); kein Zertifikat nötig; bei künftigen Live-KI-Readern (direkte API) Kennzeichnung einplanen; Disclaimer-Zeile auf Salespages bezahlter Reader empfohlen; DSGVO: Daten bleiben im Browser, Open-Meteo in Datenschutzerklärung erwähnen.
+
+**Dateien:** `outputs/astro-timecode-reader.html` | Upload-fertig: `outputs/astro-timecode-reader-netlify/` + ZIP (Finder war geöffnet, Ordner markiert) | Generator: `outputs/build_timecode_reader.py`.
+
+**Offen:** Monetarisierung (Patrycja unentschieden; Claudes Standpunkt: Premium-Kandidat über 22€, evergreen + Astrologin-Approval tragen den Preis; alternativ Quartals-Ritual 4x/Jahr bewerben) · Netlify-Upload durch Patrycja (bei Verkauf: URL nicht erratbar) · Live-URL nachtragen · ggf. Tentary-Produkt · Zubringer-Content.
+
+---
+
+## Astrologin-Deal — Eklipsen-Reader + Reader-Mentoring (besprochen 23.07.2026, Zusage offen)
+
+**Die Lage:** Die Profiastrologin, die den Timecode approved hat, will Patrycja bezahlen: **8.888€ netto** für (1) einen **Eklipsen-Reader**, den Claude/Patrycja JETZT baut und den sie einmal vermarktet, und (2) ein **Mentoring im August**, in dem Patrycja ihr beibringt, wie man solche Reader baut. Dazu kommt Branding + Salespage von Branddesignerin Patricia (Klärung: rechnet Patricia direkt mit ihr ab?). Strategische Bedeutung: **erster B2B-Verkauf des Reader-Systems** — zweiter Umsatzstrom neben den Endkundinnen-Readern.
+
+**Zeitdruck:** Sonnenfinsternis **12.08.2026 im Löwen** (= der Neumond, den der Timecode-Scan auswirft), Mondfinsternis **28.08.2026 in Fischen**. Bau muss diese Woche starten, damit ihre Vermarktungswoche bleibt. Technisch: Muster Neumond-Reader (fester Moment) + Mondknoten-Achse (Finsternisse = Knoten-Neumonde), Aufwand überschaubar.
+
+**Claudes Deal-Punkte (an Patrycja übergeben, vor Zusage festzurren):** (1) Klären, ob 8.888 ohne Patricias Leistung · (2) **IP-Klausel: Methode nur für ihr eigenes Business, kein Weiterverkauf/kein eigenes „Reader-Bauen-Mentoring"** (sonst ist Patrycjas künftiges Mentoring-Produkt verschenkt) · (3) Nutzung des Eklipsen-Readers definieren (eine Kampagne vs. dauerhaft; Vorschlag: August-Eklipsen in ihrem Branding mit vollen Einnahmen, im Mentoring lernt sie den Reader für Februar 2027 selbst neu aufzusetzen) · (4) Mentoring ehrlich = Patrycjas Claude-Workflow lehren (Chart-Logik, Prompt-Komposition, Verifikation), kein Programmierkurs · (5) Preis fair für Pilot + Referenz, nächstes Mentoring teurer.
+
+**Nächster Schritt bei Zusage:** Claude skizziert den Eklipsen-Reader (Rechenschichten + Prompt) und einen kurzen Vereinbarungstext mit Punkten 1 bis 3.
+
+---
+
+## Womancode — GESTARTET 22.07.2026 ✅
+
+**7 Frauen sind dabei, erster Call „grandios" (Patrycja 23.07.).** Läuft bis 26.08. (Calls 29.07., 12.08., 26.08.). Patrycja im Liefermodus; Birthcode-Launch läuft parallel als Live-Case im Programm.
+
+---
+
 ## Chartruler-Reader — „Dein Chartruler" (12.07.2026, LIVE)
 
 **Was:** Reader liest den Aszendenten, bestimmt daraus den Chartruler (Horoskopherrscher), zeigt eine ausführliche Erklärung + automatisches Minireading (Planet + Zeichen + Haus + goldene Chartruler-Frage) und baut den fertigen KI-Prompt zum Kopieren (Button „Chartruler-Prompt + Daten kopieren": wie der Chartruler dein Leben führt, in welchem Lebensbereich sich alles entscheidet, welche Kräfte bei Entscheidungen mitreden). Gleiches Design + Placidus-Engine wie der Business-Reader, Womancode-CTA-Block am Ende.

@@ -4,44 +4,77 @@
     {
       "name": "mail",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8099", "--directory", "outputs/womancode-mail-kreieren"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8099",
+        "--directory",
+        "outputs/womancode-mail-kreieren"
+      ],
       "port": 8099
     },
     {
       "name": "outputs-static",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/e858faab-120c-4dcd-b20f-f8688f55dbb3/scratchpad/preview && exec python3 -m http.server 8734"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/e858faab-120c-4dcd-b20f-f8688f55dbb3/scratchpad/preview && exec python3 -m http.server 8734"
+      ],
       "port": 8734
     },
     {
       "name": "email-preview",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/9bac10bf-ab22-4b10-ad50-eb84cd996419/scratchpad/preview && exec python3 -m http.server 8766"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/9bac10bf-ab22-4b10-ad50-eb84cd996419/scratchpad/preview && exec python3 -m http.server 8766"
+      ],
       "port": 8766
     },
     {
       "name": "barbault-reader",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/39b17b59-c820-458c-bc63-786625cda20c/scratchpad/preview && exec python3 -m http.server 8768"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/39b17b59-c820-458c-bc63-786625cda20c/scratchpad/preview && exec python3 -m http.server 8768"
+      ],
       "port": 8768
     },
     {
       "name": "body-reader",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/e0545ef1-034d-41b0-8fb1-0f04dd3656e0/scratchpad/preview && exec python3 -m http.server 8769"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/e0545ef1-034d-41b0-8fb1-0f04dd3656e0/scratchpad/preview && exec python3 -m http.server 8769"
+      ],
       "port": 8769
     },
     {
       "name": "geburtscode-reader",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/6207fdc1-d1d4-4213-a8f4-4661d2e222b1/scratchpad/preview && exec python3 -m http.server 8770"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/6207fdc1-d1d4-4213-a8f4-4661d2e222b1/scratchpad/preview && exec python3 -m http.server 8770"
+      ],
       "port": 8770
     },
     {
       "name": "neumond-reader",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/ac27fea7-a848-46e0-b6b5-cf3d26cab47a/scratchpad/preview && exec python3 -m http.server 8765"],
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/ac27fea7-a848-46e0-b6b5-cf3d26cab47a/scratchpad/preview && exec python3 -m http.server 8765"
+      ],
       "port": 8765
+    },
+    {
+      "name": "timecode-reader",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/c14b26b9-80c1-4bff-813a-bb9bbd5cfe2c/scratchpad/preview && exec python3 -m http.server 8771"
+      ],
+      "port": 8771
     }
   ]
 }
