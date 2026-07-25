@@ -84,6 +84,15 @@
         "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/c14b26b9-80c1-4bff-813a-bb9bbd5cfe2c/scratchpad/preview && exec python3 -m http.server 8771"
       ],
       "port": 8771
+    },
+    {
+      "name": "saturn-reader",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/185172cc-a562-447c-abb2-3fe384acb4c6/scratchpad/preview && exec python3 -m http.server 8774"
+      ],
+      "port": 8774
     }
   ]
 }

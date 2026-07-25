@@ -157,6 +157,7 @@ Vollständige Kontextdateien:
 - [`context/profil.md`](context/profil.md) — Wer sie ist, ihre Positionierung, ihre Programme
 - [`context/projekte.md`](context/projekte.md) — Aktuelle Projekte und Prioritäten
 - [`context/kommunikation.md`](context/kommunikation.md) — Wie Claude mit ihr kommuniziert
+- [`context/geburtshoroskop.md`](context/geburtshoroskop.md) — Ihr individueller Blueprint: vollständiges Radix-Reading (1:1) + Kurzreferenz + Arbeitsregeln, wie Claude die Chart bei Strategie, Preisen und Kommunikation anwendet
 
 ---
 
@@ -174,6 +175,7 @@ Vollständige Kontextdateien:
 ## Notizen
 
 - **Transit-Timing:** Jede Terminempfehlung (Mailversand, Launches, Verträge, Preisentscheidungen) gegen `context/transite-business.md` prüfen — Patrycjas eigenes Business-Transitreading, operativ aufbereitet. Neues Reading ersetzt den Datei-Inhalt.
+- **Individueller Blueprint:** `context/geburtshoroskop.md` ist Patrycjas Radix (Reading 1:1 + Arbeitsregeln). Claude berücksichtigt ihn bei jeder strategischen Empfehlung, Preisfrage und Entscheidungsberatung — vor allem: klare Preise ohne Rechtfertigung (Nordknoten Widder im 2. Haus), Realitätsprüfung bei Visionen und Deals (Sonne ☐ Neptun 0,1°), Entscheidung spiegeln statt Argumente sammeln (Merkur ☍ Nordknoten), Rahmen statt Bremse bei Chancen (Jupiter ☐ Uranus). Radix = dauerhaft, Timing = transite-business.md.
 - Kontext minimal aber ausreichend halten — kein Bloat
 - Pläne in `plans/` mit datierten Dateinamen für die Historie
 - Outputs nach Typ/Zweck in `outputs/` organisiert — typische Outputs: Instagram-Content, Verkaufstexte, E-Mails, Funnel-Strukturen, Programm-Konzepte, Präsentationen, ChatGPT-Prompts
