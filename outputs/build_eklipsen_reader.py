@@ -73,6 +73,15 @@ FONT_SCRIPT = b64file(os.path.join(HERE, "bernadette-greatvibes.woff2"))
 with open(os.path.join(HERE, "true-node-data.js"), "r", encoding="utf-8") as f:
     TRUE_NODE_DATA_JS = f.read()
 
+# Engine EINGEBETTET statt CDN (Bernadettes Frage 25.07.: "Was ist, wenn der
+# Zugang mal gesperrt wird?"): CircularNatalHoroscopeJS 1.1.0 (Public Domain/
+# Unlicense) liegt lokal in outputs/circular-natal-horoscope-1.1.0.js und wird
+# in die Seite eingebacken -> Berechnung laeuft komplett autark im Browser,
+# kein CDN, kein astro.com, kein Server. Einzige externe Abhaengigkeit bleibt
+# die Ortssuche (Open-Meteo).
+with open(os.path.join(HERE, "circular-natal-horoscope-1.1.0.js"), "r", encoding="utf-8") as f:
+    ENGINE_JS = f.read()
+
 # --- Finsternis-Momente (lokale Zeit, Engine loest Zeitzone ueber Koordinaten)
 # Bernadettes Regel (24.07.): "Wir rechnen immer mit den Eclipsegraden" =
 # MONDPOSITION am Finsternis-MAXIMUM (nicht der exakte Neumond/Vollmond).
@@ -192,6 +201,12 @@ repl("<h2>Dein Business-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p
 
 repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neues Horoskop berechnen", "back-btn")
 
+# --- 3a0. Google-Fonts-Link raus (Autarkie): Montserrat faellt auf System-
+# Sans zurueck, alle sichtbaren Texte laufen ohnehin ueber Anton/Great Vibes
+# (eingebettet) bzw. den Inter-Fallback-Stack.
+repl('<link rel="preconnect" href="https://fonts.googleapis.com">\n', '', "gfonts-preconnect-remove")
+repl('<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">\n', '', "gfonts-link-remove")
+
 # --- 3a. Basis-CSS: Mond-Bild-URL von Patrycjas Page raus (ihr Produkt) -----
 repl('background:url("https://patrycja-nasri.de/wp-content/uploads/2026/06/WEB-ASTRO3.png") center top / cover no-repeat;',
      'background:none;', "moon-url-remove")
@@ -202,9 +217,9 @@ repl('<a href="https://patrycja-nasri.de/impressum/" target="_blank" rel="noopen
 repl('<a href="https://patrycja-nasri.de/datenschutz/" target="_blank" rel="noopener">Datenschutz</a>',
      '<a href="' + DATENSCHUTZ_URL + '" target="_blank" rel="noopener">Datenschutz</a>', "datenschutz-link")
 
-# --- 3c. Wahrer-Knoten-Ephemeride als eigenes Skript nach der Engine --------
+# --- 3c. Engine eingebettet (statt CDN) + Wahrer-Knoten-Ephemeride ----------
 repl('<script src="https://cdn.jsdelivr.net/npm/circular-natal-horoscope-js@1.1.0/dist/index.js"></script>',
-     '<script src="https://cdn.jsdelivr.net/npm/circular-natal-horoscope-js@1.1.0/dist/index.js"></script>\n<script>\n' + TRUE_NODE_DATA_JS + '''
+     '<script>\n' + ENGINE_JS + '\n</script>\n<script>\n' + TRUE_NODE_DATA_JS + '''
 // Wahrer Mondknoten am Julianischen Datum (UT): quadratische Interpolation
 // ueber 3 Stuetzstellen (Base36-Millidegree, 4 Zeichen/Wert), Wrap ueber den
 // kuerzesten Bogen. null ausserhalb 1900-2036. Max. Fehler ~0,1 Bogenminuten.
