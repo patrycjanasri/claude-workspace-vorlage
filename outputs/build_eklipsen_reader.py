@@ -33,7 +33,8 @@ Patricia (Tausch ueber diesen Generator).
 Quelle:  astro-business-reader.html
 Ziel:    astro-eklipsen-reader.html (+ astro-eklipsen-reader-netlify/index.html)
 """
-import os, re, sys, shutil, base64
+import os, re, sys, shutil, io, base64
+from PIL import Image
 
 NAME = "Dein Eclipse Navigator"      # Bernadettes Favorit (24.07.); final wenn sie ihn bestaetigt
 
@@ -62,9 +63,14 @@ def b64file(path):
 FONT_ANTON = b64file(os.path.join(HERE, "bernadette-anton.woff2"))
 FONT_SCRIPT = b64file(os.path.join(HERE, "bernadette-greatvibes.woff2"))
 
-# Bernadettes Foto (outputs/bernadette-hero.jpg) wird NICHT mehr im Kopf
-# verbaut (ihre Ansage 25.07.: Schrift hoch, schnell zum Eingabefeld).
-# Das Foto bleibt gesichert, falls es spaeter z.B. ans Seitenende soll.
+# ERKENNUNGSWERT (Andrés Ansage 25.07., Markendesigner: "kein grosses Bild,
+# kein Platz verschenken, aber Du musst sichtbar sein"): rundes Avatar-
+# Portraet aus Bernadettes Foto — klein im Kopf + als Signatur am Ende
+# mit "Deine Bernadette" in der Script-Schrift.
+_av = Image.open(os.path.join(HERE, "bernadette-hero.jpg")).crop((696, 246, 3480, 3030)).resize((320, 320), Image.LANCZOS)
+_buf = io.BytesIO()
+_av.convert("RGB").save(_buf, format="JPEG", quality=85)
+AVATAR = "data:image/jpeg;base64," + base64.b64encode(_buf.getvalue()).decode()
 
 # WAHRER Mondknoten (Bernadettes Vorgabe 25.07.: "er muss den wahren Mond-
 # knoten als Berechnungsgrundlage nehmen"): Die Engine kann nur den mittleren
@@ -105,7 +111,7 @@ repl("<title>Dein Business-Code</title>",
      "<title>" + NAME + "</title>", "title")
 
 repl('<p class="header-eyebrow">Dein kosmischer Business-Blueprint</p>',
-     '<p class="header-eyebrow">Eclipse Season incoming</p>', "eyebrow-bernadette")
+     '<div class="b-avatar"><img src="__AVATAR__" alt="Bernadette Hirschfelder"></div>\n  <p class="header-eyebrow">Eclipse Season incoming</p>', "eyebrow-bernadette")
 
 repl("<h1>Dein Business-Code</h1>",
      "<h1>" + NAME + "</h1>", "h1")
@@ -177,6 +183,10 @@ repl("if(!date){ return fail('Bitte gib dein Geburtsdatum ein.'); }",
      "if(!date){ return fail('Bitte gib Dein Geburtsdatum als TT.MM.JJJJ ein, zum Beispiel 08.10.1986.'); }",
      "date-error-msg")
 
+repl("if(!time){ return fail('Bitte gib deine genaue Geburtszeit ein. Sie ist für deinen Aszendenten und deine Häuser nötig.'); }",
+     "if(!time){ return fail('Bitte gib Deine Geburtszeit als HH:MM ein, zum Beispiel 13:52. Sie ist für Deinen Aszendenten und Deine Häuser nötig.'); }",
+     "time-error-msg")
+
 date_autodots = '''<script>
 document.addEventListener('DOMContentLoaded', function(){
   const bd = document.getElementById('birthDate');
@@ -189,6 +199,16 @@ document.addEventListener('DOMContentLoaded', function(){
       bd.value = v.slice(0, 10);
     });
   }
+  const bt = document.getElementById('birthTime');
+  if(bt){
+    bt.addEventListener('input', function(){
+      let v = bt.value.replace(/[^\\d:.]/g, '').replace('.', ':');
+      if(v.indexOf(':') === -1 && v.length > 2){
+        v = v.slice(0,2) + ':' + v.slice(2,4);
+      }
+      bt.value = v.slice(0, 5);
+    });
+  }
 });
 </script>
 </body>'''
@@ -199,7 +219,31 @@ repl("<h2>Dein Business-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p
      "<h2>Deine Eclipse Season${(name && name !== 'Du') ? ', ' + name : ''}</h2><p>${metaLine || 'Sonnenfinsternis und Mondfinsternis im August 2026'}</p>",
      "results-header")
 
-repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neues Horoskop berechnen", "back-btn")
+# Bernadettes Punkt (25.07.): "Neues Horoskop berechnen" laedt zum Weitergeben
+# ein — stattdessen selbstbezogen formulieren (Tippfehler-Korrektur bleibt moeglich).
+repl("&#8592; Neuen Business-Code erstellen", "&#8592; Meine Eingaben korrigieren", "back-btn")
+
+# --- 2b. Geburtszeit als TIPPFELD statt input[type=time] (Bernadettes iPhone-
+# Screenshots 25.07.: iOS zentriert/versteckt native Zeitfelder, CSS-Fix
+# reichte nicht). Muster wie das Datums-Tippfeld: HH:MM mit Auto-Doppelpunkt
+# (1352 -> 13:52), Validierung 00-23 / 00-59.
+repl('<input type="time" id="birthTime" autocomplete="off">',
+     '<input type="text" id="birthTime" placeholder="HH:MM, z.B. 13:52" inputmode="numeric" autocomplete="off">',
+     "time-field-text")
+
+repl("    const time = $('birthTime').value;",
+     '''    const timeRaw = ($('birthTime').value || '').trim();
+    let time = '';
+    (function(){
+      let v = timeRaw;
+      if(/^\\d{3,4}$/.test(v)){ if(v.length === 3) v = '0' + v; v = v.slice(0,2) + ':' + v.slice(2); }
+      const tm = v.match(/^(\\d{1,2})[:.](\\d{2})$/);
+      if(!tm) return;
+      const hh = parseInt(tm[1], 10), mm = parseInt(tm[2], 10);
+      if(hh > 23 || mm > 59) return;
+      time = (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm;
+    })();''',
+     "time-parse")
 
 # --- 3a0. Google-Fonts-Link raus (Autarkie): Montserrat faellt auf System-
 # Sans zurueck, alle sichtbaren Texte laufen ohnehin ueber Anton/Great Vibes
@@ -684,8 +728,15 @@ body{ background:__ROSA__ !important; color:#111111 !important;
   background:__PEACH__; color:__INK__; font-family:'BAnton',sans-serif; font-size:15px;
   letter-spacing:0.2em; line-height:1; padding:10px 0; white-space:nowrap; overflow:hidden;
   transform:rotate(2.5deg); }
-/* Kein Bild im Kopf: Schrift direkt unter die Tape-Baender (Bernadette 25.07.) */
+/* Erkennungswert (André 25.07.): kleines rundes Portraet im Kopf,
+   Signatur mit Avatar + "Deine Bernadette" am Seitenende */
 .container{ padding-top:8px !important; }
+.b-avatar{ position:relative; z-index:2; width:clamp(96px, 15vw, 126px); margin:2px auto 14px; }
+.b-avatar img{ width:100%; height:auto; display:block; border-radius:50%; border:3px solid #111111; }
+.b-sign{ text-align:center; margin:48px 0 26px; position:relative; z-index:2; }
+.b-sign img{ width:84px; height:84px; border-radius:50%; border:3px solid #111111; display:inline-block; }
+.b-sign-text{ font-family:'BScript',cursive !important; font-size:clamp(1.9rem, 5vw, 2.5rem) !important;
+  color:#111111 !important; margin-top:10px !important; line-height:1.2 !important; }
 .header-eyebrow{
   font-family:'BScript',cursive !important;
   font-size:clamp(1.7rem, 4.5vw, 2.4rem) !important;
@@ -722,10 +773,14 @@ header h1{
   background:linear-gradient(90deg, rgba(217,169,79,0), #D9A94F 18%, #D9A94F 82%, rgba(217,169,79,0)) !important;
   border:none !important; margin:26px auto !important; opacity:1 !important;
   border-radius:3px !important; box-shadow:none !important; }
-/* Treffer-Zeile: jeder Aspekt als eigenes Pill statt einer ueberlangen Zeile */
+/* Treffer-Zeile: jeder Aspekt als eigenes Pill statt einer ueberlangen Zeile.
+   Buendig (Bernadette 25.07.): Label als eigene Zeile, Pills darunter
+   linksbuendig im Block statt rechts ausgefranst. */
 .data-values{ display:flex !important; flex-wrap:wrap !important; gap:6px !important;
   justify-content:flex-end !important; align-items:center !important; }
-.hits-row .data-values{ max-width:62%; }
+.hits-row{ display:block !important; }
+.hits-row .data-planet{ display:block !important; margin-bottom:12px !important; }
+.hits-row .data-values{ max-width:100% !important; justify-content:flex-start !important; }
 header{ margin-bottom:16px !important; }
 .place-chosen{ color:#111111 !important; font-weight:700 !important; }
 .results-header h2{ font-family:'BAnton',sans-serif !important; text-transform:uppercase !important;
@@ -751,6 +806,10 @@ h3, .data-planet, .field-label, label, p, li{ color:#111111; }
 input[type="text"], input[type="date"], input[type="time"]{
   background:#FFFFFF !important; border:2px solid #111111 !important; border-radius:12px !important;
   color:#111111 !important; }
+/* iOS Safari zentriert Zeitfelder — buendig links wie die anderen Felder
+   (Bernadette 25.07., Screenshot vom iPhone) */
+input[type="time"]{ text-align:left !important; }
+input[type="time"]::-webkit-date-and-time-value{ text-align:left !important; margin:0 !important; }
 input::placeholder{ color:rgba(17,17,17,0.40) !important; }
 input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
   border-color:#111111 !important; box-shadow:0 0 0 4px __FLIEDER__ !important; }
@@ -786,8 +845,19 @@ extra_css = (extra_css
     .replace("__INK__", C_INK))
 repl('</head>', extra_css, "bernadette-css")
 
-# ASTROCODE-Abschlussbild (NP-Logo + Schriftzug) bewusst NICHT eingebaut —
-# das Branding der Astrologin kommt von Patricia und ersetzt diese Stelle.
+# Abschluss-Signatur (Andrés Ansage 25.07.): Avatar + "Deine Bernadette"
+# in der Script-Schrift vor dem Footer — wie die Unterschrift im Eclipse Guide.
+repl('<footer class="legal-footer">',
+     '''<div class="b-sign">
+  <img src="__AVATAR__" alt="Bernadette Hirschfelder">
+  <p class="b-sign-text">Deine Bernadette</p>
+</div>
+<footer class="legal-footer">''', "signatur-bernadette")
+
+# Avatar einsetzen (Kopf + Signatur)
+if s.count("__AVATAR__") != 2:
+    sys.exit("FEHLT: __AVATAR__ Platzhalter (erwartet 2, gefunden " + str(s.count("__AVATAR__")) + ")")
+s = s.replace("__AVATAR__", AVATAR)
 
 # Sicherheitscheck: keine Business- oder Womancode-Reste mehr in Logik-Hooks
 for leftover in ["copyBusinessReading", "copyBizBtn", "BUSINESS_PROMPT", "subscribeLead", "userEmail", "Business-Code", "Business-Blueprint", "wc-logo", "Womancode", "womancode"]:
