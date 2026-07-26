@@ -63,14 +63,17 @@ def b64file(path):
 FONT_ANTON = b64file(os.path.join(HERE, "bernadette-anton.woff2"))
 FONT_SCRIPT = b64file(os.path.join(HERE, "bernadette-greatvibes.woff2"))
 
-# ERKENNUNGSWERT (Andrés Ansage 25.07., Markendesigner: "kein grosses Bild,
-# kein Platz verschenken, aber Du musst sichtbar sein"): rundes Avatar-
-# Portraet aus Bernadettes Foto — klein im Kopf + als Signatur am Ende
-# mit "Deine Bernadette" in der Script-Schrift.
-_av = Image.open(os.path.join(HERE, "bernadette-hero.jpg")).crop((696, 246, 3480, 3030)).resize((320, 320), Image.LANCZOS)
+# COVER-FOTO (Patrycjas Ansage 26.07., ersetzt den runden Mini-Avatar "viel
+# zu klein"): Bernadettes neues freigestelltes Foto gross im Kopf, die Anton-
+# Headline "Dein Eclipse Navigator" ueberlappt das Bild wie auf ihrem
+# Eclipse-Guide-Cover. Quelle: image00001.jpg (24.07.), freigestellt via
+# macOS-Vision (VNGenerateForegroundInstanceMaskRequest), gesichert als
+# outputs/bernadette-freigestellt.png.
+_hero = Image.open(os.path.join(HERE, "bernadette-freigestellt.png"))
+_hero.thumbnail((760, 1140), Image.LANCZOS)
 _buf = io.BytesIO()
-_av.convert("RGB").save(_buf, format="JPEG", quality=85)
-AVATAR = "data:image/jpeg;base64," + base64.b64encode(_buf.getvalue()).decode()
+_hero.save(_buf, format="WEBP", quality=82)
+HERO = "data:image/webp;base64," + base64.b64encode(_buf.getvalue()).decode()
 
 # WAHRER Mondknoten (Bernadettes Vorgabe 25.07.: "er muss den wahren Mond-
 # knoten als Berechnungsgrundlage nehmen"): Die Engine kann nur den mittleren
@@ -111,7 +114,7 @@ repl("<title>Dein Business-Code</title>",
      "<title>" + NAME + "</title>", "title")
 
 repl('<p class="header-eyebrow">Dein kosmischer Business-Blueprint</p>',
-     '<div class="b-avatar"><img src="__AVATAR__" alt="Bernadette Hirschfelder"></div>\n  <p class="header-eyebrow">Eclipse Season incoming</p>', "eyebrow-bernadette")
+     '<p class="header-eyebrow">Eclipse Season incoming</p>\n  <div class="b-cover"><img src="__HERO__" alt="Bernadette Hirschfelder"></div>', "eyebrow-bernadette")
 
 repl("<h1>Dein Business-Code</h1>",
      "<h1>" + NAME + "</h1>", "h1")
@@ -544,8 +547,8 @@ new_cta = """  // Sichtbares Eklipsen-Thema
     (E.rulers || []).forEach(function(r){
       tHtml += `<div class="data-row"><span class="data-planet">Herrscher Deines ${r.house}. Hauses (${r.roles.join(' + ')})</span><span class="data-values"><span class="badge sign-badge">${r.ruler}${r.sign ? ' in ' + r.sign : ''}${r.inHouse ? ', ' + r.inHouse + '. Haus' : ''}</span></span></div>`;
     });
-    const allHits = (E.sofi.hits || []).map(function(h){ return 'SoFi ' + h.type + ' ' + h.point + (h.cr ? ' (Chartruler)' : ''); })
-      .concat((E.mofi.hits || []).map(function(h){ return 'MoFi ' + h.type + ' ' + h.point + (h.cr ? ' (Chartruler)' : ''); }));
+    const allHits = (E.sofi.hits || []).map(function(h){ return 'SoFi ' + h.type + ' ' + h.point + (h.cr ? ' (Horoskopherrscher)' : ''); })
+      .concat((E.mofi.hits || []).map(function(h){ return 'MoFi ' + h.type + ' ' + h.point + (h.cr ? ' (Horoskopherrscher)' : ''); }));
     const hitPills = allHits.length
       ? allHits.map(function(t){ return `<span class="badge sign-badge">${t}</span>`; }).join('')
       : `<span class="badge sign-badge">keine engen Aspekte</span>`;
@@ -583,7 +586,7 @@ new_region = r"""  const ECLIPSE_INTRO = `Du bist eine erfahrene Astrologin. Du 
 
 Das Ereignis: Im August 2026 ist Eclipse Season. Am 12. August 2026 steht eine totale Sonnenfinsternis auf 20°06' Löwe. Am 28. August 2026 folgt eine partielle Mondfinsternis auf 4°50' Fische. Beide liegen an der Mondknotenachse. Eine Sonnenfinsternis findet zu einem Neumond statt: Sie steht für neue Chancen, neue Wege, neue Begegnungen und Türen, die sich plötzlich öffnen. Oft beginnt ein neues Kapitel, auch wenn ich es zunächst noch gar nicht erkenne. Eine Mondfinsternis findet zu einem Vollmond statt: Sie steht für Abschlüsse, Erkenntnisse, Entscheidungen und Loslassen. Wahrheit kommt ans Licht, oft zeigt sie genau das, was ich bisher übersehen oder verdrängt habe. Finsternisse wirken selten nur am Tag selbst: Die ersten Hinweise zeigen sich häufig schon etwa vier Wochen vorher, und die Themen entfalten sich manchmal noch Wochen oder Monate danach.
 
-Wichtig: Ich arbeite mit Placidus-Häusern und lese mein Horoskop über die Häuserherrscher. Zu jedem relevanten Haus stehen unten das Zeichen auf der Häuserspitze und der Herrscher mit seiner Position in meiner Radix. Lies jede Finsternis über ihr Haus UND über den Herrscher dieses Hauses: Das Haus zeigt, wo es geschieht, sein Herrscher zeigt, worüber es läuft und wohin es führt. Bei den Aspekten gilt: Ich arbeite bei Finsternissen mit einem weiten Orb von bis zu 10°. Je enger der Orb, desto stärker wirkt der Aspekt, die engsten tragen die Hauptbotschaft. Aspekte mit dem Vermerk CHARTRULER treffen den Herrscher meines 1. Hauses, den Planeten, der mein ganzes Horoskop lenkt. Solche Treffer wiegen doppelt.
+Wichtig: Ich arbeite mit Placidus-Häusern und lese mein Horoskop über die Häuserherrscher. Zu jedem relevanten Haus stehen unten das Zeichen auf der Häuserspitze und der Herrscher mit seiner Position in meiner Radix. Lies jede Finsternis über ihr Haus UND über den Herrscher dieses Hauses: Das Haus zeigt, wo es geschieht, sein Herrscher zeigt, worüber es läuft und wohin es führt. Bei den Aspekten gilt: Ich arbeite bei Finsternissen mit einem weiten Orb von bis zu 10°. Je enger der Orb, desto stärker wirkt der Aspekt, die engsten tragen die Hauptbotschaft. Aspekte mit dem Vermerk HOROSKOPHERRSCHER treffen den Herrscher meines 1. Hauses, den Planeten, der mein ganzes Horoskop lenkt. Solche Treffer wiegen doppelt.
 
 Schreibe mir auf dieser Basis:`;
 
@@ -630,7 +633,7 @@ Hier sind meine Daten:`;
     }
 
     if(cr && crHit){
-      chap.push('Der Treffer auf meinen Chartruler. Der Herrscher meines 1. Hauses ist ' + cr.name + (cr.sign ? (', er steht in ' + cr.sign) : '') + (cr.house ? (' in meinem ' + cr.house + '. Haus') : '') + ' und lenkt mein ganzes Horoskop. Eine Finsternis berührt ihn direkt, du findest den Aspekt in den Daten mit dem Vermerk CHARTRULER. Widme diesem Treffer einen eigenen Absatz: Wenn der Lenker des Horoskops getroffen wird, verschiebt sich die Richtung des ganzen Lebens spürbarer als bei jedem anderen Punkt.');
+      chap.push('Der Treffer auf meinen Horoskopherrscher. Der Herrscher meines 1. Hauses ist ' + cr.name + (cr.sign ? (', er steht in ' + cr.sign) : '') + (cr.house ? (' in meinem ' + cr.house + '. Haus') : '') + ' und lenkt mein ganzes Horoskop. Eine Finsternis berührt ihn direkt, du findest den Aspekt in den Daten mit dem Vermerk HOROSKOPHERRSCHER. Widme diesem Treffer einen eigenen Absatz: Wenn der Lenker des Horoskops getroffen wird, verschiebt sich die Richtung des ganzen Lebens spürbarer als bei jedem anderen Punkt.');
     }
 
     chap.push('Die Richtung. Die Mondknotenachse der Finsternisse läuft bei mir durch' + ((node.houseNN && node.houseSN) ? (' mein ' + node.houseNN + '. und mein ' + node.houseSN + '. Haus') : ' meine Häuser') + '. Lies sie als Richtungsgeber dieses Fensters: wohin das Leben mich zieht und was ich dafür lassen darf. Vergleiche sie mit meinen natalen Mondknoten in den Daten unten: Wo bestätigt das Fenster meinen Weg, wo fordert es einen neuen Schritt?');
@@ -653,7 +656,7 @@ Hier sind meine Daten:`;
     data.push('');
     data.push('MEINE FINSTERNISSE IM AUGUST 2026:');
     data.push('Sonnenfinsternis am 12.08.2026: ' + (sofi.text || '20°02\' Löwe') + (sofi.house ? (', fällt in mein ' + sofi.house + '. Haus.') : '.'));
-    const hitLine = function(h, who){ return '- ' + who + ' ' + h.type + ' zu ' + h.point + (h.sign ? (' in ' + h.sign) : '') + (h.house ? (', ' + h.house + '. Haus') : '') + ' (Orb ' + String(h.orb).replace('.', ',') + '°)' + (h.cr ? ' [CHARTRULER]' : ''); };
+    const hitLine = function(h, who){ return '- ' + who + ' ' + h.type + ' zu ' + h.point + (h.sign ? (' in ' + h.sign) : '') + (h.house ? (', ' + h.house + '. Haus') : '') + ' (Orb ' + String(h.orb).replace('.', ',') + '°)' + (h.cr ? ' [HOROSKOPHERRSCHER]' : ''); };
     if((sofi.hits || []).length){
       data.push('Aspekte der Sonnenfinsternis zu meinen natalen Punkten (engster Orb wirkt am stärksten):');
       sofi.hits.forEach(function(h){ data.push(hitLine(h, 'Sonnenfinsternis')); });
@@ -681,7 +684,7 @@ Hier sind meine Daten:`;
       data.push('Meine natalen Mondknoten (wahrer Mondknoten): Nordknoten in ' + E.natalNodes.nn.sign + (E.natalNodes.nn.house ? (', ' + E.natalNodes.nn.house + '. Haus') : '') + (E.natalNodes.snSign ? (', Südknoten in ' + E.natalNodes.snSign + (E.natalNodes.snHouse ? (', ' + E.natalNodes.snHouse + '. Haus') : '')) : '') + '.');
     }
     if(cr){
-      data.push('Mein Chartruler (Herrscher meines 1. Hauses, Aszendent im Zeichen ' + cr.acSign + '): ' + cr.name + (cr.sign ? (' in ' + cr.sign) : '') + (cr.house ? (', ' + cr.house + '. Haus') : '') + (cr.co ? (' (Mitherrscher: ' + cr.co + ')') : '') + '.');
+      data.push('Mein Horoskopherrscher (Herrscher meines 1. Hauses, Aszendent im Zeichen ' + cr.acSign + '): ' + cr.name + (cr.sign ? (' in ' + cr.sign) : '') + (cr.house ? (', ' + cr.house + '. Haus') : '') + (cr.co ? (' (Mitherrscher: ' + cr.co + ')') : '') + '.');
     }
     if(E.natalSun && E.natalSun.sign) data.push('Meine natale Sonne: ' + E.natalSun.sign + (E.natalSun.house ? (', ' + E.natalSun.house + '. Haus') : ''));
     if(E.natalMoon && E.natalMoon.sign) data.push('Mein nataler Mond: ' + E.natalMoon.sign + (E.natalMoon.house ? (', ' + E.natalMoon.house + '. Haus') : ''));
@@ -728,15 +731,21 @@ body{ background:__ROSA__ !important; color:#111111 !important;
   background:__PEACH__; color:__INK__; font-family:'BAnton',sans-serif; font-size:15px;
   letter-spacing:0.2em; line-height:1; padding:10px 0; white-space:nowrap; overflow:hidden;
   transform:rotate(2.5deg); }
-/* Erkennungswert (André 25.07.): kleines rundes Portraet im Kopf,
-   Signatur mit Avatar + "Deine Bernadette" am Seitenende */
+/* Cover-Kopf (Patrycja 26.07., wie das Eclipse-Guide-Cover): grosses
+   freigestelltes Foto, die Headline ueberlappt das Bild. */
 .container{ padding-top:8px !important; }
-.b-avatar{ position:relative; z-index:2; width:clamp(96px, 15vw, 126px); margin:2px auto 14px; }
-.b-avatar img{ width:100%; height:auto; display:block; border-radius:50%; border:3px solid #111111; }
-.b-sign{ text-align:center; margin:48px 0 26px; position:relative; z-index:2; }
-.b-sign img{ width:84px; height:84px; border-radius:50%; border:3px solid #111111; display:inline-block; }
+.b-cover{ position:relative; z-index:1; width:clamp(230px, 62vw, 330px); margin:4px auto 0; }
+.b-cover img{ width:100%; height:auto; display:block; }
 .b-sign-text{ font-family:'BScript',cursive !important; font-size:clamp(1.9rem, 5vw, 2.5rem) !important;
   color:#111111 !important; margin-top:10px !important; line-height:1.2 !important; }
+/* "Deine Bernadette" unter dem Intro-Text (Patrycja 26.07.) */
+.intro-sign{ margin:16px auto 0 !important; }
+/* Copyright-Zeile im Footer (Patrycja 26.07., wie im Eclipse Guide).
+   Immer EINE Zeile (Patrycja 26.07.): Schriftgroesse skaliert mit der
+   Bildschirmbreite, umbrechen verboten. */
+.b-copyright{ font-family:'BAnton',sans-serif !important;
+  white-space:nowrap !important; letter-spacing:0.12em !important;
+  font-size:clamp(7px, 2.3vw, 0.74rem) !important; margin:0 0 10px !important; }
 .header-eyebrow{
   font-family:'BScript',cursive !important;
   font-size:clamp(1.7rem, 4.5vw, 2.4rem) !important;
@@ -747,15 +756,17 @@ body{ background:__ROSA__ !important; color:#111111 !important;
   text-shadow:none !important;
   margin-bottom:18px !important;
 }
-header h1{ margin-top:0 !important; margin-bottom:14px !important; }
+header h1{ margin-bottom:14px !important; }
 header h1{
   font-family:'BAnton',sans-serif !important;
   text-transform:uppercase !important;
-  font-size:clamp(2.6rem, 9vw, 4.4rem) !important;
-  line-height:1.02 !important;
+  font-size:clamp(3rem, 11vw, 5.2rem) !important;
+  line-height:0.98 !important;
   letter-spacing:0.01em !important;
   color:#111111 !important;
   text-shadow:none !important;
+  position:relative !important; z-index:2 !important;
+  margin-top:clamp(-130px, -14vw, -64px) !important;
 }
 .subtitle{
   font-family:'Inter','Helvetica Neue',Arial,sans-serif !important;
@@ -845,19 +856,20 @@ extra_css = (extra_css
     .replace("__INK__", C_INK))
 repl('</head>', extra_css, "bernadette-css")
 
-# Abschluss-Signatur (Andrés Ansage 25.07.): Avatar + "Deine Bernadette"
-# in der Script-Schrift vor dem Footer — wie die Unterschrift im Eclipse Guide.
-repl('<footer class="legal-footer">',
-     '''<div class="b-sign">
-  <img src="__AVATAR__" alt="Bernadette Hirschfelder">
-  <p class="b-sign-text">Deine Bernadette</p>
-</div>
-<footer class="legal-footer">''', "signatur-bernadette")
+# Signatur "Deine Bernadette" unter dem Intro-Text vor dem Goldstrich
+# (Patrycjas Ansage 26.07.; der Avatar-Block am Seitenende entfaellt,
+# unten steht stattdessen die Copyright-Zeile wie im Eclipse Guide).
+repl('<div class="divider"></div>',
+     '''<p class="b-sign-text intro-sign">Deine Bernadette</p>
+    <div class="divider"></div>''', "signatur-intro")
 
-# Avatar einsetzen (Kopf + Signatur)
-if s.count("__AVATAR__") != 2:
-    sys.exit("FEHLT: __AVATAR__ Platzhalter (erwartet 2, gefunden " + str(s.count("__AVATAR__")) + ")")
-s = s.replace("__AVATAR__", AVATAR)
+repl('<footer class="legal-footer">',
+     '<footer class="legal-footer"><p class="b-copyright">Copyright Bernadette Hirschfelder - 2026 - lieblingsastrologin.de</p>', "copyright-bernadette")
+
+# Cover-Foto einsetzen (Kopf)
+if s.count("__HERO__") != 1:
+    sys.exit("FEHLT: __HERO__ Platzhalter (erwartet 1, gefunden " + str(s.count("__HERO__")) + ")")
+s = s.replace("__HERO__", HERO)
 
 # Sicherheitscheck: keine Business- oder Womancode-Reste mehr in Logik-Hooks
 for leftover in ["copyBusinessReading", "copyBizBtn", "BUSINESS_PROMPT", "subscribeLead", "userEmail", "Business-Code", "Business-Blueprint", "wc-logo", "Womancode", "womancode"]:

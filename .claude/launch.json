@@ -72,7 +72,7 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": [
         "-c",
-        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/28789e32-5815-4df6-8f7f-48c700a3a2e6/scratchpad/preview && exec python3 -m http.server 8773"
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/f21557b8-569c-4c10-8c88-3cff74d3815c/scratchpad/eklipsen-e2e && exec python3 -m http.server 8773"
       ],
       "port": 8773
     },
