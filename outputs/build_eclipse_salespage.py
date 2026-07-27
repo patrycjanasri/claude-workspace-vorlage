@@ -169,6 +169,19 @@ section{ padding:64px 0; }
 .preis-karte p:last-child{ margin-bottom:0; }
 .sec-angebot p.verfuegbar{ font-size:15px; opacity:.8; margin-top:20px; }
 
+/* ------------------------------------------------ FAQ */
+.sec-faq{ background:__CREAM__; }
+.faq{ max-width:680px; margin:0 auto; }
+details{ background:#fff; border-radius:4px; margin-bottom:12px; box-shadow:4px 4px 0 rgba(17,17,17,.07); }
+summary{ cursor:pointer; list-style:none; padding:18px 22px; font-family:'BAnton',sans-serif;
+  text-transform:uppercase; font-size:17px; letter-spacing:2px; line-height:1.3;
+  display:flex; justify-content:space-between; align-items:center; gap:14px; }
+summary::-webkit-details-marker{ display:none; }
+summary::after{ content:"+"; font-size:22px; flex:0 0 auto; }
+details[open] summary::after{ content:"\2013"; }
+details .a{ padding:0 22px 20px; font-size:16px; }
+details .a p{ margin-bottom:10px; }
+
 /* ------------------------------------------------ Footer */
 .legal{ background:__INK__; color:#fff; text-align:center; padding:26px 18px; }
 .legal p{ font-family:'BAnton',sans-serif; text-transform:uppercase; letter-spacing:2.5px; font-size:12px; }
@@ -304,6 +317,26 @@ section{ padding:64px 0; }
     <p>Die Sonnenfinsternis in L&ouml;we ist am 12. August. Die Mondfinsternis in Fische am 28. August. Du willst vorbereitet sein, nicht erst danach verstehen, was hier gerade passiert ist.</p>
     <a class="btn" href="__CTA__">Jetzt f&uuml;r <span class="p">__PRICE__</span> sichern!</a>
     <p class="verfuegbar">Verf&uuml;gbar bis 28. September.</p>
+  </div>
+</section>
+
+<!-- ================================================== FAQ -->
+<section class="sec-faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-script">Deine Fragen</span>
+      <h2 class="anton sec-h2">Meine Antworten</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Brauche ich Astro-Vorkenntnisse?</summary><div class="a"><p>Nein. Du gibst nur Deine Geburtsdaten ein, alles andere macht der Eclipse Navigator. Dein Reading kommt in klarer Sprache, ohne Fachchinesisch.</p></div></details>
+      <details><summary>Was brauche ich f&uuml;r mein Reading?</summary><div class="a"><p>Dein Geburtsdatum, Deine Geburtszeit und Deinen Geburtsort. Die Geburtszeit findest Du in Deiner Geburtsurkunde. Wenn Du sie nicht kennst, hilft ein Anruf beim Standesamt Deines Geburtsorts.</p></div></details>
+      <details><summary>Wie bekomme ich Zugang?</summary><div class="a"><p>Direkt nach dem Kauf bekommst Du Deinen pers&ouml;nlichen Zugangslink per E-Mail. Er geh&ouml;rt nur Dir und ist bis zum 28. September g&uuml;ltig. Funktioniert am Handy und am Computer.</p></div></details>
+      <details><summary>Wie l&auml;uft es genau ab?</summary><div class="a"><p>Du gibst Deine Geburtsdaten ein und kopierst Deinen pers&ouml;nlichen Prompt mit einem Klick. Den f&uuml;gst Du komplett bei ChatGPT oder Claude ein. Dein Reading kommt in drei Teilen. Wenn die KI nach einem Teil stoppt, schreibst Du einfach &bdquo;weiter&ldquo;.</p></div></details>
+      <details><summary>Brauche ich einen bezahlten KI-Account?</summary><div class="a"><p>Die kostenlose Version funktioniert. Die Antworten k&ouml;nnen dort aber k&uuml;rzer ausfallen und das Tageslimit kann Dich mitten im Reading stoppen. Mit der Bezahlversion bekommst Du das volle Erlebnis.</p><p>Mein Tipp: Gib Deinem Reading das kl&uuml;gste KI-Modell, das Du hast. Bei ChatGPT und Claude w&auml;hlst Du das Modell oben im Men&uuml;. Nimm das st&auml;rkste, nicht das schnelle.</p></div></details>
+      <details><summary>Kann die KI Fehler machen?</summary><div class="a"><p>Ja. Dein Reading wird von einer KI geschrieben, auf Basis Deiner echten Horoskop-Daten und meiner astrologischen Struktur dahinter. Eine KI kann Fehler machen. Nimm Dein Reading als Spiegel und Impuls f&uuml;r Deine Entscheidungen. Die letzte Instanz bist immer Du.</p><p>Dieses Reading ersetzt keinen medizinischen, psychotherapeutischen, rechtlichen oder finanziellen Rat.</p></div></details>
+      <details><summary>Was passiert mit meinen Daten?</summary><div class="a"><p>Deine Geburtsdaten werden nur in Deinem Browser berechnet und nirgendwo gespeichert. Was Du bei ChatGPT oder Claude eingibst, liegt beim Datenschutz des jeweiligen Anbieters. Wenn Dir das wichtig ist, kannst Du dort die Nutzung Deiner Chats f&uuml;r Trainingszwecke ausschalten.</p></div></details>
+      <details><summary>Was mache ich, wenn etwas hakt?</summary><div class="a"><p>Die Seite l&auml;dt oder rechnet nicht? Leere den Browser-Cache oder nutze einen anderen Browser, am besten ein aktuelles Chrome oder Safari. Dein Geburtsort wird nicht gefunden? Gib die n&auml;chstgr&ouml;&szlig;ere Stadt ein. Du kommst nicht weiter? Schreib mir, ich helfe Dir.</p></div></details>
+    </div>
   </div>
 </section>
 

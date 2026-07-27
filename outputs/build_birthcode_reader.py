@@ -59,6 +59,16 @@ _strip = _tpl.crop((0, 700, 1080, 1560)).resize((600, 478), Image.LANCZOS)
 _diff = ImageChops.subtract(_strip, _strip.filter(ImageFilter.GaussianBlur(14)))
 TILE = jpg64(ImageChops.add(Image.new("RGB", _diff.size, (128, 128, 128)), _diff), 80)
 
+# --- Engine eingebettet + wahrer Mondknoten (Sammel-Update 26.07.2026) ------
+# Muster 1:1 aus build_eklipsen_reader.py (Eclipse Navigator): Die Engine kann
+# nur den MITTLEREN Knoten rechnen, astro.com zeigt den WAHREN. Die eingebettete
+# Swiss-Ephemeris-Reihe (build_true_node_data.py, 1900-2036, taeglich) liefert
+# den wahren Knoten. Die Engine liegt lokal vor -> kein CDN mehr, Reader autark.
+with open(os.path.join(HERE, "true-node-data.js"), "r", encoding="utf-8") as f:
+    TRUE_NODE_DATA_JS = f.read()
+with open(os.path.join(HERE, "circular-natal-horoscope-1.1.0.js"), "r", encoding="utf-8") as f:
+    ENGINE_JS = f.read()
+
 with open(SRC, "r", encoding="utf-8") as f:
     s = f.read()
 
@@ -67,6 +77,28 @@ def repl(old, new, label):
     if old not in s:
         sys.exit("FEHLT (" + label + "): " + old[:80])
     s = s.replace(old, new, 1)
+
+# --- 0b. Engine eingebettet (statt CDN) + Wahrer-Knoten-Ephemeride ----------
+repl('<script src="https://cdn.jsdelivr.net/npm/circular-natal-horoscope-js@1.1.0/dist/index.js"></script>',
+     '<script>\n' + ENGINE_JS + '\n</script>\n<script>\n' + TRUE_NODE_DATA_JS + '''
+// Wahrer Mondknoten am Julianischen Datum (UT): quadratische Interpolation
+// ueber 3 Stuetzstellen (Base36-Millidegree, 4 Zeichen/Wert), Wrap ueber den
+// kuerzesten Bogen. null ausserhalb 1900-2036. Max. Fehler ~0,1 Bogenminuten.
+function trueNodeLon(jd){
+  if(typeof jd !== 'number' || !isFinite(jd)) return null;
+  const idx = (jd - TN_START_JD) / TN_STEP;
+  const n = TN_DATA.length / 4;
+  if(idx < 0 || idx > n - 1) return null;
+  const i = Math.max(1, Math.min(Math.round(idx), n - 2));
+  const t = idx - i;
+  const v = function(k){ return parseInt(TN_DATA.substr(k * 4, 4), 36) / 1000; };
+  const y1 = v(i);
+  const y0 = y1 + (((v(i - 1) - y1 + 540) % 360) - 180);
+  const y2 = y1 + (((v(i + 1) - y1 + 540) % 360) - 180);
+  const val = y1 + t * (y2 - y0) / 2 + t * t * (y2 - 2 * y1 + y0) / 2;
+  return ((val % 360) + 360) % 360;
+}
+</script>''', "true-node-script")
 
 # --- 1. Branding / sichtbare Texte ---------------------------------------
 repl("<title>Dein Business-Code</title>",
@@ -181,6 +213,57 @@ natal_calc = r"""      window.__chart = chart;
             for(let i = 0; i < FULL.length; i++){ if(FULL[i].label === label) return FULL[i]; }
             return null;
           };
+
+          // WAHRE natale Mondknoten (Sammel-Update 26.07.): Die Engine kann nur
+          // den mittleren Knoten, astro.com zeigt den wahren. Zeichen UND Haus
+          // koennen dadurch kippen; die Knoten-Aspekte werden mit dem wahren
+          // Knoten neu gerechnet (Orb 5, wie die Basis-Aspektliste). Faellt die
+          // Reihe aus (Jahrgang ausserhalb 1900-2036), bleiben Engine-Werte.
+          try{
+            const SIGNS_DE = ['Widder','Stier','Zwillinge','Krebs','Löwe','Jungfrau','Waage','Skorpion','Schütze','Steinbock','Wassermann','Fische'];
+            const norm360 = function(x){ return ((x % 360) + 360) % 360; };
+            const signOfL = function(L){ return SIGNS_DE[Math.floor(norm360(L) / 30)] || ''; };
+            const lonOf = function(b){ try{ return b.ChartPosition.Ecliptic.DecimalDegrees; }catch(e){ return null; } };
+            const housesArr = (horo && horo.Houses) ? horo.Houses : [];
+            const houseOfLong = function(L){
+              for(let i = 0; i < housesArr.length; i++){
+                const h = housesArr[i];
+                let st, en;
+                try { st = h.ChartPosition.StartPosition.Ecliptic.DecimalDegrees; en = h.ChartPosition.EndPosition.Ecliptic.DecimalDegrees; }
+                catch(err){ continue; }
+                const id = h.id || (i + 1);
+                if(st <= en){ if(L >= st && L < en) return id; }
+                else { if(L >= st || L < en) return id; }
+              }
+              return null;
+            };
+            const natalJd = (typeof origin !== 'undefined' && origin && origin.julianDate) ? origin.julianDate
+              : ((horo && horo.origin && horo.origin.julianDate) ? horo.origin.julianDate : null);
+            const tnL = (typeof trueNodeLon === 'function') ? trueNodeLon(natalJd) : null;
+            if(tnL != null){
+              const snL = (tnL + 180) % 360;
+              FULL.forEach(function(e){
+                if(e.label === 'Nordknoten'){ e.sign = signOfL(tnL); e.house = houseOfLong(tnL) || e.house; }
+                if(e.label === 'Südknoten'){ e.sign = signOfL(snL); e.house = houseOfLong(snL) || e.house; }
+              });
+              for(let i = ASP.length - 1; i >= 0; i--){
+                if(ASP[i].p1 === 'Nordknoten' || ASP[i].p2 === 'Nordknoten') ASP.splice(i, 1);
+              }
+              const PPAIRS = [['Sonne',CB.sun],['Mond',CB.moon],['Merkur',CB.mercury],['Venus',CB.venus],['Mars',CB.mars],['Jupiter',CB.jupiter],['Saturn',CB.saturn],['Uranus',CB.uranus],['Neptun',CB.neptune],['Pluto',CB.pluto],['Chiron',CB.chiron],['Lilith',CP.lilith],['Aszendent',horo.Ascendant],['MC',horo.Midheaven]];
+              const AT = [[0,'Konjunktion'],[60,'Sextil'],[90,'Quadrat'],[120,'Trigon'],[180,'Opposition']];
+              const SIGNOF0 = {}; FULL.forEach(function(e){ SIGNOF0[e.label] = e.sign; });
+              PPAIRS.forEach(function(pr){
+                const L = lonOf(pr[1]);
+                if(L == null) return;
+                const dd = Math.abs(((L - tnL + 540) % 360) - 180);
+                AT.forEach(function(t){
+                  const orb = Math.abs(dd - t[0]);
+                  if(orb <= 5) ASP.push({ p1: pr[0], s1: SIGNOF0[pr[0]] || '', p2: 'Nordknoten', s2: signOfL(tnL), type: t[1], orb: orb });
+                });
+              });
+              ASP.sort(function(a, b){ return (a.orb || 0) - (b.orb || 0); });
+            }
+          }catch(e){}
 
           // Big Three
           const sun = find('Sonne') || {}, moon = find('Mond') || {}, asc = find('Aszendent') || {};

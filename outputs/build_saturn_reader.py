@@ -260,9 +260,32 @@ scan_calc = r"""      window.__chart = chart;
           const SIGNOF = {}, HOUSEOF = {};
           FULL.forEach(function(e){ SIGNOF[e.label] = e.sign; HOUSEOF[e.label] = e.house; });
           const RULER = { 'Widder':'Mars','Stier':'Venus','Zwillinge':'Merkur','Krebs':'Mond','Löwe':'Sonne','Jungfrau':'Merkur','Waage':'Venus','Skorpion':'Pluto','Schütze':'Jupiter','Steinbock':'Saturn','Wassermann':'Uranus','Fische':'Neptun' };
+          const CO_RULER = { 'Skorpion':'Mars', 'Wassermann':'Saturn', 'Fische':'Jupiter' };
           const acEntry = FULL.find(function(e){ return e.label === 'Aszendent'; }) || {};
           const rulerName = RULER[acEntry.sign || ''] || '';
           const saturnIsRuler = (rulerName === 'Saturn') || (acEntry.sign === 'Wassermann');
+
+          // Herrscher der Korridor-Haeuser (modern + Mitherrscher): sie tragen
+          // das Thema des Pruefungs-Hauses durch die Chart und werden eigene
+          // Aspekt-Ziele fuer Saturn UND die Begleit-Transite.
+          const HR_OF = {};       // Planet -> Liste der Korridor-Haeuser, die er regiert
+          const houseRulers = []; // fuer Datenteil: {house, sign, ruler, coRuler}
+          (function(){
+            const seenH = {};
+            segments.forEach(function(sg){
+              if(!sg.house || seenH[sg.house]) return;
+              seenH[sg.house] = 1;
+              let cuspSign = '';
+              for(let ci = 0; ci < cusps.length; ci++){
+                if(cusps[ci].id === sg.house){ cuspSign = SIGNS_DE[Math.floor(norm360(cusps[ci].st) / 30)] || ''; break; }
+              }
+              const r = RULER[cuspSign] || '', co = CO_RULER[cuspSign] || '';
+              if(r){ (HR_OF[r] = HR_OF[r] || []).push(sg.house); }
+              if(co){ (HR_OF[co] = HR_OF[co] || []).push(sg.house); }
+              houseRulers.push({ house: sg.house, sign: cuspSign, ruler: r, coRuler: co });
+            });
+          })();
+
           const targets = [
             ['Sonne', lonOf(CB.sun)], ['Mond', lonOf(CB.moon)], ['Merkur', lonOf(CB.mercury)],
             ['Venus', lonOf(CB.venus)], ['Mars', lonOf(CB.mars)], ['Jupiter', lonOf(CB.jupiter)],
@@ -270,7 +293,11 @@ scan_calc = r"""      window.__chart = chart;
             ['Nordknoten', lonOf(CP.northnode)]
           ];
           const OUTER = { 'Uranus': CB.uranus, 'Neptun': CB.neptune, 'Pluto': CB.pluto };
-          if(rulerName && OUTER[rulerName]) targets.push([rulerName, lonOf(OUTER[rulerName])]);
+          const hasTarget = function(n){ return targets.some(function(t){ return t[0] === n; }); };
+          if(rulerName && OUTER[rulerName] && !hasTarget(rulerName)) targets.push([rulerName, lonOf(OUTER[rulerName])]);
+          Object.keys(HR_OF).forEach(function(n){
+            if(OUTER[n] && !hasTarget(n)) targets.push([n, lonOf(OUTER[n])]);
+          });
 
           // Abtastung: Saturns Lauf 01.03.2026 bis 25.03.2027, alle 3 Tage, 12:00 Uhr
           const T0 = Date.UTC(2026, 2, 1, 12, 0);
@@ -339,7 +366,8 @@ scan_calc = r"""      window.__chart = chart;
                 if(inCorridor){
                   const cr = crossingsOf(hitDeg);
                   if(!cr.length) return;
-                  const isRuler = saturnIsRuler;
+                  const isRuler = (nName === rulerName);
+                  const isHR = HR_OF[nName] || null;
                   const isReturn = (nName === 'Saturn' && aName === 'Konjunktion');
                   const stationRx = Math.abs(hitDeg - RX_HI) <= STATION_ORB;
                   const stationDir = Math.abs(hitDeg - RX_LO) <= STATION_ORB;
@@ -347,11 +375,11 @@ scan_calc = r"""      window.__chart = chart;
                     target: nName, type: aName, hitDeg: hitDeg, degStr: fmtDeg(hitDeg),
                     tSign: SIGNOF[nName] || '', tHouse: HOUSEOF[nName] || '',
                     nom: NOM[nName] || nName, dat: DAT[nName] || nName,
-                    passes: cr, ruler: isRuler, ret: isReturn,
+                    passes: cr, ruler: isRuler, houseR: isHR, ret: isReturn,
                     station: stationRx ? 'rx' : (stationDir ? 'dir' : ''),
                     score: (W_A[aName] || 2) + (W_T[nName] || 2)
                          + ((stationRx || stationDir) ? 2.5 : 0)
-                         + (isRuler ? 1.5 : 0) + (isReturn ? 2 : 0)
+                         + (isRuler ? 1.5 : 0) + (isHR ? 1.5 : 0) + (isReturn ? 2 : 0)
                   });
                 } else if(hitDeg > RX_HI && hitDeg <= RX_HI + 1.2){
                   // Saturn kommt bis kurz vor den Punkt, dreht um, kommt wieder:
@@ -426,13 +454,14 @@ scan_calc = r"""      window.__chart = chart;
                       const dayF = samples[k].i + frac * STEP;
                       if(!inWin(dayF)) continue;
                       const isRuler = (nName === rulerName);
+                      const isHR = HR_OF[nName] || null;
                       coHits.push({
                         day: dayF, dateStr: fmtDate(dayDate(dayF)),
                         p: pName, type: aName, target: nName,
                         tSign: SIGNOF[nName] || '', tHouse: HOUSEOF[nName] || '',
                         nom: NOM[nName] || nName, dat: DAT[nName] || nName,
-                        ruler: isRuler, satTheme: !!satTargets[nName],
-                        score: (W_P[pName] || 2) + (W_A[aName] || 2) + (W_T[nName] || 2) + (isRuler ? 1.5 : 0)
+                        ruler: isRuler, houseR: isHR, satTheme: !!satTargets[nName],
+                        score: (W_P[pName] || 2) + (W_A[aName] || 2) + (W_T[nName] || 2) + (isRuler ? 1.5 : 0) + (isHR ? 1.5 : 0)
                       });
                       found = true;
                     }
@@ -443,7 +472,7 @@ scan_calc = r"""      window.__chart = chart;
                     tSign: SIGNOF[nName] || '', tHouse: HOUSEOF[nName] || '',
                     dat: DAT[nName] || nName,
                     minOrb: Math.round(minOrb * 10) / 10, ruler: (nName === rulerName),
-                    satTheme: !!satTargets[nName] });
+                    houseR: HR_OF[nName] || null, satTheme: !!satTargets[nName] });
                 }
               });
             });
@@ -554,6 +583,7 @@ scan_calc = r"""      window.__chart = chart;
             events: events, top: top, totalDates: totalDates, nearmiss: nearmiss,
             coHits: coHits, coTop: coTop, coStanding: coStanding,
             triggers: triggers, moons: moons, mercLines: mercLines,
+            houseRulers: houseRulers,
             natalSaturn: { sign: satEntry.sign || '', house: satEntry.house || '' },
             satAspects: satAspects,
             cusps: cusps.map(function(c){ return { id: c.id, sign: SIGNS_DE[Math.floor(norm360(c.st) / 30)] }; }),
@@ -713,6 +743,9 @@ Hier sind meine Daten:`;
     const ruler = SR.ruler || {}, natalSaturn = SR.natalSaturn || {};
     const coHits = SR.coHits || [], coStanding = SR.coStanding || [];
     const triggers = SR.triggers || [], moons = SR.moons || [], mercLines = SR.mercLines || [];
+    const houseRulers = SR.houseRulers || [];
+    const rulerHit = events.some(function(e){ return e.ruler; }) || coHits.some(function(h){ return h.ruler; }) || coStanding.some(function(h){ return h.ruler; });
+    const hrHit = events.some(function(e){ return e.houseR; }) || coHits.some(function(h){ return h.houseR; }) || coStanding.some(function(h){ return h.houseR; });
     const stationEvents = events.filter(function(ev){ return !!ev.station; });
     const returnEvents = events.filter(function(ev){ return ev.ret; });
     const segHouses = segments.map(function(sg){ return sg.house; }).filter(function(h){ return !!h; });
@@ -729,6 +762,10 @@ Hier sind meine Daten:`;
 
     if(uniqHouses.length){
       steps.push('Der Raum der Nachprüfung. Unten steht, durch welches Haus meiner Chart Saturn rückläufig läuft' + (uniqHouses.length > 1 ? ' und wo er dabei die Hausgrenze überquert' : '') + '. Das ist der Lebensbereich, in dem seit dem Frühjahr 2026 gebaut wird und in dem jetzt geprüft wird, was davon trägt. Beschreib diesen Raum konkret: was dort in meinem Leben verhandelt wird, was Saturn dort seit Monaten aufbaut und welche Frage er mir in der Rückläufigkeit stellt.');
+    }
+
+    if(houseRulers.length){
+      steps.push('Die Herrscher. Unten stehen mein Chartruler (der Herrscher meines Aszendenten) und der Herrscher meines Saturn-Hauses' + (houseRulers.some(function(hr){ return hr.coRuler; }) ? ' samt Mitherrscher' : '') + ', jeweils mit ihrer Stellung in meiner Chart. Der Herrscher meines Saturn-Hauses trägt das Thema der Prüfung dorthin, wo er bei mir steht: Deute zuerst, was seine natale Stellung darüber erzählt, wie ich diesen Lebensbereich führe und wo seine Prüfung sich noch bemerkbar macht.' + (rulerHit || hrHit ? ' Danach geh die Termine mit dem Zusatz CHARTRULER oder HERRSCHER MEINES SATURN-HAUSES durch: an diesen Tagen wird das Thema über die Herrscher zusätzlich aktiviert, auch wenn Saturn selbst gerade woanders arbeitet.' : ''));
     }
 
     if(events.length){
@@ -803,7 +840,7 @@ Hier sind meine Daten:`;
       data.push('');
       data.push('MEINE DREI-PASSAGEN-TERMINE (jeder Punkt mit allen exakten Daten):');
       events.forEach(function(ev){
-        const flags = (ev.ruler ? ' [CHARTRULER]' : '') + (ev.station ? ' [STATION]' : '') + (ev.ret ? ' [SATURN-RETURN]' : '');
+        const flags = (ev.ruler ? ' [CHARTRULER]' : '') + (ev.houseR ? ' [HERRSCHER MEINES SATURN-HAUSES]' : '') + (ev.station ? ' [STATION]' : '') + (ev.ret ? ' [SATURN-RETURN]' : '');
         const ctx = ev.target + ' in ' + ev.tSign + (ev.tHouse ? (', mein ' + ev.tHouse + '. Haus') : '');
         const pass = ev.passes.map(function(p, i){
           return (i + 1) + '. Passage ' + (p.retro ? 'rückläufig' : 'direkt') + ' am ' + p.dateStr;
@@ -823,14 +860,14 @@ Hier sind meine Daten:`;
       data.push('MEINE BEGLEIT-TIMELINE 26.07. BIS 11.12.2026 (chronologisch, jeweils der Tag, an dem der Aspekt exakt ist):');
       coHits.forEach(function(h){
         const ctx = h.target + ' in ' + h.tSign + (h.tHouse ? (', mein ' + h.tHouse + '. Haus') : '');
-        data.push('- ' + h.dateStr + ': Transit-' + h.p + ' ' + h.type + ' zu ' + h.dat + ' (' + ctx + ')' + (h.ruler ? ' [CHARTRULER]' : '') + (h.satTheme ? ' [VERTIEFT DEIN SATURN-THEMA]' : ''));
+        data.push('- ' + h.dateStr + ': Transit-' + h.p + ' ' + h.type + ' zu ' + h.dat + ' (' + ctx + ')' + (h.ruler ? ' [CHARTRULER]' : '') + (h.houseR ? ' [HERRSCHER MEINES SATURN-HAUSES]' : '') + (h.satTheme ? ' [VERTIEFT DEIN SATURN-THEMA]' : ''));
       });
     }
     if(coStanding.length){
       data.push('');
       data.push('DAUERHAFT WIRKSAM IM GANZEN FENSTER (eng im Orb, wird nicht exakt):');
       coStanding.forEach(function(st){
-        data.push('- Transit-' + st.p + ' ' + st.type + ' zu ' + st.dat + ' (' + st.target + ' in ' + st.tSign + (st.tHouse ? (', mein ' + st.tHouse + '. Haus') : '') + '), engster Orb ' + String(st.minOrb).replace('.', ',') + '°' + (st.ruler ? ' [CHARTRULER]' : '') + (st.satTheme ? ' [VERTIEFT DEIN SATURN-THEMA]' : ''));
+        data.push('- Transit-' + st.p + ' ' + st.type + ' zu ' + st.dat + ' (' + st.target + ' in ' + st.tSign + (st.tHouse ? (', mein ' + st.tHouse + '. Haus') : '') + '), engster Orb ' + String(st.minOrb).replace('.', ',') + '°' + (st.ruler ? ' [CHARTRULER]' : '') + (st.houseR ? ' [HERRSCHER MEINES SATURN-HAUSES]' : '') + (st.satTheme ? ' [VERTIEFT DEIN SATURN-THEMA]' : ''));
       });
     }
     if(triggers.length){
@@ -860,6 +897,18 @@ Hier sind meine Daten:`;
     if(ruler.name){
       data.push('');
       data.push('MEIN CHARTRULER (Herrscher meines ' + ruler.acSign + '-Aszendenten): ' + ruler.name + (ruler.sign ? (' in ' + ruler.sign) : '') + (ruler.house ? (', ' + ruler.house + '. Haus') : '') + (ruler.saturnRules ? ' >> Saturn führt meine Chart, diese Rückläufigkeit ist mein persönlichster Transit des Jahres.' : ''));
+    }
+    if(houseRulers.length){
+      const posOf = function(n){
+        const e = FULL.find(function(x){ return x.label === n; }) || {};
+        return n + (e.sign ? (' in ' + e.sign) : '') + (e.house ? (', ' + e.house + '. Haus') : '');
+      };
+      houseRulers.forEach(function(hr){
+        if(!hr.ruler) return;
+        let line = 'HERRSCHER MEINES SATURN-HAUSES (' + hr.house + '. Haus, Spitze ' + hr.sign + '): ' + posOf(hr.ruler);
+        if(hr.coRuler) line += ' · Mitherrscher: ' + posOf(hr.coRuler);
+        data.push(line);
+      });
     }
     if(SR.cusps && SR.cusps.length){
       data.push('');

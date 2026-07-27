@@ -56,6 +56,16 @@ _strip = _tpl.crop((0, 700, 1080, 1560)).resize((600, 478), Image.LANCZOS)
 _diff = ImageChops.subtract(_strip, _strip.filter(ImageFilter.GaussianBlur(14)))
 TILE = jpg64(ImageChops.add(Image.new("RGB", _diff.size, (128, 128, 128)), _diff), 80)
 
+# --- Engine eingebettet + wahrer Mondknoten (Sammel-Update 26.07.2026) ------
+# Muster 1:1 aus build_eklipsen_reader.py (Eclipse Navigator): Die Engine kann
+# nur den MITTLEREN Knoten rechnen, astro.com zeigt den WAHREN. Die eingebettete
+# Swiss-Ephemeris-Reihe (build_true_node_data.py, 1900-2036, taeglich) liefert
+# den wahren Knoten. Die Engine liegt lokal vor -> kein CDN mehr, Reader autark.
+with open(os.path.join(HERE, "true-node-data.js"), "r", encoding="utf-8") as f:
+    TRUE_NODE_DATA_JS = f.read()
+with open(os.path.join(HERE, "circular-natal-horoscope-1.1.0.js"), "r", encoding="utf-8") as f:
+    ENGINE_JS = f.read()
+
 with open(SRC, "r", encoding="utf-8") as f:
     s = f.read()
 
@@ -164,6 +174,29 @@ repl("<h2>Dein Business-Code${(name && name !== 'Du') ? ', ' + name : ''}</h2><p
 repl("&#8592; Neuen Business-Code erstellen", "&#8592; Neuen Timecode erstellen", "back-btn")
 
 # --- 4. Transit-Scan in runCheck einhaengen --------------------------------
+# --- 3b. Engine eingebettet (statt CDN) + Wahrer-Knoten-Ephemeride ----------
+# 1:1 das Muster aus build_eklipsen_reader.py (Eclipse Navigator, 25.07.)
+repl('<script src="https://cdn.jsdelivr.net/npm/circular-natal-horoscope-js@1.1.0/dist/index.js"></script>',
+     '<script>\n' + ENGINE_JS + '\n</script>\n<script>\n' + TRUE_NODE_DATA_JS + '''
+// Wahrer Mondknoten am Julianischen Datum (UT): quadratische Interpolation
+// ueber 3 Stuetzstellen (Base36-Millidegree, 4 Zeichen/Wert), Wrap ueber den
+// kuerzesten Bogen. null ausserhalb 1900-2036. Max. Fehler ~0,1 Bogenminuten.
+function trueNodeLon(jd){
+  if(typeof jd !== 'number' || !isFinite(jd)) return null;
+  const idx = (jd - TN_START_JD) / TN_STEP;
+  const n = TN_DATA.length / 4;
+  if(idx < 0 || idx > n - 1) return null;
+  const i = Math.max(1, Math.min(Math.round(idx), n - 2));
+  const t = idx - i;
+  const v = function(k){ return parseInt(TN_DATA.substr(k * 4, 4), 36) / 1000; };
+  const y1 = v(i);
+  const y0 = y1 + (((v(i - 1) - y1 + 540) % 360) - 180);
+  const y2 = y1 + (((v(i + 1) - y1 + 540) % 360) - 180);
+  const val = y1 + t * (y2 - y0) / 2 + t * t * (y2 - 2 * y1 + y0) / 2;
+  return ((val % 360) + 360) % 360;
+}
+</script>''', "true-node-script")
+
 # Anker NACH window.__chart, damit __fullChart und __aspects bereits gesetzt sind.
 calc_anchor = "      window.__chart = chart;\n      generateReading();"
 scan_calc = r"""      window.__chart = chart;
@@ -214,6 +247,25 @@ scan_calc = r"""      window.__chart = chart;
 
           // Natale Ziel-Punkte fuer die Aspekt-Termine
           const FULL = window.__fullChart || [];
+
+          // WAHRE natale Mondknoten (Sammel-Update 26.07.): Die Engine kann nur
+          // den mittleren Knoten, astro.com zeigt den wahren. Zeichen UND Haus
+          // koennen dadurch kippen. Faellt die Reihe aus (Jahrgang ausserhalb
+          // 1900-2036), bleiben die Engine-Werte stehen.
+          try{
+            const natalJd = (typeof origin !== 'undefined' && origin && origin.julianDate) ? origin.julianDate
+              : ((horo && horo.origin && horo.origin.julianDate) ? horo.origin.julianDate : null);
+            const tnNatal = (typeof trueNodeLon === 'function') ? trueNodeLon(natalJd) : null;
+            if(tnNatal != null){
+              const snNatal = (tnNatal + 180) % 360;
+              const signOfL = function(L){ return SIGNS_DE[Math.floor(norm360(L) / 30)] || ''; };
+              FULL.forEach(function(e){
+                if(e.label === 'Nordknoten'){ e.sign = signOfL(tnNatal); e.house = houseOfLong(tnNatal) || e.house; }
+                if(e.label === 'Südknoten'){ e.sign = signOfL(snNatal); e.house = houseOfLong(snNatal) || e.house; }
+              });
+            }
+          }catch(e){}
+
           const SIGNOF = {}, HOUSEOF = {};
           FULL.forEach(function(e){ SIGNOF[e.label] = e.sign; HOUSEOF[e.label] = e.house; });
           const RULER = { 'Widder':'Mars','Stier':'Venus','Zwillinge':'Merkur','Krebs':'Mond','Löwe':'Sonne','Jungfrau':'Merkur','Waage':'Venus','Skorpion':'Pluto','Schütze':'Jupiter','Steinbock':'Saturn','Wassermann':'Uranus','Fische':'Neptun' };

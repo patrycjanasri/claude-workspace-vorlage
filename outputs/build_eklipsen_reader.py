@@ -38,6 +38,14 @@ from PIL import Image
 
 NAME = "Dein Eclipse Navigator"      # Bernadettes Favorit (24.07.); final wenn sie ihn bestaetigt
 
+# PASSWORTSCHUTZ (27.07., Patrycjas Entscheidung "Weg 2"): Die fertige Seite
+# wird mit AES-256-GCM verschluesselt in eine Passwort-Seite eingebettet
+# (StatiCrypt-Muster). Ohne Passwort ist der Inhalt unlesbar, kein Netlify-
+# Pro-Plan noetig. Passwort aendern = Konstante aendern + Generator neu
+# laufen lassen + neue Datei hochladen.
+# ACHTUNG: Platzhalter-Passwort — finale Wahl liegt bei Bernadette/Patrycja.
+PASSWORT = "EclipseSeason2026"
+
 # Bernadette Hirschfelder — lieblingsastrologin.de (Deal fix 24.07.2026)
 IMPRESSUM_URL = "https://lieblingsastrologin.de/impressum/"
 DATENSCHUTZ_URL = "https://lieblingsastrologin.de/datenschutzerklaerung/"
@@ -879,9 +887,166 @@ for leftover in ["copyBusinessReading", "copyBizBtn", "BUSINESS_PROMPT", "subscr
 with open(DST, "w", encoding="utf-8") as f:
     f.write(s)
 
-os.makedirs(NETLIFY, exist_ok=True)
-shutil.copyfile(DST, os.path.join(NETLIFY, "index.html"))
+# ---------------------------------------------------------------------------
+# PASSWORTSCHUTZ (Weg 2): Die komplette Seite AES-256-GCM-verschluesselt in
+# eine Passwort-Seite im Bernadette-Look einbetten. Schluessel kommt per
+# PBKDF2 (SHA-256, 310.000 Iterationen) aus dem Passwort; entschluesselt
+# wird im Browser ueber WebCrypto (crypto.subtle), danach ersetzt
+# document.write() die Seite durch den echten Navigator.
+# astro-eklipsen-reader.html bleibt die UNGESCHUETZTE Arbeitsversion (nicht
+# hochladen!), hochgeladen wird die geschuetzte Datei / der Netlify-Ordner.
+# ---------------------------------------------------------------------------
+import secrets
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-print("OK ->", DST)
-print("OK ->", os.path.join(NETLIFY, "index.html"))
-print("Groesse:", len(s), "Zeichen")
+PBKDF2_ITER = 310000
+_salt = secrets.token_bytes(16)
+_iv = secrets.token_bytes(12)
+_key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=_salt,
+                  iterations=PBKDF2_ITER).derive(PASSWORT.encode("utf-8"))
+_ct = AESGCM(_key).encrypt(_iv, s.encode("utf-8"), None)
+
+GATE = r"""<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>__NAME__</title>
+<style>
+  @font-face{ font-family:'Anton'; src:url(data:font/woff2;base64,__FONT_ANTON__) format('woff2'); font-display:swap; }
+  @font-face{ font-family:'Great Vibes'; src:url(data:font/woff2;base64,__FONT_SCRIPT__) format('woff2'); font-display:swap; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ min-height:100vh; background:__C_ROSA__; color:__C_INK__;
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 16px; }
+  .gate{ background:__C_CREAM__; border-radius:18px; padding:38px 28px 30px; max-width:420px; width:100%;
+         box-shadow:0 10px 40px rgba(17,17,17,.12); text-align:center; }
+  .script{ font-family:'Great Vibes', cursive; font-size:1.7rem; line-height:1.1; margin-bottom:6px; }
+  h1{ font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.02em;
+      font-size:clamp(1.5rem, 6vw, 2rem); line-height:1.12; margin-bottom:14px; }
+  p.hint{ font-size:.95rem; line-height:1.55; margin-bottom:22px; }
+  input[type=password]{ width:100%; padding:14px 16px; font-size:1.05rem; border:2px solid __C_INK__;
+      border-radius:999px; background:#fff; color:__C_INK__; text-align:center; outline:none; }
+  input[type=password]:focus{ border-color:#000; box-shadow:0 0 0 3px __C_FLIEDER__; }
+  button{ margin-top:14px; width:100%; padding:15px 16px; font-family:'Anton', sans-serif; font-weight:400;
+      text-transform:uppercase; letter-spacing:.06em; font-size:1rem; color:#fff; background:__C_INK__;
+      border:0; border-radius:999px; cursor:pointer; }
+  button:disabled{ opacity:.55; cursor:default; }
+  .fehler{ display:none; margin-top:14px; font-size:.92rem; font-weight:600; background:__C_PEACH__;
+      border-radius:12px; padding:10px 14px; }
+  .warten{ display:none; margin-top:14px; font-size:.92rem; }
+  footer{ margin-top:26px; text-align:center; font-size:.78rem; }
+  footer .copy{ font-family:'Anton', sans-serif; letter-spacing:.08em; text-transform:uppercase;
+      font-size:.72rem; white-space:nowrap; margin-bottom:6px; }
+  footer a{ color:__C_INK__; }
+</style>
+</head>
+<body>
+  <div class="gate">
+    <p class="script">Eclipse Season incoming</p>
+    <h1>__NAME__</h1>
+    <p class="hint">Dieser Bereich ist passwortgeschützt. Gib Dein Passwort ein und Dein Eclipse Navigator öffnet sich.</p>
+    <form id="gateForm">
+      <input type="password" id="pw" placeholder="Dein Passwort" autocomplete="current-password" autofocus>
+      <button type="submit" id="openBtn">Navigator öffnen</button>
+      <p class="fehler" id="fehler">Das Passwort stimmt nicht. Prüfe Deine Eingabe.</p>
+      <p class="warten" id="warten">Einen Moment, Dein Navigator öffnet sich&nbsp;…</p>
+    </form>
+  </div>
+  <footer>
+    <p class="copy">Copyright Bernadette Hirschfelder - 2026 - lieblingsastrologin.de</p>
+    <a href="__IMPRESSUM__" target="_blank" rel="noopener">Impressum</a> ·
+    <a href="__DATENSCHUTZ__" target="_blank" rel="noopener">Datenschutz</a>
+  </footer>
+<script>
+(function(){
+  var DATA = { salt:"__SALT__", iv:"__IV__", ct:"__CT__", iter:__ITER__ };
+  var form = document.getElementById("gateForm");
+  var pwEl = document.getElementById("pw");
+  var btn = document.getElementById("openBtn");
+  var fehler = document.getElementById("fehler");
+  var warten = document.getElementById("warten");
+
+  function bytes(b64){
+    var bin = atob(b64), arr = new Uint8Array(bin.length);
+    for(var i = 0; i < bin.length; i++){ arr[i] = bin.charCodeAt(i); }
+    return arr;
+  }
+
+  function zeigeFehler(text){
+    warten.style.display = "none";
+    fehler.textContent = text;
+    fehler.style.display = "block";
+    btn.disabled = false;
+  }
+
+  async function entschluesseln(pw){
+    var basis = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+    var key = await crypto.subtle.deriveKey(
+      { name:"PBKDF2", salt:bytes(DATA.salt), iterations:DATA.iter, hash:"SHA-256" },
+      basis, { name:"AES-GCM", length:256 }, false, ["decrypt"]);
+    var klar = await crypto.subtle.decrypt({ name:"AES-GCM", iv:bytes(DATA.iv) }, key, bytes(DATA.ct));
+    return new TextDecoder().decode(klar);
+  }
+
+  async function oeffnen(pw){
+    if(!(window.crypto && window.crypto.subtle)){
+      zeigeFehler("Dein Browser kann die Seite hier nicht entschlüsseln. Öffne den Navigator über Deinen Zugangs-Link.");
+      return;
+    }
+    btn.disabled = true;
+    fehler.style.display = "none";
+    warten.style.display = "block";
+    try{
+      var html = await entschluesseln(pw);
+      document.open();
+      document.write(html);
+      document.close();
+    }catch(e){
+      zeigeFehler("Das Passwort stimmt nicht. Prüfe Deine Eingabe.");
+    }
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var pw = pwEl.value;
+    if(!pw){ zeigeFehler("Gib zuerst Dein Passwort ein."); return; }
+    oeffnen(pw);
+  });
+})();
+</script>
+</body>
+</html>
+"""
+
+gate = (GATE
+        .replace("__NAME__", NAME)
+        .replace("__FONT_ANTON__", FONT_ANTON)
+        .replace("__FONT_SCRIPT__", FONT_SCRIPT)
+        .replace("__C_ROSA__", C_ROSA)
+        .replace("__C_CREAM__", C_CREAM)
+        .replace("__C_PEACH__", C_PEACH)
+        .replace("__C_FLIEDER__", C_FLIEDER)
+        .replace("__C_INK__", C_INK)
+        .replace("__IMPRESSUM__", IMPRESSUM_URL)
+        .replace("__DATENSCHUTZ__", DATENSCHUTZ_URL)
+        .replace("__SALT__", base64.b64encode(_salt).decode())
+        .replace("__IV__", base64.b64encode(_iv).decode())
+        .replace("__CT__", base64.b64encode(_ct).decode())
+        .replace("__ITER__", str(PBKDF2_ITER)))
+
+DST_PW = os.path.join(HERE, "astro-eklipsen-reader-geschuetzt.html")
+with open(DST_PW, "w", encoding="utf-8") as f:
+    f.write(gate)
+
+os.makedirs(NETLIFY, exist_ok=True)
+shutil.copyfile(DST_PW, os.path.join(NETLIFY, "index.html"))
+
+print("OK ->", DST, "(UNgeschuetzte Arbeitsversion, NICHT hochladen)")
+print("OK ->", DST_PW, "(GESCHUETZT, diese Datei hochladen)")
+print("OK ->", os.path.join(NETLIFY, "index.html"), "(= geschuetzte Fassung)")
+print("Groesse Reader:", len(s), "Zeichen | Groesse geschuetzt:", len(gate), "Zeichen")
+print("PASSWORT:", PASSWORT)

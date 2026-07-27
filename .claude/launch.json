@@ -81,9 +81,18 @@
       "runtimeExecutable": "bash",
       "runtimeArgs": [
         "-c",
-        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/c14b26b9-80c1-4bff-813a-bb9bbd5cfe2c/scratchpad/preview && exec python3 -m http.server 8771"
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/6b85bb07-b40d-4d81-8e06-e901f57ca770/scratchpad/preview && exec python3 -m http.server 8771"
       ],
       "port": 8771
+    },
+    {
+      "name": "design-reader",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/436ff002-3386-45bf-9709-10e3fdb32814/scratchpad/preview && exec python3 -m http.server 8775"
+      ],
+      "port": 8775
     },
     {
       "name": "saturn-reader",
@@ -93,6 +102,15 @@
         "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/185172cc-a562-447c-abb2-3fe384acb4c6/scratchpad/preview && exec python3 -m http.server 8774"
       ],
       "port": 8774
+    },
+    {
+      "name": "eclipse-gate",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/1b6dd531-5151-4ff1-8e98-ac6de3245374/scratchpad/gate && exec python3 -m http.server 8776"
+      ],
+      "port": 8776
     }
   ]
 }
