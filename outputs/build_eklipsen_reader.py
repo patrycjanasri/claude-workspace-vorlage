@@ -43,8 +43,8 @@ NAME = "Dein Eclipse Navigator"      # Bernadettes Favorit (24.07.); final wenn 
 # (StatiCrypt-Muster). Ohne Passwort ist der Inhalt unlesbar, kein Netlify-
 # Pro-Plan noetig. Passwort aendern = Konstante aendern + Generator neu
 # laufen lassen + neue Datei hochladen.
-# ACHTUNG: Platzhalter-Passwort — finale Wahl liegt bei Bernadette/Patrycja.
-PASSWORT = "EclipseSeason2026"
+# Passwort FINAL (Patrycjas Ansage 27.07.): Finsternis2026
+PASSWORT = "Finsternis2026"
 
 # Bernadette Hirschfelder — lieblingsastrologin.de (Deal fix 24.07.2026)
 IMPRESSUM_URL = "https://lieblingsastrologin.de/impressum/"

@@ -104,6 +104,15 @@
       "port": 8774
     },
     {
+      "name": "eclipse-danke",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/457cc6d1-f74d-49e8-bf33-99dfbcb7ad4d/scratchpad/preview && exec python3 -m http.server 8777"
+      ],
+      "port": 8777
+    },
+    {
       "name": "eclipse-gate",
       "runtimeExecutable": "bash",
       "runtimeArgs": [

@@ -22,9 +22,9 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ---------------------------------------------------------------- Konstanten
-PRICE = "27€"
-PRICE2 = "47€"
-CTA_URL = "#kaufen"        # <- Platzhalter: hier Bernadettes Checkout-Link rein
+PRICE = "37€"      # Einigung Bernadette/Patrycja 27.07.: fester Preis, zzgl. 19% MwSt.
+PRICE2 = "47€"     # nicht mehr verwendet (alte Mi/Do-Staffel), bleibt als Referenz
+CTA_URL = "https://angebot.lieblingsastrologin.de/eclipse-navigator/"   # Checkout (Patrycja 27.07.)
 IMPRESSUM_URL = "https://lieblingsastrologin.de/impressum/"
 DATENSCHUTZ_URL = "https://lieblingsastrologin.de/datenschutzerklaerung/"
 
@@ -44,6 +44,9 @@ def b64file(path):
 FONT_ANTON = b64file(os.path.join(HERE, "bernadette-anton.woff2"))
 FONT_SCRIPT = b64file(os.path.join(HERE, "bernadette-greatvibes.woff2"))
 FOTO = b64file(os.path.join(HERE, "bernadette-salespage-900.png"))
+# Avatar-Kreis (Patrycja 27.07.): neues Pailletten-Foto aus Bernadettes Canva-SVG
+# ("Design ohne Titel.svg", Maske angewendet), Oberkoerper-Ausschnitt auf Cream.
+FOTO2 = b64file(os.path.join(HERE, "bernadette-avatar-pailletten.png"))
 
 TAPE = ("ECLIPSE SEASON ✦  " * 14).strip()
 
@@ -120,7 +123,7 @@ section{ padding:64px 0; }
 .sec-was p{ margin-bottom:18px; }
 .berna-photo{ width:170px; height:170px; border-radius:50%; overflow:hidden; margin:0 auto 24px;
   border:4px solid __INK__; background:__CREAM__; }
-.berna-photo img{ width:150%; margin-left:-25%; margin-top:6%; display:block; }
+.berna-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 .standout{ background:rgba(255,255,255,.55); border-radius:4px; padding:24px 26px; margin-top:28px; text-align:center; }
 .standout p{ margin-bottom:10px; }
 .standout .big{ font-family:'BAnton',sans-serif; text-transform:uppercase; font-size:21px; letter-spacing:1px; margin-bottom:0; }
@@ -164,9 +167,16 @@ section{ padding:64px 0; }
 .sec-angebot{ background:__PEACH__; text-align:center; }
 .sec-angebot p{ max-width:560px; margin:0 auto 18px; font-size:18px; }
 .preis-karte{ background:rgba(255,255,255,.6); border-radius:4px; max-width:480px; margin:26px auto; padding:30px 26px; }
-.preis-karte .zahl{ font-family:'BAnton',sans-serif; font-size:72px; line-height:1; display:block; margin-bottom:8px; }
+.preis-karte .zahl{ font-family:'BAnton',sans-serif; font-size:72px; line-height:1; display:inline-block; position:relative; }
+.preis-karte .mwst{ font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  text-transform:none; font-size:13px; letter-spacing:0; opacity:.72; white-space:nowrap;
+  position:absolute; left:calc(100% + 10px); bottom:10px; }
+@media (max-width:560px){
+  .preis-karte .mwst{ position:static; display:block; margin-top:8px; text-align:center; }
+}
 .preis-karte p{ margin-bottom:10px; font-size:17px; }
 .preis-karte p:last-child{ margin-bottom:0; }
+.sec-angebot p.btn-mwst{ font-size:13px; color:#fff; margin-top:10px; margin-bottom:0; }
 .sec-angebot p.verfuegbar{ font-size:15px; opacity:.8; margin-top:20px; }
 
 /* ------------------------------------------------ FAQ */
@@ -235,7 +245,7 @@ details .a p{ margin-bottom:10px; }
       <span class="sec-script">Was ist der</span>
       <h2 class="anton sec-h2">Eclipse Navigator?</h2>
     </div>
-    <div class="berna-photo"><img src="data:image/png;base64,__FOTO__" alt="Bernadette Hirschfelder"></div>
+    <div class="berna-photo"><img src="data:image/png;base64,__FOTO2__" alt="Bernadette Hirschfelder"></div>
     <p>Täglich erreichen mich Anfragen für persönliche Horoskopdeutungen. Ja, ich würde so gerne jedes einzelne Horoskop anschauen, aber es ist schlicht unmöglich. Deswegen habe ich den Eclipse Navigator mitentworfen. Ein KI-Tool, das auf meiner Expertise basiert, damit Du eine Deutung bekommst, die wirklich zu Deinem Horoskop passt. Personalisiert. Sofort verfügbar für DICH.</p>
     <p>Der Eclipse Navigator ist Deine persönliche Eklipsen-Deutung, erstellt auf Basis Deiner Geburtsdaten, zugeschnitten auf Dein Horoskop. Yes, für beide Finsternisse!</p>
     <div class="standout">
@@ -308,14 +318,12 @@ details .a p{ margin-bottom:10px; }
       <span class="sec-script">Dein</span>
       <h2 class="anton sec-h2" style="margin-bottom:0">Angebot</h2>
     </div>
-    <p>Der Eclipse Navigator ist ab Mittwoch, 29. Juli verf&uuml;gbar.</p>
     <div class="preis-karte">
-      <span class="anton zahl">__PRICE__</span>
-      <p>F&uuml;r __PRICE__, allerdings nur am Mittwoch und Donnerstag.</p>
-      <p>Ab Freitag, 31. Juli kostet er __PRICE2__.</p>
+      <span class="anton zahl">__PRICE__<span class="mwst">zzgl. 19% MwSt.</span></span>
     </div>
     <p>Die Sonnenfinsternis in L&ouml;we ist am 12. August. Die Mondfinsternis in Fische am 28. August. Du willst vorbereitet sein, nicht erst danach verstehen, was hier gerade passiert ist.</p>
     <a class="btn" href="__CTA__">Jetzt f&uuml;r <span class="p">__PRICE__</span> sichern!</a>
+    <p class="btn-mwst">zzgl. 19% MwSt.</p>
     <p class="verfuegbar">Verf&uuml;gbar bis 28. September.</p>
   </div>
 </section>
@@ -330,9 +338,9 @@ details .a p{ margin-bottom:10px; }
     <div class="faq">
       <details><summary>Brauche ich Astro-Vorkenntnisse?</summary><div class="a"><p>Nein. Du gibst nur Deine Geburtsdaten ein, alles andere macht der Eclipse Navigator. Dein Reading kommt in klarer Sprache, ohne Fachchinesisch.</p></div></details>
       <details><summary>Was brauche ich f&uuml;r mein Reading?</summary><div class="a"><p>Dein Geburtsdatum, Deine Geburtszeit und Deinen Geburtsort. Die Geburtszeit findest Du in Deiner Geburtsurkunde. Wenn Du sie nicht kennst, hilft ein Anruf beim Standesamt Deines Geburtsorts.</p></div></details>
-      <details><summary>Wie bekomme ich Zugang?</summary><div class="a"><p>Direkt nach dem Kauf bekommst Du Deinen pers&ouml;nlichen Zugangslink per E-Mail. Er geh&ouml;rt nur Dir und ist bis zum 28. September g&uuml;ltig. Funktioniert am Handy und am Computer.</p></div></details>
-      <details><summary>Wie l&auml;uft es genau ab?</summary><div class="a"><p>Du gibst Deine Geburtsdaten ein und kopierst Deinen pers&ouml;nlichen Prompt mit einem Klick. Den f&uuml;gst Du komplett bei ChatGPT oder Claude ein. Dein Reading kommt in drei Teilen. Wenn die KI nach einem Teil stoppt, schreibst Du einfach &bdquo;weiter&ldquo;.</p></div></details>
-      <details><summary>Brauche ich einen bezahlten KI-Account?</summary><div class="a"><p>Die kostenlose Version funktioniert. Die Antworten k&ouml;nnen dort aber k&uuml;rzer ausfallen und das Tageslimit kann Dich mitten im Reading stoppen. Mit der Bezahlversion bekommst Du das volle Erlebnis.</p><p>Mein Tipp: Gib Deinem Reading das kl&uuml;gste KI-Modell, das Du hast. Bei ChatGPT und Claude w&auml;hlst Du das Modell oben im Men&uuml;. Nimm das st&auml;rkste, nicht das schnelle.</p></div></details>
+      <details><summary>Wie bekomme ich Zugang?</summary><div class="a"><p>Direkt nach dem Kauf bekommst Du Deinen pers&ouml;nlichen Zugangslink per E-Mail. Funktioniert am Handy und am Computer.</p></div></details>
+      <details><summary>Wie l&auml;uft es genau ab?</summary><div class="a"><p>Du gibst Deine Geburtsdaten ein und kopierst Deinen pers&ouml;nlichen Prompt mit einem Klick. Den f&uuml;gst Du komplett bei ChatGPT oder Claude ein.</p></div></details>
+      <details><summary>Brauche ich einen bezahlten KI-Account?</summary><div class="a"><p>Die kostenlose Version funktioniert. Die Antworten k&ouml;nnen dort aber k&uuml;rzer ausfallen und das Tageslimit kann Dich mitten im Reading stoppen. Mit der Bezahlversion bekommst Du das beste Ergebnis.</p><p>Mein Tipp: Gib Deinem Reading das kl&uuml;gste KI-Modell, das Du hast. Bei ChatGPT und Claude w&auml;hlst Du das Modell oben im Men&uuml;. Nimm das st&auml;rkste, nicht das schnelle.</p></div></details>
       <details><summary>Kann die KI Fehler machen?</summary><div class="a"><p>Ja. Dein Reading wird von einer KI geschrieben, auf Basis Deiner echten Horoskop-Daten und meiner astrologischen Struktur dahinter. Eine KI kann Fehler machen. Nimm Dein Reading als Spiegel und Impuls f&uuml;r Deine Entscheidungen. Die letzte Instanz bist immer Du.</p><p>Dieses Reading ersetzt keinen medizinischen, psychotherapeutischen, rechtlichen oder finanziellen Rat.</p></div></details>
       <details><summary>Was passiert mit meinen Daten?</summary><div class="a"><p>Deine Geburtsdaten werden nur in Deinem Browser berechnet und nirgendwo gespeichert. Was Du bei ChatGPT oder Claude eingibst, liegt beim Datenschutz des jeweiligen Anbieters. Wenn Dir das wichtig ist, kannst Du dort die Nutzung Deiner Chats f&uuml;r Trainingszwecke ausschalten.</p></div></details>
       <details><summary>Was mache ich, wenn etwas hakt?</summary><div class="a"><p>Die Seite l&auml;dt oder rechnet nicht? Leere den Browser-Cache oder nutze einen anderen Browser, am besten ein aktuelles Chrome oder Safari. Dein Geburtsort wird nicht gefunden? Gib die n&auml;chstgr&ouml;&szlig;ere Stadt ein. Du kommst nicht weiter? Schreib mir, ich helfe Dir.</p></div></details>
@@ -352,6 +360,7 @@ details .a p{ margin-bottom:10px; }
 html = (HTML
         .replace("__ANTON__", FONT_ANTON)
         .replace("__SCRIPT__", FONT_SCRIPT)
+        .replace("__FOTO2__", FOTO2)
         .replace("__FOTO__", FOTO)
         .replace("__TAPE__", TAPE)
         .replace("__PRICE2__", PRICE2)
