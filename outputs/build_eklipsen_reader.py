@@ -127,31 +127,49 @@ repl("""&count=6&language=de&format=json';
 """,
      """&count=6&language=de&format=json';
 
-  async function geoFetch(q){
-    const data = await (await fetch(GEO(q))).json();
+  async function geoFetch(q, n){
+    const url = 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=' + (n || 30) + '&language=de&format=json';
+    const data = await (await fetch(url)).json();
     return data.results || [];
+  }
+  function geoSort(results){
+    const dach = {DE:1, AT:1, CH:1};
+    return results.slice().sort(function(a, b){
+      const d = (dach[b.country_code] || 0) - (dach[a.country_code] || 0);
+      if(d !== 0) return d;
+      return (b.population || 0) - (a.population || 0);
+    }).slice(0, 6);
+  }
+  function geoFilter(results, rest){
+    const stop = {an:1, am:1, a:1, ad:1, der:1, die:1, das:1, den:1, in:1, im:1, bei:1, und:1};
+    const woerter = rest.toLowerCase().split(/[\\s,.()]+/).filter(function(w){ return w && !stop[w]; });
+    if(!woerter.length) return results;
+    const passend = results.filter(function(r){
+      const h = ((r.name || '') + ' ' + (r.admin1 || '') + ' ' + (r.country || '')).toLowerCase();
+      return woerter.every(function(w){ return h.indexOf(w) !== -1; });
+    });
+    return passend.length ? passend : results;
   }
   async function geoSearch(q){
     q = (q || '').trim();
     let results = await geoFetch(q);
-    if(!results.length && q.indexOf(',') === -1 && /\\s/.test(q)){
+    if(results.length) return geoSort(results);
+    let first = '', rest = '';
+    if(q.indexOf(',') !== -1){
+      first = q.split(',')[0].trim();
+      rest = q.split(',').slice(1).join(' ').trim();
+    } else if(/\\s/.test(q)){
       const parts = q.split(/\\s+/);
-      results = await geoFetch(parts[0] + ', ' + parts.slice(1).join(' '));
-      if(!results.length) results = await geoFetch(parts[0]);
+      first = parts[0];
+      rest = parts.slice(1).join(' ');
+      results = await geoFetch(first + ', ' + rest);
+      if(results.length) return geoSort(results);
     }
-    if(!results.length && q.indexOf(',') !== -1){
-      const first = q.split(',')[0].trim();
-      const rest = q.split(',').slice(1).join(' ').trim().toLowerCase();
-      if(first.length >= 2){
-        results = await geoFetch(first);
-        if(rest && results.length){
-          const passend = results.filter(r => ((r.admin1 || '') + ' ' + (r.country || '')).toLowerCase().indexOf(rest) !== -1);
-          if(passend.length) results = passend;
-        }
-      }
+    if(first.length >= 2){
+      results = await geoFetch(first);
+      if(rest) results = geoFilter(results, rest);
     }
-    const dach = {DE:1, AT:1, CH:1};
-    return results.slice().sort((a, b) => (dach[b.country_code] || 0) - (dach[a.country_code] || 0));
+    return geoSort(results);
   }
 """, "geo-helper")
 
