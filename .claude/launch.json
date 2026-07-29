@@ -113,11 +113,20 @@
       "port": 8777
     },
     {
+      "name": "eclipse-salespage",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/5063337c-81d4-4bd9-8b02-6130fd03fe51/scratchpad && exec python3 -m http.server 8778"
+      ],
+      "port": 8778
+    },
+    {
       "name": "eclipse-gate",
       "runtimeExecutable": "bash",
       "runtimeArgs": [
         "-c",
-        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/1b6dd531-5151-4ff1-8e98-ac6de3245374/scratchpad/gate && exec python3 -m http.server 8776"
+        "cd /private/tmp/claude-501/-Users-patrycjakaczorowska-Downloads-Vorlagen-claude-workspace-vorlage/1eb4b8fa-b593-48d7-ab25-fc3847da1bb4/scratchpad && exec python3 -m http.server 8776"
       ],
       "port": 8776
     }

@@ -117,6 +117,62 @@ def repl(old, new, label):
         sys.exit("FEHLT (" + label + "): " + old[:80])
     s = s.replace(old, new, 1)
 
+# --- 0. Ortssuche robust (29.07., Melle-Fall) -----------------------------
+# Open-Meteo findet "Melle Niedersachsen" (Leerzeichen) NICHT, "Melle,
+# Niedersachsen" (Komma) aber schon. Fallback-Kette: Eingabe wie getippt ->
+# erstes Wort + Komma + Rest -> nur erstes Wort. Zusaetzlich DACH-Treffer
+# (DE/AT/CH) nach oben sortieren, sonst steht z.B. Melle in Belgien vor
+# Melle in Niedersachsen.
+repl("""&count=6&language=de&format=json';
+""",
+     """&count=6&language=de&format=json';
+
+  async function geoFetch(q){
+    const data = await (await fetch(GEO(q))).json();
+    return data.results || [];
+  }
+  async function geoSearch(q){
+    q = (q || '').trim();
+    let results = await geoFetch(q);
+    if(!results.length && q.indexOf(',') === -1 && /\\s/.test(q)){
+      const parts = q.split(/\\s+/);
+      results = await geoFetch(parts[0] + ', ' + parts.slice(1).join(' '));
+      if(!results.length) results = await geoFetch(parts[0]);
+    }
+    if(!results.length && q.indexOf(',') !== -1){
+      const first = q.split(',')[0].trim();
+      const rest = q.split(',').slice(1).join(' ').trim().toLowerCase();
+      if(first.length >= 2){
+        results = await geoFetch(first);
+        if(rest && results.length){
+          const passend = results.filter(r => ((r.admin1 || '') + ' ' + (r.country || '')).toLowerCase().indexOf(rest) !== -1);
+          if(passend.length) results = passend;
+        }
+      }
+    }
+    const dach = {DE:1, AT:1, CH:1};
+    return results.slice().sort((a, b) => (dach[b.country_code] || 0) - (dach[a.country_code] || 0));
+  }
+""", "geo-helper")
+
+repl("""    r.classList.add('open');
+    try{
+      const data = await (await fetch(GEO(q))).json();
+      const results = data.results || [];
+""",
+     """    r.classList.add('open');
+    try{
+      const results = await geoSearch(q);
+""", "geo-searchplace")
+
+repl("""    try{
+      const data = await (await fetch(GEO(q))).json();
+      const res = (data.results || [])[0];
+""",
+     """    try{
+      const res = (await geoSearch(q))[0];
+""", "geo-ensureplace")
+
 # --- 1. Branding / sichtbare Texte ---------------------------------------
 repl("<title>Dein Business-Code</title>",
      "<title>" + NAME + "</title>", "title")
@@ -834,6 +890,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
   border-color:#111111 !important; box-shadow:0 0 0 4px __FLIEDER__ !important; }
 .place-results{ background:#FFFFFF !important; border:2px solid #111111 !important; }
 .place-item{ color:#111111 !important; }
+.place-item small{ color:#111111 !important; }
 .place-item:hover, .place-item.active{ background:__ROSA__ !important; }
 select option{ background:#FFFFFF !important; color:#111111 !important; }
 .sign-badge{ background:__FLIEDER__ !important; border:none !important; color:#111111 !important; font-weight:700 !important; }

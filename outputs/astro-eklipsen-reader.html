@@ -1106,6 +1106,7 @@ input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
   border-color:#111111 !important; box-shadow:0 0 0 4px #E0B0FF !important; }
 .place-results{ background:#FFFFFF !important; border:2px solid #111111 !important; }
 .place-item{ color:#111111 !important; }
+.place-item small{ color:#111111 !important; }
 .place-item:hover, .place-item.active{ background:#FFD1DC !important; }
 select option{ background:#FFFFFF !important; color:#111111 !important; }
 .sign-badge{ background:#E0B0FF !important; border:none !important; color:#111111 !important; font-weight:700 !important; }
@@ -1513,6 +1514,33 @@ function showForm() {
   const $ = id => document.getElementById(id);
   const GEO = q => 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=6&language=de&format=json';
 
+  async function geoFetch(q){
+    const data = await (await fetch(GEO(q))).json();
+    return data.results || [];
+  }
+  async function geoSearch(q){
+    q = (q || '').trim();
+    let results = await geoFetch(q);
+    if(!results.length && q.indexOf(',') === -1 && /\s/.test(q)){
+      const parts = q.split(/\s+/);
+      results = await geoFetch(parts[0] + ', ' + parts.slice(1).join(' '));
+      if(!results.length) results = await geoFetch(parts[0]);
+    }
+    if(!results.length && q.indexOf(',') !== -1){
+      const first = q.split(',')[0].trim();
+      const rest = q.split(',').slice(1).join(' ').trim().toLowerCase();
+      if(first.length >= 2){
+        results = await geoFetch(first);
+        if(rest && results.length){
+          const passend = results.filter(r => ((r.admin1 || '') + ' ' + (r.country || '')).toLowerCase().indexOf(rest) !== -1);
+          if(passend.length) results = passend;
+        }
+      }
+    }
+    const dach = {DE:1, AT:1, CH:1};
+    return results.slice().sort((a, b) => (dach[b.country_code] || 0) - (dach[a.country_code] || 0));
+  }
+
   function closeResults(){ const r = $('placeResults'); if(r){ r.classList.remove('open'); r.innerHTML=''; } }
   function clearChosen(){ chosenPlace = null; const c = $('placeChosen'); if(c){ c.classList.remove('show'); c.textContent=''; } }
 
@@ -1521,8 +1549,7 @@ function showForm() {
     r.innerHTML = '<div class="place-loading">suche…</div>';
     r.classList.add('open');
     try{
-      const data = await (await fetch(GEO(q))).json();
-      const results = data.results || [];
+      const results = await geoSearch(q);
       if(!results.length){ r.innerHTML = '<div class="place-loading">Kein Ort gefunden</div>'; return; }
       r.innerHTML = results.map(res => {
         const region = [res.admin1, res.country].filter(Boolean).join(', ');
@@ -1546,8 +1573,7 @@ function showForm() {
     const q = ($('birthPlace').value || '').trim();
     if(q.length < 2) return null;
     try{
-      const data = await (await fetch(GEO(q))).json();
-      const res = (data.results || [])[0];
+      const res = (await geoSearch(q))[0];
       if(!res) return null;
       chosenPlace = { lat: res.latitude, lon: res.longitude, label: res.name + (res.country ? ', ' + res.country : '') };
       return chosenPlace;
