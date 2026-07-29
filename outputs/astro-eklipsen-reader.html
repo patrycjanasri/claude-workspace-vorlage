@@ -1848,7 +1848,7 @@ function showForm() {
               const d = Math.abs(((T - L + 540) % 360) - 180);
               TYPES.forEach(function(t){
                 const orb = Math.abs(d - t[0]);
-                if(orb <= t[2]) out.push({ point: pair[0], sign: SIGNOF[pair[0]] || '', house: HOUSEOF[pair[0]] || '', type: t[1], orb: Math.round(orb * 10) / 10, cr: (pair[0] === crName || (crCo && pair[0] === crCo)) });
+                if(orb <= t[2]) out.push({ point: pair[0], sign: SIGNOF[pair[0]] || '', house: HOUSEOF[pair[0]] || '', type: t[1], orb: Math.round(orb * 10) / 10, cr: (pair[0] === crName || (crCo && pair[0] === crCo)), crM: !!(crCo && pair[0] === crCo) });
               });
             });
             out.sort(function(a, b){ return a.orb - b.orb; });
@@ -1975,7 +1975,7 @@ function showForm() {
 
 Das Ereignis: Im August 2026 ist Eclipse Season. Am 12. August 2026 steht eine totale Sonnenfinsternis auf 20°06' Löwe. Am 28. August 2026 folgt eine partielle Mondfinsternis auf 4°50' Fische. Beide liegen an der Mondknotenachse. Eine Sonnenfinsternis findet zu einem Neumond statt: Sie steht für neue Chancen, neue Wege, neue Begegnungen und Türen, die sich plötzlich öffnen. Oft beginnt ein neues Kapitel, auch wenn ich es zunächst noch gar nicht erkenne. Eine Mondfinsternis findet zu einem Vollmond statt: Sie steht für Abschlüsse, Erkenntnisse, Entscheidungen und Loslassen. Wahrheit kommt ans Licht, oft zeigt sie genau das, was ich bisher übersehen oder verdrängt habe. Finsternisse wirken selten nur am Tag selbst: Die ersten Hinweise zeigen sich häufig schon etwa vier Wochen vorher, und die Themen entfalten sich manchmal noch Wochen oder Monate danach.
 
-Wichtig: Ich arbeite mit Placidus-Häusern und lese mein Horoskop über die Häuserherrscher. Zu jedem relevanten Haus stehen unten das Zeichen auf der Häuserspitze und der Herrscher mit seiner Position in meiner Radix. Lies jede Finsternis über ihr Haus UND über den Herrscher dieses Hauses: Das Haus zeigt, wo es geschieht, sein Herrscher zeigt, worüber es läuft und wohin es führt. Bei den Aspekten gilt: Ich arbeite bei Finsternissen mit einem weiten Orb von bis zu 10°. Je enger der Orb, desto stärker wirkt der Aspekt, die engsten tragen die Hauptbotschaft. Aspekte mit dem Vermerk HOROSKOPHERRSCHER treffen den Herrscher meines 1. Hauses, den Planeten, der mein ganzes Horoskop lenkt. Solche Treffer wiegen doppelt.
+Wichtig: Ich arbeite mit Placidus-Häusern und lese mein Horoskop über die Häuserherrscher. Zu jedem relevanten Haus stehen unten das Zeichen auf der Häuserspitze und der Herrscher mit seiner Position in meiner Radix. Lies jede Finsternis über ihr Haus UND über den Herrscher dieses Hauses: Das Haus zeigt, wo es geschieht, sein Herrscher zeigt, worüber es läuft und wohin es führt. Bei den Aspekten gilt: Ich arbeite bei Finsternissen mit einem weiten Orb von bis zu 10°. Je enger der Orb, desto stärker wirkt der Aspekt, die engsten tragen die Hauptbotschaft. Aspekte mit dem Vermerk HOROSKOPHERRSCHER treffen den Herrscher meines 1. Hauses, den Planeten, der mein ganzes Horoskop lenkt. Hat mein Aszendent-Zeichen zwei Herrscher, gilt der Vermerk für beide: Treffer auf den Mitherrscher sind mit HOROSKOPHERRSCHER, Mitherrscher gekennzeichnet und zählen genauso, das ist kein Widerspruch. Solche Treffer wiegen doppelt.
 
 Schreibe mir auf dieser Basis:`;
 
@@ -2022,7 +2022,7 @@ Hier sind meine Daten:`;
     }
 
     if(cr && crHit){
-      chap.push('Der Treffer auf meinen Horoskopherrscher. Der Herrscher meines 1. Hauses ist ' + cr.name + (cr.sign ? (', er steht in ' + cr.sign) : '') + (cr.house ? (' in meinem ' + cr.house + '. Haus') : '') + ' und lenkt mein ganzes Horoskop. Eine Finsternis berührt ihn direkt, du findest den Aspekt in den Daten mit dem Vermerk HOROSKOPHERRSCHER. Widme diesem Treffer einen eigenen Absatz: Wenn der Lenker des Horoskops getroffen wird, verschiebt sich die Richtung des ganzen Lebens spürbarer als bei jedem anderen Punkt.');
+      chap.push('Der Treffer auf meinen Horoskopherrscher. Der Herrscher meines 1. Hauses ist ' + cr.name + (cr.sign ? (', er steht in ' + cr.sign) : '') + (cr.house ? (' in meinem ' + cr.house + '. Haus') : '') + ' und lenkt mein ganzes Horoskop.' + (cr.co ? (' Mein Aszendent-Zeichen hat zwei Herrscher: Mitherrscher ist ' + cr.co + ', Treffer auf ihn tragen den Vermerk HOROSKOPHERRSCHER, Mitherrscher und zählen genauso.') : '') + ' Eine Finsternis berührt diesen Bereich direkt, du findest jeden solchen Aspekt in den Daten am Vermerk HOROSKOPHERRSCHER. Widme diesem Treffer einen eigenen Absatz: Wenn der Lenker des Horoskops getroffen wird, verschiebt sich die Richtung des ganzen Lebens spürbarer als bei jedem anderen Punkt.');
     }
 
     chap.push('Die Richtung. Die Mondknotenachse der Finsternisse läuft bei mir durch' + ((node.houseNN && node.houseSN) ? (' mein ' + node.houseNN + '. und mein ' + node.houseSN + '. Haus') : ' meine Häuser') + '. Lies sie als Richtungsgeber dieses Fensters: wohin das Leben mich zieht und was ich dafür lassen darf. Vergleiche sie mit meinen natalen Mondknoten in den Daten unten: Wo bestätigt das Fenster meinen Weg, wo fordert es einen neuen Schritt?');
@@ -2045,7 +2045,7 @@ Hier sind meine Daten:`;
     data.push('');
     data.push('MEINE FINSTERNISSE IM AUGUST 2026:');
     data.push('Sonnenfinsternis am 12.08.2026: ' + (sofi.text || '20°02\' Löwe') + (sofi.house ? (', fällt in mein ' + sofi.house + '. Haus.') : '.'));
-    const hitLine = function(h, who){ return '- ' + who + ' ' + h.type + ' zu ' + h.point + (h.sign ? (' in ' + h.sign) : '') + (h.house ? (', ' + h.house + '. Haus') : '') + ' (Orb ' + String(h.orb).replace('.', ',') + '°)' + (h.cr ? ' [HOROSKOPHERRSCHER]' : ''); };
+    const hitLine = function(h, who){ return '- ' + who + ' ' + h.type + ' zu ' + h.point + (h.sign ? (' in ' + h.sign) : '') + (h.house ? (', ' + h.house + '. Haus') : '') + ' (Orb ' + String(h.orb).replace('.', ',') + '°)' + (h.cr ? (h.crM ? ' [HOROSKOPHERRSCHER, Mitherrscher]' : ' [HOROSKOPHERRSCHER]') : ''); };
     if((sofi.hits || []).length){
       data.push('Aspekte der Sonnenfinsternis zu meinen natalen Punkten (engster Orb wirkt am stärksten):');
       sofi.hits.forEach(function(h){ data.push(hitLine(h, 'Sonnenfinsternis')); });
