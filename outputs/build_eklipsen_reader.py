@@ -144,11 +144,29 @@ repl("""&count=6&language=de&format=json';
     const stop = {an:1, am:1, a:1, ad:1, der:1, die:1, das:1, den:1, in:1, im:1, bei:1, und:1};
     const woerter = rest.toLowerCase().split(/[\\s,.()]+/).filter(function(w){ return w && !stop[w]; });
     if(!woerter.length) return results;
-    const passend = results.filter(function(r){
+    return results.filter(function(r){
       const h = ((r.name || '') + ' ' + (r.admin1 || '') + ' ' + (r.country || '')).toLowerCase();
       return woerter.every(function(w){ return h.indexOf(w) !== -1; });
     });
-    return passend.length ? passend : results;
+  }
+  async function photonFetch(q){
+    try{
+      const data = await (await fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(q) + '&limit=12&lang=de')).json();
+      const arten = {city:1, town:1, village:1, hamlet:1, municipality:1, borough:1, suburb:1, locality:1};
+      const seen = {};
+      const out = [];
+      (data.features || []).forEach(function(f){
+        const p = f.properties || {};
+        const g = (f.geometry || {}).coordinates || [];
+        if(!arten[p.osm_value] && p.osm_key !== 'place') return;
+        if(typeof g[0] !== 'number' || typeof g[1] !== 'number') return;
+        const key = (p.name || '') + '|' + (p.state || '') + '|' + Math.round(g[1] * 10) + '|' + Math.round(g[0] * 10);
+        if(seen[key]) return;
+        seen[key] = 1;
+        out.push({ name: p.name || q, admin1: p.state || p.county || '', country: p.country || '', country_code: (p.countrycode || '').toUpperCase(), latitude: g[1], longitude: g[0], population: 0 });
+      });
+      return out;
+    }catch(e){ return []; }
   }
   async function geoSearch(q){
     q = (q || '').trim();
@@ -169,6 +187,7 @@ repl("""&count=6&language=de&format=json';
       results = await geoFetch(first);
       if(rest) results = geoFilter(results, rest);
     }
+    if(!results.length) results = await photonFetch(q);
     return geoSort(results);
   }
 """, "geo-helper")
