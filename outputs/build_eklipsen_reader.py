@@ -229,7 +229,7 @@ repl('''  // Trägt die Lead über die Netlify-Funktion in die GetResponse-Liste
 
 # --- 2. Geburtsdatum als Tippfeld TT.MM.JJJJ -------------------------------
 repl('<input type="date" id="birthDate" autocomplete="off" min="1900-01-01" max="2035-12-31">',
-     '<input type="text" id="birthDate" placeholder="TT.MM.JJJJ, z.B. 08.10.1986" inputmode="numeric" autocomplete="off">',
+     '<input type="text" id="birthDate" placeholder="TT.MM.JJJJ, z.B. 08101986" inputmode="numeric" autocomplete="off">',
      "date-field-text")
 
 repl("    const date = $('birthDate').value;",
@@ -295,7 +295,7 @@ repl("&#8592; Neuen Business-Code erstellen", "&#8592; Meine Eingaben korrigiere
 # reichte nicht). Muster wie das Datums-Tippfeld: HH:MM mit Auto-Doppelpunkt
 # (1352 -> 13:52), Validierung 00-23 / 00-59.
 repl('<input type="time" id="birthTime" autocomplete="off">',
-     '<input type="text" id="birthTime" placeholder="HH:MM, z.B. 13:52" inputmode="numeric" autocomplete="off">',
+     '<input type="text" id="birthTime" placeholder="HH:MM, z.B. 1352" inputmode="numeric" autocomplete="off">',
      "time-field-text")
 
 repl("    const time = $('birthTime').value;",
