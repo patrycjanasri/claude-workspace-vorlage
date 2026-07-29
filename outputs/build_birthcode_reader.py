@@ -100,6 +100,103 @@ function trueNodeLon(jd){
 }
 </script>''', "true-node-script")
 
+# --- 0c. Ortssuche robust (nachgezogen 29.07. aus build_eklipsen_reader.py,
+# v15.3 Halle-Saale-Umbau + v15.4 Photon-Fallback, Bloecke 1:1) --------------
+# geoFetch holt 30 Treffer statt 6, geoSort zeigt Top 6 (DACH zuerst, darin
+# nach Einwohnerzahl -> Grossstadt vor Dorf), geoFilter matcht Qualifier-
+# Woerter gegen Name+Region+Land (Fuellwort-Liste), Fallback-Kette wie
+# getippt -> 'Wort, Rest' -> erstes Wort + Filter. photonFetch (OpenStreetMap,
+# kostenlos, ohne Schluessel) greift NUR, wenn die komplette Open-Meteo-Kette
+# 0 Treffer liefert (Bad-Friedrichshall-Fall: Ort fehlt in der Geonames-DB).
+# Zweite externe Laufzeit-Abhaengigkeit (Open-Meteo + Photon), beide nur fuer
+# die Ortssuche, die Berechnung bleibt autark.
+repl("""&count=6&language=de&format=json';
+""",
+     """&count=6&language=de&format=json';
+
+  async function geoFetch(q, n){
+    const url = 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=' + (n || 30) + '&language=de&format=json';
+    const data = await (await fetch(url)).json();
+    return data.results || [];
+  }
+  function geoSort(results){
+    const dach = {DE:1, AT:1, CH:1};
+    return results.slice().sort(function(a, b){
+      const d = (dach[b.country_code] || 0) - (dach[a.country_code] || 0);
+      if(d !== 0) return d;
+      return (b.population || 0) - (a.population || 0);
+    }).slice(0, 6);
+  }
+  function geoFilter(results, rest){
+    const stop = {an:1, am:1, a:1, ad:1, der:1, die:1, das:1, den:1, in:1, im:1, bei:1, und:1};
+    const woerter = rest.toLowerCase().split(/[\\s,.()]+/).filter(function(w){ return w && !stop[w]; });
+    if(!woerter.length) return results;
+    return results.filter(function(r){
+      const h = ((r.name || '') + ' ' + (r.admin1 || '') + ' ' + (r.country || '')).toLowerCase();
+      return woerter.every(function(w){ return h.indexOf(w) !== -1; });
+    });
+  }
+  async function photonFetch(q){
+    try{
+      const data = await (await fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(q) + '&limit=12&lang=de')).json();
+      const arten = {city:1, town:1, village:1, hamlet:1, municipality:1, borough:1, suburb:1, locality:1};
+      const seen = {};
+      const out = [];
+      (data.features || []).forEach(function(f){
+        const p = f.properties || {};
+        const g = (f.geometry || {}).coordinates || [];
+        if(!arten[p.osm_value] && p.osm_key !== 'place') return;
+        if(typeof g[0] !== 'number' || typeof g[1] !== 'number') return;
+        const key = (p.name || '') + '|' + (p.state || '') + '|' + Math.round(g[1] * 10) + '|' + Math.round(g[0] * 10);
+        if(seen[key]) return;
+        seen[key] = 1;
+        out.push({ name: p.name || q, admin1: p.state || p.county || '', country: p.country || '', country_code: (p.countrycode || '').toUpperCase(), latitude: g[1], longitude: g[0], population: 0 });
+      });
+      return out;
+    }catch(e){ return []; }
+  }
+  async function geoSearch(q){
+    q = (q || '').trim();
+    let results = await geoFetch(q);
+    if(results.length) return geoSort(results);
+    let first = '', rest = '';
+    if(q.indexOf(',') !== -1){
+      first = q.split(',')[0].trim();
+      rest = q.split(',').slice(1).join(' ').trim();
+    } else if(/\\s/.test(q)){
+      const parts = q.split(/\\s+/);
+      first = parts[0];
+      rest = parts.slice(1).join(' ');
+      results = await geoFetch(first + ', ' + rest);
+      if(results.length) return geoSort(results);
+    }
+    if(first.length >= 2){
+      results = await geoFetch(first);
+      if(rest) results = geoFilter(results, rest);
+    }
+    if(!results.length) results = await photonFetch(q);
+    return geoSort(results);
+  }
+""", "geo-helper")
+
+repl("""    r.classList.add('open');
+    try{
+      const data = await (await fetch(GEO(q))).json();
+      const results = data.results || [];
+""",
+     """    r.classList.add('open');
+    try{
+      const results = await geoSearch(q);
+""", "geo-searchplace")
+
+repl("""    try{
+      const data = await (await fetch(GEO(q))).json();
+      const res = (data.results || [])[0];
+""",
+     """    try{
+      const res = (await geoSearch(q))[0];
+""", "geo-ensureplace")
+
 # --- 1. Branding / sichtbare Texte ---------------------------------------
 repl("<title>Dein Business-Code</title>",
      "<title>" + NAME + "</title>", "title")
