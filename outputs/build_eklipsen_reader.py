@@ -128,7 +128,7 @@ repl("""&count=6&language=de&format=json';
      """&count=6&language=de&format=json';
 
   var GEO_EXTRA = [
-    { such: ['kievka', 'kiewka', 'kijewka', 'kiyevka', 'kijevka'], name: 'Kievka (heute Nura)', admin1: 'Qaraghandy', country: 'Kasachstan', country_code: 'KZ', latitude: 50.2616, longitude: 71.548, population: 7037 }
+    { such: ['kievka', 'kiewka', 'kijewka', 'kiyevka', 'kijevka'], name: 'Kievka', admin1: 'Qaraghandy', country: 'Kasachstan', country_code: 'KZ', latitude: 50.2622, longitude: 71.5483, population: 7037 }
   ];
   function geoExtra(q){
     var erster = (q || '').toLowerCase().split(/[\s,]+/)[0] || '';
