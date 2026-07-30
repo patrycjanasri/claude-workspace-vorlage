@@ -127,6 +127,16 @@ repl("""&count=6&language=de&format=json';
 """,
      """&count=6&language=de&format=json';
 
+  var GEO_EXTRA = [
+    { such: ['kievka', 'kiewka', 'kijewka', 'kiyevka', 'kijevka'], name: 'Kievka (heute Nura)', admin1: 'Qaraghandy', country: 'Kasachstan', country_code: 'KZ', latitude: 50.2616, longitude: 71.548, population: 7037 }
+  ];
+  function geoExtra(q){
+    var erster = (q || '').toLowerCase().split(/[\s,]+/)[0] || '';
+    if(erster.length < 3) return [];
+    return GEO_EXTRA.filter(function(e){
+      return e.such.some(function(s){ return s.indexOf(erster) === 0 || erster.indexOf(s) === 0; });
+    }).map(function(e){ return Object.assign({}, e); });
+  }
   async function geoFetch(q, n){
     const url = 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=' + (n || 30) + '&language=de&format=json';
     const data = await (await fetch(url)).json();
@@ -170,8 +180,9 @@ repl("""&count=6&language=de&format=json';
   }
   async function geoSearch(q){
     q = (q || '').trim();
+    const extra = geoExtra(q);
     let results = await geoFetch(q);
-    if(results.length) return geoSort(results);
+    if(extra.length || results.length) return geoSort(extra.concat(results));
     let first = '', rest = '';
     if(q.indexOf(',') !== -1){
       first = q.split(',')[0].trim();

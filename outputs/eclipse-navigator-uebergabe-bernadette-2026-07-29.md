@@ -83,11 +83,14 @@ Unterschied ändern praktisch nichts an den Häusern.
 ### „Mein Geburtsort wurde umbenannt" (Beispiel Kievka, Kasachstan)
 Viele Orte in Osteuropa und Kasachstan tragen heute einen anderen Namen als zur Geburt.
 Die Ortsdatenbanken kennen nur den HEUTIGEN Namen. Fall vom 29.07.: „Kievka, Kasachstan"
-heißt heute **Nura** — im Reader „Nura" suchen und „Nura Qaraghandy, Kasachstan" auswählen,
-das sind exakt die Koordinaten des alten Kiyevka. Fürs Horoskop zählen nur die Koordinaten,
-der Name ist egal. Generelle Antwort an Kundinnen: den heutigen Namen des Ortes suchen
-(steht meist bei Wikipedia unter dem alten Namen), alternativ den nächstgelegenen
-größeren Ort nehmen.
+heißt heute **Nura**. Für diesen Fall hat der Reader seit dem 29.07. eine **eingebaute
+Zusatz-Ortsliste**: Die Eingabe „Kievka" (auch Kiewka/Kijewka/Kiyevka) zeigt direkt
+„Kievka (heute Nura), Qaraghandy, Kasachstan" mit den korrekten Koordinaten
+(50°16'N / 71°33'E, identisch mit Astro-Seek, verifiziert am Kundinnen-Fall Olga).
+Generelle Antwort bei weiteren umbenannten Orten: den heutigen Namen suchen (steht meist
+bei Wikipedia unter dem alten Namen) — fürs Horoskop zählen nur die Koordinaten. Und:
+Solche Orte können jederzeit in die Zusatz-Ortsliste aufgenommen werden (ein Eintrag im
+Generator, neu bauen, neu hochladen).
 
 ### „ChatGPT meldet einen Widerspruch beim Horoskopherrscher"
 Fall vom 29.07.: AC Skorpion, Vermerk HOROSKOPHERRSCHER stand an einem Mars-Aspekt, die
