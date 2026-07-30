@@ -80,6 +80,15 @@ als Sicherheitsnetz, sogar fehlertolerant bei Tippfehlern. Wenn trotzdem mal ein
 nächstgrößere Stadt eingeben — für das Horoskop zählen die Koordinaten, wenige Kilometer
 Unterschied ändern praktisch nichts an den Häusern.
 
+### „Mein Geburtsort wurde umbenannt" (Beispiel Kievka, Kasachstan)
+Viele Orte in Osteuropa und Kasachstan tragen heute einen anderen Namen als zur Geburt.
+Die Ortsdatenbanken kennen nur den HEUTIGEN Namen. Fall vom 29.07.: „Kievka, Kasachstan"
+heißt heute **Nura** — im Reader „Nura" suchen und „Nura Qaraghandy, Kasachstan" auswählen,
+das sind exakt die Koordinaten des alten Kiyevka. Fürs Horoskop zählen nur die Koordinaten,
+der Name ist egal. Generelle Antwort an Kundinnen: den heutigen Namen des Ortes suchen
+(steht meist bei Wikipedia unter dem alten Namen), alternativ den nächstgelegenen
+größeren Ort nehmen.
+
 ### „ChatGPT meldet einen Widerspruch beim Horoskopherrscher"
 Fall vom 29.07.: AC Skorpion, Vermerk HOROSKOPHERRSCHER stand an einem Mars-Aspekt, die
 Daten nannten Pluto als Herrscher → ChatGPT stoppte. Ursache: Mars ist Mitherrscher von
