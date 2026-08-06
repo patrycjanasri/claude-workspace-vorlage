@@ -175,6 +175,7 @@ Vollständige Kontextdateien:
 ## Notizen
 
 - **Transit-Timing:** Jede Terminempfehlung (Mailversand, Launches, Verträge, Preisentscheidungen) gegen `context/transite-business.md` prüfen — Patrycjas eigenes Business-Transitreading, operativ aufbereitet. Neues Reading ersetzt den Datei-Inhalt.
+- **Eclipse Season 2026:** `context/eklipsen-reading.md` ist Patrycjas persönliches Eklipsen-Reading (SoFi 12.08.2026 im 7. Haus, MoFi 28.08.2026 im 1. Haus mit Quadrat auf Chartruler Saturn 0,2°), gültig Mitte Juli 2026 bis Anfang 2027. Claude wendet die Arbeitsregeln daraus bei allen Kooperations-, Vertrags-, Rollen- und Terminfragen in diesem Fenster an — besonders: neue Verbindungen am Nordknoten-Widder-Maßstab prüfen (Eigenständigkeit, IP, Entscheidungsgewalt), Schatten-Wache bei Dringlichkeits-Entscheidungen, um den 28.08. keine neuen Dauerverpflichtungen.
 - **Individueller Blueprint:** `context/geburtshoroskop.md` ist Patrycjas Radix (Reading 1:1 + Arbeitsregeln). Claude berücksichtigt ihn bei jeder strategischen Empfehlung, Preisfrage und Entscheidungsberatung — vor allem: klare Preise ohne Rechtfertigung (Nordknoten Widder im 2. Haus), Realitätsprüfung bei Visionen und Deals (Sonne ☐ Neptun 0,1°), Entscheidung spiegeln statt Argumente sammeln (Merkur ☍ Nordknoten), Rahmen statt Bremse bei Chancen (Jupiter ☐ Uranus). Radix = dauerhaft, Timing = transite-business.md.
 - Kontext minimal aber ausreichend halten — kein Bloat
 - Pläne in `plans/` mit datierten Dateinamen für die Historie
